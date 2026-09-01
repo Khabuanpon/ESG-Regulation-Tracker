@@ -1,0 +1,2386 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ติดตามกฎหมาย ESG — Thailand &amp; EU</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+ :root{
+ --paper:#EEF2F8;
+ --paper-2:#E1E8F2;
+ --ink:#141B2B;
+ --ink-soft:#57647E;
+ --line:#D5DDEA;
+ --gold:#3E7CB8;
+ --gold-rgb:62,124,184;
+ --th-accent:#5B5FC7;
+ --th-accent-soft:#E7E7FA;
+ --eu-accent:#1E8A96;
+ --eu-accent-soft:#DCF0F1;
+ --ok:#2E8B74;
+ --ok-soft:#DCEEE8;
+ --warn:#B08A3E;
+ --warn-soft:#F1E7D2;
+ --urgent:#B1465F;
+ --urgent-rgb:177,70,95;
+ --urgent-soft:#F5DFE4;
+ --asia-accent:#7B6CD9;
+ --asia-accent-soft:#EBE8FA;
+ --global-accent:#4F7A96;
+ --global-accent-soft:#DCE8EE;
+ --radius:8px;
+ --ease:cubic-bezier(.4,0,.2,1);
+ }
+ *{box-sizing:border-box;}
+ @media (prefers-reduced-motion: no-preference){
+ body{animation:pageIn .5s var(--ease);}
+ }
+ @keyframes pageIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+ @keyframes cardIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+ @keyframes pulseRing{
+ 0%{box-shadow:0 0 0 0 rgba(var(--urgent-rgb),.45);}
+ 70%{box-shadow:0 0 0 9px rgba(var(--urgent-rgb),0);}
+ 100%{box-shadow:0 0 0 0 rgba(var(--urgent-rgb),0);}
+ }
+ @keyframes daysPulse{
+ 0%,100%{color:var(--urgent);}
+ 50%{color:#8f3049;}
+ }
+ body{
+ margin:0;
+ background:var(--paper);
+ color:var(--ink);
+ font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;
+ line-height:1.55;
+ }
+ .wrap{max-width:980px;margin:0 auto;padding:36px 20px 80px;}
+
+ header.masthead{
+ border-bottom:3px double var(--ink);
+ padding-bottom:18px;
+ margin-bottom:6px;
+ display:flex;
+ justify-content:space-between;
+ align-items:flex-end;
+ flex-wrap:wrap;
+ gap:12px;
+ }
+ header.masthead h1{
+ font-family:'Fraunces',serif;
+ font-weight:600;
+ font-size:clamp(28px,4vw,40px);
+ margin:0;
+ letter-spacing:-0.01em;
+ }
+ header.masthead .sub{
+ font-size:13px;
+ color:var(--ink-soft);
+ font-family:'IBM Plex Mono',monospace;
+ text-align:right;
+ }
+ .masthead-strip{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:11px;
+ letter-spacing:0.08em;
+ text-transform:uppercase;
+ color:var(--ink-soft);
+ padding:8px 0 24px;
+ border-bottom:1px solid var(--line);
+ margin-bottom:28px;
+ display:flex;
+ justify-content:space-between;
+ flex-wrap:wrap;
+ gap:8px;
+ }
+
+ /* Deadline strip */
+ .deadlines{
+ margin-bottom:36px;
+ }
+ .deadlines h2{
+ font-family:'Fraunces',serif;
+ font-size:15px;
+ font-weight:600;
+ text-transform:uppercase;
+ letter-spacing:0.06em;
+ margin:0 0 12px;
+ color:var(--ink-soft);
+ }
+ .deadline-row{
+ display:flex;
+ flex-direction:column;
+ gap:10px;
+ }
+ .deadline-item{
+ display:grid;
+ grid-template-columns:90px 1fr auto;
+ gap:14px;
+ align-items:center;
+ background:#fff;
+ border:1px solid var(--line);
+ border-left:4px solid var(--ok);
+ border-radius:var(--radius);
+ padding:10px 14px;
+ transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s var(--ease);
+ }
+ .deadline-item:hover{
+ transform:translateY(-1px);
+ box-shadow:0 6px 16px rgba(20,27,43,.07);
+ }
+ .deadline-item.warn{border-left-color:var(--warn);}
+ .deadline-item.urgent{border-left-color:var(--urgent);}
+ .deadline-item.urgent .deadline-days .n{
+ display:inline-block;
+ animation:daysPulse 2.4s ease-in-out infinite;
+ }
+ .deadline-days{
+ font-family:'IBM Plex Mono',monospace;
+ font-weight:600;
+ font-size:13px;
+ color:var(--ink);
+ white-space:nowrap;
+ }
+ .deadline-days .n{font-size:18px;}
+ .deadline-item.urgent .deadline-days{color:var(--urgent);}
+ .deadline-item.warn .deadline-days{color:var(--warn);}
+ .deadline-label{font-size:14px;}
+ .deadline-label b{font-weight:600;}
+ .deadline-tag{
+ font-size:10px;
+ font-family:'IBM Plex Mono',monospace;
+ letter-spacing:0.05em;
+ padding:3px 8px;
+ border-radius:20px;
+ white-space:nowrap;
+ }
+ .tag-th{background:var(--th-accent-soft);color:var(--th-accent);}
+ .tag-eu{background:var(--eu-accent-soft);color:var(--eu-accent);}
+ .tag-asia{background:var(--asia-accent-soft);color:var(--asia-accent);}
+ .tag-global{background:var(--global-accent-soft);color:var(--global-accent);}
+
+ /* Section headers */
+ .section-title{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ margin:44px 0 18px;
+ }
+ .section-title .flag{
+ width:34px;height:34px;
+ border-radius:50%;
+ display:flex;align-items:center;justify-content:center;
+ font-size:15px;
+ color:#fff;
+ font-family:'Fraunces',serif;
+ font-weight:600;
+ flex-shrink:0;
+ }
+ .section-title.th .flag{background:var(--th-accent);}
+ .section-title.eu .flag{background:var(--eu-accent);}
+ .section-title.asia .flag{background:var(--asia-accent);}
+ .section-title.global .flag{background:var(--global-accent);}
+ .section-title h2{
+ font-family:'Fraunces',serif;
+ font-size:22px;
+ font-weight:600;
+ margin:0;
+ }
+ .section-title .desc{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+
+ /* Law cards */
+ .card{
+ background:#fff;
+ border:1px solid var(--line);
+ border-radius:calc(var(--radius) + 2px);
+ padding:22px 24px 20px;
+ margin-bottom:20px;
+ position:relative;
+ box-shadow:0 1px 2px rgba(20,27,43,.04);
+ transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease);
+ }
+ .card:hover{
+ transform:translateY(-3px);
+ box-shadow:0 12px 28px rgba(20,27,43,.09);
+ border-color:#c3cee0;
+ }
+ .card.card-enter{animation:cardIn .4s var(--ease);}
+ .card-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:flex-start;
+ gap:16px;
+ flex-wrap:wrap;
+ margin-bottom:10px;
+ }
+ .card-head h3{
+ font-family:'Fraunces',serif;
+ font-size:18.5px;
+ font-weight:600;
+ margin:0 0 4px;
+ }
+ .card-head .en-name{
+ font-size:12.5px;
+ color:var(--ink-soft);
+ font-style:italic;
+ }
+ .status-pill{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:11px;
+ font-weight:600;
+ padding:5px 12px;
+ border-radius:20px;
+ white-space:nowrap;
+ letter-spacing:0.02em;
+ transition:transform .2s var(--ease);
+ }
+ .card:hover .status-pill{transform:scale(1.04);}
+ .status-progress{background:var(--warn-soft);color:var(--warn);}
+ .status-force{background:var(--ok-soft);color:var(--ok);}
+ .status-urgent{background:var(--urgent-soft);color:var(--urgent);}
+
+ .summary{font-size:14px;margin:8px 0 16px;color:var(--ink);}
+ .summary b{font-weight:600;}
+
+ /* Timeline ribbon */
+ .timeline{
+ margin:18px 0 14px;
+ }
+ .timeline-track{
+ position:relative;
+ height:2px;
+ background:var(--line);
+ margin:0 6px 8px;
+ }
+ .timeline-track .fill{
+ position:absolute;top:0;left:0;height:2px;
+ background:var(--gold);
+ }
+ .timeline-points{
+ display:flex;
+ justify-content:space-between;
+ position:relative;
+ }
+ .tpoint{
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ text-align:center;
+ width:80px;
+ font-size:10.5px;
+ color:var(--ink-soft);
+ font-family:'IBM Plex Mono',monospace;
+ }
+ .tpoint .dot{
+ width:10px;height:10px;
+ border-radius:50%;
+ background:var(--line);
+ border:2px solid #fff;
+ box-shadow:0 0 0 1px var(--line);
+ margin-top:-6px;
+ margin-bottom:6px;
+ }
+ .tpoint.done .dot{background:var(--gold);box-shadow:0 0 0 1px var(--gold);}
+ .tpoint.now .dot{background:var(--urgent);animation:pulseRing 2s infinite;}
+ .tpoint .label{color:var(--ink);font-weight:600;margin-bottom:2px;}
+
+ .meta-grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+ gap:10px 20px;
+ margin-top:14px;
+ padding-top:14px;
+ border-top:1px dashed var(--line);
+ font-size:13px;
+ }
+ .meta-grid .k{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:10.5px;
+ text-transform:uppercase;
+ letter-spacing:0.05em;
+ color:var(--ink-soft);
+ margin-bottom:2px;
+ }
+ .source-note{
+ font-size:11.5px;
+ color:var(--ink-soft);
+ margin-top:14px;
+ }
+ .source-note a{color:var(--ink-soft);}
+
+ footer{
+ margin-top:50px;
+ padding-top:16px;
+ border-top:3px double var(--ink);
+ font-size:11.5px;
+ color:var(--ink-soft);
+ font-family:'IBM Plex Mono',monospace;
+ text-align:center;
+ }
+
+ @media (max-width:600px){
+ .tpoint{width:60px;font-size:9px;}
+ .timeline-points{flex-wrap:nowrap;overflow-x:auto;gap:4px;}
+ }
+
+ /* Toolbar: search + filters */
+ .toolbar{
+ display:flex;
+ flex-wrap:wrap;
+ gap:12px;
+ align-items:center;
+ justify-content:space-between;
+ background:#fff;
+ border:1px solid var(--line);
+ border-radius:var(--radius);
+ padding:14px 16px;
+ margin-bottom:28px;
+ box-shadow:0 1px 3px rgba(20,27,43,.04);
+ }
+ .toolbar .search-box{
+ flex:1 1 220px;
+ position:relative;
+ }
+ .toolbar input[type="search"]{
+ width:100%;
+ font-family:'IBM Plex Sans Thai',sans-serif;
+ font-size:13.5px;
+ padding:9px 12px 9px 32px;
+ border:1px solid var(--line);
+ border-radius:var(--radius);
+ background:var(--paper);
+ color:var(--ink);
+ transition:border-color .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease);
+ }
+ .toolbar input[type="search"]:focus{
+ outline:none;
+ border-color:var(--gold);
+ background:#fff;
+ box-shadow:0 0 0 4px rgba(var(--gold-rgb),.14);
+ }
+ .toolbar .search-box::before{
+ content:"⌕";
+ position:absolute;
+ left:10px;top:50%;
+ transform:translateY(-50%);
+ color:var(--ink-soft);
+ font-size:15px;
+ pointer-events:none;
+ transition:color .2s var(--ease);
+ }
+ .toolbar .search-box:focus-within::before{color:var(--gold);}
+ .filter-group{
+ display:flex;
+ flex-wrap:wrap;
+ gap:6px;
+ }
+ .filter-btn{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:10.5px;
+ letter-spacing:0.03em;
+ text-transform:uppercase;
+ padding:6px 12px;
+ border-radius:20px;
+ border:1px solid var(--line);
+ background:var(--paper);
+ color:var(--ink-soft);
+ cursor:pointer;
+ transition:transform .15s var(--ease),background .15s var(--ease),border-color .15s var(--ease),color .15s var(--ease),box-shadow .15s var(--ease);
+ white-space:nowrap;
+ }
+ .filter-btn:hover{border-color:var(--gold);color:var(--ink);transform:translateY(-1px);}
+ .filter-btn:active{transform:translateY(0) scale(.96);}
+ .filter-btn.active{
+ background:var(--ink);
+ border-color:var(--ink);
+ color:#fff;
+ box-shadow:0 4px 10px rgba(20,27,43,.18);
+ }
+ .result-count{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:11px;
+ color:var(--ink-soft);
+ width:100%;
+ order:99;
+ }
+ .empty-state{
+ text-align:center;
+ padding:40px 20px;
+ color:var(--ink-soft);
+ font-size:13.5px;
+ border:1px dashed var(--line);
+ border-radius:var(--radius);
+ background:#fff;
+ display:none;
+ }
+ .card.is-hidden,.section-title.is-hidden{display:none !important;}
+
+ /* Expandable law-details accordion */
+ .law-details{
+ margin-top:16px;
+ border-top:1px dashed var(--line);
+ padding-top:12px;
+ }
+ .law-details summary{
+ cursor:pointer;
+ list-style:none;
+ font-family:'IBM Plex Mono',monospace;
+ font-size:11px;
+ font-weight:600;
+ letter-spacing:0.03em;
+ text-transform:uppercase;
+ color:var(--gold);
+ padding:7px 14px;
+ border:1px solid var(--line);
+ border-radius:20px;
+ display:inline-flex;
+ align-items:center;
+ gap:6px;
+ background:var(--paper);
+ transition:background .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease),transform .15s var(--ease);
+ }
+ .law-details summary::-webkit-details-marker{display:none;}
+ .law-details summary::before{
+ content:"+";
+ font-size:13px;
+ line-height:1;
+ transition:transform .2s var(--ease);
+ }
+ .law-details[open] summary::before{
+ content:"\2212";
+ }
+ .law-details summary:hover{
+ border-color:var(--gold);
+ background:#fff;
+ transform:translateY(-1px);
+ }
+ .law-details[open] summary{
+ background:var(--ink);
+ border-color:var(--ink);
+ color:#fff;
+ }
+ .ld-body{
+ margin-top:14px;
+ animation:cardIn .35s var(--ease);
+ }
+ .ld-asof{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:10.5px;
+ color:var(--ink-soft);
+ margin-bottom:12px;
+ }
+ .ld-sec{
+ background:var(--paper);
+ border:1px solid var(--line);
+ border-radius:var(--radius);
+ padding:14px 16px;
+ margin-bottom:10px;
+ }
+ .ld-sec h4{
+ font-family:'Fraunces',serif;
+ font-size:13.5px;
+ font-weight:600;
+ margin:0 0 8px;
+ color:var(--ink);
+ }
+ .ld-sec ul{
+ margin:0;
+ padding-left:18px;
+ font-size:12.5px;
+ line-height:1.6;
+ color:var(--ink);
+ }
+ .ld-sec li{margin-bottom:7px;}
+ .ld-sec li:last-child{margin-bottom:0;}
+ .ld-sec a{color:var(--gold);}
+ .ld-sec[hidden]{display:none;}
+ .ld-tabs{
+ display:flex;
+ flex-wrap:wrap;
+ gap:6px;
+ margin-bottom:12px;
+ }
+ .ld-tab-btn{
+ font-family:'IBM Plex Sans Thai',sans-serif;
+ font-size:11.5px;
+ font-weight:600;
+ padding:6px 12px;
+ border-radius:20px;
+ border:1px solid var(--line);
+ background:#fff;
+ color:var(--ink-soft);
+ cursor:pointer;
+ white-space:nowrap;
+ transition:transform .15s var(--ease),background .15s var(--ease),border-color .15s var(--ease),color .15s var(--ease);
+ }
+ .ld-tab-btn:hover{border-color:var(--gold);color:var(--ink);transform:translateY(-1px);}
+ .ld-tab-btn.is-active{
+ background:var(--ink);
+ border-color:var(--ink);
+ color:#fff;
+ }
+ .quick-take{
+ display:flex;
+ align-items:flex-start;
+ gap:8px;
+ font-size:13.5px;
+ font-weight:600;
+ color:var(--ink);
+ background:var(--paper);
+ border-left:3px solid var(--gold);
+ border-radius:4px;
+ padding:9px 12px;
+ margin:10px 0 4px;
+ }
+ .quick-take .qt-icon{flex-shrink:0;font-size:15px;line-height:1.3;}
+ .full-summary{
+ margin-top:8px;
+ }
+ .full-summary summary{
+ cursor:pointer;
+ font-family:'IBM Plex Mono',monospace;
+ font-size:10.5px;
+ color:var(--ink-soft);
+ text-decoration:underline;
+ text-underline-offset:2px;
+ list-style:none;
+ }
+ .full-summary summary::-webkit-details-marker{display:none;}
+ .full-summary summary:hover{color:var(--gold);}
+ .full-summary p.summary{margin-top:8px;}
+
+ /* Overview table */
+ .overview{
+ margin-bottom:36px;
+ }
+ .overview h2{
+ font-family:'Fraunces',serif;
+ font-size:15px;
+ font-weight:600;
+ text-transform:uppercase;
+ letter-spacing:0.06em;
+ margin:0 0 12px;
+ color:var(--ink-soft);
+ }
+ .overview-scroll{
+ overflow-x:auto;
+ background:#fff;
+ border:1px solid var(--line);
+ border-radius:var(--radius);
+ box-shadow:0 1px 3px rgba(20,27,43,.04);
+ }
+ .overview-table{
+ width:100%;
+ border-collapse:collapse;
+ font-size:12.5px;
+ min-width:640px;
+ }
+ .overview-table thead th{
+ text-align:left;
+ font-family:'IBM Plex Mono',monospace;
+ font-size:10.5px;
+ text-transform:uppercase;
+ letter-spacing:0.04em;
+ color:var(--ink-soft);
+ background:var(--paper);
+ padding:10px 14px;
+ border-bottom:1px solid var(--line);
+ white-space:nowrap;
+ position:sticky;
+ top:0;
+ }
+ .overview-table td{
+ padding:10px 14px;
+ border-bottom:1px solid var(--line);
+ vertical-align:top;
+ color:var(--ink);
+ }
+ .overview-table tbody tr:last-child td{border-bottom:none;}
+ .overview-table tbody tr:hover{background:var(--paper);}
+ .overview-table tr.is-hidden{display:none;}
+ .ov-name a{
+ color:var(--ink);
+ font-weight:600;
+ text-decoration:none;
+ border-bottom:1px dashed var(--line);
+ transition:color .15s var(--ease),border-color .15s var(--ease);
+ }
+ .ov-name a:hover{color:var(--gold);border-color:var(--gold);}
+ .ov-en{
+ font-size:11px;
+ color:var(--ink-soft);
+ font-style:italic;
+ margin-top:2px;
+ }
+ html{scroll-behavior:smooth;}
+ img.emoji{
+ height:1em;
+ width:1em;
+ margin:0 .05em 0 .1em;
+ vertical-align:-0.15em;
+ }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+ <header class="masthead">
+ <h1>ติดตามกฎหมาย ESG</h1>
+ <div class="sub">Thailand &amp; EU Regulatory Tracker<br>ปรับปรุงล่าสุด: 31 สิงหาคม 2569</div>
+ </header>
+ <div class="masthead-strip">
+ <span>2 ฉบับ — ไทย</span>
+ <span>5 ฉบับ — สหภาพยุโรป</span>
+ <span>7 ฉบับ — เอเชีย</span>
+ <span>3 ฉบับ — สากล</span>
+ <span>วันนี้: 31 AUG 2026</span>
+ </div>
+
+ <!-- TOOLBAR: SEARCH + FILTER -->
+ <div class="toolbar">
+ <div class="search-box">
+ <input type="search" id="lawSearch" placeholder="ค้นหาชื่อกฎหมาย, หน่วยงาน, คำสำคัญ...">
+ </div>
+ <div class="filter-group" id="regionFilter">
+ <button class="filter-btn active" data-region="all">ทั้งหมด</button>
+ <button class="filter-btn" data-region="th">ไทย</button>
+ <button class="filter-btn" data-region="eu">สหภาพยุโรป</button>
+ <button class="filter-btn" data-region="asia">เอเชีย</button>
+ <button class="filter-btn" data-region="global">สากล</button>
+ </div>
+ <div class="filter-group" id="statusFilter">
+ <button class="filter-btn active" data-status="all">ทุกสถานภาพ</button>
+ <button class="filter-btn" data-status="progress">กำลังพิจารณา/ยกร่าง</button>
+ <button class="filter-btn" data-status="force">บังคับใช้แล้ว</button>
+ <button class="filter-btn" data-status="urgent">ใกล้ถึงกำหนด</button>
+ </div>
+ <div class="result-count" id="resultCount"></div>
+ </div>
+
+ 
+ <!-- OVERVIEW TABLE -->
+ <section class="overview">
+ <h2>📊 ภาพรวมกฎหมายทั้งหมด</h2>
+ <div class="overview-scroll">
+ <table class="overview-table">
+ <thead>
+ <tr>
+ <th>กฎหมาย</th>
+ <th>สถานะ</th>
+ <th>📍 ล่าสุด</th>
+ <th>🏁 เป้าหมายบังคับใช้เต็มรูปแบบ</th>
+ </tr>
+ </thead>
+ <tbody>
+<tr class="ov-row" data-region="th" data-status="progress">
+<td class="ov-name"><a href="#card-1">🇹🇭 ร่าง พ.ร.บ. การเปลี่ยนแปลงสภาพภูมิอากาศ</a><div class="ov-en">Climate Change Act (Draft) — "พ.ร.บ.โลกร้อน"</div></td>
+<td><span class="status-pill status-progress">อยู่ระหว่างกฤษฎีกาตรวจพิจารณา</span></td>
+<td>กฤษฎีกาตรวจพิจารณา — ถึง ก.ค.69</td>
+<td>ประกาศใช้ — คาด 2569–70</td>
+</tr>
+<tr class="ov-row" data-region="th" data-status="progress">
+<td class="ov-name"><a href="#card-2">🇹🇭 ร่าง พ.ร.บ. การจัดการบรรจุภัณฑ์อย่างยั่งยืน</a><div class="ov-en">Sustainable Packaging Management Act (Draft) — EPR Law</div></td>
+<td><span class="status-pill status-progress">ยกร่าง / ผลักดันร่วม TIPMSE</span></td>
+<td>ผลักดันร่วมภาคเอกชน — TIPMSE/VPRO</td>
+<td>ประกาศใช้ — คาด 2570</td>
+</tr>
+<tr class="ov-row" data-region="eu" data-status="force">
+<td class="ov-name"><a href="#card-3">🇪🇺 PPWR</a><div class="ov-en">Packaging and Packaging Waste Regulation — (EU) 2025/40</div></td>
+<td><span class="status-pill status-force">บังคับใช้ทั่วไปแล้ว</span></td>
+<td>ปิดรับฟัง EPR harmonisation — 10 ก.ย.69</td>
+<td>DfR delegated acts — 1 ม.ค.71</td>
+</tr>
+<tr class="ov-row" data-region="eu" data-status="urgent">
+<td class="ov-name"><a href="#card-4">🇪🇺 ESPR</a><div class="ov-en">Ecodesign for Sustainable Products Regulation — (EU) 2024/1781</div></td>
+<td><span class="status-pill status-urgent">เริ่มมีผลบางส่วนแล้ว</span></td>
+<td>Delegated act เหล็ก/สิ่งทอ — ~2569–70</td>
+<td>SME compliance — 19 ก.ค.73</td>
+</tr>
+<tr class="ov-row" data-region="eu" data-status="force">
+<td class="ov-name"><a href="#card-5">🇪🇺 CBAM</a><div class="ov-en">Carbon Border Adjustment Mechanism — (EU) 2023/956, แก้ไข 2025/2083</div></td>
+<td><span class="status-pill status-force">อยู่ในช่วงบังคับจริง (Definitive Period)</span></td>
+<td>เตรียมขึ้นทะเบียน + ซื้อขายใบรับรอง — 1 ก.พ.70</td>
+<td>ยื่นรายงานปีแรก — 30 ก.ย.70</td>
+</tr>
+<tr class="ov-row" data-region="eu" data-status="urgent">
+<td class="ov-name"><a href="#card-6">🇪🇺 EUDR</a><div class="ov-en">EU Deforestation Regulation — (EU) 2023/1115</div></td>
+<td><span class="status-pill status-urgent">เลื่อนบังคับใช้เป็นครั้งที่สอง</span></td>
+<td>บังคับใช้จริง (รายใหญ่/กลาง) — 30 ธ.ค.69</td>
+<td>บังคับใช้จริง (SME) — 30 มิ.ย.70</td>
+</tr>
+<tr class="ov-row" data-region="eu" data-status="urgent">
+<td class="ov-name"><a href="#card-7">🇪🇺 EU ECGT</a><div class="ov-en">Empowering Consumers for the Green Transition Directive — (EU) 2024/825</div></td>
+<td><span class="status-pill status-urgent">ใกล้ถึงวันบังคับใช้จริง</span></td>
+<td>บังคับใช้จริงระดับประเทศ — 27 ก.ย.69</td>
+<td>Green Claims Directive (แยก) — ยังไม่ชัดเจน</td>
+</tr>
+<tr class="ov-row" data-region="asia" data-status="force">
+<td class="ov-name"><a href="#card-8">🇻🇳 เวียดนาม — EPR บรรจุภัณฑ์</a><div class="ov-en">Extended Producer Responsibility — Decree No. 110/2026/ND-CP (แทนที่ Decree 08/2022)</div></td>
+<td><span class="status-pill status-force">บังคับใช้แล้ว</span></td>
+<td>มีผลบังคับ — 25 พ.ค.69</td>
+<td>ทบทวนอัตราค่าธรรมเนียม — 2572</td>
+</tr>
+<tr class="ov-row" data-region="asia" data-status="progress">
+<td class="ov-name"><a href="#card-9">🇲🇾 มาเลเซีย — กรอบ EPR บรรจุภัณฑ์</a><div class="ov-en">EPR Framework for Packaging (Draft) — nearing gazettal</div></td>
+<td><span class="status-pill status-progress">ยกร่าง / ใกล้ประกาศใช้</span></td>
+<td>ร่างกรอบระเบียบใกล้เสร็จ — ส.ค.68</td>
+<td>บังคับเต็มรูปแบบ — คาด 2573</td>
+</tr>
+<tr class="ov-row" data-region="asia" data-status="force">
+<td class="ov-name"><a href="#card-10">🇸🇬 สิงคโปร์ — MPR และ BCRS</a><div class="ov-en">Resource Sustainability Act 2019 — Mandatory Packaging Reporting + Beverage Container Return Scheme</div></td>
+<td><span class="status-pill status-force">บังคับใช้แล้ว</span></td>
+<td>BCRS เปิดตัว — 1 เม.ย.69</td>
+<td>รอบรายงานถัดไป — 31 มี.ค.70</td>
+</tr>
+<tr class="ov-row" data-region="asia" data-status="progress">
+<td class="ov-name"><a href="#card-11">🇮🇩 อินโดนีเซีย — ร่าง Perpres EPR</a><div class="ov-en">Draft Presidential Regulation on EPR (ยกระดับจาก Permen LHK No. 75/2019)</div></td>
+<td><span class="status-pill status-progress">ยกร่าง</span></td>
+<td>รอลงนามข้ามกระทรวง — ต่อเนื่อง</td>
+<td>คาดประกาศใช้ — กลางปี 2569</td>
+</tr>
+<tr class="ov-row" data-region="asia" data-status="force">
+<td class="ov-name"><a href="#card-12">🇯🇵 ญี่ปุ่น — กฎหมายรีไซเคิลบรรจุภัณฑ์</a><div class="ov-en">Containers and Packaging Recycling Act (2540) + Plastic Resource Circulation Act (2565)</div></td>
+<td><span class="status-pill status-force">บังคับใช้แล้ว</span></td>
+<td>มาตรฐานวัสดุรีไซเคิลใหม่ — 24 ม.ค.69</td>
+<td>ขยายกลุ่มผลิตภัณฑ์ — รอกำหนด</td>
+</tr>
+<tr class="ov-row" data-region="asia" data-status="force">
+<td class="ov-name"><a href="#card-13">🇹🇼 ไต้หวัน — Resource Circulation Promotion Act</a><div class="ov-en">กฎหมายปฏิรูปการรีไซเคิลฉบับใหญ่ที่สุดในรอบ 20 ปี (แทนที่ระบบค่าธรรมเนียมเดิมภายใต้ Waste Disposal Act)</div></td>
+<td><span class="status-pill status-force">ผ่านสภาแล้ว</span></td>
+<td>บทบัญญัติส่วนใหญ่มีผลทันที — ต่อเนื่อง</td>
+<td>มาตรา 14, 38(1) เลื่อน 2 ปี — ~2571</td>
+</tr>
+<tr class="ov-row" data-region="asia" data-status="progress">
+<td class="ov-name"><a href="#card-14">🇨🇳 จีน — มาตรการ EPR บรรจุภัณฑ์</a><div class="ov-en">กรอบภายใต้ Circular Economy Promotion Law และ Solid Waste Law + แผนปฏิบัติการบรรจุภัณฑ์แห่งชาติ 2569</div></td>
+<td><span class="status-pill status-progress">ทยอยบังคับใช้</span></td>
+<td>แผนปฏิบัติการบรรจุภัณฑ์แห่งชาติ — ม.ค.69</td>
+<td>เป้าหมายเศรษฐกิจหมุนเวียน — 2573</td>
+</tr>
+<tr class="ov-row" data-region="global" data-status="urgent">
+<td class="ov-name"><a href="#card-15">✈️ CORSIA</a><div class="ov-en">Carbon Offsetting and Reduction Scheme for International Aviation — ICAO Assembly Resolution A41-22</div></td>
+<td><span class="status-pill status-urgent">ใกล้เข้าสู่ระยะภาคบังคับ</span></td>
+<td>เตรียมเข้าสู่ภาคบังคับ — ต่อเนื่อง</td>
+<td>Second Phase (บังคับ) — 1 ม.ค.70</td>
+</tr>
+<tr class="ov-row" data-region="global" data-status="progress">
+<td class="ov-name"><a href="#card-16">🚢 การลดคาร์บอนภาคเดินเรือ</a><div class="ov-en">IMO Net-Zero Framework (ร่างแก้ไข MARPOL Annex VI) + FuelEU Maritime (EU) 2023/1805</div></td>
+<td><span class="status-pill status-progress">เลื่อนรับรองระดับโลก</span></td>
+<td>ประชุมวิสามัญไม่รับรอง — ต.ค.68</td>
+<td>เจรจาต่อ MEPC 84 — 2569</td>
+</tr>
+<tr class="ov-row" data-region="global" data-status="progress">
+<td class="ov-name"><a href="#card-17">🇺🇸 US Clean Competition Act</a><div class="ov-en">ร่างกฎหมายกลไกปรับคาร์บอนชายแดนของสหรัฐฯ — S.3523 / H.R.6787 (สภาคองเกรสชุดที่ 119)</div></td>
+<td><span class="status-pill status-progress">ยังเป็นร่างกฎหมาย</span></td>
+<td>เสนอใหม่อีกครั้ง (สภาชุด 119) — ธ.ค.68</td>
+<td>รอพิจารณาชั้นกรรมาธิการ — ยังไม่มีกำหนด</td>
+</tr>
+ </tbody>
+ </table>
+ </div>
+ </section>
+
+ <!-- DEADLINES -->
+ <section class="deadlines">
+ <h2>กำหนดการที่ใกล้ถึง</h2>
+ <div class="deadline-row">
+ <div class="deadline-item urgent">
+ <div class="deadline-days"><span class="n">10</span> วัน</div>
+ <div class="deadline-label"><b>PPWR</b> — ปิดรับฟังความเห็นร่าง EPR harmonisation initiative (แนวปฏิบัติ EPR บรรจุภัณฑ์ทั่ว EU) — <span style="color:var(--ink-soft)">10 ก.ย. 2569</span></div>
+ <span class="deadline-tag tag-eu">EU</span>
+ </div>
+ <div class="deadline-item urgent">
+ <div class="deadline-days"><span class="n">27</span> วัน</div>
+ <div class="deadline-label"><b>EU ECGT</b> — มาตรการระดับประเทศสมาชิกเริ่มบังคับใช้จริง — <span style="color:var(--ink-soft)">27 ก.ย. 2569</span></div>
+ <span class="deadline-tag tag-eu">EU</span>
+ </div>
+ <div class="deadline-item warn">
+ <div class="deadline-days"><span class="n">121</span> วัน</div>
+ <div class="deadline-label"><b>EUDR</b> — บังคับใช้จริงสำหรับผู้ประกอบการรายใหญ่/กลาง (เลื่อนครั้งที่ 2) — <span style="color:var(--ink-soft)">30 ธ.ค. 2569</span></div>
+ <span class="deadline-tag tag-eu">EU</span>
+ </div>
+ <div class="deadline-item warn">
+ <div class="deadline-days"><span class="n">123</span> วัน</div>
+ <div class="deadline-label"><b>CORSIA</b> — เริ่มระยะภาคบังคับ (Second Phase) — <span style="color:var(--ink-soft)">1 ม.ค. 2570</span></div>
+ <span class="deadline-tag tag-global">สากล</span>
+ </div>
+ <div class="deadline-item warn">
+ <div class="deadline-days"><span class="n">154</span> วัน</div>
+ <div class="deadline-label"><b>CBAM</b> — เริ่มซื้อขายใบรับรอง CBAM (CBAM certificates) จริงเป็นครั้งแรก — <span style="color:var(--ink-soft)">1 ก.พ. 2570</span></div>
+ <span class="deadline-tag tag-eu">EU</span>
+ </div>
+ <div class="deadline-item">
+ <div class="deadline-days"><span class="n">395</span> วัน</div>
+ <div class="deadline-label"><b>CBAM</b> — ยื่นรายงานประจำปีครั้งแรก (ครอบคลุมการนำเข้าปี 2570) — <span style="color:var(--ink-soft)">30 ก.ย. 2570</span></div>
+ <span class="deadline-tag tag-eu">EU</span>
+ </div>
+ <div class="deadline-item">
+ <div class="deadline-days"><span class="n">488</span> วัน</div>
+ <div class="deadline-label"><b>PPWR</b> — Delegated act มาตรฐาน Design-for-Recycling (DfR) มีผลบังคับใช้ — <span style="color:var(--ink-soft)">1 ม.ค. 2571</span></div>
+ <span class="deadline-tag tag-eu">EU</span>
+ </div>
+ </div>
+ </section>
+
+ <!-- THAILAND -->
+ <div class="section-title th" data-section="th">
+ <div class="flag">TH</div>
+ <div>
+ <h2>กฎหมายไทย</h2>
+ <div class="desc">ร่างกฎหมายภายใต้การผลักดันของหน่วยงานรัฐและภาคอุตสาหกรรม</div>
+ </div>
+ </div>
+
+ <div class="card" data-region="th" data-status="progress" data-name="ร่าง พ.ร.บ. การเปลี่ยนแปลงสภาพภูมิอากาศ Climate Change Act พ.ร.บ.โลกร้อน ทส." id="card-1">
+ <div class="card-head">
+ <div>
+ <h3>ร่าง พ.ร.บ. การเปลี่ยนแปลงสภาพภูมิอากาศ</h3>
+ <div class="en-name">Climate Change Act (Draft) — "พ.ร.บ.โลกร้อน"</div>
+ </div>
+ <span class="status-pill status-progress">อยู่ระหว่างกฤษฎีกาตรวจพิจารณา</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>อยู่ระหว่างกฤษฎีกาตรวจพิจารณา — กฤษฎีกาตรวจพิจารณา (ถึง ก.ค.69)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">ครม. เห็นชอบหลักการแล้วเมื่อ <b>2 ธ.ค. 2568</b> โครงสร้างร่างมี <b>14 หมวด 205 มาตรา</b> วางกรอบบริหารจัดการภูมิอากาศเชื่อมโยงรัฐ–เอกชน–ประชาชน รวมถึงระบบเพดานปล่อยก๊าซเรือนกระจกภาคอุตสาหกรรม (ครอบคลุมโรงงานกว่า 4,000 แห่ง) และกองทุนภูมิอากาศ (Climate Fund) รมว.ทส. สั่งเร่งรัดผลักดันเมื่อ 5 พ.ค. 2569 ล่าสุด ณ 31 ส.ค. 2569 ร่างยังอยู่ระหว่างการตรวจพิจารณาของสำนักงานคณะกรรมการกฤษฎีกา ก่อนเสนอเข้าสู่การพิจารณาของรัฐสภา ยังไม่มีกำหนดวันนำเข้าสภาที่ชัดเจน (ไม่พบความเคลื่อนไหวใหม่ตั้งแต่การอัปเดตครั้งก่อน)</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:82%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">รับฟังความเห็น</div>รอบ 3 · เม.ย.68</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">ครม. เห็นชอบ</div>2 ธ.ค.68</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">กฤษฎีกาตรวจพิจารณา</div>ถึง ก.ค.69</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">พิจารณาสภาฯ</div>รอกำหนด</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">ประกาศใช้</div>คาด 2569–70</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">🏛 หน่วยงานรับผิดชอบ</div>กรมการเปลี่ยนแปลงสภาพภูมิอากาศและสิ่งแวดล้อม (ทส.)</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>ผลการตรวจพิจารณาของกฤษฎีกา และวันนำเข้าสภาผู้แทนราษฎรอย่างเป็นทางการ</div>
+ </div>
+ <div class="source-note">อ้างอิง: Bangkokbiznews (2 ธ.ค. 2568, 6 พ.ค. 2569), Thai PBS, Posttoday (29 ก.ค. 2569), Salika (ม.ค. 2569)</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: ร่างพระราชบัญญัติการเปลี่ยนแปลงสภาพภูมิอากาศ พ.ศ. .... | ชื่อย่อ/เรียกทั่วไป: พ.ร.บ.โลกร้อน, Climate Change Act (CCA)</li>
+<li>ประเทศ/ภูมิภาค: ไทย</li>
+<li>หน่วยงานที่ออกกฎหมาย: กรมการเปลี่ยนแปลงสภาพภูมิอากาศและสิ่งแวดล้อม กระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม เสนอ ผ่านความเห็นชอบคณะรัฐมนตรี</li>
+<li>สถานะปัจจุบัน: <b>Proposed</b> — ครม. เห็นชอบในหลักการ 2 ธ.ค. 2568 อยู่ระหว่างกฤษฎีกาตรวจพิจารณา</li>
+<li>วันประกาศใช้/บังคับจริง: ยังไม่ประกาศใช้ — ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (เป้าหมายเชิงนโยบายคาดปี 2569–70)</li>
+<li>ลิงก์ต้นฉบับ: <a href="https://www.parliament.go.th/section77/survey_detail.php?id=573" target="_blank" rel="noopener">ระบบรับฟังความเห็น ม.77 (parliament.go.th)</a> — Source: Bangkok Biznews, Thairath, Thai PBS</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม/ภาคที่เกี่ยวข้อง: พลังงาน อุตสาหกรรมหนัก ปิโตรเคมี ซีเมนต์ ขนส่ง — กลุ่มปล่อยก๊าซเรือนกระจกสูงราว 4,000 แห่งทั่วประเทศ</li>
+<li>ขนาดองค์กรที่เข้าเกณฑ์: ระบบ ETS มุ่งเน้นอุตสาหกรรมรายใหญ่ ไม่รวม SMEs — ตัวเลข threshold ที่ชัดเจน: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (กำหนดในกฎหมายลำดับรอง)</li>
+<li>ประเภทผลิตภัณฑ์/วัสดุ: ภาษีคาร์บอนจากเชื้อเพลิงฟอสซิล (น้ำมัน ก๊าซธรรมชาติ ถ่านหิน) และสินค้าบางประเภทที่กรมสรรพสามิต/ศุลกากรจัดเก็บ</li>
+<li>ผลกระทบต่อ supply chain นอกประเทศ: มีกลไก Carbon Border Adjustment Mechanism (CBAM) แบบไทย กระทบผู้ส่งออก/ซัพพลายเชนต่างประเทศที่ค้าขายกับไทย — รายละเอียดการบังคับใช้ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: ร่าง 14 หมวด 205 มาตรา วางกรอบบริหารจัดการภูมิอากาศครบวงจรฉบับแรกของไทย ผ่านกลไก 7 ด้าน (เป้าหมายลด GHG ระดับชาติ/ภาคส่วน, ระบบ MRV, ETS, ภาษีคาร์บอน, คาร์บอนเครดิต, มาตรการปรับตัว, กองทุนภูมิอากาศ) เป้าหมาย carbon neutrality ปี 2593 และ net-zero ปี 2608</li>
+<li>ข้อกำหนดเชิงปริมาณ: เป้าหมาย carbon neutrality 2050 / net-zero 2065 — ตัวเลข emission cap/target % รายอุตสาหกรรม: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (จะกำหนดใน sub-legislation)</li>
+<li>Reporting/Disclosure: ธุรกิจในภาคส่วนหลักต้องรายงาน GHG Inventory ต่อ ONEP ผ่านระบบ MRV</li>
+<li>Timeline phase-in: 2564 ประกาศเป้า COP26 → มี.ค.2567 ร่างแรก → พ.ย.2567 รับฟังความเห็นรอบสอง → 2 ธ.ค.2568 ครม.เห็นชอบหลักการ → คาดเข้าสภาต้นปี 2569 → ปีบังคับใช้จริง: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ: กำหนดบทลงโทษกรณีไม่รายงาน/รายงานเท็จเรื่อง GHG แต่อัตราโทษ/ค่าปรับที่ชัดเจน: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+<li>Grace period: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>กฎหมายใกล้เคียงในภูมิภาคอื่น: EU ETS, EU CBAM, Korea ETS, Japan GX-ETS (รูปแบบ ETS/carbon tax ที่ใช้กว่า 70-80 ประเทศทั่วโลก)</li>
+<li>เชื่อมโยงกับ framework สากล: Paris Agreement (2016); TCFD/ISSB ในแง่การเปิดเผยความเสี่ยงด้านภูมิอากาศ; GHG Protocol สำหรับการทำ inventory</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <div class="card" data-region="th" data-status="progress" data-name="ร่าง พ.ร.บ. การจัดการบรรจุภัณฑ์อย่างยั่งยืน EPR Sustainable Packaging TIPMSE VPRO" id="card-2">
+ <div class="card-head">
+ <div>
+ <h3>ร่าง พ.ร.บ. การจัดการบรรจุภัณฑ์อย่างยั่งยืน</h3>
+ <div class="en-name">Sustainable Packaging Management Act (Draft) — EPR Law</div>
+ </div>
+ <span class="status-pill status-progress">ยกร่าง / ผลักดันร่วม TIPMSE</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>ยกร่าง / ผลักดันร่วม TIPMSE — ผลักดันร่วมภาคเอกชน (TIPMSE/VPRO)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">ร่างกฎหมายวางหลัก <b>EPR (Extended Producer Responsibility)</b> ให้ผู้ผลิต/ผู้นำเข้าต้องรับผิดชอบบรรจุภัณฑ์ที่ถูกประกาศรายชื่อหลังกฎหมายบังคับใช้ ครอบคลุมการเก็บรวบรวม คัดแยก และรีไซเคิล TIPMSE/ส.อ.ท. ผลักดันร่วมกับภาครัฐผ่านเวที PackBack in Action และโครงสร้าง Voluntary PRO (VPRO) คาดมีผลบังคับใช้ <b>ปี 2570</b> ล่าสุด TIPMSE เดินหน้าระดมสมาชิกกว่า 16,000 รายและภาคีกว่า 149 องค์กรร่วมผลักดัน EPR in Action ต่อเนื่อง แต่ ณ 31 ส.ค. 2569 ยังไม่มีความคืบหน้าด้านการเสนอร่างต่อ ครม. อย่างเป็นทางการ (ไม่พบความเคลื่อนไหวใหม่ตั้งแต่การอัปเดตครั้งก่อน)</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:55%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">ยกร่างกฎหมาย</div>แล้วเสร็จ ~2568</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">ผลักดันร่วมภาคเอกชน</div>TIPMSE/VPRO</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">เสนอ ครม.</div>รอกำหนด</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">ประกาศใช้</div>คาด 2570</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">🏛 หน่วยงานผลักดันหลัก</div>TIPMSE ร่วมกับ ส.อ.ท. และภาคเอกชน</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>กำหนดเสนอ ครม. อย่างเป็นทางการ และโครงสร้าง eco-modulation fee</div>
+ </div>
+ <div class="source-note">อ้างอิง: Bangkokbiznews, Express Plaspack (มิ.ย. 2569), Thebusinessplus, Matichon SDG Updates (ส.ค. 2569) — ไม่พบความเคลื่อนไหวใหม่ด้านการเสนอ ครม. ตั้งแต่การอัปเดตครั้งก่อน</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: ร่างพระราชบัญญัติการจัดการบรรจุภัณฑ์อย่างยั่งยืน พ.ศ. .... | หลักการ: Extended Producer Responsibility (EPR)</li>
+<li>ประเทศ/ภูมิภาค: ไทย</li>
+<li>หน่วยงานที่ออกกฎหมาย: กรมควบคุมมลพิษ (PCD) กระทรวงทรัพยากรธรรมชาติและสิ่งแวดล้อม</li>
+<li>สถานะปัจจุบัน: <b>Proposed</b> — เปิดรับฟังความเห็นสาธารณะครั้งแรก 18 มี.ค. 2567 ยังไม่ผ่าน ครม.</li>
+<li>วันประกาศใช้/บังคับจริง: ยังไม่ประกาศใช้ — เป้าหมายเชิงนโยบายคาดปี 2569–70 แต่กำหนดที่แท้จริง: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+<li>ลิงก์ต้นฉบับ: <a href="https://www.pcd.go.th/laws/31505/" target="_blank" rel="noopener">ร่างฯ ฉบับรับฟังความเห็น (pcd.go.th)</a> — Source: Enviliance, SD Perspectives</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม/ภาคที่เกี่ยวข้อง: ผู้ผลิต/เจ้าของแบรนด์ที่นำบรรจุภัณฑ์เข้าสู่ตลาด โดยเฉพาะอาหาร-เครื่องดื่มและ FMCG</li>
+<li>ขนาดองค์กรที่เข้าเกณฑ์: ยังไม่มีตัวเลข threshold รายได้/พนักงานเปิดเผยชัดเจน — ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+<li>ประเภทวัสดุที่ครอบคลุม: พลาสติก โลหะ แก้ว กระดาษ วัสดุผสม โดยเฉพาะ PET, กล่อง UHT, บรรจุภัณฑ์อ่อนตัว, บรรจุภัณฑ์ขนส่งอาหาร/เครื่องดื่ม</li>
+<li>ผลกระทบต่อ supply chain นอกประเทศ: ผู้ส่งออกไทยไป EU เผชิญแรงกดดันคู่ขนานจาก EU PPWR — ผลต่อซัพพลายเชนขาเข้า: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: ร่าง 53 มาตรา 4 หมวด กำหนดให้เจ้าของฉลากสินค้ารับผิดชอบบรรจุภัณฑ์ตลอดวงจรชีวิตผ่านกลไก EPR และการจัดตั้ง Producer Responsibility Organization (PRO)</li>
+<li>ข้อกำหนดเชิงปริมาณ: ยังไม่มี target % รีไซเคิล/minimum recycled content ที่เปิดเผยในร่างสาธารณะ — ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (เครือข่ายภาคสมัครใจ PRO-Thailand Network เปิดตัวทางการ มิ.ย. 2569 มีข้อมูลตัวอย่าง เช่น รีไซเคิลขวด PET ~25,134 ตัน ปี 2563-65 แต่เป็นข้อมูลภาคสมัครใจ ไม่ใช่เป้าบังคับ)</li>
+<li>Reporting/Disclosure: ผู้ประกอบการต้องขึ้นทะเบียนและรายงานปริมาณบรรจุภัณฑ์ที่นำเข้าสู่ตลาด; หน่วยงานรัฐต้องลดใช้บรรจุภัณฑ์และจัดซื้อจัดจ้างสินค้าใช้วัสดุรีไซเคิลได้</li>
+<li>Timeline phase-in: มี.ค.2567 เปิดรับฟังความเห็นครั้งแรก → เป้าหมายบังคับใช้กฎเกณฑ์บรรจุภัณฑ์ภายในปี 2569 และเศรษฐกิจหมุนเวียนกว้างขึ้นภายในปี 2570 (เป้าเชิงนโยบาย ยังไม่ใช่กำหนดในตัวบทที่ผ่านสภา) — รายละเอียดปีต่อปี: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ: ร่างมีหมวด "บทบัญญัติทางปกครอง" ซึ่งน่าจะบรรจุบทลงโทษ แต่ตัวเลขค่าปรับ/โทษจำคุกที่ชัดเจน: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+<li>Grace period: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>กฎหมายใกล้เคียงในภูมิภาคอื่น: EU PPWR (บังคับใช้ทั่วไปแล้ว ส.ค.2569); เวียดนาม อินโดนีเซีย ออก EPR มาก่อนไทยแล้ว</li>
+<li>เชื่อมโยงกับ framework สากล: หลักการ Circular Economy/EPR สากล; เชื่อมโยงกับ GRI 301 (Materials), GRI 306 (Waste) แม้ร่างยังไม่อ้างอิงโดยตรง</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <!-- EU -->
+ <div class="section-title eu" data-section="eu">
+ <div class="flag">EU</div>
+ <div>
+ <h2>กฎระเบียบสหภาพยุโรป</h2>
+ <div class="desc">กฎหมายที่มีผลบังคับใช้ตามระยะเวลา</div>
+ </div>
+ </div>
+
+ <div class="card" data-region="eu" data-status="force" data-name="PPWR Packaging and Packaging Waste Regulation PFAS EPR harmonisation" id="card-3">
+ <div class="card-head">
+ <div>
+ <h3>PPWR</h3>
+ <div class="en-name">Packaging and Packaging Waste Regulation — (EU) 2025/40</div>
+ </div>
+ <span class="status-pill status-force">บังคับใช้ทั่วไปแล้ว</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>บังคับใช้ทั่วไปแล้ว — ปิดรับฟัง EPR harmonisation (10 ก.ย.69)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">มีผลบังคับใช้ (entry into force) ตั้งแต่ <b>11 ก.พ. 2568</b> และเริ่มบังคับใช้ทั่วไป (apply) แล้วตั้งแต่ <b>12 ส.ค. 2569</b> แทนที่ Packaging Directive 94/62/EC เดิม พร้อมกันนี้ข้อจำกัดสาร <b>PFAS ในบรรจุภัณฑ์สัมผัสอาหาร</b> เริ่มมีผลบังคับใช้ในวันเดียวกัน โดยจำกัด PFAS ชนิดพอลิเมอร์ไม่เกิน <b>50 ppm</b> (สารชนิดไม่ใช่พอลิเมอร์เข้มงวดกว่านี้) EC เผยแพร่ Guidance Document และ FAQ ฉบับแรกเมื่อ <b>30 มี.ค. 2569</b> ตีความกว่า 30 มาตราสำคัญ ล่าสุด EC เปิดรับฟังความเห็นร่าง <b>EPR harmonisation initiative</b> (แนวปฏิบัติ EPR บรรจุภัณฑ์ทั่ว EU) ปิดรับ <b>10 ก.ย. 2569</b> และมีกำหนดส่งรายงานประเมินสารเคมีที่น่ากังวลในบรรจุภัณฑ์ (substances of concern) ภายใน 31 ธ.ค. 2569 ส่วน delegated acts เรื่องเกณฑ์ Design-for-Recycling และเกรดความสามารถรีไซเคิล (A–E) ยังรอกำหนดภายใน <b>1 ม.ค. 2571</b></p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:60%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">ประกาศใน OJEU</div>22 ม.ค.68</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">Entry into force</div>11 ก.พ.68</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">บังคับใช้ทั่วไป + PFAS limit</div>12 ส.ค.69</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">ปิดรับฟัง EPR harmonisation</div>10 ก.ย.69</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">รายงาน substances of concern</div>31 ธ.ค.69</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">DfR delegated acts</div>1 ม.ค.71</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">❓ ยังไม่ชัดเจน</div>ทะเบียนผู้ผลิตระดับ EU กลาง (คาด 2572), สถานะ Authorised Representative ถึงปี 2578</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>ผลรับฟังความเห็น EPR harmonisation initiative (ปิดรับ 10 ก.ย. 2569), รายงาน substances of concern (31 ธ.ค. 2569) และ Delegated act เรื่อง Design-for-Recycling (DfR) กำหนดมีผล 1 ม.ค. 2571</div>
+ </div>
+ <div class="source-note">อ้างอิง: EUR-Lex C(2026)3702, SGS SafeGuardS (พ.ค. 2569), Compliancegate PPWR Timeline, FoodNavigator (12 ส.ค. 2569), Bergeson &amp; Campbell / lawbc.com (ส.ค. 2569), European Commission (11 ส.ค. 2569)</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: Packaging and Packaging Waste Regulation | ชื่อย่อ: PPWR — ระเบียบ (EU) 2025/40</li>
+<li>ประเทศ/ภูมิภาค: สหภาพยุโรป (EU-27) — บังคับใช้โดยตรง ไม่ต้อง transpose</li>
+<li>หน่วยงานที่ออกกฎหมาย: European Parliament และ Council of the EU (ริเริ่มโดย DG Environment)</li>
+<li>สถานะปัจจุบัน: <b>Adopted / In force</b> — apply ทั่วไปแล้วตั้งแต่ 12 ส.ค. 2569</li>
+<li>วันประกาศใช้/บังคับจริง: entry into force 11 ก.พ. 2568 — apply ทั่วไป 12 ส.ค. 2569</li>
+<li>ลิงก์ต้นฉบับ: <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32025R0040" target="_blank" rel="noopener">EUR-Lex CELEX 32025R0040</a></li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: ครอบคลุมบรรจุภัณฑ์และขยะบรรจุภัณฑ์ทุกวัสดุ ทุกภาคธุรกิจที่วางขายในตลาด EU</li>
+<li>ขนาดองค์กร: ไม่มีข้อยกเว้นตามขนาดธุรกิจสำหรับข้อกำหนดหลัก — ยกเว้นเฉพาะ micro-enterprise (พนักงาน&lt;10, turnover ≤2 ล้านยูโร) ใน 3 เรื่อง: เป้า reuse, ข้อบังคับ refill, ภาระเอกสารเทคนิค</li>
+<li>ประเภทวัสดุ: บรรจุภัณฑ์ทุกประเภท — เน้นพิเศษ PFAS ในบรรจุภัณฑ์สัมผัสอาหาร (จำกัด ≤50 ppm ชนิดพอลิเมอร์)</li>
+<li>ผลกระทบ supply chain นอก EU: ผู้ผลิต/ผู้นำเข้าสินค้าเข้า EU ต้องปฏิบัติตามเสมือนผู้ประกอบการใน EU (EPR ครอบคลุมถึง)</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: บังคับให้บรรจุภัณฑ์ทุกชิ้นใน EU ต้อง recyclable ตามเกณฑ์คะแนน (Grade A-C ปี 2573, A-B ปี 2581), จำกัด PFAS, กำหนด recycled content ขั้นต่ำ, เป้า reuse/refill เพิ่มขึ้นเรื่อยๆ, ห้ามบรรจุภัณฑ์เกินความจำเป็น, ยกเลิก Packaging Directive 94/62/EC เดิม</li>
+<li>ข้อกำหนดเชิงปริมาณ: recycled content ขั้นต่ำมีผล 1 ม.ค.2572 เพิ่มระดับปี 2583; reuse target 10-40% (2573) → 25-70% (2583); ลดขยะบรรจุภัณฑ์ต่อหัว 5%(2573)/10%(2578)/15%(2583); DRS ต้องเก็บคืนได้ ≥90%</li>
+<li>Reporting/Disclosure: รายงานบรรลุเป้า reuse (Art.56); เอกสารเทคนิคและ declaration of conformity; รัฐสมาชิกรายงาน impact assessment ภายใน ธ.ค.2575</li>
+<li>Timeline: 12 ส.ค.69 จำกัด PFAS+ฉลาก → 12 ก.พ.70 สัญลักษณ์ EPR/refill HORECA → 2571 มาตรฐาน compostable → 1 ม.ค.72 recycled content ขั้นต่ำ → 1 ม.ค.73 เกณฑ์ recyclability/เป้า reuse/DRS → 2578-83 เกณฑ์เข้มขึ้น</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ: กำหนดโดยแต่ละรัฐสมาชิกเอง ต้องแจ้ง EC ภายใน 12 ก.พ. 2570 — ตัวเลขค่าปรับ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (ขึ้นกับกฎหมายภายในแต่ละประเทศ)</li>
+<li>Grace period: บทเฉพาะกาลหลายจุด เช่น มาตราบางส่วนของ Directive เดิมยังใช้ถึง 31 ธ.ค. 2572</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>เกี่ยวข้องกับ EU Waste Framework Directive, Single-Use Plastics Directive, Circular Economy Action Plan; ไทย/เอเชีย: ยังไม่มีกฎหมายเทียบเท่าโดยตรง (ไทย EPR ยังร่างอยู่)</li>
+<li>Framework สากล: GRI 301 (Materials); เชื่อมโยงทางอ้อมกับ TCFD (การจัดการทรัพยากร) และหลักการ circular economy ของ Ellen MacArthur Foundation</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <div class="card" data-region="eu" data-status="urgent" data-name="ESPR Ecodesign for Sustainable Products Regulation DPP" id="card-4">
+ <div class="card-head">
+ <div>
+ <h3>ESPR</h3>
+ <div class="en-name">Ecodesign for Sustainable Products Regulation — (EU) 2024/1781</div>
+ </div>
+ <span class="status-pill status-urgent">เริ่มมีผลบางส่วนแล้ว</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>เริ่มมีผลบางส่วนแล้ว — Delegated act เหล็ก/สิ่งทอ (~2569–70)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">มีผลบังคับใช้ตั้งแต่ <b>18 ก.ค. 2567</b> Working Plan 2025–2030 (COM(2025)187) ประกาศ <b>16 เม.ย. 2568</b> กำหนด 6 กลุ่มผลิตภัณฑ์นำร่อง ได้แก่ สิ่งทอ, เฟอร์นิเจอร์, ยางรถยนต์, ที่นอน, เหล็ก/เหล็กกล้า, อะลูมิเนียม ตั้งแต่ <b>19 ก.ค. 2569</b> เริ่มห้ามทำลายสินค้าสิ่งทอ/รองเท้าที่ขายไม่หมด (บริษัทใหญ่ก่อน SME ปี 2573) พร้อมเปิดทะเบียน Digital Product Passport (DPP) กลาง ณ 31 ส.ค. 2569 ยังไม่มี delegated act เฉพาะกลุ่มผลิตภัณฑ์ฉบับใหม่ประกาศเพิ่มเติม (เหล็ก/เหล็กกล้าคาดประกาศภายในปี 2569 ส่วนสิ่งทอ/ยาง/อะลูมิเนียมเลื่อนเป็นกรอบปี 2570) โดย EC กำหนดทบทวนกลางคาบ (mid-term review) ของ Working Plan ในปี 2571 (ไม่พบความเคลื่อนไหวใหม่ตั้งแต่การอัปเดตครั้งก่อน)</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:52%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">Entry into force</div>18 ก.ค.67</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">Working Plan</div>16 เม.ย.68</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">ห้ามทำลายสินค้า + DPP registry</div>19 ก.ค.69</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">Delegated act เหล็ก/สิ่งทอ</div>~2569–70</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">SME compliance</div>19 ก.ค.73</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">📦 ผลิตภัณฑ์ที่เกี่ยวข้องก่อน</div>สิ่งทอ, เหล็ก/อะลูมิเนียม (วัตถุดิบต้นน้ำที่อาจกระทบซัพพลายเชนบรรจุภัณฑ์)</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>Delegated act เฉพาะกลุ่มผลิตภัณฑ์ฉบับแรก (คาดเหล็ก/สิ่งทอ) และผลทบทวนกลางคาบปี 2571</div>
+ </div>
+ <div class="source-note">อ้างอิง: White &amp; Case, Anthesis Group, DPP-tool.com ESPR Delegated Acts Guide, Green Forum – European Commission (2 ก.ค. 2569) — ไม่พบ delegated act ใหม่ตั้งแต่การอัปเดตครั้งก่อน</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: Ecodesign for Sustainable Products Regulation | ชื่อย่อ: ESPR — ระเบียบ (EU) 2024/1781</li>
+<li>ประเทศ/ภูมิภาค: สหภาพยุโรป</li>
+<li>หน่วยงานที่ออกกฎหมาย: European Parliament และ Council of the EU</li>
+<li>สถานะปัจจุบัน: <b>In force</b> — กำลังทยอยออก delegated acts รายผลิตภัณฑ์</li>
+<li>วันประกาศใช้/บังคับจริง: entry into force 18 ก.ค. 2567</li>
+<li>ลิงก์ต้นฉบับ: <a href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32024R1781" target="_blank" rel="noopener">EUR-Lex CELEX 32024R1781</a></li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: สินค้ากายภาพเกือบทั้งหมดในตลาด EU ยกเว้นอาหาร อาหารสัตว์ ยา — กลุ่มนำร่อง: สิ่งทอ เฟอร์นิเจอร์ ยางรถยนต์ เหล็ก/เหล็กกล้า อะลูมิเนียม อุปกรณ์ไฟฟ้า</li>
+<li>ขนาดองค์กร: ข้อห้ามทำลายสินค้าขายไม่ออก (destruction ban) ใช้กับ large enterprises ก่อน (19 ก.ค.2569) ขยายถึง medium enterprises (19 ก.ค.2573); SME เล็ก/ไมโครยกเว้นทั่วไป</li>
+<li>ประเภทวัสดุ: สินค้าเกือบทุกประเภทที่วางขายใน EU</li>
+<li>ผลกระทบ supply chain นอก EU: บังคับใช้กับผู้ผลิตทั้งใน-นอก EU ที่วางขายสินค้าใน EU เช่นกัน</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: ขยายกรอบ Ecodesign Directive เดิมให้ครอบคลุมสินค้าเกือบทุกประเภท กำหนดมาตรฐานความทนทาน ซ่อมได้ วัสดุรีไซเคิล และคาร์บอน พร้อมสร้าง Digital Product Passport (DPP) และห้ามทำลายสินค้าคงคลังขายไม่ออก (เริ่มเสื้อผ้า/รองเท้า)</li>
+<li>ข้อกำหนดเชิงปริมาณ: ตัวเลขเฉพาะ (% recycled content, durability score) กำหนดโดย delegated acts รายผลิตภัณฑ์ที่ทยอยออกปี 2569-73 — ยังไม่ชัดเจน/อยู่ระหว่างพิจารณาจนกว่าแต่ละหมวดจะประกาศ</li>
+<li>Reporting/Disclosure: DPP เข้าถึงผ่าน QR/NFC/RFID บอกองค์ประกอบวัสดุ ผลกระทบสิ่งแวดล้อม durability/repairability score สารเคมีที่น่ากังวล; บริษัทใหญ่ต้องเปิดเผยจำนวนสินค้าทำลายทิ้งต่อปี เริ่ม ก.พ.2570</li>
+<li>Timeline: 2569 เหล็ก/เหล็กกล้า delegated act + เริ่มห้ามทำลายเสื้อผ้า/รองเท้า(ใหญ่) → 2570 สิ่งทอ/อะลูมิเนียม/ยาง → 2571 เฟอร์นิเจอร์ → 2572 ที่นอน+recycled content → 2573 ทบทวน Working Plan</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ: กำหนดโดยรัฐสมาชิกแต่ละประเทศ ต้อง "effective, proportionate, dissuasive" — ไม่มีตัวเลขกลางระดับ EU</li>
+<li>Grace period: บริษัทขนาดกลางมีเวลาเพิ่มอีก 4 ปี (ถึง 2573) ก่อนถูกบังคับ destruction ban เท่าบริษัทใหญ่</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>เกี่ยวข้องกับ Ecodesign Directive 2009/125/EC (ฉบับเดิมที่ถูกแทนที่); DPP เชื่อมกับ battery regulation และ textile strategy</li>
+<li>Framework สากล: GRI 301/306, Circular Economy Action Plan, ISO 14040 (LCA); แนวคิด EPR ที่ ISSB/TCFD กล่าวถึงในมิติทรัพยากร</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <div class="card" data-region="eu" data-status="force" data-name="CBAM Carbon Border Adjustment Mechanism" id="card-5">
+ <div class="card-head">
+ <div>
+ <h3>CBAM</h3>
+ <div class="en-name">Carbon Border Adjustment Mechanism — (EU) 2023/956, แก้ไข 2025/2083</div>
+ </div>
+ <span class="status-pill status-force">อยู่ในช่วงบังคับจริง (Definitive Period)</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>อยู่ในช่วงบังคับจริง (Definitive Period) — เตรียมขึ้นทะเบียน + ซื้อขายใบรับรอง (1 ก.พ.70)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">เข้าสู่ <b>Definitive Period</b> ตั้งแต่ <b>1 ม.ค. 2569</b> — ภาระผูกพันทางการเงินเริ่มมีผลจริงแล้ว ผู้นำเข้าสินค้ากลุ่ม เหล็ก/เหล็กกล้า อะลูมิเนียม ซีเมนต์ ปุ๋ย ไฟฟ้า ไฮโดรเจน ที่นำเข้าเกิน 50 ตัน/ปี ต้องมีสถานะ Authorised CBAM Declarant EC ปิดรับฟังความเห็นร่างกฎเกณฑ์การซื้อขาย/repurchase ใบรับรองไปแล้วเมื่อ <b>6 ส.ค. 2569</b> ขั้นถัดไปคือการซื้อขายใบรับรองจริงครั้งแรก <b>1 ก.พ. 2570</b> จากนั้นต้องยื่นรายงานประจำปีครั้งแรก (ครอบคลุมการนำเข้าปี 2570 พร้อมข้อมูลปล่อยก๊าซที่ผ่านการตรวจสอบโดยบุคคลที่สาม) ภายใน <b>30 ก.ย. 2570</b> มีค่าปรับ 100 ยูโร/ตัน CO2 ส่วนเกินหากไม่ปฏิบัติตาม ณ 31 ส.ค. 2569 ยังไม่มีประกาศผลสรุปกฎเกณฑ์การซื้อขาย/repurchase อย่างเป็นทางการ (ไม่พบความเคลื่อนไหวใหม่ตั้งแต่การอัปเดตครั้งก่อน)</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:68%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">Definitive phase</div>1 ม.ค.69</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">Authorised declarant</div>31 มี.ค.69</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">รับฟังความเห็น</div>9 ก.ค.–6 ส.ค.69</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">เตรียมขึ้นทะเบียน + ซื้อขายใบรับรอง</div>1 ก.พ.70</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">ยื่นรายงานปีแรก</div>30 ก.ย.70</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">📦 ขอบเขตสินค้า</div>เหล็ก/เหล็กกล้า, อะลูมิเนียม, ซีเมนต์, ปุ๋ย, ไฟฟ้า, ไฮโดรเจน (เสนอขยายกลุ่มปลายน้ำปี 2571)</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>ผลสรุปกฎเกณฑ์การซื้อขาย/repurchase ใบรับรอง (ปิดรับฟังความเห็นแล้ว 6 ส.ค. 2569) และการเตรียมข้อมูลสำหรับยื่นรายงานประจำปีครั้งแรก 30 ก.ย. 2570</div>
+ </div>
+ <div class="source-note">อ้างอิง: Clearscope.ie, Carboneer, OneClickLCA, IntegrityNext (ม.ค.–ก.ค. 2569), Coolset CBAM Timeline (ส.ค. 2569), Regulatory-Compliance.eu (15 ก.ค. 2569), Eurometal / OPIS Insights (การเลื่อนซื้อขายใบรับรองเป็น ก.พ. 2570) — ไม่พบความเคลื่อนไหวใหม่ตั้งแต่การอัปเดตครั้งก่อน</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: Carbon Border Adjustment Mechanism | ชื่อย่อ: CBAM — ระเบียบ (EU) 2023/956</li>
+<li>ประเทศ/ภูมิภาค: สหภาพยุโรป</li>
+<li>หน่วยงานที่ออกกฎหมาย: European Parliament และ Council of the EU</li>
+<li>สถานะปัจจุบัน: <b>In force / Amended</b> — แก้ไขผ่าน Omnibus Package I (2568) ลดภาระ SME; เข้าสู่ definitive period แล้ว</li>
+<li>วันประกาศใช้/บังคับจริง: transitional period ตั้งแต่ 1 ต.ค. 2566 — definitive period เริ่ม 1 ม.ค. 2569</li>
+<li>ลิงก์ต้นฉบับ: EUR-Lex CELEX 32023R0956</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: ซีเมนต์ เหล็ก/เหล็กกล้า อะลูมิเนียม ปุ๋ย ไฟฟ้า ไฮโดรเจน</li>
+<li>ขนาดองค์กร/threshold: ผู้นำเข้าที่นำเข้าวัตถุดิบเกี่ยวข้อง &lt;50 ตัน/ปี ได้รับยกเว้น (de minimis มีผล 1 ม.ค.2569) — คิดเป็น ~90% ของผู้นำเข้าเดิมที่ได้รับยกเว้น แต่ยังครอบคลุมการปล่อยคาร์บอนจริงราว 99%</li>
+<li>ประเภทวัสดุ: สินค้ากลุ่มเหล็ก อะลูมิเนียม ซีเมนต์ ปุ๋ย ไฟฟ้า ไฮโดรเจน</li>
+<li>ผลกระทบ supply chain นอก EU: กระทบผู้ผลิต/ผู้ส่งออกนอก EU โดยตรง ต้องรายงาน/พิสูจน์ปริมาณคาร์บอนที่ปล่อยจริง (embedded emissions) เพื่อให้ผู้นำเข้า EU ซื้อใบรับรอง CBAM</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: เก็บค่าธรรมเนียมคาร์บอนจากสินค้านำเข้า EU กลุ่มอุตสาหกรรมหนักเพื่อป้องกัน carbon leakage โดยผู้นำเข้าต้องซื้อ CBAM certificate ตามปริมาณคาร์บอนที่ปล่อยจริง เทียบเท่าราคาคาร์บอนใน EU ETS</li>
+<li>ข้อกำหนดเชิงปริมาณ: ตั้งแต่ 1 ก.ค.2567 ต้องใช้ข้อมูลการปล่อยจริง (แทนค่า default); definitive period ต้องมี third-party verification; de minimis 50 ตัน/ปี</li>
+<li>Reporting/Disclosure: ช่วง transitional รายงานรายไตรมาส; definitive period เปลี่ยนเป็นรายปี รายงานฉบับแรกภายใน 30 ก.ย. 2570</li>
+<li>Timeline: 2566-68 transitional (รายงานเท่านั้น) → 1 ม.ค.69 เริ่ม definitive period ต้องซื้อ/ส่งมอบใบรับรอง → 2569-77 ทยอยลด free allowance ใน EU ETS คู่ขนาน</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ transitional: 10-50 ยูโร/ตัน CO2 ที่ไม่รายงาน (แตกต่างตามรัฐสมาชิก)</li>
+<li>บทลงโทษ definitive: 100 ยูโร/ตันคาร์บอนส่วนเกินที่ไม่ส่งมอบใบรับรอง ไม่มีเพดานสูงสุด | Grace period: transitional (ต.ค.66-ธ.ค.68) เป็นช่วงเตรียมพร้อม ไม่มีค่าใช้จ่ายจริง เพียงต้องรายงาน</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>เชื่อมโยงโดยตรงกับ EU ETS; ไทย/เอเชีย: UK CBAM (คาดเริ่ม 2570) และการหารือ carbon border mechanism ในบางประเทศเอเชีย — ไทยยังไม่มีกฎหมายลักษณะนี้แต่มี T-VER/พ.ร.บ.โลกร้อนที่เกี่ยวข้อง</li>
+<li>Framework สากล: GHG Protocol (คำนวณ embedded emissions), TCFD/ISSB (เปิดเผยความเสี่ยงคาร์บอน), ISO 14064</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <div class="card" data-region="eu" data-status="urgent" data-name="EUDR EU Deforestation Regulation กฎหมายห้ามตัดไม้ทำลายป่า" id="card-6">
+ <div class="card-head">
+ <div>
+ <h3>EUDR</h3>
+ <div class="en-name">EU Deforestation Regulation — (EU) 2023/1115</div>
+ </div>
+ <span class="status-pill status-urgent">เลื่อนบังคับใช้เป็นครั้งที่สอง</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>เลื่อนบังคับใช้เป็นครั้งที่สอง — บังคับใช้จริง (รายใหญ่/กลาง) (30 ธ.ค.69)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">มีผลบังคับใช้ (entry into force) แล้ว แต่วันเริ่มบังคับปฏิบัติจริงถูกเลื่อนแล้ว 2 ครั้ง ล่าสุดรัฐสภายุโรปและคณะมนตรีเห็นชอบเลื่อนเป็น <b>30 ธ.ค. 2569</b> สำหรับผู้ประกอบการรายใหญ่/กลาง และ <b>30 มิ.ย. 2570</b> สำหรับ SME/รายย่อย (มติเมื่อ 18 ธ.ค. 2568) พร้อมมาตรการลดภาระ due diligence ครอบคลุมสินค้า 7 กลุ่ม: โค โกโก้ กาแฟ ปาล์มน้ำมัน ยางพารา ถั่วเหลือง และไม้/ผลิตภัณฑ์จากไม้ (รวมเฟอร์นิเจอร์ กระดาษ) ผู้นำเข้า/ผู้ค้าต้องตรวจสอบย้อนกลับถึงพิกัดที่ดินต้นทาง (geolocation) และยืนยันว่าไม่มาจากพื้นที่ตัดไม้ทำลายป่าหลังปี 2563</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:62%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">Entry into force</div>29 มิ.ย.66</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">เลื่อนครั้งที่ 1</div>ธ.ค.67</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">มติเลื่อนครั้งที่ 2</div>18 ธ.ค.68</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">บังคับใช้จริง (รายใหญ่/กลาง)</div>30 ธ.ค.69</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">บังคับใช้จริง (SME)</div>30 มิ.ย.70</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">🏛 หน่วยงานรับผิดชอบ</div>European Commission, European Parliament, Council of the EU</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>ความคืบหน้าการปฏิบัติตามมาตรการลดภาระ due diligence ก่อนถึงกำหนด 30 ธ.ค. 2569</div>
+ </div>
+ <div class="source-note">อ้างอิง: European Commission Access2Markets, Council of the EU (18 ธ.ค. 2568), ClientEarth</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: EU Regulation on Deforestation-free products | ชื่อย่อ: EUDR — ระเบียบ (EU) 2023/1115</li>
+<li>ประเทศ/ภูมิภาค: สหภาพยุโรป</li>
+<li>หน่วยงานที่ออกกฎหมาย: European Parliament และ Council of the EU</li>
+<li>สถานะปัจจุบัน: <b>Amended</b> — เลื่อนบังคับใช้ 2 ครั้งผ่านระเบียบแก้ไข (EU) 2025/2650</li>
+<li>วันประกาศใช้/บังคับจริง: entry into force มิ.ย.2566 — เลื่อนเป็น 30 ธ.ค.2569 (รายใหญ่/กลาง) และ 30 มิ.ย.2570 (บุคคลธรรมดา/ไมโคร)</li>
+<li>ลิงก์ต้นฉบับ: <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1115" target="_blank" rel="noopener">EUR-Lex CELEX 32023R1115</a></li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: สินค้าโภคภัณฑ์เชื่อมโยงการตัดไม้ทำลายป่า — ปาล์มน้ำมัน ถั่วเหลือง ไม้ กาแฟ โกโก้ ยางพารา ปศุสัตว์ (วัว) และผลิตภัณฑ์แปรรูป (เฟอร์นิเจอร์ไม้ ช็อกโกแลต หนัง)</li>
+<li>ขนาดองค์กร: จำแนกเป็น 3 กลุ่ม — operators (ผู้วางขาย/ส่งออกครั้งแรกต้องยื่น due diligence เต็มรูปแบบ), micro/small primary operators ในประเทศความเสี่ยงต่ำ, downstream operators (เก็บเลขอ้างอิงเท่านั้น)</li>
+<li>ประเภทวัสดุ: สินค้าโภคภัณฑ์ 7 กลุ่มข้างต้นและผลิตภัณฑ์แปรรูป</li>
+<li>ผลกระทบ supply chain นอก EU: กระทบตรงต่อผู้ผลิตต้นน้ำนอก EU รวมถึงไทย (ผู้ผลิตยางพารา/ปาล์มน้ำมัน) ต้องพิสูจน์แหล่งที่มาไม่มาจากพื้นที่ตัดไม้ทำลายป่าหลังปี 2563</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: ห้ามวางขายสินค้า 7 กลุ่มโภคภัณฑ์ใน EU หากผลิตจากพื้นที่ตัดไม้ทำลายป่าหลัง 31 ธ.ค.2563 กำหนดให้ทำ due diligence พร้อมพิกัดภูมิศาสตร์ (geolocation) ของแปลงผลิต และยื่น due diligence statement ผ่านระบบข้อมูล EU</li>
+<li>ข้อกำหนดเชิงปริมาณ: ไม่มี % เป้าหมาย แต่ใช้เกณฑ์ risk-based (low/standard/high risk country) อัตราตรวจสอบต่างกัน; เก็บข้อมูลผู้จัดหา/ผู้รับ 5 ปี</li>
+<li>Reporting/Disclosure: ยื่น due diligence statement ผ่านระบบข้อมูล EU พร้อมพิกัดแปลงที่ดิน</li>
+<li>Timeline: 30 ธ.ค.2569 บังคับกับบริษัทใหญ่/กลาง, downstream operators, traders, SME (สินค้าเดิมใต้ EUTR) → 30 มิ.ย.2570 บังคับกับบุคคลธรรมดา/micro-enterprise สำหรับสินค้าที่เหลือ</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ (มาตรา 25): ค่าปรับขั้นต่ำ 4% ของยอดขายรวมใน EU ทั้งปี (ไม่ใช่เพดานสูงสุด ปรับเพิ่มได้หากเกินผลประโยชน์ทางเศรษฐกิจ); ยึดสินค้า/รายได้จากการขาย; ห้ามเข้าประมูลจัดซื้อจัดจ้างภาครัฐสูงสุด 12 เดือน; ห้ามวางขายใน EU จนปฏิบัติตามครบ; ประกาศชื่อผู้ฝ่าฝืนสาธารณะไม่มีกำหนดหมดอายุ</li>
+<li>Grace period: เลื่อนบังคับใช้ 2 ครั้งแล้ว (จาก ธ.ค.2567 → ธ.ค.2568 → ธ.ค.2569/มิ.ย.2570) เพื่อให้เวลาระบบ IT และผู้ประกอบการเตรียมตัว</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>แทนที่ EU Timber Regulation (EUTR) เดิม; ไทย/เอเชีย: กระทบตรงผู้ส่งออกยางพารา ปาล์มน้ำมัน ไม้ของไทย — ไทยมีมาตรฐาน FSC/RSPO และระบบตรวจสอบย้อนกลับยางพาราที่กำลังพัฒนารองรับ</li>
+<li>Framework สากล: FSC, RSPO, GRI 304 (Biodiversity), TNFD (Taskforce on Nature-related Financial Disclosures)</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <div class="card" data-region="eu" data-status="urgent" data-name="EU ECGT Empowering Consumers for the Green Transition Directive Green Claims" id="card-7">
+ <div class="card-head">
+ <div>
+ <h3>EU ECGT</h3>
+ <div class="en-name">Empowering Consumers for the Green Transition Directive — (EU) 2024/825</div>
+ </div>
+ <span class="status-pill status-urgent">ใกล้ถึงวันบังคับใช้จริง</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>ใกล้ถึงวันบังคับใช้จริง — บังคับใช้จริงระดับประเทศ (27 ก.ย.69)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">มีผลบังคับใช้ตั้งแต่ มี.ค. 2567 กำหนดให้ประเทศสมาชิกต้อง transpose กฎหมายภายในประเทศให้แล้วเสร็จภายใน <b>27 มี.ค. 2569</b> และมาตรการระดับประเทศจะเริ่มบังคับใช้จริง <b>27 ก.ย. 2569</b> ห้ามกล่าวอ้างสิ่งแวดล้อมทั่วไปที่ไม่มีหลักฐานรองรับ (เช่น "เป็นมิตรต่อสิ่งแวดล้อม" หรือ "climate neutral" แบบคลุมเครือ) และจำกัดฉลากความยั่งยืน/อายุการใช้งานสินค้า มีผลกับผู้ประกอบการ B2C แทบทุกรายที่ทำการตลาดด้านสิ่งแวดล้อมในสหภาพยุโรป (แยกจาก Green Claims Directive ฉบับแยกที่ EC ประกาศเจตนาถอนร่างในปี 2568 ซึ่งสถานะยังไม่ชัดเจน)</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:75%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">Entry into force</div>มี.ค.67</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">Transposition deadline</div>27 มี.ค.69</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">บังคับใช้จริงระดับประเทศ</div>27 ก.ย.69</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">Green Claims Directive (แยก)</div>ยังไม่ชัดเจน</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">🏛 หน่วยงานรับผิดชอบ</div>European Commission, ประเทศสมาชิก EU (transposition)</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>กฎหมายระดับประเทศของแต่ละสมาชิกหลัง transpose และชะตากรรมของ Green Claims Directive ฉบับแยก</div>
+ </div>
+ <div class="source-note">อ้างอิง: EUR-Lex Directive (EU) 2024/825, Latham & Watkins (การถอนร่าง Green Claims Directive)</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: Directive on empowering consumers for the green transition | ชื่อย่อ: EU ECGT — Directive (EU) 2024/825</li>
+<li>ประเทศ/ภูมิภาค: สหภาพยุโรป (Directive — ต้อง transpose เป็นกฎหมายภายในแต่ละประเทศสมาชิก)</li>
+<li>หน่วยงานที่ออกกฎหมาย: European Parliament และ Council of the EU</li>
+<li>สถานะปัจจุบัน: <b>Adopted</b> — อยู่ระหว่างการ transpose โดยรัฐสมาชิก</li>
+<li>วันประกาศใช้/บังคับจริง: entry into force 26 มี.ค.2567 — transpose ภายใน 27 มี.ค.2569 — บังคับใช้จริง 27 ก.ย.2569</li>
+<li>ลิงก์ต้นฉบับ: EUR-Lex CELEX 32024L0825</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: ผู้ประกอบการ (traders) ทุกภาคธุรกิจที่ทำการตลาด B2C ในตลาด EU ไม่จำกัดขนาด/ที่ตั้งบริษัท</li>
+<li>ขนาดองค์กร: ไม่มี threshold ยกเว้น — ครอบคลุมผู้ประกอบการทุกขนาดที่ทำตลาด B2C</li>
+<li>ประเภทที่ครอบคลุม: คำกล่าวอ้างสิ่งแวดล้อม (environmental claims) ฉลากความยั่งยืน ข้อความความทนทาน/ซ่อมได้ บนบรรจุภัณฑ์ เว็บไซต์ โฆษณา และช่องทางการตลาดดิจิทัลทุกช่องทาง</li>
+<li>ผลกระทบ supply chain นอก EU: บังคับใช้กับผู้ประกอบการนอก EU ที่ทำการตลาดตรงถึงผู้บริโภคใน EU ด้วยเช่นกัน</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: ห้ามการกล่าวอ้าง greenwashing ที่ไม่มีหลักฐานรองรับ (เช่น "เป็นมิตรต่อสิ่งแวดล้อม" แบบเหมารวม), ห้ามอ้าง carbon neutral ที่พึ่งพาการชดเชยคาร์บอนเป็นหลัก, ห้ามฉลากความยั่งยืนที่ไม่ผ่านการรับรอง, ห้ามข้อมูลเท็จเรื่องความทนทาน/การซ่อมแซม</li>
+<li>ข้อกำหนดเชิงปริมาณ: ไม่มีตัวเลข % เป้าหมาย แต่คำกล่าวอ้างทั่วไปต้องมีหลักฐาน "ผลงานด้านสิ่งแวดล้อมที่เป็นเลิศที่พิสูจน์ได้" รองรับ</li>
+<li>Reporting/Disclosure: ต้องมีหลักฐานทางเทคนิคชัดเจนเฉพาะเจาะจงสนับสนุนคำกล่าวอ้าง โดยทั่วไปผ่านการรับรองจากบุคคลที่สาม</li>
+<li>Timeline: 26 มี.ค.2567 entry into force → 27 มี.ค.2569 deadline transpose → 27 ก.ย.2569 บังคับใช้จริง</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ: สูงสุด 4% ของยอดขายประจำปีในรัฐสมาชิกที่ได้รับผลกระทบ สำหรับการฝ่าฝืนที่แพร่หลาย บังคับใช้โดยหน่วยงานคุ้มครองผู้บริโภคระดับประเทศ</li>
+<li>Grace period: ระยะเตรียมตัว ~18 เดือนจนถึงวันบังคับใช้จริง 27 ก.ย.2569 — ตัวเลขบทลงโทษจริงแต่ละประเทศอาจต่างกันตามกฎหมาย transpose: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณาในหลายประเทศที่ยัง transpose ไม่เสร็จ</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>เกี่ยวข้องกับร่าง Green Claims Directive (ถูกถอนจากกระบวนการนิติบัญญัติปี 2568 — จะกลับมาเสนอใหม่หรือไม่: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา); เชื่อมโยงกับ Unfair Commercial Practices Directive (2005/29/EC) และ Consumer Rights Directive (2011/83/EU)</li>
+<li>Framework สากล: ISO 14021 (self-declared environmental claims), GRI 417 (Marketing and Labeling); ไทย: พ.ร.บ.คุ้มครองผู้บริโภคมีหลักการใกล้เคียงบางส่วน</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <!-- ASIA -->
+ <div class="section-title asia" data-section="asia">
+ <div class="flag">AS</div>
+ <div>
+ <h2>กฎหมาย EPR บรรจุภัณฑ์ในเอเชีย</h2>
+ <div class="desc">ความคืบหน้ากฎหมาย/ระเบียบ Extended Producer Responsibility ของแต่ละประเทศ</div>
+ </div>
+ </div>
+
+ <div class="card" data-region="asia" data-status="force" data-name="Vietnam EPR Decree 110/2026 เวียดนาม" id="card-8">
+ <div class="card-head">
+ <div>
+ <h3>เวียดนาม — EPR บรรจุภัณฑ์</h3>
+ <div class="en-name">Extended Producer Responsibility — Decree No. 110/2026/ND-CP (แทนที่ Decree 08/2022)</div>
+ </div>
+ <span class="status-pill status-force">บังคับใช้แล้ว</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>บังคับใช้แล้ว — มีผลบังคับ (25 พ.ค.69)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">กฎหมายคุ้มครองสิ่งแวดล้อม พ.ศ. 2563 มาตรา 54-55 กำหนดหลัก EPR ซึ่งบังคับใช้กับบรรจุภัณฑ์มาตั้งแต่ปี 2567 ล่าสุดรัฐบาลออก <b>Decree 110/2026/ND-CP</b> (1 เม.ย. 2569, มีผล 25 พ.ค. 2569) รวมแก้ไขย่อยหลายฉบับเข้าด้วยกัน ชี้แจงค่าธรรมเนียมรีไซเคิล (Fs) ให้ชัดเจนขึ้น ผู้ผลิต/นำเข้าบรรจุภัณฑ์ต้องเลือกรีไซเคิลเองให้ได้ตามอัตราที่กำหนด หรือจ่ายเงินสมทบกองทุนคุ้มครองสิ่งแวดล้อมแห่งชาติ ต้องยื่นแบบภายใน 1 เม.ย. และชำระเงินภายใน 20 เม.ย. ของทุกปี</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:80%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">Decree 08/2022</div>2565</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">เริ่มบังคับบรรจุภัณฑ์</div>2567</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">Decree 110/2026 ประกาศ</div>1 เม.ย.69</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">มีผลบังคับ</div>25 พ.ค.69</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">ทบทวนอัตราค่าธรรมเนียม</div>2572</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">🏛 หน่วยงานรับผิดชอบ</div>Ministry of Agriculture and Environment (MAE)</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>ความชัดเจนเพิ่มเติมเรื่องวิธีคำนวณค่าธรรมเนียม Fs และรอบทบทวนอัตราปี 2572</div>
+ </div>
+ <div class="source-note">อ้างอิง: Baker McKenzie (มิ.ย. 2569), Ministry of Agriculture &amp; Environment เวียดนาม, LuatVietnam</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: Decree No. 110/2026/ND-CP detailing EPR responsibilities under the Law on Environmental Protection (แทนที่ Decree 08/2022/ND-CP)</li>
+<li>ประเทศ/ภูมิภาค: เวียดนาม</li>
+<li>หน่วยงานที่ออกกฎหมาย: รัฐบาลเวียดนาม ภายใต้ Law on Environmental Protection 2020</li>
+<li>สถานะปัจจุบัน: <b>In force</b></li>
+<li>วันประกาศใช้/บังคับจริง: ประกาศ 1 เม.ย.2569 — มีผลบังคับ 25 พ.ค.2569</li>
+<li>ลิงก์ต้นฉบับ: <a href="https://english.luatvietnam.vn/decree-no-110-2026-nd-cp-dated-april-01-2026-of-the-government-detailing-a-number-of-articles-of-the-law-on-environmental-protection-regarding-respo-430991-doc1.html" target="_blank" rel="noopener">LuatVietnam (ฉบับแปลอังกฤษ)</a></li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: ผู้ผลิต/ผู้นำเข้าบรรจุภัณฑ์ (รวมโลหะ) ที่วางขายในเวียดนาม; ครอบคลุมกลุ่มอื่นด้วย เช่น แบตเตอรี่ น้ำมันหล่อลื่น ยางรถยนต์ (2024), อิเล็กทรอนิกส์ (2025), ยานพาหนะ (2027)</li>
+<li>ขนาดองค์กรที่เข้าเกณฑ์: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (ไม่พบ threshold รายได้/พนักงานชัดเจน)</li>
+<li>ประเภทวัสดุ: บรรจุภัณฑ์พลาสติกแข็ง/อ่อน โลหะ</li>
+<li>ผลกระทบ supply chain นอกประเทศ: ผู้นำเข้าบรรจุภัณฑ์เข้าข่ายเช่นเดียวกับผู้ผลิตในประเทศ กระทบผู้ส่งออกสินค้าบรรจุภัณฑ์เข้าเวียดนาม</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: รวมกฎเกณฑ์ EPR ของเวียดนามเป็นกรอบเดียว กำหนดอัตรารีไซเคิลบังคับตามวัสดุ และสูตรคำนวณค่าธรรมเนียมสนับสนุนกองทุนสิ่งแวดล้อมสำหรับผู้ไม่รีไซเคิลเอง</li>
+<li>ข้อกำหนดเชิงปริมาณ: สูตรค่าธรรมเนียม F = R × V × Fs (R=อัตรารีไซเคิลบังคับ, V=น้ำหนักบรรจุภัณฑ์ที่วางตลาด, Fs=ต้นทุนรีไซเคิลมาตรฐาน/กก.) อัตรา R พลาสติก 10-22% (PET แข็งสูงสุด 22%); Fs สำหรับ PET แข็ง = 1,979 ดอง/กก. (ต่ำกว่าที่อุตสาหกรรมขอ 3,900 ดอง/กก.)</li>
+<li>Reporting/Disclosure: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (รูปแบบรายงานไม่ปรากฏชัดในแหล่งที่ค้นได้)</li>
+<li>Timeline phase-in: บรรจุภัณฑ์/แบตเตอรี่/ยาง (2024) → อิเล็กทรอนิกส์ (2025) → ยานพาหนะ (2027); เม.ย.2026 แก้ไขตัดสิทธิ์เศษพลาสติกบดอย่างเดียวออกจากเครดิตรีไซเคิล</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ: ค่าปรับสูงสุด 2,000 ล้านดอง (~76,000 ดอลลาร์สหรัฐ) — ถูกวิจารณ์ว่าต่ำเกินไปสำหรับบริษัท FMCG รายใหญ่</li>
+<li>Grace period: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>เทียบเคียงกับ EU PPWR และ EPR ไทย (ยังร่างอยู่) ในหลักการ polluter-pays และ mandatory recycling target แต่เวียดนามใช้ระบบ fee-based (PRO fee) ต่างจาก EU ที่เน้น design requirement</li>
+<li>เชื่อมโยงกับ GRI 301 (Materials) และ TCFD ทางอ้อมในมิติ transition risk ด้านต้นทุนปฏิบัติตามกฎหมาย</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <div class="card" data-region="asia" data-status="progress" data-name="Malaysia EPR packaging มาเลเซีย" id="card-9">
+ <div class="card-head">
+ <div>
+ <h3>มาเลเซีย — กรอบ EPR บรรจุภัณฑ์</h3>
+ <div class="en-name">EPR Framework for Packaging (Draft) — nearing gazettal</div>
+ </div>
+ <span class="status-pill status-progress">ยกร่าง / ใกล้ประกาศใช้</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>ยกร่าง / ใกล้ประกาศใช้ — ร่างกรอบระเบียบใกล้เสร็จ (ส.ค.68)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">มาเลเซียยังไม่มีกฎหมาย EPR เฉพาะ อยู่ระหว่างจัดทำกรอบระเบียบ/roadmap ภายใต้กระทรวงการเคหะและรัฐบาลท้องถิ่น (KPKT) ร่วมกับกระทรวงทรัพยากรธรรมชาติและความยั่งยืนสิ่งแวดล้อม (NRES) สื่อท้องถิ่นรายงานเมื่อ 29 ส.ค. 2568 ว่ากรอบระเบียบเข้าสู่ขั้นตอนสุดท้ายก่อนประกาศใช้ แผนที่รายงานคือเริ่มแบบสมัครใจในปี 2569 และบังคับเต็มรูปแบบภายในปี 2573 ปัจจุบันมีเพียงโครงการ EPR แบบสมัครใจ ยังไม่มีสนามแข่งขันที่เท่าเทียมตามที่ภาคเอกชนเรียกร้อง</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:35%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">โครงการสมัครใจ</div>ต่อเนื่อง</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">ร่างกรอบระเบียบใกล้เสร็จ</div>ส.ค.68</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">เริ่มระยะสมัครใจ</div>2569</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">บังคับเต็มรูปแบบ</div>คาด 2573</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">🏛 หน่วยงานรับผิดชอบ</div>KPKT ร่วมกับ NRES</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>วันประกาศใช้กรอบระเบียบอย่างเป็นทางการ และรายละเอียดพันธะผู้ผลิต</div>
+ </div>
+ <div class="source-note">อ้างอิง: Enviliance ASIA, Eco-Business, RKC-MPD/ERIA</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: EPR Framework for Packaging (ร่าง, ยังไม่มีชื่อ Act ทางการ) — ฐานอำนาจอ้างอิง Section 102 ของ Solid Waste and Public Cleansing Management Act 2007</li>
+<li>ประเทศ/ภูมิภาค: มาเลเซีย</li>
+<li>หน่วยงานที่ออกกฎหมาย: Ministry of Housing and Local Government (KPKT)</li>
+<li>สถานะปัจจุบัน: <b>Proposed / Draft</b> — ใกล้เสร็จสมบูรณ์ (ประกาศ 29 ส.ค.2568)</li>
+<li>วันประกาศใช้/บังคับจริง: ยังไม่ประกาศเป็นกฎหมายทางการ — ระยะสมัครใจ 2021-2025 คาดเปลี่ยนภาคบังคับปี 2026-2030</li>
+<li>ลิงก์ต้นฉบับ: ยังไม่มีตัวบทกฎหมายทางการเผยแพร่ — อ้างอิง Malaysia Plastics Sustainability Roadmap 2021-2030</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: บรรจุภัณฑ์และพลาสติกใช้ครั้งเดียว โดยเฉพาะกลุ่ม FMCG</li>
+<li>ขนาดองค์กรที่เข้าเกณฑ์: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+<li>ประเภทวัสดุ: บรรจุภัณฑ์พลาสติกเป็นหลัก</li>
+<li>ผลกระทบ supply chain นอกประเทศ: ผู้นำเข้าสินค้าบรรจุภัณฑ์คาดเข้าข่ายเมื่อเป็นภาคบังคับ — ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: อยู่ระหว่างเปลี่ยนผ่านจาก EPR แบบสมัครใจ (นำโดย MAREA กลุ่มบริษัท FMCG ตั้งแต่ ม.ค.2021) สู่ระบบบังคับที่คาดเริ่มราวปี 2030 ให้ผู้ผลิตเลือกจัดการเอง โอนให้ PRO หรือแบบผสม</li>
+<li>ข้อกำหนดเชิงปริมาณ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา — ไม่มีตัวเลขเป้ารีไซเคิล/ค่าธรรมเนียมเปิดเผยต่อสาธารณะ</li>
+<li>Reporting/Disclosure: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+<li>Timeline phase-in: 2021-2025 สมัครใจ → 2026 เริ่มช่วงเปลี่ยนผ่าน → 2030 ภาคบังคับเต็มรูปแบบ</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (ยังไม่มีกฎหมายบังคับที่ระบุบทลงโทษชัดเจน)</li>
+<li>Grace period: ระยะสมัครใจ 2021-2026 ถือเป็น grace period โดยพฤตินัยก่อนเข้าสู่ภาคบังคับ</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>ผู้เชี่ยวชาญเทียบเคียงว่าโมเดลสมัครใจปัจจุบันยังไม่สร้าง "level playing field" เท่า EPR ภาคบังคับใน EU (PPWR) หรือเวียดนาม/ไทย</li>
+<li>เชื่อมโยงกับ Malaysia Plastics Sustainability Roadmap 2021-2030 (policy framework กว้างกว่า)</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <div class="card" data-region="asia" data-status="force" data-name="Singapore Resource Sustainability Act MPR BCRS สิงคโปร์" id="card-10">
+ <div class="card-head">
+ <div>
+ <h3>สิงคโปร์ — MPR และ BCRS</h3>
+ <div class="en-name">Resource Sustainability Act 2019 — Mandatory Packaging Reporting + Beverage Container Return Scheme</div>
+ </div>
+ <span class="status-pill status-force">บังคับใช้แล้ว</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>บังคับใช้แล้ว — BCRS เปิดตัว (1 เม.ย.69)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">ภายใต้ Resource Sustainability Act 2019 ธุรกิจที่มีรายได้เกิน 10 ล้านดอลลาร์สิงคโปร์ต่อปีต้องรายงานประเภท/น้ำหนักบรรจุภัณฑ์และยื่นแผน 3R (Reduce/Reuse/Recycle) ต่อ NEA ทุกปีภายใน 31 มี.ค. ล่าสุดเปิดตัว <b>Beverage Container Return Scheme (BCRS)</b> เมื่อ 1 เม.ย. 2569 ซึ่งเป็นระบบมัดจำ-คืนเงินสำหรับภาชนะเครื่องดื่ม ถือเป็นก้าวสำคัญจากการรายงานอย่างเดียวสู่กลไก EPR แบบมัดจำจริง</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:70%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">RSA 2019 ประกาศใช้</div>2562</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">เริ่ม MPR ภาคบังคับ</div>ต่อเนื่อง</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">BCRS เปิดตัว</div>1 เม.ย.69</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">รอบรายงานถัดไป</div>31 มี.ค.70</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">🏛 หน่วยงานรับผิดชอบ</div>National Environment Agency (NEA), กระทรวงความยั่งยืนและสิ่งแวดล้อม (MSE)</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>ผลดำเนินงาน BCRS ในปีแรกและความเป็นไปได้ขยายขอบเขตบรรจุภัณฑ์ประเภทอื่น</div>
+ </div>
+ <div class="source-note">อ้างอิง: MSE, ConsultancyCR (2569), Sustainability MEA</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: Resource Sustainability Act 2019 (RSA) แก้ไขโดย Resource Sustainability (Amendment) Act 2023; ระเบียบย่อย Beverage Container Return Scheme Regulations 2026</li>
+<li>ประเทศ/ภูมิภาค: สิงคโปร์</li>
+<li>หน่วยงานที่ออกกฎหมาย: National Environment Agency (NEA); ผู้ดำเนินการ scheme: Beverage Container Return Scheme Ltd (BCRS Ltd)</li>
+<li>สถานะปัจจุบัน: <b>In force</b></li>
+<li>วันประกาศใช้/บังคับจริง: RSA ประกาศปี 2019; BCRS เริ่มดำเนินการ 1 เม.ย.2569 (เลื่อนจาก 2568) บังคับเต็มรูปแบบ 1 ก.ค.2569</li>
+<li>ลิงก์ต้นฉบับ: <a href="https://sso.agc.gov.sg/SL/RSA2019-S123-2026/Uncommenced/20260326" target="_blank" rel="noopener">Singapore Statutes Online</a></li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: ผู้ผลิต/ผู้นำเข้าเครื่องดื่มบรรจุสำเร็จรูปในภาชนะพลาสติก/โลหะ ขนาด 150 มล.-3 ลิตร ที่จำหน่ายในสิงคโปร์</li>
+<li>ขนาดองค์กร: ซูเปอร์มาร์เก็ตพื้นที่มากกว่า 200 ตร.ม. ต้องจัดตั้งจุดรับคืนภาชนะ; threshold MPR ทั่วไป: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+<li>ประเภทวัสดุ: ภาชนะเครื่องดื่มพลาสติกและโลหะ (MPR ครอบคลุมกว้างกว่าคือ packaging reporting ทั่วไป)</li>
+<li>ผลกระทบ supply chain นอกประเทศ: ผู้นำเข้าเครื่องดื่มเข้าสิงคโปร์ต้องลงทะเบียนกับ BCRS Ltd และจ่ายค่าธรรมเนียม</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: Beverage Container Return Scheme ภายใต้ RSA 2019 กำหนดให้ผู้ผลิต/นำเข้าเครื่องดื่มจ่ายค่ามัดจำคืนได้ 10 เซนต์/ภาชนะ ผ่านระบบ deposit-refund ที่ดำเนินการโดย BCRS Ltd</li>
+<li>ข้อกำหนดเชิงปริมาณ: ค่ามัดจำคืนได้ 10 เซนต์สิงคโปร์/ภาชนะ บวกค่าธรรมเนียมต่อหน่วยที่ผู้ผลิตจ่ายให้ผู้ดำเนินการ scheme</li>
+<li>Reporting/Disclosure: ลงทะเบียนและยื่น declaration (เช่น Non-Producer Declaration ผ่านฟอร์มออนไลน์รัฐ) — รอบรายงานเต็มรูปแบบ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+<li>Timeline phase-in: 1 เม.ย.2569 เริ่ม scheme (เลื่อนจาก 2568) → เม.ย.-มิ.ย.2569 เปลี่ยนผ่านเคลียร์สต็อกเดิม → 1 ก.ค.2569 บังคับเต็มรูปแบบ</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (ไม่พบตัวเลขค่าปรับเฉพาะ)</li>
+<li>Grace period: มี — 3 เดือน (เม.ย.-มิ.ย.2569) สำหรับเคลียร์สต็อกไม่เป็นไปตามเกณฑ์</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>เทียบเคียงกับ Deposit Return Scheme (DRS) ของหลายประเทศ EU ภายใต้ PPWR/SUP Directive และแนวคิด mandatory packaging reporting คล้าย EU</li>
+<li>เชื่อมโยงกับ GRI 306 (Waste) ในมิติการรายงานขยะบรรจุภัณฑ์</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <div class="card" data-region="asia" data-status="progress" data-name="Indonesia EPR Perpres plastic packaging อินโดนีเซีย" id="card-11">
+ <div class="card-head">
+ <div>
+ <h3>อินโดนีเซีย — ร่าง Perpres EPR</h3>
+ <div class="en-name">Draft Presidential Regulation on EPR (ยกระดับจาก Permen LHK No. 75/2019)</div>
+ </div>
+ <span class="status-pill status-progress">ยกร่าง</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>ยกร่าง — รอลงนามข้ามกระทรวง (ต่อเนื่อง)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">ปัจจุบันใช้ระเบียบกระทรวงสิ่งแวดล้อมและป่าไม้ Permen LHK No. 75/2019 กำหนด roadmap ลดขยะบรรจุภัณฑ์ของผู้ผลิต แต่บังคับใช้จริงอ่อนแอ (มีผู้ยื่น roadmap เพียง 26 บริษัทในรอบ 6 ปี) อินโดนีเซียจึงร่าง Presidential Regulation (Perpres) ฉบับใหม่เพื่อยกระดับเป็นกฎหมายที่มีผลผูกพันจริง เนื้อหาเชิงเทคนิคแล้วเสร็จ ธ.ค. 2568 กำหนดให้มี Producer Responsibility Organizations (PRO) ภาคบังคับ คาดประกาศใช้กลางปี 2569 รอการลงนามจากกระทรวงอุตสาหกรรมและกระทรวงการคลัง</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:45%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">Permen LHK 75/2019</div>2562</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">ร่าง Perpres แล้วเสร็จเชิงเทคนิค</div>ธ.ค.68</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">รอลงนามข้ามกระทรวง</div>ต่อเนื่อง</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">คาดประกาศใช้</div>กลางปี 2569</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">🏛 หน่วยงานรับผิดชอบ</div>Ministry of Environment/Forestry (KLH)</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>วันประกาศใช้ Perpres อย่างเป็นทางการ และโครงสร้าง PRO ภาคบังคับ</div>
+ </div>
+ <div class="source-note">อ้างอิง: ChemLinked (2569), WWF Indonesia</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: (ปัจจุบัน) Permen LHK No. 75/2019 ว่าด้วย Roadmap การลดขยะโดยผู้ผลิต; (ร่างใหม่) Peraturan Presiden (Perpres) ว่าด้วย EPR</li>
+<li>ประเทศ/ภูมิภาค: อินโดนีเซีย</li>
+<li>หน่วยงานที่ออกกฎหมาย: Kementerian Lingkungan Hidup (KLH) ประสานกับกระทรวงอุตสาหกรรมและกระทรวงการคลัง</li>
+<li>สถานะปัจจุบัน: Permen LHK 75/2019 <b>In force</b> (บังคับใช้จริงอ่อนแอ); ร่าง Perpres <b>Proposed</b> (รอ harmonization ระหว่างกระทรวง)</li>
+<li>วันประกาศใช้/บังคับจริง: Permen LHK 75/2019 ประกาศปี 2019; ร่าง Perpres คาดแล้วเสร็จกลางปี 2026</li>
+<li>ลิงก์ต้นฉบับ: <a href="https://jdih.maritim.go.id/cfind/source/files/permen-lhk/p_75_2019_peta_jalan_sampah_menlhk.pdf" target="_blank" rel="noopener">Permen LHK 75/2019 (PDF)</a></li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: ภาคเคมี เครื่องสำอาง อาหาร และเภสัชกรรม (ตามประกาศ ก.ค.2569)</li>
+<li>ขนาดองค์กร: โรงงาน/ผู้ผลิตขนาดใหญ่ที่ใช้บรรจุภัณฑ์พลาสติกราว 10,000 แห่งต้องเข้าร่วม</li>
+<li>ประเภทวัสดุ: บรรจุภัณฑ์พลาสติกเป็นหลัก</li>
+<li>ผลกระทบ supply chain นอกประเทศ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: อินโดนีเซียยกระดับกฎเกณฑ์ EPR จาก Permen (ระดับกระทรวง, บังคับใช้ได้ผลจำกัด) สู่ Perpres (ระดับประธานาธิบดี, ผลผูกพันสูงกว่า) พร้อมกลไก PRO ให้ผู้ผลิตพลาสติกบรรจุภัณฑ์ราว 10,000 รายรับผิดชอบขยะบรรจุภัณฑ์</li>
+<li>ข้อกำหนดเชิงปริมาณ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา — ไม่มีตัวเลขเป้ารีไซเคิลหรือค่าธรรมเนียมชัดเจน</li>
+<li>Reporting/Disclosure: ผู้ผลิตต้องยื่น roadmap ลดขยะ (ภายใต้ Permen LHK 75/2019 เดิม) — ในทางปฏิบัติมีเพียง 26 บริษัทยื่นจริงใน 6 ปี สะท้อน gap การบังคับใช้</li>
+<li>Timeline phase-in: ยังไม่ชัดเจน — เป้าคือ Perpres แล้วเสร็จกลางปี 2026 timeline บังคับใช้จริงหลังจากนั้น: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+<li>Grace period: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>แนวทางคล้าย EU PPWR และเวียดนามในการใช้กลไก PRO/EPR fee แต่ความเข้มงวดปัจจุบันยังอ่อนกว่า (ปัญหาการบังคับใช้ตาม Permen เดิม)</li>
+<li>เชื่อมโยงกับ WWF EPR Guideline 2022 ที่เป็นแนวทางอ้างอิงภาคเอกชนในอินโดนีเซีย</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <div class="card" data-region="asia" data-status="force" data-name="Japan Containers Packaging Recycling Act Plastic Resource Circulation Act ญี่ปุ่น" id="card-12">
+ <div class="card-head">
+ <div>
+ <h3>ญี่ปุ่น — กฎหมายรีไซเคิลบรรจุภัณฑ์</h3>
+ <div class="en-name">Containers and Packaging Recycling Act (2540) + Plastic Resource Circulation Act (2565)</div>
+ </div>
+ <span class="status-pill status-force">บังคับใช้แล้ว</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>บังคับใช้แล้ว — มาตรฐานวัสดุรีไซเคิลใหม่ (24 ม.ค.69)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">ญี่ปุ่นมีระบบ EPR บรรจุภัณฑ์มายาวนานภายใต้ Containers and Packaging Recycling Act ซึ่งผู้ผลิต/ผู้นำเข้าจ่ายค่าธรรมเนียมรีไซเคิลรายปีให้ JCPRA แทนการเก็บกลับเอง ล่าสุด METI/กระทรวงสิ่งแวดล้อมออกมาตรฐานการรับรองใหม่ภายใต้ Plastic Resource Circulation Act มีผล 24 ม.ค. 2569 กำหนดสัดส่วนวัสดุรีไซเคิล/ชีวภาพขั้นต่ำ (เช่น ขวด PET ≥15%) ครอบคลุมขวด PET เครื่องเขียน และภาชนะเครื่องสำอาง/ผงซักฟอกในครัวเรือนก่อน</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:85%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">Containers/Packaging Act</div>2540</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">Plastic Resource Circulation Act</div>2565</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">มาตรฐานวัสดุรีไซเคิลใหม่</div>24 ม.ค.69</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">ขยายกลุ่มผลิตภัณฑ์</div>รอกำหนด</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">🏛 หน่วยงานรับผิดชอบ</div>Ministry of the Environment, METI, JCPRA</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>ปัญหาขาดแคลน rPET เกรดอาหารหลังมาตรฐานใหม่มีผล</div>
+ </div>
+ <div class="source-note">อ้างอิง: JCPRA, Zenbird (2569), Plastics For Change</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: Containers and Packaging Recycling Act + Plastic Resource Circulation Act (2565) + การแก้ไข Act on Promotion of Effective Utilization of Resources (มิ.ย.2568)</li>
+<li>ประเทศ/ภูมิภาค: ญี่ปุ่น</li>
+<li>หน่วยงานที่ออกกฎหมาย: กระทรวงเศรษฐกิจ การค้าและอุตสาหกรรม (METI) และกระทรวงสิ่งแวดล้อม</li>
+<li>สถานะปัจจุบัน: <b>In force</b> (ทั้งสองฉบับหลัก) พร้อม Amended เพิ่มเติม 2568/69</li>
+<li>วันประกาศใช้/บังคับจริง: legislated มิ.ย.2568 มีผล เม.ย.2569; กฎ rPET ขั้นต่ำมีผล ม.ค.2569</li>
+<li>ลิงก์ต้นฉบับ: <a href="https://www.japaneselawtranslation.go.jp/en/laws/view/3828/en" target="_blank" rel="noopener">Japanese Law Translation</a></li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: ผู้ผลิต/ผู้นำเข้าบรรจุภัณฑ์พลาสติก, เครื่องใช้ไฟฟ้าในบ้าน (แอร์ ทีวี ตู้เย็น เครื่องซักผ้า), ยานยนต์บางประเภทที่ใช้พลาสติกรีไซเคิล</li>
+<li>ขนาดองค์กร: มีเกณฑ์ปริมาณที่กำหนด (specified volume thresholds) — ตัวเลขชัดเจน: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+<li>ประเภทวัสดุ: ขวด PET เครื่องดื่ม บรรจุภัณฑ์พลาสติกทั่วไป บรรจุภัณฑ์กระดาษ/แก้ว</li>
+<li>ผลกระทบ supply chain นอกประเทศ: กฎ rPET ขั้นต่ำ 15% กระทบ supply chain การผลิต rPET ในอินเดีย อินโดนีเซีย เวียดนามที่ส่งออกมาญี่ปุ่น</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: ญี่ปุ่นมีระบบ EPR บรรจุภัณฑ์เก่าแก่ที่สุดในเอเชีย เสริมด้วย Plastic Resource Circulation Act (2565) และกฎ rPET ขั้นต่ำ 15% สำหรับขวด PET เครื่องดื่ม (มีผล ม.ค.2569) เปลี่ยนเป้าสมัครใจให้เป็นข้อบังคับ</li>
+<li>ข้อกำหนดเชิงปริมาณ: ขวด PET เครื่องดื่มต้องมีพลาสติกรีไซเคิลอย่างน้อย 15% โดยน้ำหนัก, ขวดไม่มีสี, ฉลากแยกออกง่าย, ฝาต้องไม่ใช้ PVC</li>
+<li>Reporting/Disclosure: ผู้ผลิต/นำเข้าต้องจัดทำแผนการใช้วัสดุรีไซเคิลและยื่นต่อหน่วยงานที่รับผิดชอบ พร้อมรายงานผลเป็นระยะ</li>
+<li>Timeline phase-in: ม.ค.2569 เริ่มกฎ rPET 15% → เม.ย.2569 การแก้ไข Act on Promotion of Effective Utilization of Resources มีผลบังคับ</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (ไม่พบตัวเลขค่าปรับเฉพาะ)</li>
+<li>Grace period: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>ญี่ปุ่นเป็นต้นแบบระบบ EPR ที่หลายประเทศเอเชีย (เวียดนาม ไทย) อ้างอิง; กฎ rPET ขั้นต่ำเทียบเคียง EU PPWR/SUP Directive (25% ปี 2025, 30% ปี 2030 สำหรับ PET bottles)</li>
+<li>เชื่อมโยงกับ ISSB/TCFD ในมิติ transition risk ของผู้ผลิตบรรจุภัณฑ์ที่ต้อง disclose แผนการใช้วัสดุรีไซเคิล</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <div class="card" data-region="asia" data-status="force" data-name="Taiwan Resource Circulation Promotion Act ไต้หวัน" id="card-13">
+ <div class="card-head">
+ <div>
+ <h3>ไต้หวัน — Resource Circulation Promotion Act</h3>
+ <div class="en-name">กฎหมายปฏิรูปการรีไซเคิลฉบับใหญ่ที่สุดในรอบ 20 ปี (แทนที่ระบบค่าธรรมเนียมเดิมภายใต้ Waste Disposal Act)</div>
+ </div>
+ <span class="status-pill status-force">ผ่านสภาแล้ว</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>ผ่านสภาแล้ว — บทบัญญัติส่วนใหญ่มีผลทันที (ต่อเนื่อง)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">สภานิติบัญญัติผ่านร่างกฎหมาย <b>Resource Circulation Promotion Act</b> เมื่อ 3 มิ.ย. 2569 ถือเป็นการปฏิรูประบบรีไซเคิลครั้งใหญ่ที่สุดในรอบกว่า 20 ปี ขยายพันธะจากระบบค่าธรรมเนียมรีไซเคิลเดิม (4-in-1 fund ภายใต้ Waste Disposal Act) ไปสู่แนวคิด lifecycle เต็มรูปแบบ (ออกแบบ-ผลิต-ใช้วัสดุรีไซเคิล-รับคืน) พร้อมสิทธิประโยชน์ทางภาษีสำหรับการลงทุนด้านเศรษฐกิจหมุนเวียน บทบัญญัติส่วนใหญ่มีผลทันทีเมื่อประกาศใช้ ยกเว้นมาตรา 14 และ 38(1) ที่เลื่อนออกไป 2 ปี</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:65%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">Executive Yuan เห็นชอบร่าง</div>9 เม.ย.69</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">สภาผ่านกฎหมาย</div>3 มิ.ย.69</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">บทบัญญัติส่วนใหญ่มีผลทันที</div>ต่อเนื่อง</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">มาตรา 14, 38(1) เลื่อน 2 ปี</div>~2571</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">🏛 หน่วยงานรับผิดชอบ</div>Ministry of Environment (MOENV) ไต้หวัน</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>อัตราค่าธรรมเนียมรีไซเคิลฉบับปรับปรุงและกำหนดการบังคับใช้มาตรา 14/38(1)</div>
+ </div>
+ <div class="source-note">อ้างอิง: Taipei Times (เม.ย., มิ.ย. 2569), Sustainable Plastics</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: Resource Circulation Promotion Act (資源循環促進法)</li>
+<li>ประเทศ/ภูมิภาค: ไต้หวัน</li>
+<li>หน่วยงานที่ออกกฎหมาย: Ministry of Environment ไต้หวัน (Resource Circulation Administration)</li>
+<li>สถานะปัจจุบัน: <b>Adopted</b> — ผ่านวาระ 3 ของ Legislative Yuan แล้ว</li>
+<li>วันประกาศใช้/บังคับจริง: ผ่านสภา 2 มิ.ย.2569 — วันบังคับใช้จริง: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (ยังไม่พบวันประกาศราชกิจจานุเบกษา)</li>
+<li>ลิงก์ต้นฉบับ: <a href="https://english.ey.gov.tw/News3/9E5540D592A5FECD/63c53049-f7d0-4b89-b658-b96768176e5f" target="_blank" rel="noopener">Executive Yuan</a></li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: วัสดุก่อสร้าง การผลิต และผลิตภัณฑ์ที่ต้องปฏิบัติตามหลัก green design</li>
+<li>ขนาดองค์กร: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+<li>ประเภทวัสดุ/ผลิตภัณฑ์: ครอบคลุมวงจรชีวิตผลิตภัณฑ์ทั้งหมด (design, production, consumption, recycling, reuse) — เป็นกฎหมายกรอบใหญ่ระดับ circular economy ไม่จำกัดเฉพาะบรรจุภัณฑ์</li>
+<li>ผลกระทบ supply chain นอกประเทศ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: เปลี่ยนกรอบการจัดการขยะไต้หวันจาก "end-of-pipe" ไปสู่การกำกับดูแลแบบองค์รวม เน้นลดต้นทาง circular design และใช้ซ้ำทรัพยากรตลอดวงจรชีวิตผลิตภัณฑ์</li>
+<li>ข้อกำหนดเชิงปริมาณ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา — ไม่พบตัวเลขเป้าหมายเฉพาะ</li>
+<li>Reporting/Disclosure: กำหนดฉลาก circular labeling และการเปิดเผยข้อมูลผลิตภัณฑ์ รวมถึงหลักการจัดซื้อจัดจ้างภาครัฐที่ให้ความสำคัญกับผลิตภัณฑ์หมุนเวียน</li>
+<li>Timeline phase-in: รัฐบาลจะจัดทำ National Resource Circulation Plan และตั้งคณะกรรมการข้ามหน่วยงาน — รายละเอียด timeline: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (กฎหมายที่เกี่ยวข้องคนละฉบับ คือ Legislative Yuan เพิ่งปรับขึ้นบทลงโทษการทิ้งขยะผิดกฎหมายภายใต้ Waste Disposal Act กลาง มิ.ย.2569)</li>
+<li>Grace period: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>เทียบเคียงกับ EU Circular Economy Action Plan และ PPWR ในแง่หลักการ ecodesign และ mandatory recycled content แต่วางเป็นกฎหมายกรอบกว้างกว่าระเบียบเฉพาะบรรจุภัณฑ์</li>
+<li>เชื่อมโยงกับเป้าหมาย net-zero ของไต้หวันที่รวม carbon fee และ ESG trade</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <div class="card" data-region="asia" data-status="progress" data-name="China packaging EPR circular economy จีน" id="card-14">
+ <div class="card-head">
+ <div>
+ <h3>จีน — มาตรการ EPR บรรจุภัณฑ์</h3>
+ <div class="en-name">กรอบภายใต้ Circular Economy Promotion Law และ Solid Waste Law + แผนปฏิบัติการบรรจุภัณฑ์แห่งชาติ 2569</div>
+ </div>
+ <span class="status-pill status-progress">ทยอยบังคับใช้</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>ทยอยบังคับใช้ — แผนปฏิบัติการบรรจุภัณฑ์แห่งชาติ (ม.ค.69)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">จีนยังไม่มีกฎหมาย EPR บรรจุภัณฑ์ฉบับเดียวโดยเฉพาะ แต่ขยายพันธะแบบ EPR ผ่านกฎหมายป้องกันมลพิษจากของเสียมูลฝอย (Solid Waste Law) และกฎหมายส่งเสริมเศรษฐกิจหมุนเวียน ล่าสุดออกแผนปฏิบัติการระดับชาติ ม.ค. 2569 มุ่งเป้าบรรจุภัณฑ์อีคอมเมิร์ซและเดลิเวอรีอาหารเป็นพิเศษ วางกรอบเป้าหมายเศรษฐกิจหมุนเวียนปี 2573 ยังไม่มีวันบังคับใช้เดียวที่ชัดเจน ดำเนินการผ่านมาตรฐานและโครงการนำร่องทีละภาคส่วน</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:30%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">Circular Economy Promotion Law</div>ก่อนหน้า</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">แผนปฏิบัติการบรรจุภัณฑ์แห่งชาติ</div>ม.ค.69</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">มาตรฐานย่อยรายภาคส่วน</div>ทยอยประกาศ</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">เป้าหมายเศรษฐกิจหมุนเวียน</div>2573</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">🏛 หน่วยงานรับผิดชอบ</div>Ministry of Ecology and Environment (MEE)</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>มาตรฐาน/ระเบียบย่อยรายภาคส่วนที่จะทยอยประกาศก่อนถึงเป้าปี 2573</div>
+ </div>
+ <div class="source-note">อ้างอิง: Packaging Gateway (ม.ค.-ก.พ. 2569), Packaging Post, RKC-MPD/ERIA</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: Circular Economy Promotion Law of the PRC (กฎหมายแม่ ตั้งแต่ 2551/2552) เสริมด้วย national action plan ด้าน solid-waste governance (ม.ค.2569)</li>
+<li>ประเทศ/ภูมิภาค: จีน</li>
+<li>หน่วยงานที่ออกกฎหมาย: Ministry of Ecology and Environment (MEE) ร่วมกับ National Development and Reform Commission (NDRC) และ State Council</li>
+<li>สถานะปัจจุบัน: <b>In force</b> (กฎหมายแม่) / Adopted-ระยะ rollout (action plan ใหม่)</li>
+<li>วันประกาศใช้/บังคับจริง: กฎหมายแม่มีผลตั้งแต่ 2552 (แก้ไขภายหลัง); action plan ใหม่เผยแพร่ ม.ค.2569; กฎ express-delivery ที่เกี่ยวข้องมีผล 1 มิ.ย.2568</li>
+<li>ลิงก์ต้นฉบับ: <a href="https://english.mee.gov.cn/Resources/laws/envir_elatedlaws/201712/t20171212_427823.shtml" target="_blank" rel="noopener">MEE (ฉบับอังกฤษ)</a></li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: ค้าปลีก อีคอมเมิร์ซ และธุรกิจส่งอาหาร (food delivery) เป็นกลุ่มเป้าหมายหลักของมาตรการล่าสุด</li>
+<li>ขนาดองค์กร: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+<li>ประเภทวัสดุ: กระดาษ/กล่องลูกฟูก เทปกาว พลาสติกยืดหยุ่น วัสดุกันกระแทก แก้ว โลหะ</li>
+<li>ผลกระทบ supply chain นอกประเทศ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา — เน้นตลาดในประเทศ (e-commerce/delivery) เป็นหลัก</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: เสริมกรอบ Circular Economy Promotion Law ด้วยมาตรการเฉพาะบรรจุภัณฑ์ (ม.ค.2569) กำหนดให้ธุรกิจลดบรรจุภัณฑ์เกินความจำเป็น เพิ่มสัดส่วนวัสดุรีไซเคิลได้ รองรับระบบคัดแยกขยะเทศบาล พร้อมเป้าหมายระดับชาติถึงปี 2573</li>
+<li>ข้อกำหนดเชิงปริมาณ: เป้าหมายระดับชาติภายในปี 2573 — การใช้ประโยชน์ขยะแข็งจำนวนมากราว 4.5 พันล้านตัน/ปี และรีไซเคิลทรัพยากรหมุนเวียนหลัก 510 ล้านตัน/ปี — ไม่มีตัวเลข % เนื้อรีไซเคิลเฉพาะบรรจุภัณฑ์ที่ระบุชัด</li>
+<li>Reporting/Disclosure: กำหนดให้ผู้ผลิต/เจ้าของแบรนด์สนับสนุนระบบเก็บ-รีไซเคิล-นำกลับมาใช้ พร้อมเครื่องมือติดตามดิจิทัลเพื่อความโปร่งใสด้าน compliance/traceability</li>
+<li>Timeline phase-in: 2565-67 ช่วงข้อมูล baseline → 1 มิ.ย.2568 กฎ express-delivery ฉบับปรับปรุงมีผล → ม.ค.2569 action plan บรรจุภัณฑ์ประกาศ → 2573 ปีเป้าหมาย</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (มีการกำกับติดตามโดยรัฐบาลท้องถิ่นป้องกันทิ้งขยะผิดกฎหมาย แต่ไม่ระบุตัวเลขค่าปรับ)</li>
+<li>Grace period: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>เทียบเคียงกับ EU PPWR ในแง่เป้า recyclability by design และลดบรรจุภัณฑ์เกินความจำเป็น แต่จีนเน้นเป้าหมายเชิงปริมาณมหภาค (ตันขยะที่นำกลับมาใช้) มากกว่า % เนื้อรีไซเคิลรายผลิตภัณฑ์</li>
+<li>เชื่อมโยงกับ EU-China Circular Economy Action Project (ความร่วมมือระหว่างประเทศด้าน circular economy)</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <!-- GLOBAL -->
+ <div class="section-title global" data-section="global">
+ <div class="flag">GL</div>
+ <div>
+ <h2>กฎระเบียบระดับสากล</h2>
+ <div class="desc">กรอบความตกลง/กฎหมายข้ามพรมแดนด้านคาร์บอนและสิ่งแวดล้อม</div>
+ </div>
+ </div>
+
+ <div class="card" data-region="global" data-status="urgent" data-name="CORSIA Carbon Offsetting Reduction Scheme International Aviation ICAO" id="card-15">
+ <div class="card-head">
+ <div>
+ <h3>CORSIA</h3>
+ <div class="en-name">Carbon Offsetting and Reduction Scheme for International Aviation — ICAO Assembly Resolution A41-22</div>
+ </div>
+ <span class="status-pill status-urgent">ใกล้เข้าสู่ระยะภาคบังคับ</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>ใกล้เข้าสู่ระยะภาคบังคับ — เตรียมเข้าสู่ภาคบังคับ (ต่อเนื่อง)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">ระบบชดเชย/ลดคาร์บอนสำหรับการบินระหว่างประเทศภายใต้ ICAO ปัจจุบันอยู่ใน First Phase (2567-2569) แบบสมัครใจ มีรัฐเข้าร่วมแล้วกว่า 126 ประเทศ กำลังจะเข้าสู่ <b>Second Phase (2570-2578)</b> ซึ่งบังคับเกือบทุกเส้นทางบินระหว่างประเทศ (ยกเว้นประเทศพัฒนาน้อยที่สุด/รัฐขนาดเล็กบางส่วน) สายการบินต้องติดตาม ชดเชย หรือใช้เชื้อเพลิงการบินยั่งยืน (SAF) เพื่อคุมการปล่อยก๊าซให้ไม่เกินเส้นฐาน</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:68%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">Pilot Phase</div>2564-66</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">First Phase (สมัครใจ)</div>2567-69</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">เตรียมเข้าสู่ภาคบังคับ</div>ต่อเนื่อง</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">Second Phase (บังคับ)</div>1 ม.ค.70</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">🏛 หน่วยงานรับผิดชอบ</div>ICAO ร่วมกับหน่วยงานการบินพลเรือนแต่ละประเทศ (เช่น EASA ในสหภาพยุโรป)</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>การยืนยันรายชื่อประเทศที่เข้าร่วม Second Phase และมาตรฐาน SAF/หน่วยชดเชยที่ยอมรับได้</div>
+ </div>
+ <div class="source-note">อ้างอิง: ICAO CORSIA Newsletter (เม.ย. 2569), IATA CORSIA Fact Sheet (มิ.ย. 2569)</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: Carbon Offsetting and Reduction Scheme for International Aviation | ชื่อย่อ: CORSIA</li>
+<li>ประเทศ/ภูมิภาค: ระดับสากล — ครอบคลุมเที่ยวบินระหว่างประเทศภายใต้กรอบ ICAO</li>
+<li>หน่วยงานที่ออกกฎหมาย: International Civil Aviation Organization (ICAO) หน่วยงานของสหประชาชาติ</li>
+<li>สถานะปัจจุบัน: <b>In force</b> — เข้าสู่ Second Phase (2570-2578) ซึ่งเป็นภาคบังคับสำหรับรัฐส่วนใหญ่</li>
+<li>วันประกาศใช้/บังคับจริง: รับรองโดย ICAO Assembly ปี 2559 (Resolution A39-3); Pilot Phase 2564-66 (สมัครใจ) → First Phase 2567-69 (สมัครใจ) → Second Phase 2570-78 (บังคับส่วนใหญ่)</li>
+<li>ลิงก์ต้นฉบับ: <a href="https://www.icao.int/CORSIA" target="_blank" rel="noopener">ICAO CORSIA</a></li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: สายการบิน/ผู้ดำเนินการอากาศยานที่ให้บริการเที่ยวบินระหว่างประเทศ</li>
+<li>เกณฑ์ยกเว้น: อากาศยาน MTOW &lt;5,700 กก., ผู้ดำเนินการปล่อย CO2 &lt;10,000 ตัน/ปี, เที่ยวบินทหาร/ตำรวจ/ศุลกากร/มนุษยธรรม/การแพทย์/ดับเพลิง; ระยะที่ 2 ยกเว้น LDCs/SIDS/LLDCs แม้เข้าเกณฑ์ปริมาณ</li>
+<li>ประเภทกิจกรรม: การปล่อย CO2 จากเที่ยวบินระหว่างประเทศ (route-based, state pairs ที่ทั้งสองรัฐเข้าร่วม)</li>
+<li>ผลกระทบ supply chain ข้ามประเทศ: กระทบสายการบินทุกสัญชาติที่บินเส้นทางคู่รัฐที่เข้าร่วม รวมถึงผู้ผลิตเชื้อเพลิงการบินยั่งยืน (SAF) และตลาดคาร์บอนเครดิตทั่วโลก</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: กลไกชดเชยคาร์บอนระดับโลกฉบับแรกสำหรับภาคการบิน กำหนดให้สายการบินระหว่างประเทศชดเชยการปล่อย CO2 ส่วนเกินจาก baseline ปี 2020 ด้วยคาร์บอนเครดิตที่ผ่านเกณฑ์หรือเชื้อเพลิงคาร์บอนต่ำ (SAF/LCAF) จากสมัครใจสู่บังคับส่วนใหญ่</li>
+<li>ข้อกำหนดเชิงปริมาณ: baseline การเติบโตปี 2020; 1 CORSIA Eligible Emissions Unit = ลด CO2 1 ตัน</li>
+<li>Reporting/Disclosure: ยื่น Emissions Monitoring Plan; รายงานการปล่อยประจำปีภายใน 30 เม.ย.ทุกปี (ตรวจสอบโดยผู้ตรวจสอบอิสระ); รายงานยกเลิกหน่วยชดเชยภายใน 31 ม.ค.ปีถัดไป; เก็บบันทึก 10 ปี ผ่านระบบ CERT/CCR</li>
+<li>Timeline: 2564-66 Pilot (สมัครใจ) → 2567-69 First Phase (สมัครใจ) → 2570-78 Second Phase (บังคับ ยกเว้น LDCs/SIDS/LLDCs)</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา — ICAO ไม่กำหนดบทลงโทษระดับสากลโดยตรง ให้แต่ละรัฐสมาชิกกำหนดกฎหมายภายในเพื่อบังคับใช้ (transposition into national law)</li>
+<li>Grace period: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา — ขึ้นกับกฎหมายภายในแต่ละประเทศ (เช่น EU ใช้ EU ETS Aviation คู่ขนานกับ CORSIA)</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>เทียบเคียงกับ EU ETS (สำหรับการบินภายใน EEA ที่ใช้คู่ขนานกับ CORSIA)</li>
+<li>เชื่อมโยงกับมาตรฐาน SAF และการเปิดเผยข้อมูลตาม TCFD/ISSB (S2) ด้าน transition risk ของสายการบิน — ยังไม่มีการอ้างอิงโดยตรงกับ GRI/SBTi ในตัวกฎเกณฑ์ ICAO</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <div class="card" data-region="global" data-status="progress" data-name="Maritime Decarbonization IMO Net-Zero Framework FuelEU Maritime" id="card-16">
+ <div class="card-head">
+ <div>
+ <h3>การลดคาร์บอนภาคเดินเรือ</h3>
+ <div class="en-name">IMO Net-Zero Framework (ร่างแก้ไข MARPOL Annex VI) + FuelEU Maritime (EU) 2023/1805</div>
+ </div>
+ <span class="status-pill status-progress">เลื่อนรับรองระดับโลก</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>เลื่อนรับรองระดับโลก — ประชุมวิสามัญไม่รับรอง (ต.ค.68)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">กรอบการลดคาร์บอนภาคเดินเรือมี 2 แทร็กคู่ขนาน ระดับโลกคือ IMO Net-Zero Framework ซึ่งผ่านร่างในที่ประชุม MEPC 83 (เม.ย. 2568) แต่การประชุมวิสามัญ ต.ค. 2568 ไม่สามารถรับรองอย่างเป็นทางการได้ (มีการคัดค้านจากบางประเทศรวมถึงสหรัฐฯ) ทำให้เลื่อนออกไปอย่างน้อย 1 ปี ยังอยู่ระหว่างเจรจาต่อใน MEPC 84 (2569) ส่วนระดับสหภาพยุโรป <b>FuelEU Maritime</b> มีผลบังคับใช้เต็มรูปแบบแล้วตั้งแต่ 1 ม.ค. 2568 กำหนดเป้าลดความเข้มข้นก๊าซเรือนกระจกของเชื้อเพลิงเรือที่แวะจอดท่าเรือ EU แบบขั้นบันไดถึงปี 2593</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:50%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">FuelEU Maritime มีผลเต็มรูปแบบ</div>1 ม.ค.68</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">MEPC 83 ผ่านร่าง</div>เม.ย.68</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">ประชุมวิสามัญไม่รับรอง</div>ต.ค.68</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">เจรจาต่อ MEPC 84</div>2569</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">🏛 หน่วยงานรับผิดชอบ</div>IMO (ระดับโลก), European Commission/EMSA (FuelEU Maritime)</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>ผลการเจรจา MEPC 84 ว่าจะรับรอง IMO Net-Zero Framework ได้เมื่อใด</div>
+ </div>
+ <div class="source-note">อ้างอิง: IMO Media Centre, DNV (2568), EMSA</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: IMO Net-Zero Framework (แก้ไข MARPOL Annex VI) + FuelEU Maritime — Regulation (EU) 2023/1805</li>
+<li>ประเทศ/ภูมิภาค: ระดับสากล (IMO) + สหภาพยุโรป (FuelEU Maritime บังคับกับเรือทุกสัญชาติที่แวะท่าเรือ EU)</li>
+<li>หน่วยงานที่ออกกฎหมาย: International Maritime Organization (IMO) ผ่าน MEPC; European Commission (DG MOVE) ร่วมกับ EMSA สำหรับ FuelEU Maritime</li>
+<li>สถานะปัจจุบัน: IMO Net-Zero Framework <b>ยังไม่รับรองอย่างเป็นทางการ</b> (adoption เลื่อนจาก ต.ค.2568 เป็น ต.ค.2569); FuelEU Maritime <b>In force</b></li>
+<li>วันประกาศใช้/บังคับจริง: FuelEU Maritime รับรอง 13 ก.ย.2566 มีผลเต็มรูปแบบ 1 ม.ค.2568; IMO NZF entry into force: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+<li>ลิงก์ต้นฉบับ: <a href="https://www.imo.org/en/mediacentre/hottopics/pages/faqs-the-imo-net-zero-framework.aspx" target="_blank" rel="noopener">IMO FAQs — Net-Zero Framework</a>, <a href="https://transport.ec.europa.eu/transport-modes/maritime/decarbonising-maritime-transport-fueleu-maritime_en" target="_blank" rel="noopener">EC — FuelEU Maritime</a></li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: การขนส่งทางทะเลระหว่างประเทศ/พาณิชย์</li>
+<li>เกณฑ์ขนาด: เรือขนาดตั้งแต่ 5,000 gross tonnage (GT) ขึ้นไป (ทั้ง IMO NZF และ FuelEU Maritime) คิดเป็น &gt;85% ของการปล่อย GHG ภาคเดินเรือทั่วโลก</li>
+<li>ประเภทกิจกรรม: ควบคุมความเข้มข้น GHG จากเชื้อเพลิงเรือ (GHG Fuel Intensity/GFI); FuelEU กำหนดเพดาน GHG intensity เฉลี่ยรายปีของพลังงานที่ใช้บนเรือที่แวะท่าเรือ EU</li>
+<li>ผลกระทบ supply chain ข้ามประเทศ: กระทบเจ้าของเรือ/ผู้ประกอบการเดินเรือทุกสัญชาติ รวมถึงผู้ผลิตเชื้อเพลิงทางเลือก (biofuel, e-fuel, ammonia, methanol) และห่วงโซ่การค้าโลกที่พึ่งพาการขนส่งทางเรือ</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: IMO Net-Zero Framework จะเป็นกรอบกฎหมายสากลฉบับแรกที่กำหนดมาตรฐานเชื้อเพลิง GHG และราคาคาร์บอนสากลสำหรับเรือใหญ่ มุ่งสู่ net-zero ~2050 แต่ยังไม่ผ่านรับรองอย่างเป็นทางการ; FuelEU Maritime (EU) บังคับใช้แล้วกำหนดเพดาน GHG intensity ลดลงเรื่อยๆ ถึงปี 2050 คู่ขนานกับ EU ETS Maritime</li>
+<li>ข้อกำหนดเชิงปริมาณ: IMO NZF — เกณฑ์ GFI เข้มขึ้นทุกปี เชื้อเพลิงปล่อยศูนย์/ใกล้ศูนย์ ≤19.0 gCO2eq/MJ ระบบราคาคาร์บอนสองระดับ (tier) ราคาที่เคยเสนอ ~100 ดอลลาร์/ตัน CO2e (ยังไม่ชัดเจน/อยู่ระหว่างพิจารณาเนื่องจากยังไม่รับรอง); FuelEU Maritime — ลด GHG intensity เทียบ baseline 2020: 2% (2568), 2573 เรือคอนเทนเนอร์/โดยสารต้องใช้ Onshore Power Supply, สูงสุด 80% (2593)</li>
+<li>Reporting/Disclosure: IMO NZF รายงาน GFI ประจำปีต่อ IMO ผ่าน Sustainable Fuel Certification Scheme; FuelEU Maritime ยื่น Monitoring Plan (ภายใน 31 ส.ค.2567) รายงานรอบแรกปี 2568 ยื่นภายใน 31 ม.ค.2569</li>
+<li>Timeline: IMO NZF adoption เลื่อนเป็น ต.ค.2569 entry into force ยังไม่ชัดเจน; FuelEU Maritime 2568 ลด 2% → 2573 OPS ท่าเรือหลัก → 2578 ขยายทุกท่าเรือ EU → 2593 ลดสูงสุด 80%</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ IMO NZF: เรือเกินเกณฑ์ GFI ต้องซื้อ surplus/remedial units หรือจ่ายเข้า IMO Net-Zero Fund — Grace period: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (ยังไม่รับรองอย่างเป็นทางการ)</li>
+<li>บทลงโทษ FuelEU Maritime: สูตร Penalty = [(GHGTarget−GHGActual)/GHGActual] × พลังงานเชื้อเพลิง(MJ) × (2,400/41,000) อัตราคงที่ €2,400/ตัน VLSFO เทียบเท่า มีผลตั้งแต่รอบรายงานปี 2568 — Grace period: ไม่ระบุชัดเจนสำหรับบทลงโทษ แต่มีกลไก banking/borrowing/pooling ยืดหยุ่น</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>IMO Net-Zero Framework เทียบเคียงกับ FuelEU Maritime และ EU ETS Maritime (ขยายครอบคลุมเรือ ≥5,000GT ที่เข้าท่าเรือ EU ตั้งแต่ ม.ค.2567) ซึ่งเป็นกลไกภูมิภาคที่ออกมาก่อนกรอบโลก</li>
+<li>เชื่อมโยงกับ Paris Agreement/IMO 2023 GHG Strategy (net-zero ~2050); TCFD/ISSB สำหรับบริษัทเดินเรือ; FuelEU เชื่อมกับ CSRD/ESRS — ยังไม่มีการ mapping อย่างเป็นทางการกับ GRI/SBTi ที่ตรวจพบ</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <div class="card" data-region="global" data-status="progress" data-name="US Clean Competition Act carbon border adjustment สหรัฐ" id="card-17">
+ <div class="card-head">
+ <div>
+ <h3>US Clean Competition Act</h3>
+ <div class="en-name">ร่างกฎหมายกลไกปรับคาร์บอนชายแดนของสหรัฐฯ — S.3523 / H.R.6787 (สภาคองเกรสชุดที่ 119)</div>
+ </div>
+ <span class="status-pill status-progress">ยังเป็นร่างกฎหมาย</span>
+ </div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span>ยังเป็นร่างกฎหมาย — เสนอใหม่อีกครั้ง (สภาชุด 119) (ธ.ค.68)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary">เสนอครั้งแรกปี 2565 นำกลับมาเสนอใหม่หลายรอบ ล่าสุดในสภาคองเกรสชุดที่ 119 (ธ.ค. 2568) เป็น <b>S.3523</b> (วุฒิสภา) และ <b>H.R.6787</b> (สภาผู้แทนราษฎร) เป็นข้อเสนอเก็บค่าธรรมเนียมนำเข้าสินค้าที่ปล่อยคาร์บอนสูง (เหล็ก อะลูมิเนียม ซีเมนต์ ปุ๋ย ฯลฯ) เทียบกับเกณฑ์ความเข้มข้นการปล่อยก๊าซในประเทศ ยังไม่ผ่านชั้นกรรมาธิการ และยังไม่มีกำหนดลงมติในสภา สถานะทางการเมืองยังไม่แน่นอน</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:20%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label">เสนอครั้งแรก</div>2565</div>
+ <div class="tpoint done"><div class="dot"></div><div class="label">เสนอใหม่ (สภาชุด 118)</div>2566</div>
+ <div class="tpoint now"><div class="dot"></div><div class="label">เสนอใหม่อีกครั้ง (สภาชุด 119)</div>ธ.ค.68</div>
+ <div class="tpoint"><div class="dot"></div><div class="label">รอพิจารณาชั้นกรรมาธิการ</div>ยังไม่มีกำหนด</div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k">🏛 หน่วยงานรับผิดชอบ</div>รัฐสภาสหรัฐฯ (ยังไม่มีหน่วยงานบังคับใช้เนื่องจากยังไม่ผ่านเป็นกฎหมาย)</div>
+ <div><div class="k">👀 สิ่งที่ต้องติดตามต่อ</div>ความคืบหน้าในชั้นกรรมาธิการและโอกาสผ่านสภาคองเกรสชุดปัจจุบัน</div>
+ </div>
+ <div class="source-note">อ้างอิง: Congress.gov S.3523, สำนักงาน Senator Whitehouse (ธ.ค. 2568)</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4>1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li>ชื่อเต็ม: Clean Competition Act — Senate Bill S.3523 และ House Bill H.R.6787 (119th Congress)</li>
+<li>ประเทศ/ภูมิภาค: สหรัฐอเมริกา (ผลกระทบข้ามพรมแดนแบบ Carbon Border Adjustment)</li>
+<li>หน่วยงานที่เสนอ/regulator ที่จะบังคับใช้ (หากผ่าน): รัฐสภาสหรัฐฯ เสนอ; คาดบังคับใช้ผ่าน Treasury/IRS ร่วมกับ EPA และ DOE</li>
+<li>สถานะปัจจุบัน: <b>Proposed</b> — ยังไม่ผ่านการพิจารณาของรัฐสภา</li>
+<li>วันที่เสนอ (reintroduce): 17 ธ.ค.2568 โดย ส.ว. Sheldon Whitehouse (D-RI) — เคยเสนอมาแล้วปี 2565 และ 2566</li>
+<li>ลิงก์ต้นฉบับ: <a href="https://www.congress.gov/bill/119th-congress/senate-bill/3523/text" target="_blank" rel="noopener">Congress.gov S.3523</a></li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4>2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li>อุตสาหกรรม: เชื้อเพลิงฟอสซิล/ผลิตภัณฑ์ปิโตรเลียมกลั่น ปิโตรเคมี ปุ๋ย ไฮโดรเจน กรดอะดิปิก ซีเมนต์ เหล็ก/เหล็กกล้า อะลูมิเนียม แก้ว เยื่อและกระดาษ เอทานอล</li>
+<li>ขนาดองค์กรที่เข้าเกณฑ์: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (ต้องตรวจสอบข้อความเต็มของร่างบน Congress.gov)</li>
+<li>ประเภทผลิตภัณฑ์: สินค้าอุตสาหกรรมพื้นฐานตามรายชื่อข้างต้น จะขยายไปยังสินค้าปลายน้ำ (downstream goods) ตั้งแต่ปี 2571</li>
+<li>ผลกระทบ supply chain ข้ามประเทศ: เป็นกลไก Carbon Border Adjustment (คล้าย EU CBAM) เก็บค่าธรรมเนียมคาร์บอนจากสินค้านำเข้าที่มีความเข้มข้นคาร์บอนสูงกว่าค่าเฉลี่ยอุตสาหกรรมสหรัฐฯ กระทบผู้ส่งออกไปสหรัฐฯ ทั่วโลก โดยเฉพาะจีน อินเดีย</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4>3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li>Executive summary: ร่างกฎหมาย Carbon Border Adjustment ของสหรัฐฯ เก็บค่าธรรมเนียมคาร์บอนทั้งจากผู้ผลิตในประเทศและผู้นำเข้าสินค้าอุตสาหกรรมหนักคาร์บอน อิงค่าเฉลี่ยความเข้มข้นคาร์บอนอุตสาหกรรมสหรัฐฯเป็นเส้นฐาน เริ่มที่ 60 ดอลลาร์/ตัน เพิ่ม 6%/ปีเหนือเงินเฟ้อ อยู่ในขั้นเสนอร่างเท่านั้น</li>
+<li>ข้อกำหนดเชิงปริมาณ: baseline = ค่าเฉลี่ยความเข้มข้นคาร์บอนอุตสาหกรรมสหรัฐฯแต่ละประเภท; อัตราเริ่มต้น $60/ตัน CO2 เพิ่ม 6%/ปีเหนือเงินเฟ้อ; Direct Air Capture ได้เครดิตสูงสุดถึงเปอร์เซ็นไทล์ที่ 25 ของเส้นฐาน</li>
+<li>Reporting/Disclosure: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา (ไม่ระบุกลไกรายงานโดยละเอียดในร่างที่สืบค้นได้)</li>
+<li>Timeline การ phase-in: 2570-73 ลดเส้นฐานปีละ 2.5 percentage points → 2571 ขยายครอบคลุมสินค้าปลายน้ำ → 2574 เป็นต้นไป ลดเส้นฐานปีละ 5 percentage points</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4>4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li>บทลงโทษ: โครงสร้างหลักคือค่าธรรมเนียมคาร์บอน (carbon charge) ไม่ใช่บทลงโทษทางอาญา — รายละเอียดบทลงโทษกรณีไม่รายงาน/รายงานเท็จ: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+<li>Grace period: ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4>5. Cross-referencing</h4>
+<ul>
+<li>เทียบเคียงโดยตรงกับ EU CBAM ซึ่งเป็นต้นแบบแนวคิด Carbon Border Adjustment — อธิบายว่าเป็น "narrow-based border-adjusted carbon tax" ของสหรัฐฯ</li>
+<li>หมายเหตุสถานะการเมือง: เสนอซ้ำมาแล้ว 3 ครั้ง (2565, 2566, 2568) โดยพรรค Democrat เป็นผู้เสนอหลัก แต่สภาชุดปัจจุบัน (119th) มีเสียงข้างมาก Republican ทั้งสองสภา จึงมีโอกาสผ่านค่อนข้างต่ำในระยะสั้น — ไม่ได้อ้างอิงโดยตรงกับ GRI/TCFD/SBTi/ISSB แต่มีนัยเชื่อมโยงกับ Scope 1 embedded emissions ที่บริษัทเปิดเผยผ่านกรอบเหล่านั้น</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+ <div class="empty-state" id="emptyState">ไม่พบกฎหมายที่ตรงกับเงื่อนไขการค้นหา/กรอง</div>
+
+ <footer>
+ ข้อมูล ณ วันที่ 31 สิงหาคม 2569 — จัดทำจากแหล่งข่าวและเอกสารราชการที่เผยแพร่สาธารณะ ควรตรวจสอบแหล่งต้นทาง (ราชกิจจานุเบกษา / EUR-Lex) ก่อนใช้อ้างอิงทางการ
+ </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<script>
+(function(){
+ if(window.twemoji){
+ twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
+ }
+ var searchInput = document.getElementById('lawSearch');
+ var regionBtns = document.querySelectorAll('#regionFilter .filter-btn');
+ var statusBtns = document.querySelectorAll('#statusFilter .filter-btn');
+ var cards = Array.prototype.slice.call(document.querySelectorAll('.card[data-region]'));
+ var ovRows = Array.prototype.slice.call(document.querySelectorAll('.ov-row'));
+ var sections = document.querySelectorAll('.section-title[data-section]');
+ var resultCount = document.getElementById('resultCount');
+ var emptyState = document.getElementById('emptyState');
+
+ var state = { region: 'all', status: 'all', q: '' };
+
+ function setActive(group, btn){
+ Array.prototype.forEach.call(group, function(b){ b.classList.remove('active'); });
+ btn.classList.add('active');
+ }
+
+ function applyFilters(){
+ var q = state.q.trim().toLowerCase();
+ var visibleCount = 0;
+ var visibleByRegion = { th: 0, eu: 0, asia: 0, global: 0 };
+
+ cards.forEach(function(card, i){
+ var region = card.getAttribute('data-region');
+ var status = card.getAttribute('data-status');
+ var haystack = (card.getAttribute('data-name') + ' ' + card.textContent).toLowerCase();
+
+ var matchRegion = (state.region === 'all' || state.region === region);
+ var matchStatus = (state.status === 'all' || state.status === status);
+ var matchQuery = (q === '' || haystack.indexOf(q) !== -1);
+
+ var show = matchRegion && matchStatus && matchQuery;
+ var wasHidden = card.classList.contains('is-hidden');
+ card.classList.toggle('is-hidden', !show);
+ if(ovRows[i]){ ovRows[i].classList.toggle('is-hidden', !show); }
+ if(show){
+ visibleCount++;
+ visibleByRegion[region] = (visibleByRegion[region] || 0) + 1;
+ if(wasHidden){
+ card.classList.remove('card-enter');
+ void card.offsetWidth;
+ card.classList.add('card-enter');
+ }
+ }
+ });
+
+ sections.forEach(function(sec){
+ var region = sec.getAttribute('data-section');
+ sec.classList.toggle('is-hidden', visibleByRegion[region] === 0);
+ });
+
+ resultCount.textContent = 'แสดง ' + visibleCount + ' จาก ' + cards.length + ' ฉบับ';
+ emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+ }
+
+ searchInput.addEventListener('input', function(e){
+ state.q = e.target.value;
+ applyFilters();
+ });
+
+ regionBtns.forEach(function(btn){
+ btn.addEventListener('click', function(){
+ state.region = btn.getAttribute('data-region');
+ setActive(regionBtns, btn);
+ applyFilters();
+ });
+ });
+
+ statusBtns.forEach(function(btn){
+ btn.addEventListener('click', function(){
+ state.status = btn.getAttribute('data-status');
+ setActive(statusBtns, btn);
+ applyFilters();
+ });
+ });
+
+ applyFilters();
+
+ // Tab switching inside each expandable "law-details" panel
+ document.addEventListener('click', function(e){
+ var btn = e.target.closest('.ld-tab-btn');
+ if(!btn) return;
+ var body = btn.closest('.ld-body');
+ var tab = btn.getAttribute('data-tab');
+ body.querySelectorAll('.ld-tab-btn').forEach(function(b){
+ b.classList.toggle('is-active', b === btn);
+ });
+ body.querySelectorAll('.ld-sec[data-tab-panel]').forEach(function(panel){
+ panel.hidden = panel.getAttribute('data-tab-panel') !== tab;
+ });
+ });
+})();
+</script>
+</body>
+</html>
