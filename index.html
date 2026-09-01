@@ -802,10 +802,187 @@
  .toolbar .result-count{order:99;width:100%;}
  .toolbar .filter-group-collapsible{order:97;}
  }
+
+ /* ---- SIDEBAR NAV ---- */
+ .side-nav-toggle{
+ position:fixed;
+ top:18px;
+ left:18px;
+ z-index:40;
+ background:var(--ink);
+ color:#fff;
+ border:none;
+ border-radius:999px;
+ padding:9px 16px 9px 14px;
+ font-family:inherit;
+ font-size:13px;
+ font-weight:600;
+ letter-spacing:.2px;
+ cursor:pointer;
+ box-shadow:0 4px 14px rgba(20,27,43,.28);
+ transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .18s var(--ease);
+ }
+ .side-nav-toggle:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(20,27,43,.34);background:var(--gold);}
+ .side-nav-toggle.is-active{background:var(--gold);}
+ .side-nav-overlay{
+ position:fixed;inset:0;
+ background:rgba(20,27,43,.42);
+ backdrop-filter:blur(1px);
+ z-index:45;
+ animation:fadeIn .18s var(--ease);
+ }
+ @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+ .side-nav{
+ position:fixed;
+ top:0;left:0;
+ height:100vh;
+ width:290px;
+ max-width:86vw;
+ background:#fff;
+ border-right:1px solid var(--line);
+ box-shadow:6px 0 24px rgba(20,27,43,.16);
+ z-index:46;
+ transform:translateX(-102%);
+ transition:transform .28s var(--ease);
+ display:flex;
+ flex-direction:column;
+ }
+ .side-nav.is-open{transform:translateX(0);}
+ .side-nav-head{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:16px 18px;
+ border-bottom:2px solid var(--ink);
+ font-family:'Fraunces',serif;
+ font-weight:600;
+ font-size:17px;
+ flex-shrink:0;
+ }
+ .side-nav-close{
+ background:none;
+ border:none;
+ font-size:22px;
+ line-height:1;
+ color:var(--ink-soft);
+ cursor:pointer;
+ padding:2px 6px;
+ border-radius:6px;
+ transition:background .15s var(--ease),color .15s var(--ease);
+ }
+ .side-nav-close:hover{background:var(--paper-2);color:var(--ink);}
+ .side-nav-body{
+ overflow-y:auto;
+ padding:14px 16px 32px;
+ flex:1;
+ }
+ .side-top-link{
+ display:block;
+ padding:9px 10px;
+ border-radius:8px;
+ font-size:13.5px;
+ font-weight:600;
+ color:var(--ink);
+ text-decoration:none;
+ transition:background .15s var(--ease);
+ }
+ .side-top-link:hover{background:var(--paper-2);}
+ .side-divider{height:1px;background:var(--line);margin:12px 2px 14px;}
+ .side-group{margin-bottom:16px;}
+ .side-group-title{
+ font-size:11.5px;
+ font-weight:700;
+ letter-spacing:.4px;
+ text-transform:uppercase;
+ color:#fff;
+ display:inline-block;
+ padding:3px 10px;
+ border-radius:999px;
+ margin-bottom:8px;
+ }
+ .side-group-title.th{background:var(--th-accent);}
+ .side-group-title.eu{background:var(--eu-accent);}
+ .side-group-title.asia{background:var(--asia-accent);}
+ .side-group-title.global{background:var(--global-accent);}
+ .side-list{list-style:none;margin:0;padding:0;}
+ .side-list li{margin:0;}
+ .side-link{
+ display:block;
+ padding:7px 10px 7px 14px;
+ margin:1px 0;
+ border-left:2px solid transparent;
+ font-size:13px;
+ color:var(--ink-soft);
+ text-decoration:none;
+ border-radius:0 6px 6px 0;
+ transition:background .15s var(--ease),color .15s var(--ease),border-color .15s var(--ease);
+ }
+ .side-link:hover{background:var(--paper-2);color:var(--ink);}
+ .side-link.is-current{
+ color:var(--ink);
+ font-weight:600;
+ background:var(--paper-2);
+ border-left-color:var(--gold);
+ }
+ body.side-nav-locked{overflow:hidden;}
+ @media (max-width:640px){
+ .side-nav-toggle{padding:8px 13px 8px 11px;font-size:12px;top:12px;left:12px;}
+ }
 </style>
 </head>
 <body>
 <div class="wrap">
+<!-- SIDEBAR NAV -->
+<button type="button" id="sideNavToggle" class="side-nav-toggle" aria-label="เปิดสารบัญ" aria-expanded="false" data-en="&#9776; Contents">&#9776; สารบัญ</button>
+<div id="sideNavOverlay" class="side-nav-overlay" hidden></div>
+<nav id="sideNav" class="side-nav" aria-label="สารบัญนำทาง">
+<div class="side-nav-head">
+<span data-en="Contents">สารบัญ</span>
+<button type="button" id="sideNavClose" class="side-nav-close" aria-label="ปิดสารบัญ">&times;</button>
+</div>
+<div class="side-nav-body">
+<a href="#watchlist" class="side-top-link" data-en="🔔 Watch This Week">🔔 สิ่งที่ต้องติดตามสัปดาห์นี้</a>
+<a href="#overviewSection" class="side-top-link" data-en="📊 Overview of All Laws">📊 ภาพรวมกฎหมายทั้งหมด</a>
+<div class="side-divider"></div>
+<div class="side-group">
+<div class="side-group-title th" data-en="Thailand">ไทย</div>
+<ul class="side-list">
+<li><a href="#card-1" class="side-link" data-card="card-1" data-en="Draft Climate Change Act">ร่าง พ.ร.บ. การเปลี่ยนแปลงสภาพภูมิอากาศ</a></li>
+<li><a href="#card-2" class="side-link" data-card="card-2" data-en="Draft Sustainable Packaging Management Act">ร่าง พ.ร.บ. การจัดการบรรจุภัณฑ์อย่างยั่งยืน</a></li>
+<li><a href="#card-19" class="side-link" data-card="card-19" data-en="Draft Act on the Promotion of Responsible Business Conduct">ร่าง พ.ร.บ. ส่งเสริมการประกอบธุรกิจอย่างมีความรับผิดชอบ</a></li>
+</ul>
+</div><div class="side-group">
+<div class="side-group-title eu" data-en="European Union">สหภาพยุโรป</div>
+<ul class="side-list">
+<li><a href="#card-3" class="side-link" data-card="card-3" data-en="PPWR">PPWR</a></li>
+<li><a href="#card-4" class="side-link" data-card="card-4" data-en="ESPR">ESPR</a></li>
+<li><a href="#card-5" class="side-link" data-card="card-5" data-en="CBAM">CBAM</a></li>
+<li><a href="#card-6" class="side-link" data-card="card-6" data-en="EUDR">EUDR</a></li>
+<li><a href="#card-7" class="side-link" data-card="card-7" data-en="EU ECGT">EU ECGT</a></li>
+<li><a href="#card-18" class="side-link" data-card="card-18" data-en="CSRD + CSDDD">CSRD + CSDDD</a></li>
+</ul>
+</div><div class="side-group">
+<div class="side-group-title asia" data-en="Asia">เอเชีย</div>
+<ul class="side-list">
+<li><a href="#card-8" class="side-link" data-card="card-8" data-en="Vietnam — Packaging EPR">เวียดนาม — EPR บรรจุภัณฑ์</a></li>
+<li><a href="#card-9" class="side-link" data-card="card-9" data-en="Malaysia — Packaging EPR Framework">มาเลเซีย — กรอบ EPR บรรจุภัณฑ์</a></li>
+<li><a href="#card-10" class="side-link" data-card="card-10" data-en="Singapore — MPR and BCRS">สิงคโปร์ — MPR และ BCRS</a></li>
+<li><a href="#card-11" class="side-link" data-card="card-11" data-en="Indonesia — Draft Presidential Regulation on EPR">อินโดนีเซีย — ร่าง Perpres EPR</a></li>
+<li><a href="#card-12" class="side-link" data-card="card-12" data-en="Japan — Packaging Recycling Laws">ญี่ปุ่น — กฎหมายรีไซเคิลบรรจุภัณฑ์</a></li>
+<li><a href="#card-13" class="side-link" data-card="card-13" data-en="Taiwan — Resource Circulation Promotion Act">ไต้หวัน — Resource Circulation Promotion Act</a></li>
+<li><a href="#card-14" class="side-link" data-card="card-14" data-en="China — Packaging EPR Measures">จีน — มาตรการ EPR บรรจุภัณฑ์</a></li>
+</ul>
+</div><div class="side-group">
+<div class="side-group-title global" data-en="Global">สากล</div>
+<ul class="side-list">
+<li><a href="#card-15" class="side-link" data-card="card-15" data-en="CORSIA">CORSIA</a></li>
+<li><a href="#card-16" class="side-link" data-card="card-16" data-en="Maritime Decarbonization">การลดคาร์บอนภาคเดินเรือ</a></li>
+<li><a href="#card-17" class="side-link" data-card="card-17" data-en="US Clean Competition Act">US Clean Competition Act</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
 
  <header class="masthead">
  <h1 data-en="ESG Regulatory Tracker">ติดตามกฎหมาย ESG</h1>
@@ -818,7 +995,7 @@
  </div>
  </header>
  <div class="masthead-strip">
- <span data-en="2 laws — Thailand">2 ฉบับ — ไทย</span>
+ <span data-en="3 laws — Thailand">3 ฉบับ — ไทย</span>
  <span data-en="6 laws — European Union">6 ฉบับ — สหภาพยุโรป</span>
  <span data-en="7 laws — Asia">7 ฉบับ — เอเชีย</span>
  <span data-en="3 laws — Global">3 ฉบับ — สากล</span>
@@ -856,7 +1033,7 @@
 
  
  <!-- OVERVIEW TABLE -->
- <section class="overview">
+ <section class="overview" id="overviewSection">
  <h2 data-en="📊 Overview of All Laws">📊 ภาพรวมกฎหมายทั้งหมด</h2>
  <div class="overview-scroll">
  <table class="overview-table">
@@ -880,6 +1057,12 @@
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Drafting / jointly pushed with TIPMSE">ยกร่าง / ผลักดันร่วม TIPMSE</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Joint push with private sector — TIPMSE/VPRO">ผลักดันร่วมภาคเอกชน — TIPMSE/VPRO</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Enactment — Est. 2027">ประกาศใช้ — คาด 2570</td>
+</tr>
+<tr class="ov-row" data-region="th" data-status="progress">
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-19" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-19" data-en="Draft Act on the Promotion of Responsible Business Conduct">🇹🇭 ร่าง พ.ร.บ. ส่งเสริมการประกอบธุรกิจอย่างมีความรับผิดชอบ</a><div class="ov-en">HRDD Bill / mHREDD (Draft) — Mandatory Human Rights and Environmental Due Diligence</div></td>
+<td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Internal ministry drafting — not yet submitted">ยกร่างภายในกระทรวง — ยังไม่เสนอเข้าสู่กระบวนการนิติบัญญัติ</span></td>
+<td data-label="ล่าสุด" data-label-en="Latest" data-en="Second draft — ministry-level review (since Sep 2025)">ร่างที่สอง — พิจารณาระดับกระทรวง (ตั้งแต่ ก.ย.68)</td>
+<td data-label="เป้าหมาย" data-label-en="Target" data-en="Enactment — not yet clear/under consideration">ประกาศใช้ — ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</td>
 </tr>
 <tr class="ov-row" data-region="eu" data-status="force">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-3" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-3" data-en="PPWR">🇪🇺 PPWR</a><div class="ov-en">Packaging and Packaging Waste Regulation — (EU) 2025/40</div></td>
@@ -1203,6 +1386,90 @@
 <ul>
 <li data-en="Similar laws in other regions: EU PPWR (fully in force as of Aug 2026); Vietnam and Indonesia already have EPR laws ahead of Thailand">กฎหมายใกล้เคียงในภูมิภาคอื่น: EU PPWR (บังคับใช้ทั่วไปแล้ว ส.ค.2569); เวียดนาม อินโดนีเซีย ออก EPR มาก่อนไทยแล้ว</li>
 <li data-en="Links to international frameworks: the international Circular Economy/EPR principle; connects to GRI 301 (Materials) and GRI 306 (Waste), though not yet directly referenced in the draft">เชื่อมโยงกับ framework สากล: หลักการ Circular Economy/EPR สากล; เชื่อมโยงกับ GRI 301 (Materials), GRI 306 (Waste) แม้ร่างยังไม่อ้างอิงโดยตรง</li>
+</ul>
+</div>
+</div>
+</details>
+ </div>
+
+<div class="card" data-region="th" data-status="progress" data-name="HRDD Bill mHREDD Responsible Business Conduct Act RLPD Ministry of Justice" id="card-19">
+ <div class="card-head">
+ <div>
+ <h3 data-en="Draft Act on the Promotion of Responsible Business Conduct">ร่าง พ.ร.บ. ส่งเสริมการประกอบธุรกิจอย่างมีความรับผิดชอบ</h3>
+ <div class="en-name">HRDD Bill / mHREDD (Draft) — Mandatory Human Rights and Environmental Due Diligence</div>
+ </div>
+ <span class="status-pill status-progress" data-en="Internal ministry drafting — not yet submitted">ยกร่างภายในกระทรวง — ยังไม่เสนอเข้าสู่กระบวนการนิติบัญญัติ</span>
+<button type="button" class="pin-btn" data-pin="card-19" aria-label="Pin" title="Pin this law to the top">📌</button>
+</div>
+ <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Internal ministry drafting — second draft circulated, no confirmed movement since (Sep 2025)">ยกร่างภายในกระทรวง — ร่างฉบับที่ 2 เผยแพร่แล้ว ไม่พบความเคลื่อนไหวต่อ (ก.ย. 2568)</span></div>
+<details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="The Ministry of Justice, through the <b>Rights and Liberties Protection Department (RLPD)</b>, is drafting a law to convert Thailand's currently voluntary human rights due diligence guidance (under the National Action Plan on Business and Human Rights) into a <b>binding legal obligation</b>. The first draft circulated in <b>July 2025</b>, with a second draft in <b>September 2025</b>, proposing that large enterprises — manufacturers with revenue over <b>THB 500 million</b>, or wholesale/retail/service businesses over <b>THB 300 million</b> (including SOEs and foreign operators in Thailand) — conduct human rights and environmental due diligence across their entire value chain, similar in structure to the EU's CSDDD. As of Aug 31, 2026, the bill remains an internal ministry draft with no confirmed Cabinet submission, Council of State review, or Parliament filing, and Thailand's business sector has reportedly voiced opposition over cost and feasibility concerns.">กระทรวงยุติธรรม โดย <b>กรมคุ้มครองสิทธิและเสรีภาพ (RLPD)</b> กำลังยกร่างกฎหมายเพื่อเปลี่ยนแนวปฏิบัติ human rights due diligence ที่ปัจจุบันเป็นเพียงภาคสมัครใจ (ภายใต้แผนปฏิบัติการระดับชาติว่าด้วยธุรกิจกับสิทธิมนุษยชน หรือ NAP on BHR) ให้กลายเป็น<b>ข้อผูกพันทางกฎหมาย</b> ร่างฉบับแรกเผยแพร่เมื่อ <b>ก.ค. 2568</b> และฉบับที่สองเมื่อ <b>ก.ย. 2568</b> เสนอให้ธุรกิจขนาดใหญ่ — ภาคการผลิตที่มีรายได้เกิน <b>500 ล้านบาท</b> หรือภาคค้าส่ง/ค้าปลีก/บริการที่มีรายได้เกิน <b>300 ล้านบาท</b> (รวมรัฐวิสาหกิจและผู้ประกอบการต่างชาติที่ดำเนินธุรกิจในไทย) — ต้องทำ due diligence ด้านสิทธิมนุษยชนและสิ่งแวดล้อมตลอดห่วงโซ่คุณค่า ซึ่งมีโครงสร้างใกล้เคียงกับ CSDDD ของ EU ล่าสุด ณ 31 ส.ค. 2569 ร่างยังอยู่ในขั้นตอนภายในกระทรวง ยังไม่มีการเสนอเข้า ครม., กฤษฎีกา, หรือรัฐสภาอย่างเป็นทางการ และมีรายงานว่าภาคธุรกิจไทยแสดงความกังวลคัดค้านเรื่องต้นทุนและความเป็นไปได้ในการปฏิบัติตาม</p></details>
+ <div class="timeline">
+ <div class="timeline-track"><div class="fill" style="width:22%"></div></div>
+ <div class="timeline-points">
+ <div class="tpoint done"><div class="dot"></div><div class="label" data-en="1st NAP on BHR">NAP on BHR ฉบับที่ 1</div><span data-en="2019–2022">2562–65</span></div>
+ <div class="tpoint done"><div class="dot"></div><div class="label" data-en="First draft circulated">ร่างฉบับแรกเผยแพร่</div><span data-en="Jul 2025">ก.ค.68</span></div>
+ <div class="tpoint now"><div class="dot"></div><div class="label" data-en="Second draft — ministry-level review">ร่างฉบับที่ 2 — พิจารณาภายในกระทรวง</div><span data-en="since Sep 2025">ตั้งแต่ ก.ย.68</span></div>
+ <div class="tpoint"><div class="dot"></div><div class="label" data-en="Cabinet / Council of State submission">เสนอ ครม. / กฤษฎีกา</div><span data-en="TBD">ยังไม่มีกำหนด</span></div>
+ <div class="tpoint"><div class="dot"></div><div class="label" data-en="Enactment (if passed)">ประกาศใช้ (หากผ่าน)</div><span data-en="TBD">ยังไม่มีกำหนด</span></div>
+ </div>
+ </div>
+ <div class="meta-grid">
+ <div><div class="k" data-en="🏛 Responsible agency">🏛 หน่วยงานรับผิดชอบ</div><span data-en="Ministry of Justice, via the Rights and Liberties Protection Department (RLPD)">กระทรวงยุติธรรม โดยกรมคุ้มครองสิทธิและเสรีภาพ (RLPD)</span></div>
+ <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Whether the draft advances to Cabinet submission, and how business-sector opposition over cost/feasibility affects the final scope">ความคืบหน้าสู่การเสนอ ครม. และผลกระทบจากความกังวลของภาคธุรกิจเรื่องต้นทุน/ความเป็นไปได้ต่อขอบเขตสุดท้ายของร่าง</span></div>
+ </div>
+ <div class="source-note" data-en="Sources: Ropes &amp; Gray, Baker McKenzie InsightPlus, Tilleke &amp; Gibbins, Walk Free, Greenpeace Thailand, Ketagalan Media (Apr 2026) — no official RLPD/parliamentary text publicly located; figures per secondary/law-firm sources">อ้างอิง: Ropes &amp; Gray, Baker McKenzie InsightPlus, Tilleke &amp; Gibbins, Walk Free, Greenpeace Thailand, Ketagalan Media (เม.ย. 2569) — ยังไม่พบเอกสารทางการจาก RLPD/รัฐสภาโดยตรง ตัวเลขอ้างอิงจากแหล่งข่าว/สำนักงานกฎหมาย</div>
+<details class="law-details">
+<summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · ข้อกำหนด · บทลงโทษ · Cross-reference)</summary>
+<div class="ld-body">
+<div class="ld-asof" data-en="Data as of August 31, 2026">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 (31 Aug 2026)</div>
+<div class="ld-tabs">
+<button type="button" class="ld-tab-btn is-active" data-tab="1" data-en="🏛 Core Metadata">🏛 ข้อมูลพื้นฐาน</button>
+<button type="button" class="ld-tab-btn" data-tab="2" data-en="📦 Scope">📦 ขอบเขต</button>
+<button type="button" class="ld-tab-btn" data-tab="3" data-en="🎯 Requirements">🎯 ข้อกำหนด</button>
+<button type="button" class="ld-tab-btn" data-tab="4" data-en="⚠️ Penalties">⚠️ บทลงโทษ</button>
+<button type="button" class="ld-tab-btn" data-tab="5" data-en="🔗 Cross-ref">🔗 Cross-ref</button>
+</div>
+<div class="ld-sec" data-tab-panel="1">
+<h4 data-en="1. Core Metadata">1. ข้อมูลพื้นฐาน (Core Metadata)</h4>
+<ul>
+<li data-en="Full name: Draft Act on the Promotion of Responsible Business Conduct — commonly called the &quot;HRDD Bill&quot; or &quot;mHREDD&quot; (mandatory Human Rights and Environmental Due Diligence)">ชื่อเต็ม: ร่างพระราชบัญญัติส่งเสริมการประกอบธุรกิจอย่างมีความรับผิดชอบ — เรียกกันทั่วไปว่า &quot;HRDD Bill&quot; หรือ &quot;mHREDD&quot; (mandatory Human Rights and Environmental Due Diligence)</li>
+<li data-en="Country/region: Thailand">ประเทศ/ภูมิภาค: ไทย</li>
+<li data-en="Issuing/drafting authority: Ministry of Justice, through the Rights and Liberties Protection Department (RLPD) — reportedly drafted with EU input/collaboration per RLPD official statements">หน่วยงานที่ยกร่าง: กระทรวงยุติธรรม โดยกรมคุ้มครองสิทธิและเสรีภาพ (RLPD) — มีรายงานว่ายกร่างโดยได้รับความร่วมมือ/ข้อมูลจาก EU ตามคำให้สัมภาษณ์ของเจ้าหน้าที่ RLPD</li>
+<li data-en="Current status: <b>Proposed (early drafting)</b> — still at internal ministry level; not yet formally introduced into the legislative process (no confirmed Cabinet submission, Council of State review, or Parliament filing)">สถานะปัจจุบัน: <b>Proposed (อยู่ระหว่างยกร่าง)</b> — ยังอยู่ในขั้นตอนภายในกระทรวง ยังไม่ถูกนำเข้าสู่กระบวนการนิติบัญญัติอย่างเป็นทางการ (ยังไม่มีการเสนอ ครม., กฤษฎีกาตรวจพิจารณา, หรือเข้าสภาที่ยืนยันได้)</li>
+<li data-en="Key dates: Thailand's 1st National Action Plan on Business and Human Rights (NAP on BHR) ran 2019–2022, with a 2nd NAP covering 2023–2027; first bill draft circulated Jul 2025; second draft Sep 2025; an earlier internal target of completing the draft by end-March 2025 and holding public consultation mid-2025 appears to have slipped; no confirmed movement publicly reported between Sep 2025 and Apr 2026">วันสำคัญ: แผนปฏิบัติการระดับชาติว่าด้วยธุรกิจกับสิทธิมนุษยชน (NAP on BHR) ฉบับที่ 1 ปี 2562–65 และฉบับที่ 2 ปี 2566–70; ร่างกฎหมายฉบับแรกเผยแพร่ ก.ค. 2568; ฉบับที่สอง ก.ย. 2568; เป้าหมายเดิมภายในที่จะยกร่างเสร็จภายในสิ้น มี.ค. 2568 และรับฟังความเห็นกลางปี 2568 ดูเหมือนจะเลื่อนออกไป; ไม่พบความเคลื่อนไหวต่อสาธารณะระหว่าง ก.ย. 2568 ถึง เม.ย. 2569</li>
+<li data-en="Link to original: not publicly located — no official RLPD page, Council of State draft text, or parliament.go.th Section 77 hearing listing found for this specific bill as of this search">ลิงก์ต้นฉบับ: ยังไม่พบเอกสารทางการที่เผยแพร่สาธารณะ — ไม่พบหน้าเว็บทางการของ RLPD, ร่างจากสำนักงานคณะกรรมการกฤษฎีกา, หรือรายการรับฟังความเห็นตามมาตรา 77 บน parliament.go.th สำหรับร่างฉบับนี้โดยเฉพาะ ณ ขณะที่ค้นข้อมูล</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="2" hidden>
+<h4 data-en="2. Scope">2. ขอบเขตและผู้ได้รับผลกระทบ (Scope)</h4>
+<ul>
+<li data-en="Industries: not sector-restricted — thresholds apply horizontally by revenue size across manufacturing, wholesale/retail, and services; migrant-labor-intensive sectors are cited as a key motivating concern (Thailand's workforce is reportedly &gt;10% migrant labor from Cambodia, Laos and Myanmar), though this is framing rather than a stated legal carve-out">อุตสาหกรรม: ไม่จำกัดเฉพาะภาคส่วนใดภาคส่วนหนึ่ง — ใช้เกณฑ์รายได้ครอบคลุมภาคการผลิต ค้าส่ง/ค้าปลีก และบริการ โดยภาคที่ใช้แรงงานข้ามชาติเข้มข้น (แรงงานไทยกว่า 10% เป็นแรงงานข้ามชาติจากกัมพูชา ลาว เมียนมา ตามรายงาน) ถูกยกเป็นแรงจูงใจสำคัญ แต่ไม่ใช่ข้อยกเว้นทางกฎหมายที่ระบุไว้</li>
+<li data-en="Size threshold (per secondary sources, unconfirmed by official text): manufacturing enterprises with revenue over THB 500 million; wholesale/retail/service enterprises over THB 300 million; Thai SOEs meeting these thresholds are included; foreign entities operating in Thailand meeting these thresholds are included even without Thai legal personality (e.g. branches)">ขนาดองค์กรที่เข้าเกณฑ์ (ตามแหล่งข่าว/สำนักงานกฎหมาย ยังไม่ยืนยันจากเอกสารทางการ): ภาคการผลิตที่มีรายได้เกิน 500 ล้านบาท; ภาคค้าส่ง/ค้าปลีก/บริการที่มีรายได้เกิน 300 ล้านบาท; รวมรัฐวิสาหกิจไทยที่เข้าเกณฑ์; และผู้ประกอบการต่างชาติที่ดำเนินธุรกิจในไทยที่เข้าเกณฑ์แม้ไม่มีสถานะนิติบุคคลไทย (เช่น สาขา)</li>
+<li data-en="Materials/scope of due diligence: covers both human rights AND environmental due diligence, explicitly extending across the entire value chain (not limited to direct operations) — structurally similar to the EU CSDDD's value-chain approach">ขอบเขตของ due diligence: ครอบคลุมทั้งด้านสิทธิมนุษยชนและสิ่งแวดล้อม โดยขยายไปทั่วทั้งห่วงโซ่คุณค่า (ไม่จำกัดเฉพาะการดำเนินงานโดยตรง) — มีโครงสร้างใกล้เคียงกับแนวทาง value-chain ของ CSDDD ของ EU</li>
+<li data-en="Impact on overseas supply chains: directly covers foreign companies operating in Thailand above the thresholds; whether it would also reach Thai companies' own overseas subsidiaries is not clearly stated in available sources — flagged as not yet clear/under consideration">ผลกระทบต่อ supply chain นอกประเทศ: ครอบคลุมโดยตรงถึงผู้ประกอบการต่างชาติที่ดำเนินธุรกิจในไทยที่เข้าเกณฑ์; ส่วนจะครอบคลุมถึงบริษัทในเครือของบริษัทไทยที่อยู่ต่างประเทศด้วยหรือไม่นั้น ยังไม่มีแหล่งข้อมูลระบุชัดเจน — ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="3" hidden>
+<h4 data-en="3. Key Requirements">3. ข้อกำหนดสำคัญ (Key Requirements)</h4>
+<ul>
+<li data-en="Executive summary: the bill would require large enterprises (Thai and foreign, including SOEs) above revenue thresholds to conduct mandatory human rights and environmental due diligence across their value chain — publishing a DD policy, running biennial risk assessments, implementing mitigation measures, maintaining a grievance mechanism, and reporting annually to a new oversight committee — explicitly modeled on international due-diligence norms including the EU CSDDD, though as of Sep 2026 it remains an internal ministry draft not yet introduced to Cabinet or Parliament">Executive summary: ร่างกฎหมายกำหนดให้ธุรกิจขนาดใหญ่ (ทั้งไทยและต่างชาติ รวมรัฐวิสาหกิจ) ที่มีรายได้เกินเกณฑ์ต้องทำ due diligence ด้านสิทธิมนุษยชนและสิ่งแวดล้อมภาคบังคับตลอดห่วงโซ่คุณค่า — เผยแพร่นโยบาย DD ประเมินความเสี่ยงทุก 2 ปี ดำเนินมาตรการเยียวยา จัดให้มีกลไกรับเรื่องร้องเรียน และรายงานประจำปีต่อคณะกรรมการกำกับดูแลชุดใหม่ — ออกแบบตามแนวทาง due diligence สากลรวมถึง CSDDD ของ EU แต่ ณ ก.ย. 2569 ยังเป็นร่างภายในกระทรวง ยังไม่เข้าสู่ ครม. หรือรัฐสภา</li>
+<li data-en="Quantitative requirements: no % target — instead procedural obligations: due diligence policy published within 1 year (of the law's effective date, per available drafts); risk assessment updated at least every 2 years, evaluating severity by (a) seriousness of impact, (b) number of affected persons, and (c) scope of harm">ข้อกำหนดเชิงปริมาณ: ไม่มีเป้าหมายเป็น % แต่เป็นข้อบังคับเชิงกระบวนการ ได้แก่ เผยแพร่นโยบาย due diligence ภายใน 1 ปี (นับจากวันที่กฎหมายมีผลบังคับ ตามร่างที่มีอยู่); ทบทวนการประเมินความเสี่ยงอย่างน้อยทุก 2 ปี โดยประเมินความรุนแรงจาก (ก) ความร้ายแรงของผลกระทบ (ข) จำนวนผู้ได้รับผลกระทบ และ (ค) ขอบเขตความเสียหาย</li>
+<li data-en="Reporting/disclosure: annual due diligence report submitted to the oversight committee within 180 days of fiscal year-end; the first report would be due 4 years after enactment; a grievance mechanism must be operative from year 2 post-enactment with a clear procedure and indicative timeframe per stage">Reporting/Disclosure: ยื่นรายงาน due diligence ประจำปีต่อคณะกรรมการกำกับดูแลภายใน 180 วันหลังสิ้นปีบัญชี โดยรายงานฉบับแรกกำหนดภายใน 4 ปีหลังกฎหมายมีผลบังคับ และต้องมีกลไกรับเรื่องร้องเรียนที่ใช้งานได้ตั้งแต่ปีที่ 2 หลังบังคับใช้ พร้อมขั้นตอนและกรอบเวลาที่ชัดเจนในแต่ละขั้น</li>
+<li data-en="Phase-in timeline (as drafted, per secondary sources): law would take effect 1 year after Government Gazette publication → DD policy due within 1 year of that effective date → grievance mechanism operative at year 2 → first annual DD report due at year 4 — exact anchor dates for each milestone are not fully clarified in available sources">Timeline การ phase-in (ตามร่างที่มีอยู่ อ้างอิงจากแหล่งข่าว): กฎหมายมีผลบังคับ 1 ปีหลังประกาศในราชกิจจานุเบกษา → เผยแพร่นโยบาย DD ภายใน 1 ปีหลังจากนั้น → กลไกรับเรื่องร้องเรียนใช้งานได้ในปีที่ 2 → รายงาน DD ฉบับแรกภายในปีที่ 4 — จุดอ้างอิงเวลาที่แน่นอนของแต่ละขั้นยังไม่ชัดเจนสมบูรณ์จากแหล่งข้อมูลที่มี</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="4" hidden>
+<h4 data-en="4. Compliance &amp; Penalties">4. บทลงโทษและความเสี่ยง (Compliance &amp; Penalties)</h4>
+<ul>
+<li data-en="Penalties (figures vary slightly between secondary sources): administrative fines up to THB 1 million for failure to publish a policy or submit reports, and up to THB 5 million for failure to conduct required due-diligence steps; one source cites a general range of THB 500,000–5 million. Penalties would not exempt a company from separate civil or criminal liability that might otherwise apply. A new Human Rights and Environmental Due Diligence Oversight Committee is proposed, reportedly with cross-ministerial coordination involving Justice, Labour, Commerce, and Natural Resources">บทลงโทษ (ตัวเลขแตกต่างกันเล็กน้อยตามแหล่งข่าว): ค่าปรับทางปกครองสูงสุด 1 ล้านบาท กรณีไม่เผยแพร่นโยบายหรือไม่ยื่นรายงาน และสูงสุด 5 ล้านบาท กรณีไม่ดำเนินการ due diligence ตามที่กำหนด บางแหล่งระบุช่วงทั่วไปที่ 500,000–5 ล้านบาท ทั้งนี้บทลงโทษไม่ได้ยกเว้นความรับผิดทางแพ่งหรืออาญาอื่นที่อาจเกิดขึ้นแยกต่างหาก มีข้อเสนอให้ตั้งคณะกรรมการกำกับดูแลด้าน Human Rights and Environmental Due Diligence ชุดใหม่ ซึ่งมีรายงานว่าจะประสานงานข้ามกระทรวง (ยุติธรรม แรงงาน พาณิชย์ ทรัพยากรธรรมชาติ)</li>
+<li data-en="Grace period: built into the staged timeline (1-year delayed effectiveness; policy due at +1 year; grievance mechanism at +2 years; first report at +4 years) rather than a separately named grace period; whether SME transition relief or phased-vs-immediate implementation was resolved in the 2025 drafts is not confirmed">Grace period: ผนวกอยู่ในไทม์ไลน์แบบขั้นบันได (เลื่อนมีผลบังคับ 1 ปี, เผยแพร่นโยบายภายใน +1 ปี, กลไกร้องเรียนใน +2 ปี, รายงานฉบับแรกใน +4 ปี) มากกว่าจะเป็น grace period แยกต่างหาก ส่วนมาตรการผ่อนผัน SME หรือรูปแบบ phased vs. immediate implementation จะถูกกำหนดไว้ในร่างปี 2568 หรือไม่นั้นยังไม่ยืนยัน</li>
+</ul>
+</div>
+<div class="ld-sec" data-tab-panel="5" hidden>
+<h4 data-en="5. Cross-referencing">5. Cross-referencing</h4>
+<ul>
+<li data-en="Similar laws in other regions: structurally closely mirrors the EU CSDDD (value-chain-wide due diligence, published policy, risk assessment, mitigation with disengagement as last resort, grievance mechanism, annual reporting, administrative penalties); Ropes &amp; Gray and Ketagalan Media (2026) group Thailand with South Korea and Indonesia as the three Asian jurisdictions currently pursuing mandatory HREDD ('hard law') approaches, with Thailand not yet the frontrunner for having Asia's first such law in force">กฎหมายใกล้เคียงในภูมิภาคอื่น: มีโครงสร้างใกล้เคียงกับ CSDDD ของ EU อย่างมาก (due diligence ทั่วห่วงโซ่คุณค่า, เผยแพร่นโยบาย, ประเมินความเสี่ยง, มาตรการเยียวยาโดยยกเลิกความสัมพันธ์เป็นทางเลือกสุดท้าย, กลไกร้องเรียน, รายงานประจำปี, บทลงโทษทางปกครอง) Ropes &amp; Gray และ Ketagalan Media (2569) จัดให้ไทยอยู่กลุ่มเดียวกับเกาหลีใต้และอินโดนีเซียในฐานะ 3 ประเทศเอเชียที่กำลังผลักดันกฎหมาย mHREDD ภาคบังคับ โดยไทยยังไม่ใช่ผู้นำในการมีกฎหมายลักษณะนี้ใช้บังคับเป็นชาติแรกในเอเชีย</li>
+<li data-en="Links to international frameworks: explicitly designed to align with the UN Guiding Principles on Business and Human Rights (UNGPs) and OECD Guidelines for Multinational Enterprises; tied to Thailand's own National Action Plan on Business and Human Rights (NAP on BHR, now in its 2nd phase 2023–2027) as the move from voluntary guidance to binding law; also linked to Thailand's stated ambition for OECD accession (widely cited target around 2027), where responsible-business-conduct standards are an accession consideration; no direct link found to GRI/TCFD/SBTi/ISSB, as this is a due-diligence-obligation law rather than a disclosure-standard instrument">เชื่อมโยงกับ framework สากล: ออกแบบให้สอดคล้องกับ UN Guiding Principles on Business and Human Rights (UNGPs) และ OECD Guidelines for Multinational Enterprises อย่างชัดเจน เชื่อมโยงกับแผนปฏิบัติการระดับชาติว่าด้วยธุรกิจกับสิทธิมนุษยชนของไทยเอง (NAP on BHR ปัจจุบันอยู่ระยะที่ 2 ปี 2566–70) ในฐานะการเปลี่ยนจากแนวปฏิบัติภาคสมัครใจสู่กฎหมายที่มีผลผูกพัน และเชื่อมโยงกับเป้าหมายการเข้าเป็นสมาชิก OECD ของไทย (เป้าหมายที่มักอ้างถึงคือราวปี 2570) ซึ่งมาตรฐานด้าน responsible business conduct เป็นหนึ่งในเงื่อนไขการเข้าร่วม ไม่พบความเชื่อมโยงโดยตรงกับ GRI/TCFD/SBTi/ISSB เนื่องจากเป็นกฎหมายด้านข้อผูกพัน due diligence มากกว่าเครื่องมือมาตรฐานการเปิดเผยข้อมูล</li>
 </ul>
 </div>
 </div>
@@ -2894,6 +3161,64 @@
  var savedLang = localStorage.getItem('esgTrackerLang');
  if(savedLang === 'en'){ setLang('en'); }
  }catch(e){}
+})();
+</script>
+<script>
+(function(){
+ var toggleBtn = document.getElementById('sideNavToggle');
+ var closeBtn = document.getElementById('sideNavClose');
+ var overlay = document.getElementById('sideNavOverlay');
+ var nav = document.getElementById('sideNav');
+ if(!toggleBtn || !nav) return;
+
+ function openNav(){
+ nav.classList.add('is-open');
+ overlay.hidden = false;
+ toggleBtn.classList.add('is-active');
+ toggleBtn.setAttribute('aria-expanded','true');
+ document.body.classList.add('side-nav-locked');
+ }
+ function closeNav(){
+ nav.classList.remove('is-open');
+ overlay.hidden = true;
+ toggleBtn.classList.remove('is-active');
+ toggleBtn.setAttribute('aria-expanded','false');
+ document.body.classList.remove('side-nav-locked');
+ }
+ toggleBtn.addEventListener('click', function(){
+ if(nav.classList.contains('is-open')){ closeNav(); } else { openNav(); }
+ });
+ closeBtn.addEventListener('click', closeNav);
+ overlay.addEventListener('click', closeNav);
+ document.addEventListener('keydown', function(e){
+ if(e.key === 'Escape' && nav.classList.contains('is-open')){ closeNav(); }
+ });
+ nav.querySelectorAll('a').forEach(function(a){
+ a.addEventListener('click', function(){ closeNav(); });
+ });
+
+ // ---- scrollspy: highlight the currently-visible law in the sidebar ----
+ var sideLinks = Array.prototype.slice.call(nav.querySelectorAll('.side-link[data-card]'));
+ var linkByCard = {};
+ sideLinks.forEach(function(a){ linkByCard[a.getAttribute('data-card')] = a; });
+ var trackedCards = Array.prototype.slice.call(document.querySelectorAll('.card[id^="card-"]'));
+ var currentCardId = null;
+ function setCurrent(id){
+ if(id === currentCardId) return;
+ currentCardId = id;
+ sideLinks.forEach(function(a){ a.classList.remove('is-current'); });
+ var link = linkByCard[id];
+ if(link) link.classList.add('is-current');
+ }
+ if('IntersectionObserver' in window && trackedCards.length){
+ var io = new IntersectionObserver(function(entries){
+ var visible = entries.filter(function(en){ return en.isIntersecting; });
+ if(!visible.length) return;
+ visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; });
+ setCurrent(visible[0].target.id);
+ }, {rootMargin:'-15% 0px -70% 0px', threshold:0});
+ trackedCards.forEach(function(c){ io.observe(c); });
+ }
 })();
 </script>
 </body>
