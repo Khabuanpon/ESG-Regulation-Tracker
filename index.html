@@ -1003,6 +1003,15 @@
  .law-modal{top:0;left:0;transform:none;width:100%;max-height:100%;height:100%;border-radius:0;}
  @keyframes modalIn{from{opacity:0;}to{opacity:1;}}
  }
+ .cross-link-btn{
+ display:inline-block;
+ font-family:'IBM Plex Mono',monospace;
+ font-size:11px;
+ color:var(--gold);
+ text-decoration:none;
+ border-bottom:1px dashed var(--gold);
+ }
+ .cross-link-btn:hover{color:var(--ink);border-color:var(--ink);}
 </style>
 </head>
 <body>
@@ -1069,7 +1078,7 @@
  <header class="masthead">
  <h1 data-en="ESG Regulatory Tracker">ติดตามกฎหมาย ESG</h1>
  <div class="masthead-right">
- <div class="sub" data-en="Thailand &amp; EU Regulatory Tracker<br>Last updated: August 31, 2026">Thailand &amp; EU Regulatory Tracker<br>ปรับปรุงล่าสุด: 31 สิงหาคม 2569</div>
+ <div class="sub" data-en="<a href=&quot;sustainability_standards.html&quot; class=&quot;cross-link-btn&quot;>📐 View Sustainability Standards</a><br>Thailand &amp; EU Regulatory Tracker<br>Last updated: August 31, 2026"><a href="sustainability_standards.html" class="cross-link-btn">📐 ดูหน้ามาตรฐานความยั่งยืน</a><br>Thailand &amp; EU Regulatory Tracker<br>ปรับปรุงล่าสุด: 31 สิงหาคม 2569</div>
  <div class="lang-toggle" id="langToggle" role="group" aria-label="Language">
  <button type="button" class="lang-btn is-active" data-lang="th">TH</button>
  <button type="button" class="lang-btn" data-lang="en">EN</button>
