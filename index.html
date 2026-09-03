@@ -1004,14 +1004,30 @@
  @keyframes modalIn{from{opacity:0;}to{opacity:1;}}
  }
  .cross-link-btn{
- display:inline-block;
+ display:inline-flex;
+ align-items:center;
+ gap:6px;
+ background:var(--ink);
+ color:#fff;
  font-family:'IBM Plex Mono',monospace;
- font-size:11px;
- color:var(--gold);
+ font-size:12px;
+ font-weight:600;
+ letter-spacing:.02em;
  text-decoration:none;
- border-bottom:1px dashed var(--gold);
+ padding:8px 16px;
+ border-radius:999px;
+ box-shadow:0 4px 12px rgba(17,24,39,.22);
+ transition:background .15s var(--ease),transform .15s var(--ease),box-shadow .15s var(--ease);
  }
- .cross-link-btn:hover{color:var(--ink);border-color:var(--ink);}
+ .cross-link-btn:hover{background:var(--gold);transform:translateY(-1px);box-shadow:0 6px 16px rgba(var(--gold-rgb),.32);}
+ .masthead-right .cross-link-btn{margin-bottom:8px;}
+ .side-cross-link{
+ background:var(--paper-2);
+ border:1px solid var(--line);
+ border-radius:var(--radius);
+ margin-top:4px;
+ }
+ .side-cross-link:hover{background:var(--gold);color:#fff;}
 </style>
 </head>
 <body>
@@ -1027,6 +1043,7 @@
 <div class="side-nav-body">
 <a href="#watchlist" class="side-top-link" data-en="🔔 Watch This Week">🔔 สิ่งที่ต้องติดตามสัปดาห์นี้</a>
 <a href="#overviewSection" class="side-top-link" data-en="📊 Overview of All Laws">📊 ภาพรวมกฎหมายทั้งหมด</a>
+<a href="sustainability_standards.html" class="side-top-link side-cross-link" data-en="📐 View Sustainability Standards">📐 ดูหน้ามาตรฐานความยั่งยืน</a>
 <div class="side-divider"></div>
 <div class="side-group">
 <div class="side-group-title th" data-en="Thailand">ไทย</div>
