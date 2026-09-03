@@ -5,33 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ติดตามกฎหมาย ESG — Thailand &amp; EU</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
  :root{
- --paper:#EEF2F8;
- --paper-2:#E1E8F2;
- --ink:#141B2B;
- --ink-soft:#57647E;
- --line:#D5DDEA;
- --gold:#2F6FED;
- --gold-rgb:47,111,237;
- --th-accent:#7C4DFF;
- --th-accent-soft:#EDE7FF;
- --eu-accent:#00A8C6;
- --eu-accent-soft:#CFF6FA;
- --ok:#12A878;
- --ok-soft:#D3F6E8;
- --warn:#E0A72E;
- --warn-soft:#FCEECB;
- --urgent:#E23F63;
- --urgent-rgb:226,63,99;
- --urgent-soft:#FDE1E7;
- --asia-accent:#C0399F;
- --asia-accent-soft:#FBE3F4;
- --global-accent:#2AA9C7;
- --global-accent-soft:#DCF3F8;
- --pin:#E0A72E;
- --pin-rgb:224,167,46;
+ --paper:#F3F4F6;
+ --paper-2:#EEF2FF;
+ --ink:#111827;
+ --ink-soft:#6B7280;
+ --line:#E5E7EB;
+ --gold:#6366F1;
+ --gold-rgb:99,102,241;
+ --th-accent:#6366F1;
+ --th-accent-soft:#E0E7FF;
+ --eu-accent:#14B8A6;
+ --eu-accent-soft:#CCFBF1;
+ --ok:#10B981;
+ --ok-soft:#D1FAE5;
+ --warn:#F59E0B;
+ --warn-soft:#FEF3C7;
+ --urgent:#EF4444;
+ --urgent-rgb:239,68,68;
+ --urgent-soft:#FEE2E2;
+ --asia-accent:#F59E0B;
+ --asia-accent-soft:#FEF3C7;
+ --global-accent:#8B5CF6;
+ --global-accent-soft:#EDE9FE;
+ --pin:#F59E0B;
+ --pin-rgb:245,158,11;
  --radius:8px;
  --ease:cubic-bezier(.4,0,.2,1);
  }
@@ -48,19 +48,19 @@
  }
  @keyframes daysPulse{
  0%,100%{color:var(--urgent);}
- 50%{color:#8f3049;}
+ 50%{color:#B91C1C;}
  }
  body{
  margin:0;
  background:var(--paper);
  color:var(--ink);
- font-family:'IBM Plex Sans Thai','IBM Plex Sans',sans-serif;
+ font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
  line-height:1.55;
  }
  .wrap{max-width:980px;margin:0 auto;padding:36px 20px 80px;}
 
  header.masthead{
- border-bottom:3px double var(--ink);
+ border-bottom:3px solid var(--gold);
  padding-bottom:18px;
  margin-bottom:6px;
  display:flex;
@@ -70,8 +70,8 @@
  gap:12px;
  }
  header.masthead h1{
- font-family:'Fraunces',serif;
- font-weight:600;
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-weight:700;
  font-size:clamp(28px,4vw,40px);
  margin:0;
  letter-spacing:-0.01em;
@@ -102,7 +102,7 @@
  margin-bottom:36px;
  }
  .deadlines h2{
- font-family:'Fraunces',serif;
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
  font-size:15px;
  font-weight:600;
  text-transform:uppercase;
@@ -175,7 +175,7 @@
  display:flex;align-items:center;justify-content:center;
  font-size:15px;
  color:#fff;
- font-family:'Fraunces',serif;
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
  font-weight:600;
  flex-shrink:0;
  }
@@ -184,9 +184,9 @@
  .section-title.asia .flag{background:var(--asia-accent);}
  .section-title.global .flag{background:var(--global-accent);}
  .section-title h2{
- font-family:'Fraunces',serif;
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
  font-size:22px;
- font-weight:600;
+ font-weight:700;
  margin:0;
  }
  .section-title .desc{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
@@ -217,7 +217,7 @@
  margin-bottom:10px;
  }
  .card-head h3{
- font-family:'Fraunces',serif;
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
  font-size:18.5px;
  font-weight:600;
  margin:0 0 4px;
@@ -314,7 +314,7 @@
  footer{
  margin-top:50px;
  padding-top:16px;
- border-top:3px double var(--ink);
+ border-top:1px solid var(--line);
  font-size:11.5px;
  color:var(--ink-soft);
  font-family:'IBM Plex Mono',monospace;
@@ -346,7 +346,7 @@
  }
  .toolbar input[type="search"]{
  width:100%;
- font-family:'IBM Plex Sans Thai',sans-serif;
+ font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
  font-size:13.5px;
  padding:9px 12px 9px 32px;
  border:1px solid var(--line);
@@ -394,10 +394,10 @@
  .filter-btn:hover{border-color:var(--gold);color:var(--ink);transform:translateY(-1px);}
  .filter-btn:active{transform:translateY(0) scale(.96);}
  .filter-btn.active{
- background:var(--ink);
- border-color:var(--ink);
+ background:var(--gold);
+ border-color:var(--gold);
  color:#fff;
- box-shadow:0 4px 10px rgba(20,27,43,.18);
+ box-shadow:0 4px 10px rgba(99,102,241,.28);
  }
  .result-count{
  font-family:'IBM Plex Mono',monospace;
@@ -458,8 +458,8 @@
  transform:translateY(-1px);
  }
  .law-details[open] summary{
- background:var(--ink);
- border-color:var(--ink);
+ background:var(--gold);
+ border-color:var(--gold);
  color:#fff;
  }
  .ld-body{
@@ -480,7 +480,7 @@
  margin-bottom:10px;
  }
  .ld-sec h4{
- font-family:'Fraunces',serif;
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
  font-size:13.5px;
  font-weight:600;
  margin:0 0 8px;
@@ -504,7 +504,7 @@
  margin-bottom:12px;
  }
  .ld-tab-btn{
- font-family:'IBM Plex Sans Thai',sans-serif;
+ font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
  font-size:11.5px;
  font-weight:600;
  padding:6px 12px;
@@ -518,8 +518,8 @@
  }
  .ld-tab-btn:hover{border-color:var(--gold);color:var(--ink);transform:translateY(-1px);}
  .ld-tab-btn.is-active{
- background:var(--ink);
- border-color:var(--ink);
+ background:var(--gold);
+ border-color:var(--gold);
  color:#fff;
  }
  .quick-take{
@@ -557,7 +557,7 @@
  margin-bottom:36px;
  }
  .overview h2{
- font-family:'Fraunces',serif;
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
  font-size:15px;
  font-weight:600;
  text-transform:uppercase;
@@ -650,20 +650,20 @@
  }
  .lang-btn:hover{color:var(--ink);}
  .lang-btn.is-active{
- background:var(--ink);
+ background:var(--gold);
  color:#fff;
  }
 
  /* ============ Watchlist ============ */
  .watchlist{
  margin-bottom:24px;
- background:linear-gradient(135deg,#EEF1FF 0%,#E7F8FA 100%);
+ background:linear-gradient(135deg,#EEF2FF 0%,#F0FDFA 100%);
  border:1px solid var(--line);
  border-radius:calc(var(--radius) + 4px);
  padding:16px 20px;
  }
  .watchlist h2{
- font-family:'Fraunces',serif;
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
  font-size:14.5px;
  font-weight:600;
  margin:0 0 12px;
@@ -714,7 +714,7 @@
  white-space:nowrap;
  }
  .more-filters-btn:hover, .clear-filters-btn:hover{border-color:var(--gold);color:var(--ink);transform:translateY(-1px);}
- .more-filters-btn[aria-expanded="true"]{background:var(--ink);border-color:var(--ink);color:#fff;}
+ .more-filters-btn[aria-expanded="true"]{background:var(--gold);border-color:var(--gold);color:#fff;}
  .clear-filters-btn{display:none;}
  .clear-filters-btn.is-visible{display:inline-block;}
  .filter-group-collapsible{width:100%;order:98;padding-top:6px;border-top:1px dashed var(--line);margin-top:2px;}
@@ -854,7 +854,7 @@
  justify-content:space-between;
  padding:16px 18px;
  border-bottom:2px solid var(--ink);
- font-family:'Fraunces',serif;
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
  font-weight:600;
  font-size:17px;
  flex-shrink:0;
@@ -928,6 +928,81 @@
  @media (max-width:640px){
  .side-nav-toggle{padding:8px 13px 8px 11px;font-size:12px;top:12px;left:12px;}
  }
+
+ /* ---- Detail-view button (per card) + Law detail modal ---- */
+ .detail-view-btn{
+ display:inline-flex;
+ align-items:center;
+ gap:6px;
+ margin:2px 0 4px;
+ padding:7px 14px;
+ font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
+ font-size:12.5px;
+ font-weight:600;
+ color:var(--gold);
+ background:#fff;
+ border:1px solid var(--gold);
+ border-radius:var(--radius);
+ cursor:pointer;
+ transition:background .15s var(--ease),color .15s var(--ease),transform .15s var(--ease),box-shadow .15s var(--ease);
+ }
+ .detail-view-btn:hover{background:var(--gold);color:#fff;transform:translateY(-1px);box-shadow:0 4px 10px rgba(var(--gold-rgb),.28);}
+ .detail-view-btn:active{transform:translateY(0);}
+
+ .law-modal-overlay{
+ position:fixed;inset:0;
+ background:rgba(17,24,39,.5);
+ backdrop-filter:blur(1px);
+ z-index:60;
+ animation:fadeIn .18s var(--ease);
+ }
+ .law-modal{
+ position:fixed;
+ top:4vh;left:50%;
+ transform:translateX(-50%);
+ width:min(720px,92vw);
+ max-height:92vh;
+ background:#fff;
+ border-radius:12px;
+ box-shadow:0 24px 60px rgba(17,24,39,.28);
+ z-index:61;
+ display:flex;
+ flex-direction:column;
+ animation:modalIn .22s var(--ease);
+ }
+ .law-modal[hidden],.law-modal-overlay[hidden]{display:none;}
+ @keyframes modalIn{from{opacity:0;transform:translateX(-50%) translateY(10px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+ .law-modal-close{
+ position:absolute;
+ top:10px;right:12px;
+ width:32px;height:32px;
+ border:none;
+ background:var(--paper);
+ color:var(--ink-soft);
+ border-radius:50%;
+ font-size:20px;
+ line-height:1;
+ cursor:pointer;
+ z-index:2;
+ transition:background .15s var(--ease),color .15s var(--ease);
+ }
+ .law-modal-close:hover{background:var(--line);color:var(--ink);}
+ .law-modal-body{
+ overflow-y:auto;
+ padding:50px 26px 26px;
+ }
+ .law-modal-body .card-head{margin-bottom:10px;}
+ .law-modal-body .detail-view-btn{display:none;}
+ .law-modal-body .law-details{
+ border-top:none;
+ }
+ .law-modal-body .law-details summary{display:none;}
+ .law-modal-body .ld-body{margin-top:0;animation:none;}
+ body.law-modal-open{overflow:hidden;}
+ @media (max-width:640px){
+ .law-modal{top:0;left:0;transform:none;width:100%;max-height:100%;height:100%;border-radius:0;}
+ @keyframes modalIn{from{opacity:0;}to{opacity:1;}}
+ }
 </style>
 </head>
 <body>
@@ -982,6 +1057,13 @@
 </div>
 </div>
 </nav>
+
+<!-- LAW DETAIL MODAL -->
+<div id="lawModalOverlay" class="law-modal-overlay" hidden></div>
+<div id="lawModal" class="law-modal" hidden role="dialog" aria-modal="true">
+<button type="button" id="lawModalClose" class="law-modal-close" aria-label="Close">&times;</button>
+<div id="lawModalBody" class="law-modal-body"></div>
+</div>
 
 
  <header class="masthead">
@@ -1233,6 +1315,7 @@
 <button type="button" class="pin-btn" data-pin="card-1" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Under Council of State review — Council of State review (until Jul 2026)">อยู่ระหว่างกฤษฎีกาตรวจพิจารณา — กฤษฎีกาตรวจพิจารณา (ถึง ก.ค.69)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-1" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="The Cabinet approved the principle on <b>Dec 2, 2025</b>. The draft has <b>14 chapters, 205 sections</b>, setting a framework linking government, business and citizens on climate management, including an industrial emissions cap system (covering over 4,000 factories) and a Climate Fund. The Minister of Natural Resources and Environment ordered the push to be accelerated on May 5, 2026. As of Aug 31, 2026, the draft is still under review by the Council of State before being submitted to Parliament. No confirmed date yet for submission to the House of Representatives (no new movement since the last update).">ครม. เห็นชอบหลักการแล้วเมื่อ <b>2 ธ.ค. 2568</b> โครงสร้างร่างมี <b>14 หมวด 205 มาตรา</b> วางกรอบบริหารจัดการภูมิอากาศเชื่อมโยงรัฐ–เอกชน–ประชาชน รวมถึงระบบเพดานปล่อยก๊าซเรือนกระจกภาคอุตสาหกรรม (ครอบคลุมโรงงานกว่า 4,000 แห่ง) และกองทุนภูมิอากาศ (Climate Fund) รมว.ทส. สั่งเร่งรัดผลักดันเมื่อ 5 พ.ค. 2569 ล่าสุด ณ 31 ส.ค. 2569 ร่างยังอยู่ระหว่างการตรวจพิจารณาของสำนักงานคณะกรรมการกฤษฎีกา ก่อนเสนอเข้าสู่การพิจารณาของรัฐสภา ยังไม่มีกำหนดวันนำเข้าสภาที่ชัดเจน (ไม่พบความเคลื่อนไหวใหม่ตั้งแต่การอัปเดตครั้งก่อน)</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:82%"></div></div>
@@ -1318,6 +1401,7 @@
 <button type="button" class="pin-btn" data-pin="card-2" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Drafting / jointly pushed with TIPMSE — Joint push with private sector (TIPMSE/VPRO)">ยกร่าง / ผลักดันร่วม TIPMSE — ผลักดันร่วมภาคเอกชน (TIPMSE/VPRO)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-2" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="The draft law establishes the <b>EPR (Extended Producer Responsibility)</b> principle, requiring producers/importers to take responsibility for packaging listed after the law takes effect, covering collection, sorting and recycling. TIPMSE/FTI are pushing this jointly with the government through the PackBack in Action forum and a Voluntary PRO (VPRO) structure, targeting enforcement in <b>2027</b>. TIPMSE has recently expanded to over 16,000 members and 149+ partner organizations continuing the EPR in Action push, but as of Aug 31, 2026 there is still no formal progress on submitting the draft to Cabinet (no new movement since the last update).">ร่างกฎหมายวางหลัก <b>EPR (Extended Producer Responsibility)</b> ให้ผู้ผลิต/ผู้นำเข้าต้องรับผิดชอบบรรจุภัณฑ์ที่ถูกประกาศรายชื่อหลังกฎหมายบังคับใช้ ครอบคลุมการเก็บรวบรวม คัดแยก และรีไซเคิล TIPMSE/ส.อ.ท. ผลักดันร่วมกับภาครัฐผ่านเวที PackBack in Action และโครงสร้าง Voluntary PRO (VPRO) คาดมีผลบังคับใช้ <b>ปี 2570</b> ล่าสุด TIPMSE เดินหน้าระดมสมาชิกกว่า 16,000 รายและภาคีกว่า 149 องค์กรร่วมผลักดัน EPR in Action ต่อเนื่อง แต่ ณ 31 ส.ค. 2569 ยังไม่มีความคืบหน้าด้านการเสนอร่างต่อ ครม. อย่างเป็นทางการ (ไม่พบความเคลื่อนไหวใหม่ตั้งแต่การอัปเดตครั้งก่อน)</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:55%"></div></div>
@@ -1402,6 +1486,7 @@
 <button type="button" class="pin-btn" data-pin="card-19" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Internal ministry drafting — second draft circulated, no confirmed movement since (Sep 2025)">ยกร่างภายในกระทรวง — ร่างฉบับที่ 2 เผยแพร่แล้ว ไม่พบความเคลื่อนไหวต่อ (ก.ย. 2568)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-19" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="The Ministry of Justice, through the <b>Rights and Liberties Protection Department (RLPD)</b>, is drafting a law to convert Thailand's currently voluntary human rights due diligence guidance (under the National Action Plan on Business and Human Rights) into a <b>binding legal obligation</b>. The first draft circulated in <b>July 2025</b>, with a second draft in <b>September 2025</b>, proposing that large enterprises — manufacturers with revenue over <b>THB 500 million</b>, or wholesale/retail/service businesses over <b>THB 300 million</b> (including SOEs and foreign operators in Thailand) — conduct human rights and environmental due diligence across their entire value chain, similar in structure to the EU's CSDDD. As of Aug 31, 2026, the bill remains an internal ministry draft with no confirmed Cabinet submission, Council of State review, or Parliament filing, and Thailand's business sector has reportedly voiced opposition over cost and feasibility concerns.">กระทรวงยุติธรรม โดย <b>กรมคุ้มครองสิทธิและเสรีภาพ (RLPD)</b> กำลังยกร่างกฎหมายเพื่อเปลี่ยนแนวปฏิบัติ human rights due diligence ที่ปัจจุบันเป็นเพียงภาคสมัครใจ (ภายใต้แผนปฏิบัติการระดับชาติว่าด้วยธุรกิจกับสิทธิมนุษยชน หรือ NAP on BHR) ให้กลายเป็น<b>ข้อผูกพันทางกฎหมาย</b> ร่างฉบับแรกเผยแพร่เมื่อ <b>ก.ค. 2568</b> และฉบับที่สองเมื่อ <b>ก.ย. 2568</b> เสนอให้ธุรกิจขนาดใหญ่ — ภาคการผลิตที่มีรายได้เกิน <b>500 ล้านบาท</b> หรือภาคค้าส่ง/ค้าปลีก/บริการที่มีรายได้เกิน <b>300 ล้านบาท</b> (รวมรัฐวิสาหกิจและผู้ประกอบการต่างชาติที่ดำเนินธุรกิจในไทย) — ต้องทำ due diligence ด้านสิทธิมนุษยชนและสิ่งแวดล้อมตลอดห่วงโซ่คุณค่า ซึ่งมีโครงสร้างใกล้เคียงกับ CSDDD ของ EU ล่าสุด ณ 31 ส.ค. 2569 ร่างยังอยู่ในขั้นตอนภายในกระทรวง ยังไม่มีการเสนอเข้า ครม., กฤษฎีกา, หรือรัฐสภาอย่างเป็นทางการ และมีรายงานว่าภาคธุรกิจไทยแสดงความกังวลคัดค้านเรื่องต้นทุนและความเป็นไปได้ในการปฏิบัติตาม</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:22%"></div></div>
@@ -1495,6 +1580,7 @@
 <button type="button" class="pin-btn" data-pin="card-3" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Fully in force — EPR harmonisation consultation closed — Sep 10, 2026">บังคับใช้ทั่วไปแล้ว — ปิดรับฟัง EPR harmonisation (10 ก.ย.69)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-3" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="In force (entry into force) since <b>Feb 11, 2025</b>, and generally applicable since <b>Aug 12, 2026</b>, replacing the former Packaging Directive 94/62/EC. At the same time, restrictions on <b>PFAS in food-contact packaging</b> took effect the same day, capping polymeric PFAS at <b>50 ppm</b> (non-polymeric substances are stricter). The EC published its first Guidance Document and FAQ on <b>Mar 30, 2026</b>, interpreting over 30 key articles. Most recently the EC opened a consultation on its draft <b>EPR harmonisation initiative</b> (EU-wide EPR guidance for packaging), closing <b>Sep 10, 2026</b>, with a substances-of-concern reporting deadline of Dec 31, 2026. Delegated acts on Design-for-Recycling criteria and recyclability grading (A–E) are still pending, due by <b>Jan 1, 2028</b>.">มีผลบังคับใช้ (entry into force) ตั้งแต่ <b>11 ก.พ. 2568</b> และเริ่มบังคับใช้ทั่วไป (apply) แล้วตั้งแต่ <b>12 ส.ค. 2569</b> แทนที่ Packaging Directive 94/62/EC เดิม พร้อมกันนี้ข้อจำกัดสาร <b>PFAS ในบรรจุภัณฑ์สัมผัสอาหาร</b> เริ่มมีผลบังคับใช้ในวันเดียวกัน โดยจำกัด PFAS ชนิดพอลิเมอร์ไม่เกิน <b>50 ppm</b> (สารชนิดไม่ใช่พอลิเมอร์เข้มงวดกว่านี้) EC เผยแพร่ Guidance Document และ FAQ ฉบับแรกเมื่อ <b>30 มี.ค. 2569</b> ตีความกว่า 30 มาตราสำคัญ ล่าสุด EC เปิดรับฟังความเห็นร่าง <b>EPR harmonisation initiative</b> (แนวปฏิบัติ EPR บรรจุภัณฑ์ทั่ว EU) ปิดรับ <b>10 ก.ย. 2569</b> และมีกำหนดส่งรายงานประเมินสารเคมีที่น่ากังวลในบรรจุภัณฑ์ (substances of concern) ภายใน 31 ธ.ค. 2569 ส่วน delegated acts เรื่องเกณฑ์ Design-for-Recycling และเกรดความสามารถรีไซเคิล (A–E) ยังรอกำหนดภายใน <b>1 ม.ค. 2571</b></p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:60%"></div></div>
@@ -1581,6 +1667,7 @@
 <button type="button" class="pin-btn" data-pin="card-4" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Partially in effect — Delegated act for steel/textiles — ~2026–27">เริ่มมีผลบางส่วนแล้ว — Delegated act เหล็ก/สิ่งทอ (~2569–70)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-4" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="In force since <b>Jul 18, 2024</b>. The Working Plan 2025–2030 (COM(2025)187) was published on <b>Apr 16, 2025</b>, targeting 6 pilot product groups: textiles, furniture, tyres, mattresses, steel, and aluminium. Since <b>Jul 19, 2026</b>, the destruction ban on unsold textiles/footwear has taken effect (large companies first, SMEs by 2030), alongside the launch of the central Digital Product Passport (DPP) registry. As of Aug 31, 2026, no new product-specific delegated act has been announced (steel expected within 2026, while textiles/tyres/aluminium have slipped to a 2027 framework). The EC will conduct a mid-term review of the Working Plan in 2028 (no new movement since the last update).">มีผลบังคับใช้ตั้งแต่ <b>18 ก.ค. 2567</b> Working Plan 2025–2030 (COM(2025)187) ประกาศ <b>16 เม.ย. 2568</b> กำหนด 6 กลุ่มผลิตภัณฑ์นำร่อง ได้แก่ สิ่งทอ, เฟอร์นิเจอร์, ยางรถยนต์, ที่นอน, เหล็ก/เหล็กกล้า, อะลูมิเนียม ตั้งแต่ <b>19 ก.ค. 2569</b> เริ่มห้ามทำลายสินค้าสิ่งทอ/รองเท้าที่ขายไม่หมด (บริษัทใหญ่ก่อน SME ปี 2573) พร้อมเปิดทะเบียน Digital Product Passport (DPP) กลาง ณ 31 ส.ค. 2569 ยังไม่มี delegated act เฉพาะกลุ่มผลิตภัณฑ์ฉบับใหม่ประกาศเพิ่มเติม (เหล็ก/เหล็กกล้าคาดประกาศภายในปี 2569 ส่วนสิ่งทอ/ยาง/อะลูมิเนียมเลื่อนเป็นกรอบปี 2570) โดย EC กำหนดทบทวนกลางคาบ (mid-term review) ของ Working Plan ในปี 2571 (ไม่พบความเคลื่อนไหวใหม่ตั้งแต่การอัปเดตครั้งก่อน)</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:52%"></div></div>
@@ -1666,6 +1753,7 @@
 <button type="button" class="pin-btn" data-pin="card-5" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="In the definitive period — Registration + certificate trading prep — Feb 1, 2027">อยู่ในช่วงบังคับจริง (Definitive Period) — เตรียมขึ้นทะเบียน + ซื้อขายใบรับรอง (1 ก.พ.70)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-5" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="Entered the <b>Definitive Period</b> on <b>Jan 1, 2026</b> — financial obligations are now genuinely in effect. Importers of steel, aluminium, cement, fertilizers, electricity and hydrogen exceeding 50 tonnes/year must hold Authorised CBAM Declarant status. The EC closed its consultation on draft certificate trading/repurchase rules on <b>Aug 6, 2026</b>. The next step is the first actual certificate trading on <b>Feb 1, 2027</b>, after which the first annual report (covering 2027 imports, with third-party-verified emissions data) is due by <b>Sep 30, 2027</b>. Non-compliance carries a €100/tonne CO2 excess penalty. As of Aug 31, 2026, the final trading/repurchase rules have not yet been officially announced (no new movement since the last update).">เข้าสู่ <b>Definitive Period</b> ตั้งแต่ <b>1 ม.ค. 2569</b> — ภาระผูกพันทางการเงินเริ่มมีผลจริงแล้ว ผู้นำเข้าสินค้ากลุ่ม เหล็ก/เหล็กกล้า อะลูมิเนียม ซีเมนต์ ปุ๋ย ไฟฟ้า ไฮโดรเจน ที่นำเข้าเกิน 50 ตัน/ปี ต้องมีสถานะ Authorised CBAM Declarant EC ปิดรับฟังความเห็นร่างกฎเกณฑ์การซื้อขาย/repurchase ใบรับรองไปแล้วเมื่อ <b>6 ส.ค. 2569</b> ขั้นถัดไปคือการซื้อขายใบรับรองจริงครั้งแรก <b>1 ก.พ. 2570</b> จากนั้นต้องยื่นรายงานประจำปีครั้งแรก (ครอบคลุมการนำเข้าปี 2570 พร้อมข้อมูลปล่อยก๊าซที่ผ่านการตรวจสอบโดยบุคคลที่สาม) ภายใน <b>30 ก.ย. 2570</b> มีค่าปรับ 100 ยูโร/ตัน CO2 ส่วนเกินหากไม่ปฏิบัติตาม ณ 31 ส.ค. 2569 ยังไม่มีประกาศผลสรุปกฎเกณฑ์การซื้อขาย/repurchase อย่างเป็นทางการ (ไม่พบความเคลื่อนไหวใหม่ตั้งแต่การอัปเดตครั้งก่อน)</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:68%"></div></div>
@@ -1751,6 +1839,7 @@
 <button type="button" class="pin-btn" data-pin="card-6" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Enforcement delayed for the second time — In force (large/medium) — Dec 30, 2026">เลื่อนบังคับใช้เป็นครั้งที่สอง — บังคับใช้จริง (รายใหญ่/กลาง) (30 ธ.ค.69)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-6" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="Already in force (entry into force), but the actual compliance date has been delayed twice. Most recently, the European Parliament and Council agreed to push it to <b>Dec 30, 2026</b> for large/medium operators and <b>Jun 30, 2027</b> for SMEs/small operators (decision on Dec 18, 2025), alongside due-diligence relief measures covering 7 commodity groups: cattle, cocoa, coffee, palm oil, rubber, soy, and wood/wood products (including furniture and paper). Importers/traders must trace back to the geolocation of the production plot and confirm it is not linked to deforestation after 2020.">มีผลบังคับใช้ (entry into force) แล้ว แต่วันเริ่มบังคับปฏิบัติจริงถูกเลื่อนแล้ว 2 ครั้ง ล่าสุดรัฐสภายุโรปและคณะมนตรีเห็นชอบเลื่อนเป็น <b>30 ธ.ค. 2569</b> สำหรับผู้ประกอบการรายใหญ่/กลาง และ <b>30 มิ.ย. 2570</b> สำหรับ SME/รายย่อย (มติเมื่อ 18 ธ.ค. 2568) พร้อมมาตรการลดภาระ due diligence ครอบคลุมสินค้า 7 กลุ่ม: โค โกโก้ กาแฟ ปาล์มน้ำมัน ยางพารา ถั่วเหลือง และไม้/ผลิตภัณฑ์จากไม้ (รวมเฟอร์นิเจอร์ กระดาษ) ผู้นำเข้า/ผู้ค้าต้องตรวจสอบย้อนกลับถึงพิกัดที่ดินต้นทาง (geolocation) และยืนยันว่าไม่มาจากพื้นที่ตัดไม้ทำลายป่าหลังปี 2563</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:62%"></div></div>
@@ -1836,6 +1925,7 @@
 <button type="button" class="pin-btn" data-pin="card-7" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Approaching enforcement date — In force at national level — Sep 27, 2026">ใกล้ถึงวันบังคับใช้จริง — บังคับใช้จริงระดับประเทศ (27 ก.ย.69)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-7" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="In force since Mar 2024, requiring member states to transpose it into national law by <b>Mar 27, 2026</b>, with national measures taking effect <b>Sep 27, 2026</b>. It bans unsubstantiated general environmental claims (e.g. vague &quot;eco-friendly&quot; or &quot;climate neutral&quot; claims) and restricts sustainability/durability labelling. It applies to nearly all B2C operators marketing environmental claims in the EU (separate from the standalone Green Claims Directive, which the EC announced it would withdraw in 2025 — its status remains unclear).">มีผลบังคับใช้ตั้งแต่ มี.ค. 2567 กำหนดให้ประเทศสมาชิกต้อง transpose กฎหมายภายในประเทศให้แล้วเสร็จภายใน <b>27 มี.ค. 2569</b> และมาตรการระดับประเทศจะเริ่มบังคับใช้จริง <b>27 ก.ย. 2569</b> ห้ามกล่าวอ้างสิ่งแวดล้อมทั่วไปที่ไม่มีหลักฐานรองรับ (เช่น "เป็นมิตรต่อสิ่งแวดล้อม" หรือ "climate neutral" แบบคลุมเครือ) และจำกัดฉลากความยั่งยืน/อายุการใช้งานสินค้า มีผลกับผู้ประกอบการ B2C แทบทุกรายที่ทำการตลาดด้านสิ่งแวดล้อมในสหภาพยุโรป (แยกจาก Green Claims Directive ฉบับแยกที่ EC ประกาศเจตนาถอนร่างในปี 2568 ซึ่งสถานะยังไม่ชัดเจน)</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:75%"></div></div>
@@ -1920,6 +2010,7 @@
 <button type="button" class="pin-btn" data-pin="card-18" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Significantly narrowed via Omnibus I — Revised ESRS adopted, in EP/Council scrutiny (from Jul 3, 2026)">ปรับลดขอบเขตครั้งใหญ่ผ่าน Omnibus I — ESRS ฉบับปรับปรุงผ่านมติ EC รออยู่ระหว่างตรวจสอบของ EP/Council (ตั้งแต่ 3 ก.ค. 2569)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-18" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="The European Commission proposed the <b>Omnibus I</b> package to simplify CSRD and CSDDD starting Feb 2025. After trilogue negotiations, the European Parliament and Council reached political agreement on <b>Dec 9, 2025</b>, before it entered into force as amending law on <b>Mar 18, 2026</b>. The key changes raise the CSRD size threshold to <b>&gt;1,000 employees and &gt;€450 million turnover</b> (removing listed SMEs entirely) and the CSDDD threshold to <b>&gt;5,000 employees and &gt;€1.5 billion turnover</b>, while substantially cutting value-chain due-diligence obligations and removing the EU-wide civil liability regime. Most recently, the EC adopted a revised ESRS delegated act cutting mandatory datapoints by over 60% on <b>Jul 3, 2026</b>, which is now in its European Parliament/Council scrutiny period before becoming fully final.">สำนักงานคณะกรรมาธิการยุโรปเสนอชุดมาตรการ <b>Omnibus I</b> เพื่อลดความซับซ้อนของ CSRD และ CSDDD ตั้งแต่ ก.พ. 2568 หลังผ่านการเจรจาไตรภาคี รัฐสภายุโรปและคณะมนตรีบรรลุข้อตกลงทางการเมืองเมื่อ <b>9 ธ.ค. 2568</b> ก่อนมีผลบังคับใช้เป็นกฎหมายแก้ไขจริงเมื่อ <b>18 มี.ค. 2569</b> สาระสำคัญคือขยายเกณฑ์ขนาดองค์กรของ CSRD เป็น <b>พนักงานเกิน 1,000 คน และรายได้เกิน 450 ล้านยูโร</b> (ตัดกลุ่ม listed SME ออกทั้งหมด) และของ CSDDD เป็น <b>พนักงานเกิน 5,000 คน และรายได้เกิน 1,500 ล้านยูโร</b> พร้อมลดภาระ due diligence ในห่วงโซ่อุปทานลงมาก และตัดระบบความรับผิดทางแพ่งระดับ EU ออกทั้งหมด ล่าสุด EC ผ่านมติมาตรฐาน ESRS ฉบับปรับปรุงลดจำนวนข้อมูลที่ต้องเปิดเผยภาคบังคับกว่า 60% เมื่อ <b>3 ก.ค. 2569</b> ขณะนี้อยู่ระหว่างช่วงตรวจสอบของรัฐสภายุโรป/คณะมนตรีก่อนมีผลสมบูรณ์</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:58%"></div></div>
@@ -2015,6 +2106,7 @@
 <button type="button" class="pin-btn" data-pin="card-8" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="In force — Took effect — May 25, 2026">บังคับใช้แล้ว — มีผลบังคับ (25 พ.ค.69)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-8" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="The 2020 Law on Environmental Protection, Articles 54-55, established the EPR principle, applied to packaging since 2024. The government most recently issued <b>Decree 110/2026/ND-CP</b> (Apr 1, 2026, effective May 25, 2026), consolidating several amendments and clarifying recycling fees (Fs). Producers/importers of packaging must either recycle to the required rate themselves or contribute to the national environmental protection fund, filing by Apr 1 and paying by Apr 20 each year.">กฎหมายคุ้มครองสิ่งแวดล้อม พ.ศ. 2563 มาตรา 54-55 กำหนดหลัก EPR ซึ่งบังคับใช้กับบรรจุภัณฑ์มาตั้งแต่ปี 2567 ล่าสุดรัฐบาลออก <b>Decree 110/2026/ND-CP</b> (1 เม.ย. 2569, มีผล 25 พ.ค. 2569) รวมแก้ไขย่อยหลายฉบับเข้าด้วยกัน ชี้แจงค่าธรรมเนียมรีไซเคิล (Fs) ให้ชัดเจนขึ้น ผู้ผลิต/นำเข้าบรรจุภัณฑ์ต้องเลือกรีไซเคิลเองให้ได้ตามอัตราที่กำหนด หรือจ่ายเงินสมทบกองทุนคุ้มครองสิ่งแวดล้อมแห่งชาติ ต้องยื่นแบบภายใน 1 เม.ย. และชำระเงินภายใน 20 เม.ย. ของทุกปี</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:80%"></div></div>
@@ -2100,6 +2192,7 @@
 <button type="button" class="pin-btn" data-pin="card-9" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Drafting / nearing gazettal — Draft framework near completion — Aug 2025">ยกร่าง / ใกล้ประกาศใช้ — ร่างกรอบระเบียบใกล้เสร็จ (ส.ค.68)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-9" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="Malaysia does not yet have a dedicated EPR law and is developing a regulatory framework/roadmap under the Ministry of Housing and Local Government (KPKT) together with the Ministry of Natural Resources and Environmental Sustainability (NRES). Local media reported on Aug 29, 2025 that the framework has entered its final stage before gazettal. The reported plan is to start voluntarily in 2026 and become fully mandatory by 2030. Currently only voluntary EPR programmes exist, and the private sector has called for a level playing field.">มาเลเซียยังไม่มีกฎหมาย EPR เฉพาะ อยู่ระหว่างจัดทำกรอบระเบียบ/roadmap ภายใต้กระทรวงการเคหะและรัฐบาลท้องถิ่น (KPKT) ร่วมกับกระทรวงทรัพยากรธรรมชาติและความยั่งยืนสิ่งแวดล้อม (NRES) สื่อท้องถิ่นรายงานเมื่อ 29 ส.ค. 2568 ว่ากรอบระเบียบเข้าสู่ขั้นตอนสุดท้ายก่อนประกาศใช้ แผนที่รายงานคือเริ่มแบบสมัครใจในปี 2569 และบังคับเต็มรูปแบบภายในปี 2573 ปัจจุบันมีเพียงโครงการ EPR แบบสมัครใจ ยังไม่มีสนามแข่งขันที่เท่าเทียมตามที่ภาคเอกชนเรียกร้อง</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:35%"></div></div>
@@ -2184,6 +2277,7 @@
 <button type="button" class="pin-btn" data-pin="card-10" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="In force — BCRS launched — Apr 1, 2026">บังคับใช้แล้ว — BCRS เปิดตัว (1 เม.ย.69)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-10" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="Under the Resource Sustainability Act 2019, businesses with annual revenue over S$10 million must report packaging type/weight and submit a 3R (Reduce/Reuse/Recycle) plan to NEA annually by Mar 31. Most recently, the <b>Beverage Container Return Scheme (BCRS)</b> launched on Apr 1, 2026, a deposit-refund system for beverage containers — a major step up from reporting-only to an actual deposit-based EPR mechanism.">ภายใต้ Resource Sustainability Act 2019 ธุรกิจที่มีรายได้เกิน 10 ล้านดอลลาร์สิงคโปร์ต่อปีต้องรายงานประเภท/น้ำหนักบรรจุภัณฑ์และยื่นแผน 3R (Reduce/Reuse/Recycle) ต่อ NEA ทุกปีภายใน 31 มี.ค. ล่าสุดเปิดตัว <b>Beverage Container Return Scheme (BCRS)</b> เมื่อ 1 เม.ย. 2569 ซึ่งเป็นระบบมัดจำ-คืนเงินสำหรับภาชนะเครื่องดื่ม ถือเป็นก้าวสำคัญจากการรายงานอย่างเดียวสู่กลไก EPR แบบมัดจำจริง</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:70%"></div></div>
@@ -2268,6 +2362,7 @@
 <button type="button" class="pin-btn" data-pin="card-11" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Drafting — Awaiting inter-ministry signature — Ongoing">ยกร่าง — รอลงนามข้ามกระทรวง (ต่อเนื่อง)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-11" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="Currently governed by Ministry of Environment and Forestry regulation Permen LHK No. 75/2019, which sets a producer waste-reduction roadmap, but enforcement has been weak (only 26 companies filed a roadmap over 6 years). Indonesia is therefore drafting a new Presidential Regulation (Perpres) to elevate this into genuinely binding law. Technical content was completed in Dec 2025, mandating compulsory Producer Responsibility Organizations (PROs), expected to be enacted mid-2026, pending signature from the Ministry of Industry and Ministry of Finance.">ปัจจุบันใช้ระเบียบกระทรวงสิ่งแวดล้อมและป่าไม้ Permen LHK No. 75/2019 กำหนด roadmap ลดขยะบรรจุภัณฑ์ของผู้ผลิต แต่บังคับใช้จริงอ่อนแอ (มีผู้ยื่น roadmap เพียง 26 บริษัทในรอบ 6 ปี) อินโดนีเซียจึงร่าง Presidential Regulation (Perpres) ฉบับใหม่เพื่อยกระดับเป็นกฎหมายที่มีผลผูกพันจริง เนื้อหาเชิงเทคนิคแล้วเสร็จ ธ.ค. 2568 กำหนดให้มี Producer Responsibility Organizations (PRO) ภาคบังคับ คาดประกาศใช้กลางปี 2569 รอการลงนามจากกระทรวงอุตสาหกรรมและกระทรวงการคลัง</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:45%"></div></div>
@@ -2352,6 +2447,7 @@
 <button type="button" class="pin-btn" data-pin="card-12" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="In force — New recycled-material standard — Jan 24, 2026">บังคับใช้แล้ว — มาตรฐานวัสดุรีไซเคิลใหม่ (24 ม.ค.69)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-12" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="Japan has a long-standing packaging EPR system under the Containers and Packaging Recycling Act, where producers/importers pay annual recycling fees to JCPRA instead of collecting packaging themselves. Most recently METI/the Ministry of the Environment issued a new certification standard under the Plastic Resource Circulation Act, effective Jan 24, 2026, setting minimum recycled/bio-based material ratios (e.g. PET bottles ≥15%), initially covering PET bottles, stationery, and cosmetic/detergent containers.">ญี่ปุ่นมีระบบ EPR บรรจุภัณฑ์มายาวนานภายใต้ Containers and Packaging Recycling Act ซึ่งผู้ผลิต/ผู้นำเข้าจ่ายค่าธรรมเนียมรีไซเคิลรายปีให้ JCPRA แทนการเก็บกลับเอง ล่าสุด METI/กระทรวงสิ่งแวดล้อมออกมาตรฐานการรับรองใหม่ภายใต้ Plastic Resource Circulation Act มีผล 24 ม.ค. 2569 กำหนดสัดส่วนวัสดุรีไซเคิล/ชีวภาพขั้นต่ำ (เช่น ขวด PET ≥15%) ครอบคลุมขวด PET เครื่องเขียน และภาชนะเครื่องสำอาง/ผงซักฟอกในครัวเรือนก่อน</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:85%"></div></div>
@@ -2436,6 +2532,7 @@
 <button type="button" class="pin-btn" data-pin="card-13" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Passed by the legislature — Most provisions take immediate effect — Ongoing">ผ่านสภาแล้ว — บทบัญญัติส่วนใหญ่มีผลทันที (ต่อเนื่อง)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-13" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="The Legislative Yuan passed the <b>Resource Circulation Promotion Act</b> on Jun 3, 2026, the biggest recycling-system reform in over 20 years, expanding beyond the old recycling-fee system (the 4-in-1 fund under the Waste Disposal Act) toward a full lifecycle approach (design-production-recycled-material use-take-back), with tax incentives for circular-economy investment. Most provisions take effect immediately upon promulgation, except Articles 14 and 38(1), which are delayed by 2 years.">สภานิติบัญญัติผ่านร่างกฎหมาย <b>Resource Circulation Promotion Act</b> เมื่อ 3 มิ.ย. 2569 ถือเป็นการปฏิรูประบบรีไซเคิลครั้งใหญ่ที่สุดในรอบกว่า 20 ปี ขยายพันธะจากระบบค่าธรรมเนียมรีไซเคิลเดิม (4-in-1 fund ภายใต้ Waste Disposal Act) ไปสู่แนวคิด lifecycle เต็มรูปแบบ (ออกแบบ-ผลิต-ใช้วัสดุรีไซเคิล-รับคืน) พร้อมสิทธิประโยชน์ทางภาษีสำหรับการลงทุนด้านเศรษฐกิจหมุนเวียน บทบัญญัติส่วนใหญ่มีผลทันทีเมื่อประกาศใช้ ยกเว้นมาตรา 14 และ 38(1) ที่เลื่อนออกไป 2 ปี</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:65%"></div></div>
@@ -2520,6 +2617,7 @@
 <button type="button" class="pin-btn" data-pin="card-14" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Being phased in — National packaging action plan — Jan 2026">ทยอยบังคับใช้ — แผนปฏิบัติการบรรจุภัณฑ์แห่งชาติ (ม.ค.69)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-14" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="China does not yet have a single dedicated packaging EPR law, but extends EPR-style obligations through the Solid Waste Law and the Circular Economy Promotion Law. Most recently a national action plan was issued in Jan 2026, specifically targeting e-commerce and food-delivery packaging, setting a 2030 circular-economy target framework. There is no single enforcement date yet — implementation proceeds via sector-by-sector standards and pilot programmes.">จีนยังไม่มีกฎหมาย EPR บรรจุภัณฑ์ฉบับเดียวโดยเฉพาะ แต่ขยายพันธะแบบ EPR ผ่านกฎหมายป้องกันมลพิษจากของเสียมูลฝอย (Solid Waste Law) และกฎหมายส่งเสริมเศรษฐกิจหมุนเวียน ล่าสุดออกแผนปฏิบัติการระดับชาติ ม.ค. 2569 มุ่งเป้าบรรจุภัณฑ์อีคอมเมิร์ซและเดลิเวอรีอาหารเป็นพิเศษ วางกรอบเป้าหมายเศรษฐกิจหมุนเวียนปี 2573 ยังไม่มีวันบังคับใช้เดียวที่ชัดเจน ดำเนินการผ่านมาตรฐานและโครงการนำร่องทีละภาคส่วน</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:30%"></div></div>
@@ -2613,6 +2711,7 @@
 <button type="button" class="pin-btn" data-pin="card-15" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Approaching mandatory phase — Preparing for mandatory phase — Ongoing">ใกล้เข้าสู่ระยะภาคบังคับ — เตรียมเข้าสู่ภาคบังคับ (ต่อเนื่อง)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-15" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="A carbon offset/reduction scheme for international aviation under ICAO, currently in the First Phase (2024-2026), which is voluntary, with over 126 states participating. It is about to enter the <b>Second Phase (2027-2035)</b>, which will be mandatory for nearly all international routes (except least-developed countries/some small states). Airlines must monitor, offset, or use sustainable aviation fuel (SAF) to keep emissions within the baseline.">ระบบชดเชย/ลดคาร์บอนสำหรับการบินระหว่างประเทศภายใต้ ICAO ปัจจุบันอยู่ใน First Phase (2567-2569) แบบสมัครใจ มีรัฐเข้าร่วมแล้วกว่า 126 ประเทศ กำลังจะเข้าสู่ <b>Second Phase (2570-2578)</b> ซึ่งบังคับเกือบทุกเส้นทางบินระหว่างประเทศ (ยกเว้นประเทศพัฒนาน้อยที่สุด/รัฐขนาดเล็กบางส่วน) สายการบินต้องติดตาม ชดเชย หรือใช้เชื้อเพลิงการบินยั่งยืน (SAF) เพื่อคุมการปล่อยก๊าซให้ไม่เกินเส้นฐาน</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:68%"></div></div>
@@ -2697,6 +2796,7 @@
 <button type="button" class="pin-btn" data-pin="card-16" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Global adoption delayed — Extraordinary session failed to adopt it — Oct 2025">เลื่อนรับรองระดับโลก — ประชุมวิสามัญไม่รับรอง (ต.ค.68)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-16" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="Maritime decarbonization runs on two parallel tracks. Globally, the IMO Net-Zero Framework passed in draft at MEPC 83 (Apr 2025), but an extraordinary session in Oct 2025 failed to formally adopt it (opposed by several countries including the US), pushing it back by at least a year; negotiations continue at MEPC 84 (2026). At the EU level, <b>FuelEU Maritime</b> has been fully in force since Jan 1, 2025, setting a stepped target to reduce the GHG intensity of fuel used by ships calling at EU ports, through 2050.">กรอบการลดคาร์บอนภาคเดินเรือมี 2 แทร็กคู่ขนาน ระดับโลกคือ IMO Net-Zero Framework ซึ่งผ่านร่างในที่ประชุม MEPC 83 (เม.ย. 2568) แต่การประชุมวิสามัญ ต.ค. 2568 ไม่สามารถรับรองอย่างเป็นทางการได้ (มีการคัดค้านจากบางประเทศรวมถึงสหรัฐฯ) ทำให้เลื่อนออกไปอย่างน้อย 1 ปี ยังอยู่ระหว่างเจรจาต่อใน MEPC 84 (2569) ส่วนระดับสหภาพยุโรป <b>FuelEU Maritime</b> มีผลบังคับใช้เต็มรูปแบบแล้วตั้งแต่ 1 ม.ค. 2568 กำหนดเป้าลดความเข้มข้นก๊าซเรือนกระจกของเชื้อเพลิงเรือที่แวะจอดท่าเรือ EU แบบขั้นบันไดถึงปี 2593</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:50%"></div></div>
@@ -2781,6 +2881,7 @@
 <button type="button" class="pin-btn" data-pin="card-17" aria-label="Pin" title="Pin this law to the top">📌</button>
 </div>
  <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Still a bill — Reintroduced again (119th Congress) — Dec 2025">ยังเป็นร่างกฎหมาย — เสนอใหม่อีกครั้ง (สภาชุด 119) (ธ.ค.68)</span></div>
+<button type="button" class="detail-view-btn" data-open-detail="card-17" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="First proposed in 2022 and reintroduced several times since, most recently in the 119th Congress (Dec 2025) as <b>S.3523</b> (Senate) and <b>H.R.6787</b> (House). It would charge an import fee on high-carbon-intensity goods (steel, aluminium, cement, fertilizer, etc.) benchmarked against the domestic emissions-intensity standard. It has not yet cleared committee and has no scheduled floor vote; its political status remains uncertain.">เสนอครั้งแรกปี 2565 นำกลับมาเสนอใหม่หลายรอบ ล่าสุดในสภาคองเกรสชุดที่ 119 (ธ.ค. 2568) เป็น <b>S.3523</b> (วุฒิสภา) และ <b>H.R.6787</b> (สภาผู้แทนราษฎร) เป็นข้อเสนอเก็บค่าธรรมเนียมนำเข้าสินค้าที่ปล่อยคาร์บอนสูง (เหล็ก อะลูมิเนียม ซีเมนต์ ปุ๋ย ฯลฯ) เทียบกับเกณฑ์ความเข้มข้นการปล่อยก๊าซในประเทศ ยังไม่ผ่านชั้นกรรมาธิการ และยังไม่มีกำหนดลงมติในสภา สถานะทางการเมืองยังไม่แน่นอน</p></details>
  <div class="timeline">
  <div class="timeline-track"><div class="fill" style="width:20%"></div></div>
@@ -3219,6 +3320,75 @@
  }, {rootMargin:'-15% 0px -70% 0px', threshold:0});
  trackedCards.forEach(function(c){ io.observe(c); });
  }
+})();
+</script>
+<script>
+(function(){
+ var overlay = document.getElementById('lawModalOverlay');
+ var modal = document.getElementById('lawModal');
+ var modalBody = document.getElementById('lawModalBody');
+ var closeBtn = document.getElementById('lawModalClose');
+ if(!overlay || !modal || !modalBody) return;
+ var lastFocused = null;
+
+ function stripIds(node){
+ if(node.nodeType !== 1) return;
+ if(node.hasAttribute('id')) node.removeAttribute('id');
+ if(node.querySelectorAll){
+ node.querySelectorAll('[id]').forEach(function(n){ n.removeAttribute('id'); });
+ }
+ }
+
+ function appendClone(container, el, opts){
+ if(!el) return null;
+ var clone = el.cloneNode(true);
+ stripIds(clone);
+ if(opts && opts.forceOpen && 'open' in clone){ clone.open = true; }
+ container.appendChild(clone);
+ return clone;
+ }
+
+ function openModal(cardId){
+ var card = document.getElementById(cardId);
+ if(!card) return;
+ modalBody.innerHTML = '';
+ appendClone(modalBody, card.querySelector('.card-head'));
+ appendClone(modalBody, card.querySelector('.quick-take'));
+ appendClone(modalBody, card.querySelector('.full-summary'), {forceOpen:true});
+ appendClone(modalBody, card.querySelector('.timeline'));
+ appendClone(modalBody, card.querySelector('.meta-grid'));
+ appendClone(modalBody, card.querySelector('.source-note'));
+ appendClone(modalBody, card.querySelector('.law-details'), {forceOpen:true});
+
+ lastFocused = document.activeElement;
+ overlay.hidden = false;
+ modal.hidden = false;
+ document.body.classList.add('law-modal-open');
+ modal.scrollTop = 0;
+ closeBtn.focus();
+ }
+
+ function closeModal(){
+ overlay.hidden = true;
+ modal.hidden = true;
+ document.body.classList.remove('law-modal-open');
+ modalBody.innerHTML = '';
+ if(lastFocused && lastFocused.focus){ lastFocused.focus(); }
+ }
+
+ document.addEventListener('click', function(e){
+ var btn = e.target.closest('.detail-view-btn[data-open-detail]');
+ if(btn){
+ openModal(btn.getAttribute('data-open-detail'));
+ return;
+ }
+ if(e.target === overlay || e.target.closest('#lawModalClose')){
+ closeModal();
+ }
+ });
+ document.addEventListener('keydown', function(e){
+ if(e.key === 'Escape' && !modal.hidden){ closeModal(); }
+ });
 })();
 </script>
 </body>
