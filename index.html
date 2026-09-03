@@ -133,6 +133,8 @@
  }
  .deadline-item.warn{border-left-color:var(--warn);}
  .deadline-item.urgent{border-left-color:var(--urgent);}
+ .deadline-item[data-jump]{cursor:pointer;}
+ .deadline-item[data-jump]:hover{border-color:var(--gold);}
  .deadline-item.urgent .deadline-days .n{
  display:inline-block;
  animation:daysPulse 2.4s ease-in-out infinite;
@@ -1140,6 +1142,55 @@
  </div>
 
  
+ <!-- DEADLINES -->
+ <section class="deadlines">
+ <h2 data-en="Upcoming Deadlines">กำหนดการที่ใกล้ถึง</h2>
+ <div class="deadline-row">
+ <div class="deadline-item urgent" data-jump="card-3">
+ <div class="deadline-days"><span class="n">10</span> <span data-en="days">วัน</span></div>
+ <div class="deadline-label" data-en="<b>PPWR</b> — EPR harmonisation initiative consultation closes (EU-wide EPR guidance for packaging) — <span style=&quot;color:var(--ink-soft)&quot;>Sep 10, 2026</span>"><b>PPWR</b> — ปิดรับฟังความเห็นร่าง EPR harmonisation initiative (แนวปฏิบัติ EPR บรรจุภัณฑ์ทั่ว EU) — <span style="color:var(--ink-soft)">10 ก.ย. 2569</span></div>
+ <span class="deadline-tag tag-eu">EU</span>
+ <div class="deadline-bar"><div class="deadline-bar-fill"></div></div>
+ </div>
+ <div class="deadline-item urgent" data-jump="card-7">
+ <div class="deadline-days"><span class="n">27</span> <span data-en="days">วัน</span></div>
+ <div class="deadline-label" data-en="<b>EU ECGT</b> — National-level measures take effect — <span style=&quot;color:var(--ink-soft)&quot;>Sep 27, 2026</span>"><b>EU ECGT</b> — มาตรการระดับประเทศสมาชิกเริ่มบังคับใช้จริง — <span style="color:var(--ink-soft)">27 ก.ย. 2569</span></div>
+ <span class="deadline-tag tag-eu">EU</span>
+ <div class="deadline-bar"><div class="deadline-bar-fill"></div></div>
+ </div>
+ <div class="deadline-item warn" data-jump="card-6">
+ <div class="deadline-days"><span class="n">121</span> <span data-en="days">วัน</span></div>
+ <div class="deadline-label" data-en="<b>EUDR</b> — Takes effect for large/medium operators (2nd delay) — <span style=&quot;color:var(--ink-soft)&quot;>Dec 30, 2026</span>"><b>EUDR</b> — บังคับใช้จริงสำหรับผู้ประกอบการรายใหญ่/กลาง (เลื่อนครั้งที่ 2) — <span style="color:var(--ink-soft)">30 ธ.ค. 2569</span></div>
+ <span class="deadline-tag tag-eu">EU</span>
+ <div class="deadline-bar"><div class="deadline-bar-fill"></div></div>
+ </div>
+ <div class="deadline-item warn" data-jump="card-15">
+ <div class="deadline-days"><span class="n">123</span> <span data-en="days">วัน</span></div>
+ <div class="deadline-label" data-en="<b>CORSIA</b> — Mandatory Second Phase begins — <span style=&quot;color:var(--ink-soft)&quot;>Jan 1, 2027</span>"><b>CORSIA</b> — เริ่มระยะภาคบังคับ (Second Phase) — <span style="color:var(--ink-soft)">1 ม.ค. 2570</span></div>
+ <span class="deadline-tag tag-global" data-en="Global">สากล</span>
+ <div class="deadline-bar"><div class="deadline-bar-fill"></div></div>
+ </div>
+ <div class="deadline-item warn" data-jump="card-5">
+ <div class="deadline-days"><span class="n">154</span> <span data-en="days">วัน</span></div>
+ <div class="deadline-label" data-en="<b>CBAM</b> — First actual CBAM certificate trading begins — <span style=&quot;color:var(--ink-soft)&quot;>Feb 1, 2027</span>"><b>CBAM</b> — เริ่มซื้อขายใบรับรอง CBAM (CBAM certificates) จริงเป็นครั้งแรก — <span style="color:var(--ink-soft)">1 ก.พ. 2570</span></div>
+ <span class="deadline-tag tag-eu">EU</span>
+ <div class="deadline-bar"><div class="deadline-bar-fill"></div></div>
+ </div>
+ <div class="deadline-item" data-jump="card-5">
+ <div class="deadline-days"><span class="n">395</span> <span data-en="days">วัน</span></div>
+ <div class="deadline-label" data-en="<b>CBAM</b> — First annual report due (covering 2027 imports) — <span style=&quot;color:var(--ink-soft)&quot;>Sep 30, 2027</span>"><b>CBAM</b> — ยื่นรายงานประจำปีครั้งแรก (ครอบคลุมการนำเข้าปี 2570) — <span style="color:var(--ink-soft)">30 ก.ย. 2570</span></div>
+ <span class="deadline-tag tag-eu">EU</span>
+ <div class="deadline-bar"><div class="deadline-bar-fill"></div></div>
+ </div>
+ <div class="deadline-item" data-jump="card-3">
+ <div class="deadline-days"><span class="n">488</span> <span data-en="days">วัน</span></div>
+ <div class="deadline-label" data-en="<b>PPWR</b> — Design-for-Recycling (DfR) delegated act takes effect — <span style=&quot;color:var(--ink-soft)&quot;>Jan 1, 2028</span>"><b>PPWR</b> — Delegated act มาตรฐาน Design-for-Recycling (DfR) มีผลบังคับใช้ — <span style="color:var(--ink-soft)">1 ม.ค. 2571</span></div>
+ <span class="deadline-tag tag-eu">EU</span>
+ <div class="deadline-bar"><div class="deadline-bar-fill"></div></div>
+ </div>
+ </div>
+ </section>
+
  <!-- OVERVIEW TABLE -->
  <section class="overview" id="overviewSection">
  <h2 data-en="📊 Overview of All Laws">📊 ภาพรวมกฎหมายทั้งหมด</h2>
@@ -1270,55 +1321,6 @@
 </tr>
  </tbody>
  </table>
- </div>
- </section>
-
- <!-- DEADLINES -->
- <section class="deadlines">
- <h2 data-en="Upcoming Deadlines">กำหนดการที่ใกล้ถึง</h2>
- <div class="deadline-row">
- <div class="deadline-item urgent">
- <div class="deadline-days"><span class="n">10</span> <span data-en="days">วัน</span></div>
- <div class="deadline-label" data-en="<b>PPWR</b> — EPR harmonisation initiative consultation closes (EU-wide EPR guidance for packaging) — <span style=&quot;color:var(--ink-soft)&quot;>Sep 10, 2026</span>"><b>PPWR</b> — ปิดรับฟังความเห็นร่าง EPR harmonisation initiative (แนวปฏิบัติ EPR บรรจุภัณฑ์ทั่ว EU) — <span style="color:var(--ink-soft)">10 ก.ย. 2569</span></div>
- <span class="deadline-tag tag-eu">EU</span>
- <div class="deadline-bar"><div class="deadline-bar-fill"></div></div>
- </div>
- <div class="deadline-item urgent">
- <div class="deadline-days"><span class="n">27</span> <span data-en="days">วัน</span></div>
- <div class="deadline-label" data-en="<b>EU ECGT</b> — National-level measures take effect — <span style=&quot;color:var(--ink-soft)&quot;>Sep 27, 2026</span>"><b>EU ECGT</b> — มาตรการระดับประเทศสมาชิกเริ่มบังคับใช้จริง — <span style="color:var(--ink-soft)">27 ก.ย. 2569</span></div>
- <span class="deadline-tag tag-eu">EU</span>
- <div class="deadline-bar"><div class="deadline-bar-fill"></div></div>
- </div>
- <div class="deadline-item warn">
- <div class="deadline-days"><span class="n">121</span> <span data-en="days">วัน</span></div>
- <div class="deadline-label" data-en="<b>EUDR</b> — Takes effect for large/medium operators (2nd delay) — <span style=&quot;color:var(--ink-soft)&quot;>Dec 30, 2026</span>"><b>EUDR</b> — บังคับใช้จริงสำหรับผู้ประกอบการรายใหญ่/กลาง (เลื่อนครั้งที่ 2) — <span style="color:var(--ink-soft)">30 ธ.ค. 2569</span></div>
- <span class="deadline-tag tag-eu">EU</span>
- <div class="deadline-bar"><div class="deadline-bar-fill"></div></div>
- </div>
- <div class="deadline-item warn">
- <div class="deadline-days"><span class="n">123</span> <span data-en="days">วัน</span></div>
- <div class="deadline-label" data-en="<b>CORSIA</b> — Mandatory Second Phase begins — <span style=&quot;color:var(--ink-soft)&quot;>Jan 1, 2027</span>"><b>CORSIA</b> — เริ่มระยะภาคบังคับ (Second Phase) — <span style="color:var(--ink-soft)">1 ม.ค. 2570</span></div>
- <span class="deadline-tag tag-global" data-en="Global">สากล</span>
- <div class="deadline-bar"><div class="deadline-bar-fill"></div></div>
- </div>
- <div class="deadline-item warn">
- <div class="deadline-days"><span class="n">154</span> <span data-en="days">วัน</span></div>
- <div class="deadline-label" data-en="<b>CBAM</b> — First actual CBAM certificate trading begins — <span style=&quot;color:var(--ink-soft)&quot;>Feb 1, 2027</span>"><b>CBAM</b> — เริ่มซื้อขายใบรับรอง CBAM (CBAM certificates) จริงเป็นครั้งแรก — <span style="color:var(--ink-soft)">1 ก.พ. 2570</span></div>
- <span class="deadline-tag tag-eu">EU</span>
- <div class="deadline-bar"><div class="deadline-bar-fill"></div></div>
- </div>
- <div class="deadline-item">
- <div class="deadline-days"><span class="n">395</span> <span data-en="days">วัน</span></div>
- <div class="deadline-label" data-en="<b>CBAM</b> — First annual report due (covering 2027 imports) — <span style=&quot;color:var(--ink-soft)&quot;>Sep 30, 2027</span>"><b>CBAM</b> — ยื่นรายงานประจำปีครั้งแรก (ครอบคลุมการนำเข้าปี 2570) — <span style="color:var(--ink-soft)">30 ก.ย. 2570</span></div>
- <span class="deadline-tag tag-eu">EU</span>
- <div class="deadline-bar"><div class="deadline-bar-fill"></div></div>
- </div>
- <div class="deadline-item">
- <div class="deadline-days"><span class="n">488</span> <span data-en="days">วัน</span></div>
- <div class="deadline-label" data-en="<b>PPWR</b> — Design-for-Recycling (DfR) delegated act takes effect — <span style=&quot;color:var(--ink-soft)&quot;>Jan 1, 2028</span>"><b>PPWR</b> — Delegated act มาตรฐาน Design-for-Recycling (DfR) มีผลบังคับใช้ — <span style="color:var(--ink-soft)">1 ม.ค. 2571</span></div>
- <span class="deadline-tag tag-eu">EU</span>
- <div class="deadline-bar"><div class="deadline-bar-fill"></div></div>
- </div>
  </div>
  </section>
 
@@ -3146,6 +3148,14 @@
  });
  }
  paintDeadlineBars();
+
+ // ---- Clicking a deadline item jumps to that law's card ----
+ document.querySelectorAll('.deadline-item[data-jump]').forEach(function(item){
+ item.addEventListener('click', function(){
+ var target = document.getElementById(item.getAttribute('data-jump'));
+ if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
+ });
+ });
 
  // ---- This-week watchlist (built from the deadlines already in the DOM) ----
  function renderWatchlist(){
