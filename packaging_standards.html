@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>มาตรฐานบรรจุภัณฑ์ยั่งยืน — Sustainable Packaging Standards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+ :root{
+ --paper:#F3F4F6;
+ --paper-2:#EEF2FF;
+ --ink:#111827;
+ --ink-soft:#6B7280;
+ --line:#E5E7EB;
+ --gold:#6366F1;
+ --gold-rgb:99,102,241;
+ --th-accent:#6366F1;
+ --th-accent-soft:#E0E7FF;
+ --eu-accent:#14B8A6;
+ --eu-accent-soft:#CCFBF1;
+ --ok:#10B981;
+ --ok-soft:#D1FAE5;
+ --warn:#F59E0B;
+ --warn-soft:#FEF3C7;
+ --urgent:#EF4444;
+ --urgent-rgb:239,68,68;
+ --urgent-soft:#FEE2E2;
+ --asia-accent:#F59E0B;
+ --asia-accent-soft:#FEF3C7;
+ --global-accent:#8B5CF6;
+ --global-accent-soft:#EDE9FE;
+ --pin:#F59E0B;
+ --pin-rgb:245,158,11;
+ --radius:8px;
+ --ease:cubic-bezier(.4,0,.2,1);
+ }
+ *{box-sizing:border-box;}
+ @media (prefers-reduced-motion: no-preference){
+ body{animation:pageIn .5s var(--ease);}
+ }
+ @keyframes pageIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+ @keyframes cardIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+ @keyframes pulseRing{
+ 0%{box-shadow:0 0 0 0 rgba(var(--urgent-rgb),.45);}
+ 70%{box-shadow:0 0 0 9px rgba(var(--urgent-rgb),0);}
+ 100%{box-shadow:0 0 0 0 rgba(var(--urgent-rgb),0);}
+ }
+ @keyframes daysPulse{
+ 0%,100%{color:var(--urgent);}
+ 50%{color:#B91C1C;}
+ }
+ body{
+ margin:0;
+ background:var(--paper);
+ color:var(--ink);
+ font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
+ line-height:1.55;
+ }
+ .wrap{max-width:980px;margin:0 auto;padding:36px 20px 80px;}
+
+ header.masthead{
+ border-bottom:3px solid var(--gold);
+ padding-bottom:18px;
+ margin-bottom:6px;
+ display:flex;
+ justify-content:space-between;
+ align-items:flex-end;
+ flex-wrap:wrap;
+ gap:12px;
+ }
+ header.masthead h1{
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-weight:700;
+ font-size:clamp(28px,4vw,40px);
+ margin:0;
+ letter-spacing:-0.01em;
+ }
+ header.masthead .sub{
+ font-size:13px;
+ color:var(--ink-soft);
+ font-family:'IBM Plex Mono',monospace;
+ text-align:right;
+ }
+ .masthead-strip{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:11px;
+ letter-spacing:0.08em;
+ text-transform:uppercase;
+ color:var(--ink-soft);
+ padding:8px 0 24px;
+ border-bottom:1px solid var(--line);
+ margin-bottom:28px;
+ display:flex;
+ justify-content:space-between;
+ flex-wrap:wrap;
+ gap:8px;
+ }
+
+ /* Deadline strip */
+ .deadlines{
+ margin-bottom:36px;
+ }
+ .deadlines h2{
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-size:15px;
+ font-weight:600;
+ text-transform:uppercase;
+ letter-spacing:0.06em;
+ margin:0 0 12px;
+ color:var(--ink-soft);
+ }
+ .deadline-row{
+ display:flex;
+ flex-direction:column;
+ gap:10px;
+ }
+ .deadline-item{
+ display:grid;
+ grid-template-columns:90px 1fr auto;
+ gap:14px;
+ align-items:center;
+ background:#fff;
+ border:1px solid var(--line);
+ border-left:4px solid var(--ok);
+ border-radius:var(--radius);
+ padding:10px 14px;
+ transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s var(--ease);
+ }
+ .deadline-item:hover{
+ transform:translateY(-1px);
+ box-shadow:0 6px 16px rgba(20,27,43,.07);
+ }
+ .deadline-item.warn{border-left-color:var(--warn);}
+ .deadline-item.urgent{border-left-color:var(--urgent);}
+ .deadline-item.urgent .deadline-days .n{
+ display:inline-block;
+ animation:daysPulse 2.4s ease-in-out infinite;
+ }
+ .deadline-days{
+ font-family:'IBM Plex Mono',monospace;
+ font-weight:600;
+ font-size:13px;
+ color:var(--ink);
+ white-space:nowrap;
+ }
+ .deadline-days .n{font-size:18px;}
+ .deadline-item.urgent .deadline-days{color:var(--urgent);}
+ .deadline-item.warn .deadline-days{color:var(--warn);}
+ .deadline-label{font-size:14px;}
+ .deadline-label b{font-weight:600;}
+ .deadline-tag{
+ font-size:10px;
+ font-family:'IBM Plex Mono',monospace;
+ letter-spacing:0.05em;
+ padding:3px 8px;
+ border-radius:20px;
+ white-space:nowrap;
+ }
+ .tag-th{background:var(--th-accent-soft);color:var(--th-accent);}
+ .tag-eu{background:var(--eu-accent-soft);color:var(--eu-accent);}
+ .tag-asia{background:var(--asia-accent-soft);color:var(--asia-accent);}
+ .tag-global{background:var(--global-accent-soft);color:var(--global-accent);}
+
+ /* Section headers */
+ .section-title{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ margin:44px 0 18px;
+ }
+ .section-title .flag{
+ width:34px;height:34px;
+ border-radius:50%;
+ display:flex;align-items:center;justify-content:center;
+ font-size:15px;
+ color:#fff;
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-weight:600;
+ flex-shrink:0;
+ }
+ .section-title.th .flag{background:var(--th-accent);}
+ .section-title.eu .flag{background:var(--eu-accent);}
+ .section-title.asia .flag{background:var(--asia-accent);}
+ .section-title.global .flag{background:var(--global-accent);}
+ .section-title h2{
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-size:22px;
+ font-weight:700;
+ margin:0;
+ }
+ .section-title .desc{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+
+ /* Law cards */
+ .card{
+ background:#fff;
+ border:1px solid var(--line);
+ border-radius:calc(var(--radius) + 2px);
+ padding:22px 24px 20px;
+ margin-bottom:20px;
+ position:relative;
+ box-shadow:0 1px 2px rgba(20,27,43,.04);
+ transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease);
+ }
+ .card:hover{
+ transform:translateY(-3px);
+ box-shadow:0 12px 28px rgba(20,27,43,.09);
+ border-color:#c3cee0;
+ }
+ .card.card-enter{animation:cardIn .4s var(--ease);}
+ .card-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:flex-start;
+ gap:16px;
+ flex-wrap:wrap;
+ margin-bottom:10px;
+ }
+ .card-head h3{
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-size:18.5px;
+ font-weight:600;
+ margin:0 0 4px;
+ }
+ .card-head .en-name{
+ font-size:12.5px;
+ color:var(--ink-soft);
+ font-style:italic;
+ }
+ .status-pill{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:11px;
+ font-weight:600;
+ padding:5px 12px;
+ border-radius:20px;
+ white-space:nowrap;
+ letter-spacing:0.02em;
+ transition:transform .2s var(--ease);
+ }
+ .card:hover .status-pill{transform:scale(1.04);}
+ .status-progress{background:var(--warn-soft);color:var(--warn);}
+ .status-force{background:var(--ok-soft);color:var(--ok);}
+ .status-urgent{background:var(--urgent-soft);color:var(--urgent);}
+
+ .summary{font-size:14px;margin:8px 0 16px;color:var(--ink);}
+ .summary b{font-weight:600;}
+
+ /* Timeline ribbon */
+ .timeline{
+ margin:18px 0 14px;
+ }
+ .timeline-track{
+ position:relative;
+ height:2px;
+ background:var(--line);
+ margin:0 6px 8px;
+ }
+ .timeline-track .fill{
+ position:absolute;top:0;left:0;height:2px;
+ background:var(--gold);
+ }
+ .timeline-points{
+ display:flex;
+ justify-content:space-between;
+ position:relative;
+ }
+ .tpoint{
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ text-align:center;
+ width:80px;
+ font-size:10.5px;
+ color:var(--ink-soft);
+ font-family:'IBM Plex Mono',monospace;
+ }
+ .tpoint .dot{
+ width:10px;height:10px;
+ border-radius:50%;
+ background:var(--line);
+ border:2px solid #fff;
+ box-shadow:0 0 0 1px var(--line);
+ margin-top:-6px;
+ margin-bottom:6px;
+ }
+ .tpoint.done .dot{background:var(--gold);box-shadow:0 0 0 1px var(--gold);}
+ .tpoint.now .dot{background:var(--urgent);animation:pulseRing 2s infinite;}
+ .tpoint .label{color:var(--ink);font-weight:600;margin-bottom:2px;}
+
+ .meta-grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+ gap:10px 20px;
+ margin-top:14px;
+ padding-top:14px;
+ border-top:1px dashed var(--line);
+ font-size:13px;
+ }
+ .meta-grid .k{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:10.5px;
+ text-transform:uppercase;
+ letter-spacing:0.05em;
+ color:var(--ink-soft);
+ margin-bottom:2px;
+ }
+ .source-note{
+ font-size:11.5px;
+ color:var(--ink-soft);
+ margin-top:14px;
+ }
+ .source-note a{color:var(--ink-soft);}
+
+ footer{
+ margin-top:50px;
+ padding-top:16px;
+ border-top:1px solid var(--line);
+ font-size:11.5px;
+ color:var(--ink-soft);
+ font-family:'IBM Plex Mono',monospace;
+ text-align:center;
+ }
+
+ @media (max-width:600px){
+ .tpoint{width:60px;font-size:9px;}
+ .timeline-points{flex-wrap:nowrap;overflow-x:auto;gap:4px;}
+ }
+
+ /* Toolbar: search + filters */
+ .toolbar{
+ display:flex;
+ flex-wrap:wrap;
+ gap:12px;
+ align-items:center;
+ justify-content:space-between;
+ background:#fff;
+ border:1px solid var(--line);
+ border-radius:var(--radius);
+ padding:14px 16px;
+ margin-bottom:28px;
+ box-shadow:0 1px 3px rgba(20,27,43,.04);
+ }
+ .toolbar .search-box{
+ flex:1 1 220px;
+ position:relative;
+ }
+ .toolbar input[type="search"]{
+ width:100%;
+ font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
+ font-size:13.5px;
+ padding:9px 12px 9px 32px;
+ border:1px solid var(--line);
+ border-radius:var(--radius);
+ background:var(--paper);
+ color:var(--ink);
+ transition:border-color .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease);
+ }
+ .toolbar input[type="search"]:focus{
+ outline:none;
+ border-color:var(--gold);
+ background:#fff;
+ box-shadow:0 0 0 4px rgba(var(--gold-rgb),.14);
+ }
+ .toolbar .search-box::before{
+ content:"⌕";
+ position:absolute;
+ left:10px;top:50%;
+ transform:translateY(-50%);
+ color:var(--ink-soft);
+ font-size:15px;
+ pointer-events:none;
+ transition:color .2s var(--ease);
+ }
+ .toolbar .search-box:focus-within::before{color:var(--gold);}
+ .filter-group{
+ display:flex;
+ flex-wrap:wrap;
+ gap:6px;
+ }
+ .filter-btn{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:10.5px;
+ letter-spacing:0.03em;
+ text-transform:uppercase;
+ padding:6px 12px;
+ border-radius:20px;
+ border:1px solid var(--line);
+ background:var(--paper);
+ color:var(--ink-soft);
+ cursor:pointer;
+ transition:transform .15s var(--ease),background .15s var(--ease),border-color .15s var(--ease),color .15s var(--ease),box-shadow .15s var(--ease);
+ white-space:nowrap;
+ }
+ .filter-btn:hover{border-color:var(--gold);color:var(--ink);transform:translateY(-1px);}
+ .filter-btn:active{transform:translateY(0) scale(.96);}
+ .filter-btn.active{
+ background:var(--gold);
+ border-color:var(--gold);
+ color:#fff;
+ box-shadow:0 4px 10px rgba(99,102,241,.28);
+ }
+ .result-count{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:11px;
+ color:var(--ink-soft);
+ width:100%;
+ order:99;
+ }
+ .empty-state{
+ text-align:center;
+ padding:40px 20px;
+ color:var(--ink-soft);
+ font-size:13.5px;
+ border:1px dashed var(--line);
+ border-radius:var(--radius);
+ background:#fff;
+ display:none;
+ }
+ .card.is-hidden,.section-title.is-hidden{display:none !important;}
+
+ /* Expandable law-details accordion */
+ .law-details{
+ margin-top:16px;
+ border-top:1px dashed var(--line);
+ padding-top:12px;
+ }
+ .law-details summary{
+ cursor:pointer;
+ list-style:none;
+ font-family:'IBM Plex Mono',monospace;
+ font-size:11px;
+ font-weight:600;
+ letter-spacing:0.03em;
+ text-transform:uppercase;
+ color:var(--gold);
+ padding:7px 14px;
+ border:1px solid var(--line);
+ border-radius:20px;
+ display:inline-flex;
+ align-items:center;
+ gap:6px;
+ background:var(--paper);
+ transition:background .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease),transform .15s var(--ease);
+ }
+ .law-details summary::-webkit-details-marker{display:none;}
+ .law-details summary::before{
+ content:"+";
+ font-size:13px;
+ line-height:1;
+ transition:transform .2s var(--ease);
+ }
+ .law-details[open] summary::before{
+ content:"\2212";
+ }
+ .law-details summary:hover{
+ border-color:var(--gold);
+ background:#fff;
+ transform:translateY(-1px);
+ }
+ .law-details[open] summary{
+ background:var(--gold);
+ border-color:var(--gold);
+ color:#fff;
+ }
+ .ld-body{
+ margin-top:14px;
+ animation:cardIn .35s var(--ease);
+ }
+ .ld-asof{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:10.5px;
+ color:var(--ink-soft);
+ margin-bottom:12px;
+ }
+ .ld-sec{
+ background:var(--paper);
+ border:1px solid var(--line);
+ border-radius:var(--radius);
+ padding:14px 16px;
+ margin-bottom:10px;
+ }
+ .ld-sec h4{
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-size:13.5px;
+ font-weight:600;
+ margin:0 0 8px;
+ color:var(--ink);
+ }
+ .ld-sec ul{
+ margin:0;
+ padding-left:18px;
+ font-size:12.5px;
+ line-height:1.6;
+ color:var(--ink);
+ }
+ .ld-sec li{margin-bottom:7px;}
+ .ld-sec li:last-child{margin-bottom:0;}
+ .ld-sec a{color:var(--gold);}
+ .ld-sec[hidden]{display:none;}
+ .ld-tabs{
+ display:flex;
+ flex-wrap:wrap;
+ gap:6px;
+ margin-bottom:12px;
+ }
+ .ld-tab-btn{
+ font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
+ font-size:11.5px;
+ font-weight:600;
+ padding:6px 12px;
+ border-radius:20px;
+ border:1px solid var(--line);
+ background:#fff;
+ color:var(--ink-soft);
+ cursor:pointer;
+ white-space:nowrap;
+ transition:transform .15s var(--ease),background .15s var(--ease),border-color .15s var(--ease),color .15s var(--ease);
+ }
+ .ld-tab-btn:hover{border-color:var(--gold);color:var(--ink);transform:translateY(-1px);}
+ .ld-tab-btn.is-active{
+ background:var(--gold);
+ border-color:var(--gold);
+ color:#fff;
+ }
+ .quick-take{
+ display:flex;
+ align-items:flex-start;
+ gap:8px;
+ font-size:13.5px;
+ font-weight:600;
+ color:var(--ink);
+ background:var(--paper);
+ border-left:3px solid var(--gold);
+ border-radius:4px;
+ padding:9px 12px;
+ margin:10px 0 4px;
+ }
+ .quick-take .qt-icon{flex-shrink:0;font-size:15px;line-height:1.3;}
+ .full-summary{
+ margin-top:8px;
+ }
+ .full-summary summary{
+ cursor:pointer;
+ font-family:'IBM Plex Mono',monospace;
+ font-size:10.5px;
+ color:var(--ink-soft);
+ text-decoration:underline;
+ text-underline-offset:2px;
+ list-style:none;
+ }
+ .full-summary summary::-webkit-details-marker{display:none;}
+ .full-summary summary:hover{color:var(--gold);}
+ .full-summary p.summary{margin-top:8px;}
+
+ /* Overview table */
+ .overview{
+ margin-bottom:36px;
+ }
+ .overview h2{
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-size:15px;
+ font-weight:600;
+ text-transform:uppercase;
+ letter-spacing:0.06em;
+ margin:0 0 12px;
+ color:var(--ink-soft);
+ }
+ .overview-scroll{
+ overflow-x:auto;
+ background:#fff;
+ border:1px solid var(--line);
+ border-radius:var(--radius);
+ box-shadow:0 1px 3px rgba(20,27,43,.04);
+ }
+ .overview-table{
+ width:100%;
+ border-collapse:collapse;
+ font-size:12.5px;
+ min-width:640px;
+ }
+ .overview-table thead th{
+ text-align:left;
+ font-family:'IBM Plex Mono',monospace;
+ font-size:10.5px;
+ text-transform:uppercase;
+ letter-spacing:0.04em;
+ color:var(--ink-soft);
+ background:var(--paper);
+ padding:10px 14px;
+ border-bottom:1px solid var(--line);
+ white-space:nowrap;
+ position:sticky;
+ top:0;
+ }
+ .overview-table td{
+ padding:10px 14px;
+ border-bottom:1px solid var(--line);
+ vertical-align:top;
+ color:var(--ink);
+ }
+ .overview-table tbody tr:last-child td{border-bottom:none;}
+ .overview-table tbody tr:hover{background:var(--paper);}
+ .overview-table tr.is-hidden{display:none;}
+ .ov-name a{
+ color:var(--ink);
+ font-weight:600;
+ text-decoration:none;
+ border-bottom:1px dashed var(--line);
+ transition:color .15s var(--ease),border-color .15s var(--ease);
+ }
+ .ov-name a:hover{color:var(--gold);border-color:var(--gold);}
+ .ov-en{
+ font-size:11px;
+ color:var(--ink-soft);
+ font-style:italic;
+ margin-top:2px;
+ }
+ html{scroll-behavior:smooth;}
+ img.emoji{
+ height:1em;
+ width:1em;
+ margin:0 .05em 0 .1em;
+ vertical-align:-0.15em;
+ }
+ .masthead-right{
+ display:flex;
+ flex-direction:column;
+ align-items:flex-end;
+ gap:10px;
+ }
+ .lang-toggle{
+ display:inline-flex;
+ border:1px solid var(--line);
+ border-radius:20px;
+ padding:2px;
+ background:var(--paper);
+ }
+ .lang-btn{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:11px;
+ font-weight:600;
+ letter-spacing:0.03em;
+ padding:5px 12px;
+ border-radius:18px;
+ border:none;
+ background:transparent;
+ color:var(--ink-soft);
+ cursor:pointer;
+ transition:background .15s var(--ease),color .15s var(--ease);
+ }
+ .lang-btn:hover{color:var(--ink);}
+ .lang-btn.is-active{
+ background:var(--gold);
+ color:#fff;
+ }
+
+ /* ============ Watchlist ============ */
+ .watchlist{
+ margin-bottom:24px;
+ background:linear-gradient(135deg,#EEF2FF 0%,#F0FDFA 100%);
+ border:1px solid var(--line);
+ border-radius:calc(var(--radius) + 4px);
+ padding:16px 20px;
+ }
+ .watchlist h2{
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-size:14.5px;
+ font-weight:600;
+ margin:0 0 12px;
+ color:var(--ink);
+ }
+ .watchlist-row{
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px;
+ }
+ .watchlist-chip{
+ display:flex;
+ align-items:center;
+ gap:8px;
+ background:#fff;
+ border:1px solid var(--line);
+ border-radius:20px;
+ padding:7px 14px 7px 10px;
+ font-size:12.5px;
+ text-decoration:none;
+ color:var(--ink);
+ transition:transform .15s var(--ease),box-shadow .15s var(--ease);
+ }
+ .watchlist-chip:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(20,27,43,.1);}
+ .watchlist-chip .wl-days{
+ font-family:'IBM Plex Mono',monospace;
+ font-weight:700;
+ font-size:11px;
+ padding:3px 8px;
+ border-radius:12px;
+ color:#fff;
+ white-space:nowrap;
+ }
+ .watchlist-empty{font-size:12.5px;color:var(--ink-soft);}
+
+ /* ============ Filter row extras ============ */
+ .more-filters-btn, .clear-filters-btn{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:10.5px;
+ letter-spacing:0.03em;
+ padding:6px 12px;
+ border-radius:20px;
+ border:1px solid var(--line);
+ background:var(--paper);
+ color:var(--ink-soft);
+ cursor:pointer;
+ transition:transform .15s var(--ease),background .15s var(--ease),border-color .15s var(--ease),color .15s var(--ease);
+ white-space:nowrap;
+ }
+ .more-filters-btn:hover, .clear-filters-btn:hover{border-color:var(--gold);color:var(--ink);transform:translateY(-1px);}
+ .more-filters-btn[aria-expanded="true"]{background:var(--gold);border-color:var(--gold);color:#fff;}
+ .clear-filters-btn{display:none;}
+ .clear-filters-btn.is-visible{display:inline-block;}
+ .filter-group-collapsible{width:100%;order:98;padding-top:6px;border-top:1px dashed var(--line);margin-top:2px;}
+ .filter-group-collapsible[hidden]{display:none;}
+
+ /* ============ Pin buttons ============ */
+ .pin-btn{
+ border:none;
+ background:transparent;
+ cursor:pointer;
+ font-size:15px;
+ line-height:1;
+ padding:2px 4px;
+ border-radius:6px;
+ opacity:.4;
+ filter:grayscale(1);
+ transition:opacity .15s var(--ease),filter .15s var(--ease),transform .15s var(--ease);
+ }
+ .pin-btn:hover{opacity:.8;transform:scale(1.12);}
+ .pin-btn.is-pinned{opacity:1;filter:none;}
+ .pin-btn-row{margin-right:2px;vertical-align:middle;}
+ .card.is-pinned{
+ border-color:var(--pin);
+ box-shadow:0 0 0 1px var(--pin),0 8px 20px rgba(var(--pin-rgb),.15);
+ }
+ tr.ov-row.is-pinned{background:rgba(var(--pin-rgb),.08);}
+ tr.ov-row.is-pinned td{font-weight:500;}
+
+ /* ============ Deadline urgency bar ============ */
+ .deadline-bar{
+ grid-column:1 / -1;
+ height:5px;
+ background:var(--line);
+ border-radius:4px;
+ overflow:hidden;
+ margin-top:2px;
+ }
+ .deadline-bar-fill{
+ height:100%;
+ border-radius:4px;
+ transition:width .4s var(--ease);
+ }
+
+ /* ============ Mobile responsive overview table ============ */
+ @media (max-width:640px){
+ .overview-table thead{display:none;}
+ .overview-table, .overview-table tbody, .overview-table tr, .overview-table td{display:block;width:100%;}
+ .overview-table{min-width:0;}
+ .overview-table tr.ov-row{
+ border:1px solid var(--line);
+ border-radius:var(--radius);
+ margin-bottom:10px;
+ padding:10px 12px;
+ background:#fff;
+ }
+ .overview-table tr.ov-row:hover{background:#fff;}
+ .overview-table td{
+ border-bottom:none;
+ padding:5px 0;
+ display:flex;
+ justify-content:space-between;
+ align-items:flex-start;
+ gap:10px;
+ }
+ .overview-table td.ov-name{
+ display:flex;
+ align-items:center;
+ padding-bottom:8px;
+ margin-bottom:6px;
+ border-bottom:1px dashed var(--line);
+ }
+ .overview-table td[data-label]::before{
+ content:attr(data-label);
+ font-family:'IBM Plex Mono',monospace;
+ font-size:10px;
+ text-transform:uppercase;
+ letter-spacing:0.04em;
+ color:var(--ink-soft);
+ flex-shrink:0;
+ padding-top:2px;
+ }
+ .overview-table .status-pill{font-size:10px;padding:3px 9px;}
+ .toolbar{flex-direction:column;align-items:stretch;}
+ .toolbar .search-box{flex:none;width:100%;}
+ .toolbar .result-count{order:99;width:100%;}
+ .toolbar .filter-group-collapsible{order:97;}
+ }
+
+ /* ---- SIDEBAR NAV ---- */
+ .side-nav-toggle{
+ position:fixed;
+ top:18px;
+ left:18px;
+ z-index:40;
+ background:var(--ink);
+ color:#fff;
+ border:none;
+ border-radius:999px;
+ padding:9px 16px 9px 14px;
+ font-family:inherit;
+ font-size:13px;
+ font-weight:600;
+ letter-spacing:.2px;
+ cursor:pointer;
+ box-shadow:0 4px 14px rgba(20,27,43,.28);
+ transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .18s var(--ease);
+ }
+ .side-nav-toggle:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(20,27,43,.34);background:var(--gold);}
+ .side-nav-toggle.is-active{background:var(--gold);}
+ .side-nav-overlay{
+ position:fixed;inset:0;
+ background:rgba(20,27,43,.42);
+ backdrop-filter:blur(1px);
+ z-index:45;
+ animation:fadeIn .18s var(--ease);
+ }
+ @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+ .side-nav{
+ position:fixed;
+ top:0;left:0;
+ height:100vh;
+ width:290px;
+ max-width:86vw;
+ background:#fff;
+ border-right:1px solid var(--line);
+ box-shadow:6px 0 24px rgba(20,27,43,.16);
+ z-index:46;
+ transform:translateX(-102%);
+ transition:transform .28s var(--ease);
+ display:flex;
+ flex-direction:column;
+ }
+ .side-nav.is-open{transform:translateX(0);}
+ .side-nav-head{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:16px 18px;
+ border-bottom:2px solid var(--ink);
+ font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-weight:600;
+ font-size:17px;
+ flex-shrink:0;
+ }
+ .side-nav-close{
+ background:none;
+ border:none;
+ font-size:22px;
+ line-height:1;
+ color:var(--ink-soft);
+ cursor:pointer;
+ padding:2px 6px;
+ border-radius:6px;
+ transition:background .15s var(--ease),color .15s var(--ease);
+ }
+ .side-nav-close:hover{background:var(--paper-2);color:var(--ink);}
+ .side-nav-body{
+ overflow-y:auto;
+ padding:14px 16px 32px;
+ flex:1;
+ }
+ .side-top-link{
+ display:block;
+ padding:9px 10px;
+ border-radius:8px;
+ font-size:13.5px;
+ font-weight:600;
+ color:var(--ink);
+ text-decoration:none;
+ transition:background .15s var(--ease);
+ }
+ .side-top-link:hover{background:var(--paper-2);}
+ .side-divider{height:1px;background:var(--line);margin:12px 2px 14px;}
+ .side-group{margin-bottom:16px;}
+ .side-group-title{
+ font-size:11.5px;
+ font-weight:700;
+ letter-spacing:.4px;
+ text-transform:uppercase;
+ color:#fff;
+ display:inline-block;
+ padding:3px 10px;
+ border-radius:999px;
+ margin-bottom:8px;
+ }
+ .side-group-title.th{background:var(--th-accent);}
+ .side-group-title.eu{background:var(--eu-accent);}
+ .side-group-title.asia{background:var(--asia-accent);}
+ .side-group-title.global{background:var(--global-accent);}
+ .side-list{list-style:none;margin:0;padding:0;}
+ .side-list li{margin:0;}
+ .side-link{
+ display:block;
+ padding:7px 10px 7px 14px;
+ margin:1px 0;
+ border-left:2px solid transparent;
+ font-size:13px;
+ color:var(--ink-soft);
+ text-decoration:none;
+ border-radius:0 6px 6px 0;
+ transition:background .15s var(--ease),color .15s var(--ease),border-color .15s var(--ease);
+ }
+ .side-link:hover{background:var(--paper-2);color:var(--ink);}
+ .side-link.is-current{
+ color:var(--ink);
+ font-weight:600;
+ background:var(--paper-2);
+ border-left-color:var(--gold);
+ }
+ body.side-nav-locked{overflow:hidden;}
+ @media (max-width:640px){
+ .side-nav-toggle{padding:8px 13px 8px 11px;font-size:12px;top:12px;left:12px;}
+ }
+
+ /* ---- Detail-view button (per card) + Law detail modal ---- */
+ .detail-view-btn{
+ display:inline-flex;
+ align-items:center;
+ gap:6px;
+ margin:2px 0 4px;
+ padding:7px 14px;
+ font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
+ font-size:12.5px;
+ font-weight:600;
+ color:var(--gold);
+ background:#fff;
+ border:1px solid var(--gold);
+ border-radius:var(--radius);
+ cursor:pointer;
+ transition:background .15s var(--ease),color .15s var(--ease),transform .15s var(--ease),box-shadow .15s var(--ease);
+ }
+ .detail-view-btn:hover{background:var(--gold);color:#fff;transform:translateY(-1px);box-shadow:0 4px 10px rgba(var(--gold-rgb),.28);}
+ .detail-view-btn:active{transform:translateY(0);}
+
+ .law-modal-overlay{
+ position:fixed;inset:0;
+ background:rgba(17,24,39,.5);
+ backdrop-filter:blur(1px);
+ z-index:60;
+ animation:fadeIn .18s var(--ease);
+ }
+ .law-modal{
+ position:fixed;
+ top:4vh;left:50%;
+ transform:translateX(-50%);
+ width:min(720px,92vw);
+ max-height:92vh;
+ background:#fff;
+ border-radius:12px;
+ box-shadow:0 24px 60px rgba(17,24,39,.28);
+ z-index:61;
+ display:flex;
+ flex-direction:column;
+ animation:modalIn .22s var(--ease);
+ }
+ .law-modal[hidden],.law-modal-overlay[hidden]{display:none;}
+ @keyframes modalIn{from{opacity:0;transform:translateX(-50%) translateY(10px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+ .law-modal-close{
+ position:absolute;
+ top:10px;right:12px;
+ width:32px;height:32px;
+ border:none;
+ background:var(--paper);
+ color:var(--ink-soft);
+ border-radius:50%;
+ font-size:20px;
+ line-height:1;
+ cursor:pointer;
+ z-index:2;
+ transition:background .15s var(--ease),color .15s var(--ease);
+ }
+ .law-modal-close:hover{background:var(--line);color:var(--ink);}
+ .law-modal-body{
+ overflow-y:auto;
+ padding:50px 26px 26px;
+ }
+ .law-modal-body .card-head{margin-bottom:10px;}
+ .law-modal-body .detail-view-btn{display:none;}
+ .law-modal-body .law-details{
+ border-top:none;
+ }
+ .law-modal-body .law-details summary{display:none;}
+ .law-modal-body .ld-body{margin-top:0;animation:none;}
+ body.law-modal-open{overflow:hidden;}
+ @media (max-width:640px){
+ .law-modal{top:0;left:0;transform:none;width:100%;max-height:100%;height:100%;border-radius:0;}
+ @keyframes modalIn{from{opacity:0;}to{opacity:1;}}
+ }
+
+ .cross-link-btn{
+ display:inline-flex;
+ align-items:center;
+ gap:6px;
+ background:var(--ink);
+ color:#fff;
+ font-family:'IBM Plex Mono',monospace;
+ font-size:12px;
+ font-weight:600;
+ letter-spacing:.02em;
+ text-decoration:none;
+ padding:8px 16px;
+ border-radius:999px;
+ box-shadow:0 4px 12px rgba(17,24,39,.22);
+ transition:background .15s var(--ease),transform .15s var(--ease),box-shadow .15s var(--ease);
+ }
+ .cross-link-btn:hover{background:var(--gold);transform:translateY(-1px);box-shadow:0 6px 16px rgba(var(--gold-rgb),.32);}
+ .masthead-right .cross-link-btn{margin-bottom:8px;}
+ .side-cross-link{
+ background:var(--paper-2);
+ border:1px solid var(--line);
+ border-radius:var(--radius);
+ margin-top:4px;
+ }
+ .side-cross-link:hover{background:var(--gold);color:#fff;}
+ .status-stable{background:var(--line);color:var(--ink-soft);}
+/* ===== Reference-table styling for this page (extends MiniDash system) ===== */
+.std-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:640px;}
+.std-table thead th{text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);background:var(--paper);padding:10px 14px;border-bottom:1px solid var(--line);}
+.std-table td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink);}
+.std-table tbody tr:last-child td{border-bottom:none;}
+.std-table tbody tr:hover{background:var(--paper);}
+.std-table tr.is-hidden{display:none;}
+.std-table .std-name{font-weight:600;font-family:'Inter','IBM Plex Sans Thai',sans-serif;}
+.std-table .std-cert{font-size:11.5px;}
+.table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 1px 3px rgba(20,27,43,.04);margin-bottom:18px;}
+.subgroup-title{font-family:'Inter','IBM Plex Sans Thai',sans-serif;font-size:14px;font-weight:600;margin:28px 0 10px;display:flex;align-items:center;gap:8px;}
+.subgroup-title .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.subgroup-title.cat-compost .dot{background:var(--th-accent);}
+.subgroup-title.cat-recycled .dot{background:var(--eu-accent);}
+.notes-box{background:#fff;border:1px solid var(--line);border-radius:calc(var(--radius) + 2px);padding:20px 22px;margin:20px 0 40px;box-shadow:0 1px 2px rgba(20,27,43,.04);}
+.notes-box h3{font-family:'Inter','IBM Plex Sans Thai',sans-serif;font-size:14.5px;font-weight:600;margin:0 0 12px;}
+.notes-box ol{margin:0;padding-left:20px;font-size:13px;line-height:1.7;}
+.notes-box li{margin-bottom:10px;}
+.notes-box li:last-child{margin-bottom:0;}
+.update-box{background:linear-gradient(135deg,#FEF3C7 0%,#FEE2E2 100%);border:1px solid var(--warn);border-radius:calc(var(--radius) + 4px);padding:16px 20px;margin-bottom:28px;}
+.update-box h2{font-family:'Inter','IBM Plex Sans Thai',sans-serif;font-size:14.5px;font-weight:700;margin:0 0 12px;color:var(--ink);}
+.update-item{display:flex;gap:10px;align-items:flex-start;font-size:13px;margin-bottom:10px;background:#fff;border-radius:var(--radius);padding:10px 12px;border:1px solid rgba(0,0,0,.05);}
+.update-item:last-child{margin-bottom:0;}
+.update-item b{font-weight:600;}
+.update-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;background:var(--warn);color:#fff;padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0;margin-top:2px;}
+.appendix-table td a{color:var(--gold);text-decoration:none;border-bottom:1px dashed var(--gold);}
+.appendix-table td a:hover{color:var(--ink);}
+.intro-note{font-size:13.5px;color:var(--ink-soft);margin:0 0 28px;max-width:760px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<!-- SIDEBAR NAV -->
+<button type="button" id="sideNavToggle" class="side-nav-toggle" aria-label="เปิดสารบัญ" aria-expanded="false" data-en="&#9776; Contents">&#9776; สารบัญ</button>
+<div id="sideNavOverlay" class="side-nav-overlay" hidden></div>
+<nav id="sideNav" class="side-nav" aria-label="สารบัญนำทาง">
+<div class="side-nav-head">
+<span data-en="Contents">สารบัญ</span>
+<button type="button" id="sideNavClose" class="side-nav-close" aria-label="ปิดสารบัญ">&times;</button>
+</div>
+<div class="side-nav-body">
+<a href="#updatesSection" class="side-top-link" data-en="🔔 Recent Updates">🔔 อัปเดตล่าสุด</a>
+<a href="index.html" class="side-top-link side-cross-link" data-en="⚖️ View ESG Law Tracker">⚖️ ดูหน้ากฎหมาย ESG</a>
+<a href="sustainability_standards.html" class="side-top-link side-cross-link" data-en="🌱 View Sustainability Standards">🌱 ดูหน้ามาตรฐานความยั่งยืน</a>
+<div class="side-divider"></div>
+<div class="side-group">
+<div class="side-group-title th" data-en="Compostable / Biodegradable">ย่อยสลายได้ / หมักปุ๋ยได้</div>
+<ul class="side-list">
+<li><a href="#grp-industrial" class="side-link" data-en="Industrial Composting">การหมักปุ๋ยระดับอุตสาหกรรม</a></li>
+<li><a href="#grp-home" class="side-link" data-en="Home Composting">การหมักปุ๋ยในครัวเรือน</a></li>
+<li><a href="#grp-marine" class="side-link" data-en="Marine / Aquatic">สิ่งแวดล้อมทางทะเล</a></li>
+<li><a href="#grp-soil" class="side-link" data-en="Soil Environment">สิ่งแวดล้อมในดิน</a></li>
+<li><a href="#grp-anaerobic" class="side-link" data-en="Anaerobic Digestion (Biogas)">การย่อยสลายแบบไม่ใช้ออกซิเจน (ไบโอแก๊ส)</a></li>
+<li><a href="#notes-compost" class="side-link" data-en="Notes for Internal Use">หมายเหตุการใช้งานภายใน</a></li>
+</ul>
+</div>
+<div class="side-group">
+<div class="side-group-title eu" data-en="Recycled Plastics (PCR / PIR)">พลาสติกรีไซเคิล (PCR / PIR)</div>
+<ul class="side-list">
+<li><a href="#grp-def" class="side-link" data-en="Definitions">คำนิยาม</a></li>
+<li><a href="#grp-trace" class="side-link" data-en="Traceability / Chain-of-Custody">การตรวจสอบย้อนกลับ</a></li>
+<li><a href="#grp-cert" class="side-link" data-en="Certification / Labeling Schemes">การรับรอง / ฉลาก</a></li>
+<li><a href="#grp-mass" class="side-link" data-en="Mass Balance / Chemical Recycling">Mass Balance / การรีไซเคิลเชิงเคมี</a></li>
+<li><a href="#notes-recycled" class="side-link" data-en="Notes for Internal Use">หมายเหตุการใช้งานภายใน</a></li>
+</ul>
+</div>
+<div class="side-group">
+<div class="side-group-title global" data-en="Appendix">ภาคผนวก</div>
+<ul class="side-list">
+<li><a href="#appendix" class="side-link" data-en="Official Websites by Standard">เว็บไซต์ทางการของแต่ละมาตรฐาน</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<header class="masthead">
+<h1 data-en="Sustainable Packaging Standards">มาตรฐานบรรจุภัณฑ์ยั่งยืน</h1>
+<div class="masthead-right">
+<div class="sub" data-en="<a href=&quot;index.html&quot; class=&quot;cross-link-btn&quot;>⚖️ View ESG Law Tracker</a> <a href=&quot;sustainability_standards.html&quot; class=&quot;cross-link-btn&quot;>🌱 View Sustainability Standards</a><br>Compostable/biodegradable + PCR/PIR recycled-content reference<br>Last updated: September 4, 2026"><a href="index.html" class="cross-link-btn">⚖️ ดูหน้ากฎหมาย ESG</a> <a href="sustainability_standards.html" class="cross-link-btn">🌱 ดูหน้ามาตรฐานความยั่งยืน</a><br>อ้างอิงมาตรฐานพลาสติกย่อยสลายได้ + ปริมาณรีไซเคิล (PCR/PIR)<br>ปรับปรุงล่าสุด: 4 กันยายน 2569</div>
+<div class="lang-toggle" id="langToggle" role="group" aria-label="Language">
+<button type="button" class="lang-btn is-active" data-lang="th">TH</button>
+<button type="button" class="lang-btn" data-lang="en">EN</button>
+</div>
+</div>
+</header>
+<div class="masthead-strip">
+<span data-en="12 standards — Compostable / Biodegradable">12 มาตรฐาน — ย่อยสลายได้/หมักปุ๋ยได้</span>
+<span data-en="13 standards/schemes — Recycled Content (PCR/PIR)">13 มาตรฐาน/ระบบ — ปริมาณรีไซเคิล (PCR/PIR)</span>
+<span data-en="Reference for Packaging / R&amp;D knowledge sharing">อ้างอิงสำหรับทีม Packaging / R&amp;D</span>
+<span data-en="Today: 04 SEP 2026">วันนี้: 04 SEP 2026</span>
+</div>
+
+<p class="intro-note" data-en="This page is a data reference — not a regulatory tracker. It compiles international and Thai standards, test methods, pass criteria, and certification labels for compostable/biodegradable plastics and PCR/PIR recycled plastics, based on Kao's internal Packaging/R&amp;D reference table plus a September 2026 update check.">หน้านี้เน้นให้ข้อมูลอ้างอิงเป็นหลัก ไม่ใช่หน้าติดตามกฎหมาย รวบรวมมาตรฐานสากลและมาตรฐานไทย วิธีทดสอบ เกณฑ์ผ่าน และฉลากรับรอง สำหรับพลาสติกย่อยสลายได้/หมักปุ๋ยได้ และพลาสติกรีไซเคิล PCR/PIR โดยอ้างอิงจากตารางอ้างอิงภายในของทีม Packaging/R&amp;D ร่วมกับการตรวจสอบความทันสมัยเพิ่มเติม ณ เดือนกันยายน 2569</p>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+<div class="search-box">
+<input type="search" id="stdSearch" placeholder="ค้นหาชื่อมาตรฐาน, หน่วยงาน, คำสำคัญ..." data-en-placeholder="Search standard name, issuing body, keyword...">
+</div>
+<div class="filter-group" id="catFilter">
+<button class="filter-btn active" data-cat="all" data-en="All">ทั้งหมด</button>
+<button class="filter-btn" data-cat="compost" data-en="Compostable / Biodegradable">ย่อยสลายได้/หมักปุ๋ยได้</button>
+<button class="filter-btn" data-cat="recycled" data-en="Recycled Content (PCR/PIR)">ปริมาณรีไซเคิล (PCR/PIR)</button>
+</div>
+<div class="result-count" id="resultCount"></div>
+</div>
+
+<!-- RECENT UPDATES -->
+<section class="update-box" id="updatesSection">
+<h2 data-en="🔔 Updates found beyond the reference file (checked September 4, 2026)">🔔 อัปเดตที่พบเพิ่มเติมนอกเหนือจากไฟล์อ้างอิงเดิม (ตรวจสอบ ณ 4 ก.ย. 2569)</h2>
+<div class="update-item"><span class="update-tag" data-en="NEW">ใหม่</span><span data-en="<b>GRS / RCS (Textile Exchange)</b> — Both standards are transitioning to a new combined <b>Materials Matter Standard</b>. New criteria were released Dec 12, 2025; they become effective Dec 31, 2026 and mandatory from Dec 31, 2027. Current GRS 4.0 / RCS 2.0 (issued 2017) remain valid until then — but suppliers citing GRS/RCS should be told this transition is coming. <i>Source: Textile Exchange, retrieved Sep 4, 2026.</i>"><b>GRS / RCS (Textile Exchange)</b> — ทั้งสองมาตรฐานกำลังเปลี่ยนผ่านไปเป็นมาตรฐานรวมใหม่ <b>Materials Matter Standard</b> เกณฑ์ใหม่เผยแพร่แล้วเมื่อ 12 ธ.ค. 2568 มีผลบังคับใช้ 31 ธ.ค. 2569 และบังคับใช้เต็มรูปแบบ 31 ธ.ค. 2570 — GRS 4.0 / RCS 2.0 ฉบับปัจจุบัน (ออกปี 2560) ยังใช้ได้จนถึงตอนนั้น แต่ควรแจ้ง supplier ที่อ้างอิง GRS/RCS ให้ทราบล่วงหน้าถึงการเปลี่ยนผ่านนี้ <i>แหล่งที่มา: Textile Exchange สืบค้นเมื่อ 4 ก.ย. 2569</i></span></div>
+<div class="update-item"><span class="update-tag" data-en="NEW">ใหม่</span><span data-en="<b>ISCC PLUS</b> — Version 4.2 took effect October 2026. For food-grade mass-balance applications it now requires separate silos and physical segregation at the final extruder rather than pure accounting allocation; non-food applications gained &quot;credit pooling&quot; across a company's European network. A further v5.0 (expected Q2 2028) is planned to close food-grade mass balance further and tighten chemical-recycling (pyrolysis) book-allocation. <i>Source: ISCC System / industry analysis, retrieved Sep 4, 2026.</i>"><b>ISCC PLUS</b> — เวอร์ชัน 4.2 มีผลบังคับใช้ตั้งแต่ ต.ค. 2569 สำหรับการใช้งาน food-grade แบบ mass-balance กำหนดให้ต้องมีไซโลแยกและแยกกายภาพที่ extruder สุดท้าย แทนการปันส่วนทางบัญชีอย่างเดียว ส่วนการใช้งาน non-food ได้รับอนุญาตให้ทำ &quot;credit pooling&quot; ข้ามเครือข่ายในยุโรปของบริษัทได้ ส่วนเวอร์ชัน 5.0 (คาดการณ์ไตรมาส 2 ปี 2571) จะเข้มงวดเรื่อง mass balance สำหรับ food-grade และการปันส่วนทางบัญชีของการรีไซเคิลเชิงเคมี (pyrolysis) มากขึ้น <i>แหล่งที่มา: ISCC System และบทวิเคราะห์อุตสาหกรรม สืบค้นเมื่อ 4 ก.ย. 2569</i></span></div>
+<div class="update-item"><span class="update-tag" data-en="CONFIRMED">ยืนยันแล้ว</span><span data-en="<b>EU PPWR</b> recycled-content minimums (relevant to the RecyClass/ISCC PLUS rows below) take effect Jan 1, 2030: 30% for contact-sensitive PET packaging, 10% for other contact-sensitive plastic packaging, 30% for single-use plastic beverage bottles. <i>Source: PPWR (EU) 2025/40, retrieved Sep 4, 2026.</i>"><b>EU PPWR</b> เกณฑ์ขั้นต่ำปริมาณรีไซเคิล (เกี่ยวข้องกับแถว RecyClass/ISCC PLUS ด้านล่าง) มีผลบังคับใช้ 1 ม.ค. 2573: PET ที่สัมผัสอาหาร 30%, พลาสติกที่สัมผัสอาหารประเภทอื่น 10%, ขวดเครื่องดื่มพลาสติกใช้ครั้งเดียว 30% <i>แหล่งที่มา: PPWR (EU) 2025/40 สืบค้นเมื่อ 4 ก.ย. 2569</i></span></div>
+<div class="update-item"><span class="update-tag" data-en="STABLE">ไม่เปลี่ยนแปลง</span><span data-en="EN 13432, ASTM D6400, ISO 17088 and มอก. 17088-2555 (industrial composting) show no evidence of an active revision as of Sep 4, 2026 — the pass criteria in the table below remain current.">EN 13432, ASTM D6400, ISO 17088 และ มอก. 17088-2555 (การหมักปุ๋ยระดับอุตสาหกรรม) ยังไม่พบหลักฐานว่ามีการทบทวนฉบับใหม่ ณ วันที่ 4 ก.ย. 2569 — เกณฑ์ผ่านในตารางด้านล่างยังคงเป็นปัจจุบัน</span></div>
+</section>
+
+<!-- ================= SECTION A: COMPOSTABLE / BIODEGRADABLE ================= -->
+<div class="section-title th">
+<div class="flag">🌿</div>
+<div>
+<h2 data-en="Compostable / Biodegradable Plastics">พลาสติกย่อยสลายได้ / หมักปุ๋ยได้</h2>
+<div class="desc" data-en="International + Thai standards for industrial composting, home composting, marine, soil and anaerobic digestion">มาตรฐานสากลและมาตรฐานไทย สำหรับการหมักปุ๋ยอุตสาหกรรม การหมักปุ๋ยในครัวเรือน สิ่งแวดล้อมทางทะเล ดิน และการย่อยสลายแบบไม่ใช้ออกซิเจน</div>
+</div>
+</div>
+
+<div class="subgroup-title cat-compost" id="grp-industrial"><span class="dot"></span><span data-en="Industrial Composting">การหมักปุ๋ยระดับอุตสาหกรรม</span></div>
+<div class="table-wrap"><table class="std-table" data-group="industrial">
+<thead><tr>
+<th data-en="Standard">มาตรฐาน</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Test Method (Key Principle)">วิธีทดสอบ (หลักการหลัก)</th><th data-en="Pass Criteria (Summary)">เกณฑ์ผ่าน (สรุป)</th><th data-en="Certification Label">ฉลากรับรอง</th>
+</tr></thead>
+<tbody>
+<tr data-cat="compost" data-name="EN 13432 CEN Europe seedling ok compost tuv austria">
+<td class="std-name">EN 13432</td><td>Europe (EU)</td>
+<td>CO2 evolution test (respirometric); disintegration test in pilot-scale compost; ecotoxicity on plants; heavy metal limits</td>
+<td>≥90% biodegradation within 6 months; ≤10% residue &gt;2mm after 12 weeks; no adverse effect on plant growth</td>
+<td class="std-cert">Seedling / OK Compost INDUSTRIAL (TÜV Austria)</td>
+</tr>
+<tr data-cat="compost" data-name="ASTM D6400 United States BPI biodegradable products institute">
+<td class="std-name">ASTM D6400</td><td>United States</td>
+<td>Same principle as EN 13432 — CO2 evolution + disintegration + ecotoxicity, adapted to US test protocols</td>
+<td>≥90% biodegradation within 180 days; ≤10% residue &gt;2mm after 12 weeks</td>
+<td class="std-cert">BPI (Biodegradable Products Institute) Certified</td>
+</tr>
+<tr data-cat="compost" data-name="ISO 17088 international harmonized">
+<td class="std-name">ISO 17088</td><td>International (ISO)</td>
+<td>Harmonized international version aligning with EN 13432 / ASTM D6400 methodology</td>
+<td>Same core criteria as EN 13432 (≥90% biodegradation, disintegration, ecotoxicity)</td>
+<td class="std-cert">Used as base reference by many national standards, incl. Thai TIS/มอก.</td>
+</tr>
+<tr data-cat="compost" data-name="มอก. 17088-2555 Thailand TISI สมอ GC compostable">
+<td class="std-name">มอก. 17088-2555</td><td>Thailand (TISI / สมอ.)</td>
+<td>Thai national standard, developed by TISI (สมอ.) with สนช. (NIA), adapted directly from ISO 17088:2008. Covers both bio-based (PLA, PHA, PHB, PHV) and petro-based (PCL, PBS, PBAT) compostable plastics</td>
+<td>≥90% carbon converted to CO2 within 180 days; disintegration + ecotoxicity criteria aligned with ISO 17088 / EN 13432</td>
+<td class="std-cert">No dedicated government eco-label yet; private label "GC Compostable" (PTT Global Chemical) is the label Thai consumers most commonly recognize</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="subgroup-title cat-compost" id="grp-home"><span class="dot"></span><span data-en="Home Composting">การหมักปุ๋ยในครัวเรือน</span></div>
+<div class="table-wrap"><table class="std-table" data-group="home">
+<thead><tr>
+<th data-en="Standard">มาตรฐาน</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Test Method (Key Principle)">วิธีทดสอบ (หลักการหลัก)</th><th data-en="Pass Criteria (Summary)">เกณฑ์ผ่าน (สรุป)</th><th data-en="Certification Label">ฉลากรับรอง</th>
+</tr></thead>
+<tbody>
+<tr data-cat="compost" data-name="AS 5810 Australia OK compost home tuv austria">
+<td class="std-name">AS 5810</td><td>Australia</td>
+<td>Biodegradation and disintegration tested at ambient (~20-30°C) conditions rather than industrial (~58°C)</td>
+<td>≥90% biodegradation within 12 months; disintegration within 6 months</td>
+<td class="std-cert">OK Compost HOME (TÜV Austria)</td>
+</tr>
+<tr data-cat="compost" data-name="NF T51-800 France OK compost home tuv austria">
+<td class="std-name">NF T51-800</td><td>France</td>
+<td>Similar ambient-condition methodology to AS 5810</td>
+<td>≥90% biodegradation within 12 months</td>
+<td class="std-cert">OK Compost HOME (TÜV Austria)</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="subgroup-title cat-compost" id="grp-marine"><span class="dot"></span><span data-en="Marine / Aquatic Environment">สิ่งแวดล้อมทางทะเล</span></div>
+<div class="table-wrap"><table class="std-table" data-group="marine">
+<thead><tr>
+<th data-en="Standard">มาตรฐาน</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Test Method (Key Principle)">วิธีทดสอบ (หลักการหลัก)</th><th data-en="Pass Criteria (Summary)">เกณฑ์ผ่าน (สรุป)</th><th data-en="Certification Label">ฉลากรับรอง</th>
+</tr></thead>
+<tbody>
+<tr data-cat="compost" data-name="ASTM D6691 United States marine seawater ok biodegradable">
+<td class="std-name">ASTM D6691</td><td>United States (seawater, lab simulation)</td>
+<td>Respirometric test measuring biodegradation in seawater inoculum under controlled lab conditions</td>
+<td>No fixed universal % — reported as biodegradation curve; often referenced at ≥30% in 6 months by some brand-owner programs</td>
+<td class="std-cert">OK Biodegradable MARINE (TÜV Austria) — limited global recognition</td>
+</tr>
+<tr data-cat="compost" data-name="ISO 22403 international marine seawater emerging">
+<td class="std-name">ISO 22403</td><td>International (ISO)</td>
+<td>International equivalent of ASTM D6691, standardizing seawater biodegradation testing</td>
+<td>Reports biodegradation % and disintegration; no single global pass/fail threshold yet</td>
+<td class="std-cert">Same as above — still an emerging area, not yet a mainstream requirement</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="subgroup-title cat-compost" id="grp-soil"><span class="dot"></span><span data-en="Soil Environment">สิ่งแวดล้อมในดิน</span></div>
+<div class="table-wrap"><table class="std-table" data-group="soil">
+<thead><tr>
+<th data-en="Standard">มาตรฐาน</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Test Method (Key Principle)">วิธีทดสอบ (หลักการหลัก)</th><th data-en="Pass Criteria (Summary)">เกณฑ์ผ่าน (สรุป)</th><th data-en="Certification Label">ฉลากรับรอง</th>
+</tr></thead>
+<tbody>
+<tr data-cat="compost" data-name="ISO 17556 international soil mulch film agricultural">
+<td class="std-name">ISO 17556</td><td>International (ISO)</td>
+<td>Respirometric measurement of biodegradation in soil under controlled temperature/moisture</td>
+<td>Biodegradation % reported against reference material (e.g. cellulose); no single universal cutoff</td>
+<td class="std-cert">Used mainly for mulch film / agricultural applications</td>
+</tr>
+<tr data-cat="compost" data-name="ASTM D5988 United States soil agricultural USDA biopreferred">
+<td class="std-name">ASTM D5988</td><td>United States</td>
+<td>Similar soil respirometric method, used for agricultural / mulch film products</td>
+<td>Biodegradation % vs. reference material over defined test period</td>
+<td class="std-cert">Referenced by USDA BioPreferred and agri-film programs</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="subgroup-title cat-compost" id="grp-anaerobic"><span class="dot"></span><span data-en="Anaerobic Digestion (Biogas)">การย่อยสลายแบบไม่ใช้ออกซิเจน (ไบโอแก๊ส)</span></div>
+<div class="table-wrap"><table class="std-table" data-group="anaerobic">
+<thead><tr>
+<th data-en="Standard">มาตรฐาน</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Test Method (Key Principle)">วิธีทดสอบ (หลักการหลัก)</th><th data-en="Pass Criteria (Summary)">เกณฑ์ผ่าน (สรุป)</th><th data-en="Certification Label">ฉลากรับรอง</th>
+</tr></thead>
+<tbody>
+<tr data-cat="compost" data-name="ISO 15985 international anaerobic digestion biogas high solids">
+<td class="std-name">ISO 15985</td><td>International (ISO)</td>
+<td>Measures biogas (CH4/CO2) evolution under anaerobic conditions simulating biogas plants (high-solids)</td>
+<td>≥50% biodegradation within 60 days (typical benchmark used in biogas facility contexts)</td>
+<td class="std-cert">No widely-used consumer label; mainly technical compliance</td>
+</tr>
+<tr data-cat="compost" data-name="ASTM D5511 United States anaerobic digestion biogas high solids">
+<td class="std-name">ASTM D5511</td><td>United States (high-solids)</td>
+<td>US equivalent methodology to ISO 15985</td>
+<td>Similar biogas-based biodegradation threshold, facility-dependent</td>
+<td class="std-cert">No widely-used consumer label</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="notes-box" id="notes-compost">
+<h3 data-en="Notes for Internal Use — Compostable / Biodegradable">หมายเหตุการใช้งานภายใน — พลาสติกย่อยสลายได้/หมักปุ๋ยได้</h3>
+<ol>
+<li>"Compostable" and "Biodegradable" are NOT the same thing: Biodegradable = will break down by microbial action eventually, no fixed timeframe or environment specified. Compostable = biodegrades AND disintegrates within a defined time, under defined conditions (e.g. industrial compost), verified by a formal standard.</li>
+<li>Most consumer-facing claims are based on Industrial Composting standards (EN 13432 / ASTM D6400 / ISO 17088) — these require industrial composting facilities (~58°C, controlled humidity), which are NOT widely available in Thailand.</li>
+<li>Home compostable standards (AS 5810, NF T51-800) are stricter in one sense: they must work at lower, uncontrolled ambient temperatures — much harder to achieve for rigid/thick plastics.</li>
+<li>Marine and soil biodegradation standards are still developing — there is no single globally-agreed pass/fail threshold yet, unlike industrial composting which is well-established.</li>
+<li>Certification labels (Seedling, BPI, OK Compost, TÜV Austria) are third-party verification marks — a product can technically pass lab tests without holding one of these labels, but the label gives external credibility.</li>
+<li>Key takeaway for packaging decisions: choosing a "compostable" material only solves end-of-life IF the corresponding collection/composting infrastructure exists where the product is sold. Otherwise the material typically still ends up in landfill or general waste, same as conventional plastic.</li>
+<li>Thailand's own standard is มอก. 17088-2555, issued by TISI (สมอ.) together with NIA (สนช.), adapted directly from ISO 17088:2008 — same core pass criteria as EN 13432 / ASTM D6400 (≥90% biodegradation as CO2 within 180 days, plus disintegration and ecotoxicity tests).</li>
+<li>There is no government eco-label tied to มอก. 17088 that consumers commonly recognize yet. In practice, the label Thai consumers see most often is "GC Compostable", a private certification/label run by PTT Global Chemical (GC) — brand owners in Thailand typically reference GC Compostable alongside (or instead of) citing the มอก. number directly on packaging.</li>
+<li>Caution: มอก. 17088 (and ISO 17088/EN13432/ASTM D6400 generally) certifies genuine compostable plastics — this is different from "oxo-degradable" or additive-based EDP claims, which only cause the plastic to fragment into smaller pieces (including microplastics) rather than truly biodegrade. Thailand does not yet have a separate standard distinguishing/regulating these additive-based claims, so this is a common source of greenwashing confusion in the local market.</li>
+</ol>
+</div>
+
+<!-- ================= SECTION B: RECYCLED PLASTICS (PCR/PIR) ================= -->
+<div class="section-title eu">
+<div class="flag">♻️</div>
+<div>
+<h2 data-en="Recycled Plastics Standards: PCR vs PIR">มาตรฐานพลาสติกรีไซเคิล: PCR vs PIR</h2>
+<div class="desc" data-en="International + Thai standards and certifications, including mass-balance / chemical recycling (ISCC PLUS)">มาตรฐานและการรับรองระดับสากลและไทย รวมถึง mass-balance/การรีไซเคิลเชิงเคมี (ISCC PLUS)</div>
+</div>
+</div>
+
+<div class="subgroup-title cat-recycled" id="grp-def"><span class="dot"></span><span data-en="Definitions (foundation for all schemes below)">คำนิยาม (พื้นฐานของทุกระบบด้านล่าง)</span></div>
+<div class="table-wrap"><table class="std-table" data-group="def">
+<thead><tr>
+<th data-en="Standard / System">มาตรฐาน/ระบบ</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Scope">ขอบเขต</th><th data-en="Key Principle">หลักการหลัก</th><th data-en="Requirement / Notes">ข้อกำหนด/หมายเหตุ</th>
+</tr></thead>
+<tbody>
+<tr data-cat="recycled" data-name="ISO 14021 2016 definitions PCR PIR self declared environmental claims">
+<td class="std-name">ISO 14021:2016</td><td>International (ISO)</td><td>PCR + PIR (defines both)</td>
+<td>Self-declared environmental claims standard; defines Post-Consumer and Post-Industrial (Pre-Consumer) recycled content separately</td>
+<td>Not a certification itself — the definitional basis nearly every certification scheme below references</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="subgroup-title cat-recycled" id="grp-trace"><span class="dot"></span><span data-en="Traceability / Chain-of-Custody Standards">มาตรฐานการตรวจสอบย้อนกลับ</span></div>
+<div class="table-wrap"><table class="std-table" data-group="trace">
+<thead><tr>
+<th data-en="Standard / System">มาตรฐาน/ระบบ</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Scope">ขอบเขต</th><th data-en="Key Principle">หลักการหลัก</th><th data-en="Requirement / Notes">ข้อกำหนด/หมายเหตุ</th>
+</tr></thead>
+<tbody>
+<tr data-cat="recycled" data-name="EN 15343 2007 Europe plastics recycling traceability">
+<td class="std-name">EN 15343:2007</td><td>Europe (EU)</td><td>PCR + PIR</td>
+<td>Plastics recycling traceability and assessment of conformity and recycled content, at material level</td>
+<td>Widely referenced by EU converters and required for some national tax/regulatory schemes</td>
+</tr>
+<tr data-cat="recycled" data-name="EN 45557 Europe multi material recycled content calculation">
+<td class="std-name">EN 45557</td><td>Europe (EU)</td><td>PCR + PIR</td>
+<td>Calculation of recycled content at product level when multiple materials/components are combined</td>
+<td>Complements EN 15343 for finished, multi-material products</td>
+</tr>
+<tr data-cat="recycled" data-name="ISO 22095 2022 international chain of custody mass balance">
+<td class="std-name">ISO 22095:2022</td><td>International (ISO)</td><td>PCR + PIR</td>
+<td>General chain-of-custody models and terminology (identity preserved, segregation, controlled blending, mass balance)</td>
+<td>Forms the CoC basis for APR and other certification schemes</td>
+</tr>
+<tr data-cat="recycled" data-name="มตช 9-2566 TCAS-9 Thailand TISI traceability plastic compounders converters">
+<td class="std-name">มตช. 9-2566 (TCAS-9)</td><td>Thailand (TISI / สมอ.)</td><td>PCR + PIR (traceability)</td>
+<td>Consolidates 5 international references (ISO 22095:2020, BS EN 15343:2007, BS EN 15347:2007, EuCertPlast Audit Scheme v4.1, Recycled Standard v4.0) into a traceability/chain-of-custody standard covering recycled-plastics compounders and product converters using recycled resin</td>
+<td>Published in the Royal Gazette on Sep 29, 2022. A traceability standard, not a minimum-content standard — proves a claim traces to a genuine documented source (self-declaration, related-party confirmation, or 3rd-party certification), but doesn't itself guarantee a specific PCR %</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="subgroup-title cat-recycled" id="grp-cert"><span class="dot"></span><span data-en="Certification / Labeling Schemes">ระบบการรับรอง / ฉลาก</span></div>
+<div class="table-wrap"><table class="std-table" data-group="cert">
+<thead><tr>
+<th data-en="Standard / System">มาตรฐาน/ระบบ</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Scope">ขอบเขต</th><th data-en="Key Principle">หลักการหลัก</th><th data-en="Requirement / Notes">ข้อกำหนด/หมายเหตุ</th>
+</tr></thead>
+<tbody>
+<tr data-cat="recycled" data-name="APR PCR 101 102 United States reclaimers converters brand owners">
+<td class="std-name">APR PCR 101 / 102</td><td>United States</td><td>PCR only</td>
+<td>101 certifies reclaimers/resin producers; 102 certifies converters/brand owners using certified PCR resin</td>
+<td>Uses ISO 22095 (chain of custody) + ISO 14021 (definitions) + ISO 17065 (certification body competence)</td>
+</tr>
+<tr data-cat="recycled" data-name="GRS Global Recycled Standard international textile exchange materials matter">
+<td class="std-name">GRS (Global Recycled Standard)</td><td>International (Textile Exchange)</td><td>PCR + PIR</td>
+<td>Verifies recycled content plus chemical restrictions and social/environmental responsibility at the recycling facility</td>
+<td>Minimum 20–50% recycled content depending on claim type; most comprehensive scheme (adds social/environmental criteria). Transitioning to the Materials Matter Standard — see Recent Updates above</td>
+</tr>
+<tr data-cat="recycled" data-name="RCS Recycled Claim Standard international textile exchange materials matter">
+<td class="std-name">RCS (Recycled Claim Standard)</td><td>International (Textile Exchange)</td><td>PCR + PIR</td>
+<td>Verifies recycled content and traceability only, without GRS's social/environmental criteria</td>
+<td>Minimum 5% recycled material; lighter-weight than GRS. Transitioning to the Materials Matter Standard — see Recent Updates above</td>
+</tr>
+<tr data-cat="recycled" data-name="UL 2809 United States environmental claim validation electronics">
+<td class="std-name">UL 2809</td><td>United States (UL)</td><td>PCR, PIR, closed-loop, ocean plastic</td>
+<td>Environmental Claim Validation Procedure — verifies recycled content claims via document review and process verification</td>
+<td>Common in electronics, appliances, and IT hardware sectors</td>
+</tr>
+<tr data-cat="recycled" data-name="RecyClass Europe recyclability PPWR packaging design">
+<td class="std-name">RecyClass</td><td>Europe (EU)</td><td>PCR + PIR (+ recyclability)</td>
+<td>Certifies both recycled content and recyclability of packaging design; widely used to support EU PPWR compliance</td>
+<td>Directly relevant to PPWR / EU packaging recyclability requirements</td>
+</tr>
+<tr data-cat="recycled" data-name="EuCertPlast Europe recyclers audit scheme">
+<td class="std-name">EuCertPlast</td><td>Europe (EU, recyclers)</td><td>PCR + PIR</td>
+<td>Audit scheme for plastics recyclers verifying input-output traceability</td>
+<td>Focused on the recycler/reprocessor stage of the supply chain</td>
+</tr>
+<tr data-cat="recycled" data-name="สถาบันพลาสติก Plastics Institute of Thailand PCR content certification">
+<td class="std-name">สถาบันพลาสติก (Plastics Institute of Thailand)</td><td>Thailand</td><td>PCR content certification</td>
+<td>Industry-affiliated (not a government agency) certification service; tests PCR content and issues a certification mark for direct use on products, backed by NIA/PMU-C funding and Federation of Thai Industries' plastics group</td>
+<td>Distinct from มตช.9: this is a content-verification + labeling scheme (closer to GRS/RCS in function) rather than a pure traceability standard. Plans to extend scope to chemically-recycled plastics. Apply via tcc.thaiplastics.org — functionally closer to GRS/RCS, and the more relevant one to cite when a Thai supplier claims a specific PCR %</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="subgroup-title cat-recycled" id="grp-mass"><span class="dot"></span><span data-en="Mass Balance / Chemical Recycling">Mass Balance / การรีไซเคิลเชิงเคมี</span></div>
+<div class="table-wrap"><table class="std-table" data-group="mass">
+<thead><tr>
+<th data-en="Standard / System">มาตรฐาน/ระบบ</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Scope">ขอบเขต</th><th data-en="Key Principle">หลักการหลัก</th><th data-en="Requirement / Notes">ข้อกำหนด/หมายเหตุ</th>
+</tr></thead>
+<tbody>
+<tr data-cat="recycled" data-name="ISCC PLUS international mass balance chemical recycling pyrolysis v4.2">
+<td class="std-name">ISCC PLUS</td><td>International (ISCC)</td><td>PCR + PIR (mechanical + chemical recycling)</td>
+<td>Certifies circular/bio-based feedstocks via mass balance, physical segregation, or controlled blending; the dominant scheme covering chemical recycling (pyrolysis, gasification, depolymerization, dissolution)</td>
+<td>The only major scheme built for mass-balance accounting in chemical recycling; increasingly required for PPWR-driven recycled-content claims where mechanical recycling alone can't meet targets. Distinct from ISCC EU (mandatory, biofuels/RED-regulated). Now on <b>v4.2 (effective Oct 2026)</b> — see Recent Updates above</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="notes-box" id="notes-recycled">
+<h3 data-en="Notes for Internal Use — Recycled Plastics (PCR vs PIR)">หมายเหตุการใช้งานภายใน — พลาสติกรีไซเคิล (PCR vs PIR)</h3>
+<ol>
+<li>PCR (Post-Consumer Recycled) vs PIR (Post-Industrial Recycled): PCR comes from material that has completed its intended use by an end user/consumer (e.g. a used PET bottle). PIR comes from manufacturing scrap — trimmings, off-cuts, off-spec parts — that never left the factory floor and never reached a consumer. PIR is sometimes called "pre-consumer" recycled content — same meaning, different name.</li>
+<li>Why the distinction matters for claims: most brand-owner targets (e.g. EU PPWR, corporate PCR commitments) specifically require PCR, not PIR — because PIR was already being recovered internally as standard manufacturing practice and doesn't represent new diversion of post-consumer waste from landfill.</li>
+<li>Certification bodies (TÜV SÜD and others) issue separate certificates for PCR and PIR under ISO 14021, precisely so a brand can't blend the two together and imply a higher post-consumer recycled percentage than actually exists.</li>
+<li>ISCC PLUS vs mechanical recycling schemes (GRS/RCS/RecyClass): mechanical recycling schemes track physical material through the supply chain. ISCC PLUS instead uses mass balance accounting — needed for chemical recycling, where recycled feedstock and virgin feedstock are mixed within shared processing infrastructure (e.g. a cracker or refinery) and the recycled content is allocated to specific output products on paper rather than physically segregated.</li>
+<li>Thailand's own standard is มตช. 9-2566 (TCAS-9), issued by TISI (สมอ.), published in the Royal Gazette on 29 September 2022. It consolidates five international references (ISO 22905:2020, BS EN 15343:2007, BS EN 15347:2007, EuCertPlast Audit Scheme v4.1, and Recycled Standard v4.0) into a traceability and chain-of-custody standard covering two actor groups: recycled plastics compounders and product converters using recycled resin as input.</li>
+<li>มตช.9 is a traceability standard, not a minimum-content standard: unlike GRS or RCS, it does not itself set a minimum recycled-content percentage — its purpose is to prove that a recycled-content claim can be traced back to a genuine, documented source. Conformity can be demonstrated via self-declaration, confirmation by a related party (e.g. a customer), or third-party certification.</li>
+<li>Practical takeaway for internal supplier evaluation: when evaluating a supplier's recycled-content claim, ask which scheme backs it. A GRS or RCS certificate with a stated % is a content claim; มตช.9 or EN 15343 alone is a traceability claim — useful evidence, but doesn't by itself guarantee a specific PCR percentage unless paired with a content-verification scheme.</li>
+<li>Thailand also has a second, industry-run scheme: สถาบันพลาสติก (Plastics Institute of Thailand) offers its own PCR content certification and labeling mark, separate from the government's มตช.9. Where มตช.9 verifies traceability, the Plastics Institute's scheme verifies and certifies the actual recycled-content percentage — functionally closer to GRS/RCS, and it is the more relevant one to cite when a Thai supplier claims a specific PCR %.</li>
+</ol>
+</div>
+
+<!-- ================= APPENDIX ================= -->
+<section class="overview" id="appendix">
+<h2 data-en="📎 Appendix: Official Websites by Standard / Scheme">📎 ภาคผนวก: เว็บไซต์ทางการของแต่ละมาตรฐาน/ระบบ</h2>
+<div class="table-wrap appendix-wrap">
+<table class="std-table appendix-table">
+<thead><tr><th data-en="Standard / Scheme">มาตรฐาน/ระบบ</th><th data-en="Issuing Organization">หน่วยงานผู้ออก</th><th data-en="Official Website">เว็บไซต์ทางการ</th></tr></thead>
+<tbody>
+<tr><td class="std-name">EN 13432</td><td>CEN (European Committee for Standardization)</td><td><a href="https://www.cen.eu" target="_blank" rel="noopener">www.cen.eu</a></td></tr>
+<tr><td class="std-name">ASTM D6400 / D6691 / D5988 / D5511</td><td>ASTM International</td><td><a href="https://www.astm.org" target="_blank" rel="noopener">www.astm.org</a></td></tr>
+<tr><td class="std-name">ISO 17088 / 22403 / 17556 / 15985</td><td>ISO</td><td><a href="https://www.iso.org" target="_blank" rel="noopener">www.iso.org</a></td></tr>
+<tr><td class="std-name">มอก. 17088-2555</td><td>TISI (สมอ.)</td><td><a href="https://www.tisi.go.th" target="_blank" rel="noopener">www.tisi.go.th</a></td></tr>
+<tr><td class="std-name">AS 5810</td><td>Standards Australia</td><td><a href="https://www.standards.org.au" target="_blank" rel="noopener">www.standards.org.au</a></td></tr>
+<tr><td class="std-name">NF T51-800</td><td>AFNOR (France)</td><td><a href="https://www.afnor.org" target="_blank" rel="noopener">www.afnor.org</a></td></tr>
+<tr><td class="std-name">OK Compost / Seedling labels</td><td>TÜV Austria</td><td><a href="https://www.tuv-austria.com" target="_blank" rel="noopener">www.tuv-austria.com</a></td></tr>
+<tr><td class="std-name">BPI Certified</td><td>Biodegradable Products Institute</td><td><a href="https://www.bpiworld.org" target="_blank" rel="noopener">www.bpiworld.org</a></td></tr>
+<tr><td class="std-name">GC Compostable</td><td>PTT Global Chemical (GC)</td><td><a href="https://www.pttgcgroup.com" target="_blank" rel="noopener">www.pttgcgroup.com</a></td></tr>
+<tr><td class="std-name">ISO 14021 / 22095</td><td>ISO</td><td><a href="https://www.iso.org" target="_blank" rel="noopener">www.iso.org</a></td></tr>
+<tr><td class="std-name">EN 15343 / EN 45557</td><td>CEN (European Committee for Standardization)</td><td><a href="https://www.cen.eu" target="_blank" rel="noopener">www.cen.eu</a></td></tr>
+<tr><td class="std-name">APR PCR 101 / 102</td><td>Association of Plastic Recyclers</td><td><a href="https://plasticsrecycling.org" target="_blank" rel="noopener">plasticsrecycling.org</a></td></tr>
+<tr><td class="std-name">GRS / RCS</td><td>Textile Exchange</td><td><a href="https://textileexchange.org" target="_blank" rel="noopener">textileexchange.org</a></td></tr>
+<tr><td class="std-name">UL 2809</td><td>UL (Underwriters Laboratories)</td><td><a href="https://www.ul.com" target="_blank" rel="noopener">www.ul.com</a></td></tr>
+<tr><td class="std-name">RecyClass</td><td>RecyClass</td><td><a href="https://recyclass.eu" target="_blank" rel="noopener">recyclass.eu</a></td></tr>
+<tr><td class="std-name">EuCertPlast</td><td>EuCertPlast</td><td><a href="https://www.eucertplast.eu" target="_blank" rel="noopener">www.eucertplast.eu</a></td></tr>
+<tr><td class="std-name">ISCC PLUS</td><td>International Sustainability &amp; Carbon Certification</td><td><a href="https://iscc-system.org" target="_blank" rel="noopener">iscc-system.org</a></td></tr>
+<tr><td class="std-name">มตช. 9-2566 (TCAS-9)</td><td>TISI (สมอ.)</td><td><a href="https://www.tisi.go.th" target="_blank" rel="noopener">www.tisi.go.th</a></td></tr>
+<tr><td class="std-name">PCR Content Certification</td><td>สถาบันพลาสติก (Plastics Institute of Thailand)</td><td><a href="https://tcc.thaiplastics.org" target="_blank" rel="noopener">tcc.thaiplastics.org</a></td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<div class="empty-state" id="emptyState" data-en="No matching standards found.">ไม่พบมาตรฐานที่ตรงกับการค้นหา</div>
+
+<footer>
+<span data-en="Base reference: Kao internal Packaging/R&amp;D reference table (Sustainable_Packaging_Standards_Reference). Update check performed September 4, 2026 against public sources (Textile Exchange, ISCC System, EU PPWR text, TISI). Please verify against primary sources before using for official reference.">ที่มาข้อมูลหลัก: ตารางอ้างอิงภายในของทีม Packaging/R&amp;D ของบริษัท (Sustainable_Packaging_Standards_Reference) ตรวจสอบความทันสมัยเพิ่มเติมเมื่อวันที่ 4 กันยายน 2569 จากแหล่งข้อมูลสาธารณะ (Textile Exchange, ISCC System, ตัวบท EU PPWR, TISI) ควรตรวจสอบแหล่งต้นทางก่อนใช้อ้างอิงทางการ</span>
+</footer>
+</div>
+
+<script>
+(function(){
+ var searchInput = document.getElementById('stdSearch');
+ var catBtns = document.querySelectorAll('#catFilter .filter-btn');
+ var rows = Array.prototype.slice.call(document.querySelectorAll('.std-table tbody tr[data-cat]'));
+ var groupWraps = Array.prototype.slice.call(document.querySelectorAll('.table-wrap:not(.appendix-wrap)'));
+ var subgroupTitles = Array.prototype.slice.call(document.querySelectorAll('.subgroup-title'));
+ var resultCount = document.getElementById('resultCount');
+ var emptyState = document.getElementById('emptyState');
+ var state = { cat: 'all', q: '' };
+ var currentLang = 'th';
+
+ function setActive(group, btn){
+  Array.prototype.forEach.call(group, function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+ }
+
+ function applyFilters(){
+  var q = state.q.trim().toLowerCase();
+  var visibleCount = 0;
+  rows.forEach(function(row){
+   var cat = row.getAttribute('data-cat');
+   var haystack = (row.getAttribute('data-name') + ' ' + row.textContent).toLowerCase();
+   var matchCat = (state.cat === 'all' || state.cat === cat);
+   var matchQuery = (q === '' || haystack.indexOf(q) !== -1);
+   var show = matchCat && matchQuery;
+   row.classList.toggle('is-hidden', !show);
+   if(show) visibleCount++;
+  });
+  groupWraps.forEach(function(wrap){
+   var visRows = wrap.querySelectorAll('tbody tr[data-cat]:not(.is-hidden)');
+   wrap.style.display = visRows.length === 0 ? 'none' : '';
+  });
+  subgroupTitles.forEach(function(title){
+   var next = title.nextElementSibling;
+   if(next && next.classList.contains('table-wrap')){
+    title.style.display = next.style.display === 'none' ? 'none' : '';
+   }
+  });
+  resultCount.textContent = (currentLang === 'en')
+   ? ('Showing ' + visibleCount + ' of ' + rows.length + ' standards')
+   : ('แสดง ' + visibleCount + ' จาก ' + rows.length + ' มาตรฐาน');
+  emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+ }
+
+ searchInput.addEventListener('input', function(e){ state.q = e.target.value; applyFilters(); });
+ catBtns.forEach(function(btn){
+  btn.addEventListener('click', function(){
+   state.cat = btn.getAttribute('data-cat');
+   setActive(catBtns, btn);
+   applyFilters();
+  });
+ });
+ applyFilters();
+
+ // ---- Language toggle (TH / EN) ----
+ var langBtns = document.querySelectorAll('#langToggle .lang-btn');
+ function setLang(lang){
+  currentLang = lang;
+  document.querySelectorAll('[data-en]').forEach(function(el){
+   if(lang === 'en'){
+    if(el.dataset.th === undefined){ el.dataset.th = el.innerHTML; }
+    el.innerHTML = el.dataset.en;
+   } else {
+    if(el.dataset.th !== undefined){ el.innerHTML = el.dataset.th; }
+   }
+  });
+  if(searchInput){
+   var enPh = searchInput.getAttribute('data-en-placeholder');
+   if(lang === 'en' && enPh){
+    if(!searchInput.dataset.thPh){ searchInput.dataset.thPh = searchInput.placeholder; }
+    searchInput.placeholder = enPh;
+   } else if(searchInput.dataset.thPh){
+    searchInput.placeholder = searchInput.dataset.thPh;
+   }
+  }
+  langBtns.forEach(function(b){ b.classList.toggle('is-active', b.getAttribute('data-lang') === lang); });
+  document.documentElement.setAttribute('lang', lang);
+  applyFilters();
+  try{ localStorage.setItem('esgTrackerLang', lang); }catch(e){}
+ }
+ langBtns.forEach(function(b){ b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); }); });
+ try{
+  var savedLang = localStorage.getItem('esgTrackerLang');
+  if(savedLang === 'en'){ setLang('en'); }
+ }catch(e){}
+})();
+</script>
+<script>
+(function(){
+ var toggleBtn = document.getElementById('sideNavToggle');
+ var closeBtn = document.getElementById('sideNavClose');
+ var overlay = document.getElementById('sideNavOverlay');
+ var nav = document.getElementById('sideNav');
+ if(!toggleBtn || !nav) return;
+ function openNav(){
+  nav.classList.add('is-open'); overlay.hidden = false;
+  toggleBtn.classList.add('is-active'); toggleBtn.setAttribute('aria-expanded','true');
+  document.body.classList.add('side-nav-locked');
+ }
+ function closeNav(){
+  nav.classList.remove('is-open'); overlay.hidden = true;
+  toggleBtn.classList.remove('is-active'); toggleBtn.setAttribute('aria-expanded','false');
+  document.body.classList.remove('side-nav-locked');
+ }
+ toggleBtn.addEventListener('click', function(){
+  if(nav.classList.contains('is-open')){ closeNav(); } else { openNav(); }
+ });
+ closeBtn.addEventListener('click', closeNav);
+ overlay.addEventListener('click', closeNav);
+ document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape' && nav.classList.contains('is-open')){ closeNav(); }
+ });
+ nav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ closeNav(); }); });
+})();
+</script>
+</body>
+</html>
