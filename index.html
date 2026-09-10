@@ -32,6 +32,18 @@
  --global-accent-soft:#EDE9FE;
  --pin:#F59E0B;
  --pin-rgb:245,158,11;
+ --surface:#FFFFFF;
+ --ink-fixed:#111827;
+ --cat-climate-bg:#FFEDD5;
+ --cat-climate-fg:#C2410C;
+ --cat-packaging-bg:#DCFCE7;
+ --cat-packaging-fg:#15803D;
+ --cat-reporting-bg:#EDE9FE;
+ --cat-reporting-fg:#6D28D9;
+ --cat-supplychain-bg:#E0F2FE;
+ --cat-supplychain-fg:#0369A1;
+ --cat-air-bg:#FEF9C3;
+ --cat-air-fg:#A16207;
  --radius:8px;
  --ease:cubic-bezier(.4,0,.2,1);
  }
@@ -119,7 +131,7 @@
  grid-template-columns:90px 1fr auto;
  gap:14px;
  align-items:center;
- background:#fff;
+ background:var(--surface);
  border:1px solid var(--line);
  border-left:4px solid var(--ok);
  border-radius:var(--radius);
@@ -194,7 +206,7 @@
 
  /* Law cards */
  .card{
- background:#fff;
+ background:var(--surface);
  border:1px solid var(--line);
  border-radius:calc(var(--radius) + 2px);
  padding:22px 24px 20px;
@@ -279,7 +291,7 @@
  width:10px;height:10px;
  border-radius:50%;
  background:var(--line);
- border:2px solid #fff;
+ border:2px solid var(--surface);
  box-shadow:0 0 0 1px var(--line);
  margin-top:-6px;
  margin-bottom:6px;
@@ -334,7 +346,7 @@
  gap:12px;
  align-items:center;
  justify-content:space-between;
- background:#fff;
+ background:var(--surface);
  border:1px solid var(--line);
  border-radius:var(--radius);
  padding:14px 16px;
@@ -359,7 +371,7 @@
  .toolbar input[type="search"]:focus{
  outline:none;
  border-color:var(--gold);
- background:#fff;
+ background:var(--surface);
  box-shadow:0 0 0 4px rgba(var(--gold-rgb),.14);
  }
  .toolbar .search-box::before{
@@ -414,7 +426,7 @@
  font-size:13.5px;
  border:1px dashed var(--line);
  border-radius:var(--radius);
- background:#fff;
+ background:var(--surface);
  display:none;
  }
  .card.is-hidden,.section-title.is-hidden{display:none !important;}
@@ -455,7 +467,7 @@
  }
  .law-details summary:hover{
  border-color:var(--gold);
- background:#fff;
+ background:var(--surface);
  transform:translateY(-1px);
  }
  .law-details[open] summary{
@@ -511,7 +523,7 @@
  padding:6px 12px;
  border-radius:20px;
  border:1px solid var(--line);
- background:#fff;
+ background:var(--surface);
  color:var(--ink-soft);
  cursor:pointer;
  white-space:nowrap;
@@ -568,7 +580,7 @@
  }
  .overview-scroll{
  overflow-x:auto;
- background:#fff;
+ background:var(--surface);
  border:1px solid var(--line);
  border-radius:var(--radius);
  box-shadow:0 1px 3px rgba(20,27,43,.04);
@@ -679,7 +691,7 @@
  display:flex;
  align-items:center;
  gap:8px;
- background:#fff;
+ background:var(--surface);
  border:1px solid var(--line);
  border-radius:20px;
  padding:7px 14px 7px 10px;
@@ -769,9 +781,9 @@
  border-radius:var(--radius);
  margin-bottom:10px;
  padding:10px 12px;
- background:#fff;
+ background:var(--surface);
  }
- .overview-table tr.ov-row:hover{background:#fff;}
+ .overview-table tr.ov-row:hover{background:var(--surface);}
  .overview-table td{
  border-bottom:none;
  padding:5px 0;
@@ -815,7 +827,7 @@
  display:flex;
  align-items:center;
  justify-content:center;
- background:var(--ink);
+ background:var(--ink-fixed);
  color:#fff;
  border:none;
  border-radius:50%;
@@ -863,7 +875,7 @@
  height:100vh;
  width:290px;
  max-width:86vw;
- background:#fff;
+ background:var(--surface);
  border-right:1px solid var(--line);
  box-shadow:6px 0 24px rgba(20,27,43,.16);
  z-index:46;
@@ -965,7 +977,7 @@
  font-size:12.5px;
  font-weight:600;
  color:var(--gold);
- background:#fff;
+ background:var(--surface);
  border:1px solid var(--gold);
  border-radius:var(--radius);
  cursor:pointer;
@@ -987,7 +999,7 @@
  transform:translateX(-50%);
  width:min(720px,92vw);
  max-height:92vh;
- background:#fff;
+ background:var(--surface);
  border-radius:12px;
  box-shadow:0 24px 60px rgba(17,24,39,.28);
  z-index:61;
@@ -1032,7 +1044,7 @@
  display:inline-flex;
  align-items:center;
  gap:6px;
- background:var(--ink);
+ background:var(--ink-fixed);
  color:#fff;
  font-family:'IBM Plex Mono',monospace;
  font-size:12px;
@@ -1068,11 +1080,11 @@
  align-items:center;
  gap:3px;
  }
- .cat-climate{background:#FFEDD5;color:#C2410C;}
- .cat-packaging{background:#DCFCE7;color:#15803D;}
- .cat-reporting{background:#EDE9FE;color:#6D28D9;}
- .cat-supplychain{background:#E0F2FE;color:#0369A1;}
- .cat-air{background:#FEF9C3;color:#A16207;}
+ .cat-climate{background:var(--cat-climate-bg);color:var(--cat-climate-fg);}
+ .cat-packaging{background:var(--cat-packaging-bg);color:var(--cat-packaging-fg);}
+ .cat-reporting{background:var(--cat-reporting-bg);color:var(--cat-reporting-fg);}
+ .cat-supplychain{background:var(--cat-supplychain-bg);color:var(--cat-supplychain-fg);}
+ .cat-air{background:var(--cat-air-bg);color:var(--cat-air-fg);}
 
  /* Two-column layout: main content + deadlines sidebar */
  .page-layout{
@@ -1112,9 +1124,90 @@
  .overview-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
  .overview-head h2{margin:0;}
  .overview-scroll[hidden]{display:none;}
+
+ /* ============ Dark mode ============ */
+ [data-theme="dark"]{
+ --paper:#0F1420;
+ --paper-2:#1A2235;
+ --ink:#E5E7EB;
+ --ink-soft:#94A3B8;
+ --line:#2A3348;
+ --surface:#161D2E;
+ --gold:#818CF8;
+ --gold-rgb:129,140,248;
+ --th-accent:#818CF8;
+ --th-accent-soft:#262C4A;
+ --eu-accent:#2DD4BF;
+ --eu-accent-soft:#0F3B36;
+ --ok:#34D399;
+ --ok-soft:#0F3D2E;
+ --warn:#FBBF24;
+ --warn-soft:#3D2E0A;
+ --urgent:#F87171;
+ --urgent-rgb:248,113,113;
+ --urgent-soft:#3D1414;
+ --asia-accent:#FBBF24;
+ --asia-accent-soft:#3D2E0A;
+ --global-accent:#A78BFA;
+ --global-accent-soft:#2E2350;
+ --pin:#FBBF24;
+ --pin-rgb:251,191,36;
+ --cat-climate-bg:#3D2410;
+ --cat-climate-fg:#FB923C;
+ --cat-packaging-bg:#0F3D24;
+ --cat-packaging-fg:#4ADE80;
+ --cat-reporting-bg:#2E2350;
+ --cat-reporting-fg:#C4B5FD;
+ --cat-supplychain-bg:#0C2E42;
+ --cat-supplychain-fg:#7DD3FC;
+ --cat-air-bg:#3D3410;
+ --cat-air-fg:#FDE047;
+ }
+ [data-theme="dark"] body{background:var(--paper);}
+ [data-theme="dark"] .side-nav-toggle{box-shadow:0 4px 14px rgba(0,0,0,.5);}
+ [data-theme="dark"] .card:hover{border-color:#3B4566;}
+ [data-theme="dark"] img.emoji{filter:none;}
+ [data-theme="dark"] .law-modal, [data-theme="dark"] .law-modal-overlay{box-shadow:0 20px 60px rgba(0,0,0,.6);}
+ [data-theme="dark"] .watchlist{background:linear-gradient(135deg,#1B2340 0%,#132A2E 100%);}
+
+ /* Theme toggle button (sun/moon) */
+ .theme-toggle{
+ display:inline-flex;
+ align-items:center;
+ gap:6px;
+ padding:8px 15px 8px 13px;
+ border-radius:999px;
+ border:none;
+ background:var(--ink-fixed);
+ color:#fff;
+ cursor:pointer;
+ font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
+ font-size:13px;
+ font-weight:600;
+ letter-spacing:.2px;
+ box-shadow:0 4px 14px rgba(20,27,43,.28);
+ transition:transform .15s var(--ease),box-shadow .15s var(--ease),background .15s var(--ease);
+ }
+ .theme-toggle:hover{background:var(--gold);transform:translateY(-1px);box-shadow:0 6px 18px rgba(20,27,43,.34);}
+ .theme-toggle .tt-icon{font-size:15px;line-height:1;}
+ .theme-toggle .tt-icon-dark,
+ .theme-toggle .tt-label-dark{display:none;}
+ [data-theme="dark"] .theme-toggle .tt-icon-light,
+ [data-theme="dark"] .theme-toggle .tt-label-light{display:none;}
+ [data-theme="dark"] .theme-toggle .tt-icon-dark,
+ [data-theme="dark"] .theme-toggle .tt-label-dark{display:inline;}
 </style>
 </head>
 <body>
+<script>
+(function(){
+ try{
+ var saved = localStorage.getItem('esgTrackerTheme');
+ var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+ if(theme === 'dark'){ document.documentElement.setAttribute('data-theme', 'dark'); }
+ }catch(e){}
+})();
+</script>
 <div class="wrap">
 <!-- SIDEBAR NAV -->
 <button type="button" id="sideNavToggle" class="side-nav-toggle" aria-label="เปิดสารบัญ" aria-expanded="false">&#9776;<span class="snt-label" data-en="Contents">สารบัญ</span></button>
@@ -1188,6 +1281,9 @@
  <button type="button" class="lang-btn is-active" data-lang="th">TH</button>
  <button type="button" class="lang-btn" data-lang="en">EN</button>
  </div>
+ <button type="button" class="theme-toggle" id="themeToggle" aria-label="สลับโหมดมืด/สว่าง" aria-pressed="false">
+ <span class="tt-icon tt-icon-light">☀️</span><span class="tt-icon tt-icon-dark">🌙</span><span class="tt-label-light" data-en="Light mode">โหมดสว่าง</span><span class="tt-label-dark" data-en="Dark mode">โหมดมืด</span>
+ </button>
  </div>
  </header>
  <div class="masthead-strip">
@@ -3736,6 +3832,22 @@
  var savedLang = localStorage.getItem('esgTrackerLang');
  if(savedLang === 'en'){ setLang('en'); }
  }catch(e){}
+
+ // ---- Dark mode toggle ----
+ var themeToggle = document.getElementById('themeToggle');
+ if(themeToggle){
+ themeToggle.setAttribute('aria-pressed', String(document.documentElement.getAttribute('data-theme') === 'dark'));
+ themeToggle.addEventListener('click', function(){
+ var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+ if(isDark){
+ document.documentElement.removeAttribute('data-theme');
+ } else {
+ document.documentElement.setAttribute('data-theme', 'dark');
+ }
+ themeToggle.setAttribute('aria-pressed', String(!isDark));
+ try{ localStorage.setItem('esgTrackerTheme', !isDark ? 'dark' : 'light'); }catch(e){}
+ });
+ }
 })();
 </script>
 <script>
