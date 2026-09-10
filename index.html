@@ -57,7 +57,7 @@
  font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
  line-height:1.55;
  }
- .wrap{max-width:980px;margin:0 auto;padding:36px 20px 80px;}
+ .wrap{max-width:1180px;margin:0 auto;padding:36px 20px 80px;}
 
  header.masthead{
  border-bottom:3px solid var(--gold);
@@ -807,21 +807,45 @@
  /* ---- SIDEBAR NAV ---- */
  .side-nav-toggle{
  position:fixed;
- top:18px;
- left:18px;
+ top:16px;
+ left:16px;
  z-index:40;
+ width:42px;
+ height:42px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
  background:var(--ink);
  color:#fff;
  border:none;
- border-radius:999px;
- padding:9px 16px 9px 14px;
+ border-radius:50%;
+ padding:0;
  font-family:inherit;
- font-size:13px;
- font-weight:600;
- letter-spacing:.2px;
+ font-size:18px;
+ line-height:1;
  cursor:pointer;
  box-shadow:0 4px 14px rgba(20,27,43,.28);
- transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .18s var(--ease);
+ transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .18s var(--ease),width .18s var(--ease),border-radius .18s var(--ease);
+ overflow:hidden;
+ white-space:nowrap;
+ }
+ .side-nav-toggle .snt-label{
+ max-width:0;
+ opacity:0;
+ overflow:hidden;
+ transition:max-width .18s var(--ease),opacity .12s var(--ease);
+ }
+ .side-nav-toggle:hover,
+ .side-nav-toggle:focus-visible{
+ width:auto;
+ border-radius:999px;
+ padding:0 16px 0 14px;
+ }
+ .side-nav-toggle:hover .snt-label,
+ .side-nav-toggle:focus-visible .snt-label{
+ max-width:120px;
+ opacity:1;
+ margin-left:7px;
  }
  .side-nav-toggle:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(20,27,43,.34);background:var(--gold);}
  .side-nav-toggle.is-active{background:var(--gold);}
@@ -927,7 +951,7 @@
  }
  body.side-nav-locked{overflow:hidden;}
  @media (max-width:640px){
- .side-nav-toggle{padding:8px 13px 8px 11px;font-size:12px;top:12px;left:12px;}
+ .side-nav-toggle{top:12px;left:12px;width:38px;height:38px;font-size:16px;}
  }
 
  /* ---- Detail-view button (per card) + Law detail modal ---- */
@@ -1029,12 +1053,71 @@
  margin-top:4px;
  }
  .side-cross-link:hover{background:var(--gold);color:#fff;}
+
+ /* Category badges & filter */
+ .cat-badge-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
+ .cat-badge{
+ font-family:'IBM Plex Mono',monospace;
+ font-size:10px;
+ font-weight:600;
+ letter-spacing:0.02em;
+ padding:3px 9px;
+ border-radius:20px;
+ white-space:nowrap;
+ display:inline-flex;
+ align-items:center;
+ gap:3px;
+ }
+ .cat-climate{background:#FFEDD5;color:#C2410C;}
+ .cat-packaging{background:#DCFCE7;color:#15803D;}
+ .cat-reporting{background:#EDE9FE;color:#6D28D9;}
+ .cat-supplychain{background:#E0F2FE;color:#0369A1;}
+ .cat-air{background:#FEF9C3;color:#A16207;}
+
+ /* Two-column layout: main content + deadlines sidebar */
+ .page-layout{
+ display:grid;
+ grid-template-columns: minmax(0,1fr) 300px;
+ gap:28px;
+ align-items:start;
+ }
+ .main-col{min-width:0;order:1;}
+ .deadlines-sidebar{
+ order:2;
+ position:sticky;
+ top:20px;
+ max-height:calc(100vh - 40px);
+ overflow-y:auto;
+ overscroll-behavior:contain;
+ }
+ .deadlines-sidebar .deadlines{margin-bottom:0;}
+ .deadlines-sidebar .deadline-row{gap:10px;}
+ .deadlines-sidebar .deadline-item{
+ display:flex;
+ flex-direction:column;
+ align-items:flex-start;
+ gap:6px;
+ grid-template-columns:none;
+ }
+ .deadlines-sidebar .deadline-days{order:0;}
+ .deadlines-sidebar .deadline-label{order:1;font-size:13px;}
+ .deadlines-sidebar .deadline-tag{order:2;}
+ .deadlines-sidebar .deadline-bar{order:3;width:100%;}
+ @media (max-width:900px){
+ .page-layout{grid-template-columns:1fr;}
+ .deadlines-sidebar{position:static;order:1;max-height:none;overflow-y:visible;}
+ .main-col{order:2;}
+ }
+ /* Overview section — collapsed by default */
+ .overview-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+ .overview-head h2{margin:0;}
+ .overview-scroll[hidden]{display:none;}
 </style>
 </head>
 <body>
 <div class="wrap">
 <!-- SIDEBAR NAV -->
-<button type="button" id="sideNavToggle" class="side-nav-toggle" aria-label="เปิดสารบัญ" aria-expanded="false" data-en="&#9776; Contents">&#9776; สารบัญ</button>
+<button type="button" id="sideNavToggle" class="side-nav-toggle" aria-label="เปิดสารบัญ" aria-expanded="false">&#9776;<span class="snt-label" data-en="Contents">สารบัญ</span></button>
 <div id="sideNavOverlay" class="side-nav-overlay" hidden></div>
 <nav id="sideNav" class="side-nav" aria-label="สารบัญนำทาง">
 <div class="side-nav-head">
@@ -1133,6 +1216,15 @@
  <button class="filter-btn" data-region="asia" data-en="Asia">เอเชีย</button>
  <button class="filter-btn" data-region="global" data-en="Global">สากล</button>
  </div>
+
+<div class="filter-group" id="categoryFilter">
+ <button class="filter-btn active" data-category="all" data-en="All topics">ทุกหมวด</button>
+ <button class="filter-btn" data-category="climate" data-en="🌡️ Climate &amp; Carbon">🌡️ โลกร้อน/คาร์บอน</button>
+ <button class="filter-btn" data-category="packaging" data-en="♻️ Packaging &amp; Circular Economy">♻️ บรรจุภัณฑ์/พลาสติก</button>
+ <button class="filter-btn" data-category="reporting" data-en="📊 Reporting &amp; Disclosure">📊 รายงาน/เปิดเผยข้อมูล</button>
+ <button class="filter-btn" data-category="supplychain" data-en="⛓️ Supply Chain &amp; Due Diligence">⛓️ ซัพพลายเชน/Due Diligence</button>
+ <button class="filter-btn" data-category="air" data-en="🌬️ Air Quality">🌬️ คุณภาพอากาศ</button>
+</div>
  <button type="button" class="more-filters-btn" id="moreFiltersBtn" aria-expanded="false" data-en="Status filter ▾">สถานะ ▾</button>
  <button type="button" class="clear-filters-btn" id="clearFiltersBtn" data-en="✕ Clear filters">✕ ล้างตัวกรอง</button>
  <div class="result-count" id="resultCount"></div>
@@ -1145,6 +1237,9 @@
  </div>
 
  
+ <!-- TWO-COLUMN LAYOUT: main content + deadlines sidebar -->
+ <div class="page-layout">
+ <aside class="deadlines-sidebar" aria-label="กำหนดการที่ใกล้ถึง">
  <!-- DEADLINES -->
  <section class="deadlines">
  <h2 data-en="Upcoming Deadlines">กำหนดการที่ใกล้ถึง</h2>
@@ -1199,11 +1294,16 @@
  </div>
  </div>
  </section>
+ </aside>
 
- <!-- OVERVIEW TABLE -->
+ <div class="main-col">
+ <!-- OVERVIEW TABLE (collapsed by default — click to show) -->
  <section class="overview" id="overviewSection">
+ <div class="overview-head">
  <h2 data-en="📊 Overview of All Laws">📊 ภาพรวมกฎหมายทั้งหมด</h2>
- <div class="overview-scroll">
+ <button type="button" class="more-filters-btn" id="overviewToggleBtn" aria-expanded="false" aria-controls="overviewScrollWrap" data-en="Show table ▾">แสดงตาราง ▾</button>
+ </div>
+ <div class="overview-scroll" id="overviewScrollWrap" hidden>
  <table class="overview-table">
  <thead>
  <tr>
@@ -1214,121 +1314,121 @@
  </tr>
  </thead>
  <tbody>
-<tr class="ov-row" data-region="th" data-status="progress">
+<tr class="ov-row" data-region="th" data-status="progress" data-category="climate">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-1" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-1" data-en="Draft Climate Change Act">🇹🇭 ร่าง พ.ร.บ. การเปลี่ยนแปลงสภาพภูมิอากาศ</a><div class="ov-en">Climate Change Act (Draft) — "พ.ร.บ.โลกร้อน"</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Under Council of State review">อยู่ระหว่างกฤษฎีกาตรวจพิจารณา</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Council of State review — until Jul 2026">กฤษฎีกาตรวจพิจารณา — ถึง ก.ค.69</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Enactment — Est. 2026–27">ประกาศใช้ — คาด 2569–70</td>
 </tr>
-<tr class="ov-row" data-region="th" data-status="progress">
+<tr class="ov-row" data-region="th" data-status="progress" data-category="packaging">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-2" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-2" data-en="Draft Sustainable Packaging Management Act">🇹🇭 ร่าง พ.ร.บ. การจัดการบรรจุภัณฑ์อย่างยั่งยืน</a><div class="ov-en">Sustainable Packaging Management Act (Draft) — EPR Law</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Drafting / jointly pushed with TIPMSE">ยกร่าง / ผลักดันร่วม TIPMSE</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Joint push with private sector — TIPMSE/VPRO">ผลักดันร่วมภาคเอกชน — TIPMSE/VPRO</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Enactment — Est. 2027">ประกาศใช้ — คาด 2570</td>
 </tr>
-<tr class="ov-row" data-region="th" data-status="progress">
+<tr class="ov-row" data-region="th" data-status="progress" data-category="supplychain">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-19" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-19" data-en="Draft Act on the Promotion of Responsible Business Conduct">🇹🇭 ร่าง พ.ร.บ. ส่งเสริมการประกอบธุรกิจอย่างมีความรับผิดชอบ</a><div class="ov-en">HRDD Bill / mHREDD (Draft) — Mandatory Human Rights and Environmental Due Diligence</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Internal ministry drafting — not yet submitted">ยกร่างภายในกระทรวง — ยังไม่เสนอเข้าสู่กระบวนการนิติบัญญัติ</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Second draft — ministry-level review (since Sep 2025)">ร่างที่สอง — พิจารณาระดับกระทรวง (ตั้งแต่ ก.ย.68)</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Enactment — not yet clear/under consideration">ประกาศใช้ — ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</td>
 </tr>
-<tr class="ov-row" data-region="eu" data-status="force">
+<tr class="ov-row" data-region="eu" data-status="force" data-category="packaging">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-3" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-3" data-en="PPWR">🇪🇺 PPWR</a><div class="ov-en">Packaging and Packaging Waste Regulation — (EU) 2025/40</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-force" data-en="Fully in force">บังคับใช้ทั่วไปแล้ว</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="EPR harmonisation consultation closes — Sep 10, 2026">ปิดรับฟัง EPR harmonisation — 10 ก.ย.69</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="DfR delegated acts — Jan 1, 2028">DfR delegated acts — 1 ม.ค.71</td>
 </tr>
-<tr class="ov-row" data-region="eu" data-status="urgent">
+<tr class="ov-row" data-region="eu" data-status="urgent" data-category="packaging">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-4" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-4" data-en="ESPR">🇪🇺 ESPR</a><div class="ov-en">Ecodesign for Sustainable Products Regulation — (EU) 2024/1781</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-urgent" data-en="Partially in effect">เริ่มมีผลบางส่วนแล้ว</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Delegated act: steel/textiles — ~2026–27">Delegated act เหล็ก/สิ่งทอ — ~2569–70</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="SME compliance — Jul 19, 2030">SME compliance — 19 ก.ค.73</td>
 </tr>
-<tr class="ov-row" data-region="eu" data-status="force">
+<tr class="ov-row" data-region="eu" data-status="force" data-category="climate">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-5" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-5" data-en="CBAM">🇪🇺 CBAM</a><div class="ov-en">Carbon Border Adjustment Mechanism — (EU) 2023/956, แก้ไข 2025/2083</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-force" data-en="In the definitive period">อยู่ในช่วงบังคับจริง (Definitive Period)</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Registration + certificate trading prep — Feb 1, 2027">เตรียมขึ้นทะเบียน + ซื้อขายใบรับรอง — 1 ก.พ.70</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="First annual report — Sep 30, 2027">ยื่นรายงานปีแรก — 30 ก.ย.70</td>
 </tr>
-<tr class="ov-row" data-region="eu" data-status="urgent">
+<tr class="ov-row" data-region="eu" data-status="urgent" data-category="climate supplychain">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-6" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-6" data-en="EUDR">🇪🇺 EUDR</a><div class="ov-en">EU Deforestation Regulation — (EU) 2023/1115</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-urgent" data-en="Enforcement delayed for the second time">เลื่อนบังคับใช้เป็นครั้งที่สอง</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="In force (large/medium) — Dec 30, 2026">บังคับใช้จริง (รายใหญ่/กลาง) — 30 ธ.ค.69</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="In force (SME) — Jun 30, 2027">บังคับใช้จริง (SME) — 30 มิ.ย.70</td>
 </tr>
-<tr class="ov-row" data-region="eu" data-status="urgent">
+<tr class="ov-row" data-region="eu" data-status="urgent" data-category="reporting">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-7" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-7" data-en="EU ECGT">🇪🇺 EU ECGT</a><div class="ov-en">Empowering Consumers for the Green Transition Directive — (EU) 2024/825</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-urgent" data-en="Approaching enforcement date">ใกล้ถึงวันบังคับใช้จริง</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="In force at national level — Sep 27, 2026">บังคับใช้จริงระดับประเทศ — 27 ก.ย.69</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Green Claims Directive (separate) — status unclear">Green Claims Directive (แยก) — ยังไม่ชัดเจน</td>
 </tr>
-<tr class="ov-row" data-region="eu" data-status="urgent">
+<tr class="ov-row" data-region="eu" data-status="urgent" data-category="reporting supplychain">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-18" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-18" data-en="CSRD + CSDDD">🇪🇺 CSRD + CSDDD</a><div class="ov-en">Corporate Sustainability Reporting Directive + Due Diligence Directive — (EU) 2022/2464, 2024/1760</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-urgent" data-en="Significantly narrowed via Omnibus I">ปรับลดขอบเขตครั้งใหญ่ผ่าน Omnibus I</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Revised ESRS — EP/Council scrutiny — from Jul 3, 2026">ESRS ใหม่ — รอ EP/Council ตรวจสอบ — ตั้งแต่ 3 ก.ค.69</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="CSDDD compliance date — Jul 26, 2029">CSDDD บังคับใช้จริง — 26 ก.ค.72</td>
 </tr>
-<tr class="ov-row" data-region="asia" data-status="force">
+<tr class="ov-row" data-region="asia" data-status="force" data-category="packaging">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-8" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-8" data-en="Vietnam — Packaging EPR">🇻🇳 เวียดนาม — EPR บรรจุภัณฑ์</a><div class="ov-en">Extended Producer Responsibility — Decree No. 110/2026/ND-CP (แทนที่ Decree 08/2022)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-force" data-en="In force">บังคับใช้แล้ว</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Took effect — May 25, 2026">มีผลบังคับ — 25 พ.ค.69</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Fee-rate review — 2029">ทบทวนอัตราค่าธรรมเนียม — 2572</td>
 </tr>
-<tr class="ov-row" data-region="asia" data-status="progress">
+<tr class="ov-row" data-region="asia" data-status="progress" data-category="packaging">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-9" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-9" data-en="Malaysia — Packaging EPR Framework">🇲🇾 มาเลเซีย — กรอบ EPR บรรจุภัณฑ์</a><div class="ov-en">EPR Framework for Packaging (Draft) — nearing gazettal</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Drafting / nearing gazettal">ยกร่าง / ใกล้ประกาศใช้</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Draft framework near completion — Aug 2025">ร่างกรอบระเบียบใกล้เสร็จ — ส.ค.68</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Fully mandatory — Est. 2030">บังคับเต็มรูปแบบ — คาด 2573</td>
 </tr>
-<tr class="ov-row" data-region="asia" data-status="force">
+<tr class="ov-row" data-region="asia" data-status="force" data-category="packaging">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-10" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-10" data-en="Singapore — MPR and BCRS">🇸🇬 สิงคโปร์ — MPR และ BCRS</a><div class="ov-en">Resource Sustainability Act 2019 — Mandatory Packaging Reporting + Beverage Container Return Scheme</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-force" data-en="In force">บังคับใช้แล้ว</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="BCRS launched — Apr 1, 2026">BCRS เปิดตัว — 1 เม.ย.69</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Next reporting cycle — Mar 31, 2027">รอบรายงานถัดไป — 31 มี.ค.70</td>
 </tr>
-<tr class="ov-row" data-region="asia" data-status="progress">
+<tr class="ov-row" data-region="asia" data-status="progress" data-category="packaging">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-11" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-11" data-en="Indonesia — Draft Presidential Regulation on EPR">🇮🇩 อินโดนีเซีย — ร่าง Perpres EPR</a><div class="ov-en">Draft Presidential Regulation on EPR (ยกระดับจาก Permen LHK No. 75/2019)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Drafting">ยกร่าง</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Awaiting inter-ministry signature — Ongoing">รอลงนามข้ามกระทรวง — ต่อเนื่อง</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Expected enactment — Mid-2026">คาดประกาศใช้ — กลางปี 2569</td>
 </tr>
-<tr class="ov-row" data-region="asia" data-status="force">
+<tr class="ov-row" data-region="asia" data-status="force" data-category="packaging">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-12" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-12" data-en="Japan — Packaging Recycling Laws">🇯🇵 ญี่ปุ่น — กฎหมายรีไซเคิลบรรจุภัณฑ์</a><div class="ov-en">Containers and Packaging Recycling Act (2540) + Plastic Resource Circulation Act (2565)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-force" data-en="In force">บังคับใช้แล้ว</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="New recycled-material standard — Jan 24, 2026">มาตรฐานวัสดุรีไซเคิลใหม่ — 24 ม.ค.69</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Product-scope expansion — TBD">ขยายกลุ่มผลิตภัณฑ์ — รอกำหนด</td>
 </tr>
-<tr class="ov-row" data-region="asia" data-status="force">
+<tr class="ov-row" data-region="asia" data-status="force" data-category="packaging">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-13" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-13" data-en="Taiwan — Resource Circulation Promotion Act">🇹🇼 ไต้หวัน — Resource Circulation Promotion Act</a><div class="ov-en" data-en="The biggest recycling-system reform in 20 years (replacing the former fee-based system under the Waste Disposal Act)">กฎหมายปฏิรูปการรีไซเคิลฉบับใหญ่ที่สุดในรอบ 20 ปี (แทนที่ระบบค่าธรรมเนียมเดิมภายใต้ Waste Disposal Act)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-force" data-en="Passed by the legislature">ผ่านสภาแล้ว</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Most provisions take immediate effect — Ongoing">บทบัญญัติส่วนใหญ่มีผลทันที — ต่อเนื่อง</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Articles 14, 38(1) delayed 2 years — ~2028">มาตรา 14, 38(1) เลื่อน 2 ปี — ~2571</td>
 </tr>
-<tr class="ov-row" data-region="asia" data-status="progress">
+<tr class="ov-row" data-region="asia" data-status="progress" data-category="packaging">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-14" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-14" data-en="China — Packaging EPR Measures">🇨🇳 จีน — มาตรการ EPR บรรจุภัณฑ์</a><div class="ov-en">กรอบภายใต้ Circular Economy Promotion Law และ Solid Waste Law + แผนปฏิบัติการบรรจุภัณฑ์แห่งชาติ 2569</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Being phased in">ทยอยบังคับใช้</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="National packaging action plan — Jan 2026">แผนปฏิบัติการบรรจุภัณฑ์แห่งชาติ — ม.ค.69</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Circular-economy target — 2030">เป้าหมายเศรษฐกิจหมุนเวียน — 2573</td>
 </tr>
-<tr class="ov-row" data-region="global" data-status="urgent">
+<tr class="ov-row" data-region="global" data-status="urgent" data-category="climate">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-15" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-15" data-en="CORSIA">✈️ CORSIA</a><div class="ov-en">Carbon Offsetting and Reduction Scheme for International Aviation — ICAO Assembly Resolution A41-22</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-urgent" data-en="Approaching mandatory phase">ใกล้เข้าสู่ระยะภาคบังคับ</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Preparing for mandatory phase — Ongoing">เตรียมเข้าสู่ภาคบังคับ — ต่อเนื่อง</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Second Phase (mandatory) — Jan 1, 2027">Second Phase (บังคับ) — 1 ม.ค.70</td>
 </tr>
-<tr class="ov-row" data-region="global" data-status="progress">
+<tr class="ov-row" data-region="global" data-status="progress" data-category="climate">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-16" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-16" data-en="Maritime Decarbonization">🚢 การลดคาร์บอนภาคเดินเรือ</a><div class="ov-en">IMO Net-Zero Framework (ร่างแก้ไข MARPOL Annex VI) + FuelEU Maritime (EU) 2023/1805</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Global adoption delayed">เลื่อนรับรองระดับโลก</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Extraordinary session fails to adopt — Oct 2025">ประชุมวิสามัญไม่รับรอง — ต.ค.68</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Continued negotiation at MEPC 84 — 2026">เจรจาต่อ MEPC 84 — 2569</td>
 </tr>
-<tr class="ov-row" data-region="global" data-status="progress">
+<tr class="ov-row" data-region="global" data-status="progress" data-category="climate">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-17" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-17" data-en="US Clean Competition Act">🇺🇸 US Clean Competition Act</a><div class="ov-en" data-en="Draft US carbon border adjustment bill — S.3523 / H.R.6787 (119th Congress)">ร่างกฎหมายกลไกปรับคาร์บอนชายแดนของสหรัฐฯ — S.3523 / H.R.6787 (สภาคองเกรสชุดที่ 119)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Still a bill">ยังเป็นร่างกฎหมาย</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Reintroduced again (119th Congress) — Dec 2025">เสนอใหม่อีกครั้ง (สภาชุด 119) — ธ.ค.68</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Awaiting committee review — No date set">รอพิจารณาชั้นกรรมาธิการ — ยังไม่มีกำหนด</td>
 </tr>
-<tr class="ov-row" data-region="global" data-status="progress">
+<tr class="ov-row" data-region="global" data-status="progress" data-category="packaging">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-22" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-22" data-en="Global Plastics Treaty">🌍 สนธิสัญญาพลาสติกโลก</a><div class="ov-en">International Legally Binding Instrument on Plastic Pollution — negotiated under UNEP/INC (UNEA Res. 5/14)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Still under negotiation">ยังอยู่ระหว่างเจรจา</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="New chair elected (INC-5.3) — Feb 7, 2026">เลือกประธานใหม่ (INC-5.3) — 7 ก.พ.69</td>
@@ -1348,11 +1448,12 @@
  </div>
  </div>
 
- <div class="card" data-region="th" data-status="progress" data-name="ร่าง พ.ร.บ. การเปลี่ยนแปลงสภาพภูมิอากาศ Climate Change Act พ.ร.บ.โลกร้อน ทส." id="card-1">
+ <div class="card" data-region="th" data-status="progress" data-name="ร่าง พ.ร.บ. การเปลี่ยนแปลงสภาพภูมิอากาศ Climate Change Act พ.ร.บ.โลกร้อน ทส." data-category="climate" id="card-1">
  <div class="card-head">
  <div>
  <h3 data-en="Draft Climate Change Act">ร่าง พ.ร.บ. การเปลี่ยนแปลงสภาพภูมิอากาศ</h3>
  <div class="en-name">Climate Change Act (Draft) — "พ.ร.บ.โลกร้อน"</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-climate" data-en="🌡️ Climate &amp; Carbon">🌡️ โลกร้อน/คาร์บอน</span></div>
  </div>
  <span class="status-pill status-progress" data-en="Under Council of State review">อยู่ระหว่างกฤษฎีกาตรวจพิจารณา</span>
 <button type="button" class="pin-btn" data-pin="card-1" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -1434,11 +1535,12 @@
 </details>
  </div>
 
- <div class="card" data-region="th" data-status="progress" data-name="ร่าง พ.ร.บ. การจัดการบรรจุภัณฑ์อย่างยั่งยืน EPR Sustainable Packaging TIPMSE VPRO" id="card-2">
+ <div class="card" data-region="th" data-status="progress" data-name="ร่าง พ.ร.บ. การจัดการบรรจุภัณฑ์อย่างยั่งยืน EPR Sustainable Packaging TIPMSE VPRO" data-category="packaging" id="card-2">
  <div class="card-head">
  <div>
  <h3 data-en="Draft Sustainable Packaging Management Act">ร่าง พ.ร.บ. การจัดการบรรจุภัณฑ์อย่างยั่งยืน</h3>
  <div class="en-name">Sustainable Packaging Management Act (Draft) — EPR Law</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-packaging" data-en="♻️ Packaging &amp; Circular Economy">♻️ บรรจุภัณฑ์/พลาสติก</span></div>
  </div>
  <span class="status-pill status-progress" data-en="Drafting / jointly pushed with TIPMSE">ยกร่าง / ผลักดันร่วม TIPMSE</span>
 <button type="button" class="pin-btn" data-pin="card-2" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -1519,11 +1621,12 @@
 </details>
  </div>
 
-<div class="card" data-region="th" data-status="progress" data-name="HRDD Bill mHREDD Responsible Business Conduct Act RLPD Ministry of Justice" id="card-19">
+<div class="card" data-region="th" data-status="progress" data-name="HRDD Bill mHREDD Responsible Business Conduct Act RLPD Ministry of Justice" data-category="supplychain" id="card-19">
  <div class="card-head">
  <div>
  <h3 data-en="Draft Act on the Promotion of Responsible Business Conduct">ร่าง พ.ร.บ. ส่งเสริมการประกอบธุรกิจอย่างมีความรับผิดชอบ</h3>
  <div class="en-name">HRDD Bill / mHREDD (Draft) — Mandatory Human Rights and Environmental Due Diligence</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-supplychain" data-en="⛓️ Supply Chain &amp; Due Diligence">⛓️ ซัพพลายเชน/Due Diligence</span></div>
  </div>
  <span class="status-pill status-progress" data-en="Internal ministry drafting — not yet submitted">ยกร่างภายในกระทรวง — ยังไม่เสนอเข้าสู่กระบวนการนิติบัญญัติ</span>
 <button type="button" class="pin-btn" data-pin="card-19" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -1604,11 +1707,12 @@
 </details>
  </div>
 
- <div class="card" data-region="th" data-status="progress" data-name="Clean Air Act พ.ร.บ.อากาศสะอาด PRTR มลพิษ ฝุ่น PM2.5" id="card-20">
+ <div class="card" data-region="th" data-status="progress" data-name="Clean Air Act พ.ร.บ.อากาศสะอาด PRTR มลพิษ ฝุ่น PM2.5" data-category="air" id="card-20">
  <div class="card-head">
  <div>
  <h3 data-en="Draft Act on Management for Clean Air">ร่าง พ.ร.บ.บริหารจัดการเพื่ออากาศสะอาด</h3>
  <div class="en-name">Draft Act on Management for Clean Air (Draft) — Thailand's "Clean Air Act"</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-air" data-en="🌬️ Air Quality">🌬️ คุณภาพอากาศ</span></div>
  </div>
  <span class="status-pill status-progress" data-en="Under joint House–Senate committee reconciliation">อยู่ระหว่างตั้งกรรมาธิการร่วม 2 สภา</span>
 <button type="button" class="pin-btn" data-pin="card-20" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -1690,11 +1794,12 @@
 </details>
  </div>
 
- <div class="card" data-region="th" data-status="progress" data-name="Circular Economy Act พ.ร.บ.เศรษฐกิจหมุนเวียน EPR สิทธิซ่อมสินค้า ฉบับประชาชน" id="card-21">
+ <div class="card" data-region="th" data-status="progress" data-name="Circular Economy Act พ.ร.บ.เศรษฐกิจหมุนเวียน EPR สิทธิซ่อมสินค้า ฉบับประชาชน" data-category="packaging" id="card-21">
  <div class="card-head">
  <div>
  <h3 data-en="Draft Circular Economy Act (Citizen-Initiated)">ร่าง พ.ร.บ.เศรษฐกิจหมุนเวียน (ฉบับประชาชน)</h3>
  <div class="en-name">Draft Circular Economy Act B.E. .... — Citizen-Initiated Bill</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-packaging" data-en="♻️ Packaging &amp; Circular Economy">♻️ บรรจุภัณฑ์/พลาสติก</span></div>
  </div>
  <span class="status-pill status-progress" data-en="Collecting citizen signatures (e-Initiative)">กำลังรวบรวมรายชื่อสนับสนุน (e-Initiative)</span>
 <button type="button" class="pin-btn" data-pin="card-21" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -1784,11 +1889,12 @@
  </div>
  </div>
 
- <div class="card" data-region="eu" data-status="force" data-name="PPWR Packaging and Packaging Waste Regulation PFAS EPR harmonisation" id="card-3">
+ <div class="card" data-region="eu" data-status="force" data-name="PPWR Packaging and Packaging Waste Regulation PFAS EPR harmonisation" data-category="packaging" id="card-3">
  <div class="card-head">
  <div>
  <h3 data-en="PPWR">PPWR</h3>
  <div class="en-name">Packaging and Packaging Waste Regulation — (EU) 2025/40</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-packaging" data-en="♻️ Packaging &amp; Circular Economy">♻️ บรรจุภัณฑ์/พลาสติก</span></div>
  </div>
  <span class="status-pill status-force" data-en="Fully in force">บังคับใช้ทั่วไปแล้ว</span>
 <button type="button" class="pin-btn" data-pin="card-3" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -1871,11 +1977,12 @@
 </details>
  </div>
 
- <div class="card" data-region="eu" data-status="urgent" data-name="ESPR Ecodesign for Sustainable Products Regulation DPP" id="card-4">
+ <div class="card" data-region="eu" data-status="urgent" data-name="ESPR Ecodesign for Sustainable Products Regulation DPP" data-category="packaging" id="card-4">
  <div class="card-head">
  <div>
  <h3 data-en="ESPR">ESPR</h3>
  <div class="en-name">Ecodesign for Sustainable Products Regulation — (EU) 2024/1781</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-packaging" data-en="♻️ Packaging &amp; Circular Economy">♻️ บรรจุภัณฑ์/พลาสติก</span></div>
  </div>
  <span class="status-pill status-urgent" data-en="Partially in effect">เริ่มมีผลบางส่วนแล้ว</span>
 <button type="button" class="pin-btn" data-pin="card-4" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -1957,11 +2064,12 @@
 </details>
  </div>
 
- <div class="card" data-region="eu" data-status="force" data-name="CBAM Carbon Border Adjustment Mechanism" id="card-5">
+ <div class="card" data-region="eu" data-status="force" data-name="CBAM Carbon Border Adjustment Mechanism" data-category="climate" id="card-5">
  <div class="card-head">
  <div>
  <h3 data-en="CBAM">CBAM</h3>
  <div class="en-name">Carbon Border Adjustment Mechanism — (EU) 2023/956, แก้ไข 2025/2083</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-climate" data-en="🌡️ Climate &amp; Carbon">🌡️ โลกร้อน/คาร์บอน</span></div>
  </div>
  <span class="status-pill status-force" data-en="In the definitive period">อยู่ในช่วงบังคับจริง (Definitive Period)</span>
 <button type="button" class="pin-btn" data-pin="card-5" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -2043,11 +2151,12 @@
 </details>
  </div>
 
- <div class="card" data-region="eu" data-status="urgent" data-name="EUDR EU Deforestation Regulation กฎหมายห้ามตัดไม้ทำลายป่า" id="card-6">
+ <div class="card" data-region="eu" data-status="urgent" data-name="EUDR EU Deforestation Regulation กฎหมายห้ามตัดไม้ทำลายป่า" data-category="climate supplychain" id="card-6">
  <div class="card-head">
  <div>
  <h3 data-en="EUDR">EUDR</h3>
  <div class="en-name">EU Deforestation Regulation — (EU) 2023/1115</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-climate" data-en="🌡️ Climate &amp; Carbon">🌡️ โลกร้อน/คาร์บอน</span><span class="cat-badge cat-supplychain" data-en="⛓️ Supply Chain &amp; Due Diligence">⛓️ ซัพพลายเชน/Due Diligence</span></div>
  </div>
  <span class="status-pill status-urgent" data-en="Enforcement delayed for the second time">เลื่อนบังคับใช้เป็นครั้งที่สอง</span>
 <button type="button" class="pin-btn" data-pin="card-6" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -2129,11 +2238,12 @@
 </details>
  </div>
 
- <div class="card" data-region="eu" data-status="urgent" data-name="EU ECGT Empowering Consumers for the Green Transition Directive Green Claims" id="card-7">
+ <div class="card" data-region="eu" data-status="urgent" data-name="EU ECGT Empowering Consumers for the Green Transition Directive Green Claims" data-category="reporting" id="card-7">
  <div class="card-head">
  <div>
  <h3 data-en="EU ECGT">EU ECGT</h3>
  <div class="en-name">Empowering Consumers for the Green Transition Directive — (EU) 2024/825</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-reporting" data-en="📊 Reporting &amp; Disclosure">📊 รายงาน/เปิดเผยข้อมูล</span></div>
  </div>
  <span class="status-pill status-urgent" data-en="Approaching enforcement date">ใกล้ถึงวันบังคับใช้จริง</span>
 <button type="button" class="pin-btn" data-pin="card-7" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -2214,11 +2324,12 @@
 </details>
  </div>
 
- <div class="card" data-region="eu" data-status="urgent" data-name="CSRD CSDDD Corporate Sustainability Reporting Due Diligence Directive Omnibus" id="card-18">
+ <div class="card" data-region="eu" data-status="urgent" data-name="CSRD CSDDD Corporate Sustainability Reporting Due Diligence Directive Omnibus" data-category="reporting supplychain" id="card-18">
  <div class="card-head">
  <div>
  <h3 data-en="CSRD + CSDDD">CSRD + CSDDD</h3>
  <div class="en-name">Corporate Sustainability Reporting Directive — (EU) 2022/2464 + Corporate Sustainability Due Diligence Directive — (EU) 2024/1760</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-reporting" data-en="📊 Reporting &amp; Disclosure">📊 รายงาน/เปิดเผยข้อมูล</span><span class="cat-badge cat-supplychain" data-en="⛓️ Supply Chain &amp; Due Diligence">⛓️ ซัพพลายเชน/Due Diligence</span></div>
  </div>
  <span class="status-pill status-urgent" data-en="Significantly narrowed via Omnibus I">ปรับลดขอบเขตครั้งใหญ่ผ่าน Omnibus I</span>
 <button type="button" class="pin-btn" data-pin="card-18" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -2311,11 +2422,12 @@
  </div>
  </div>
 
- <div class="card" data-region="asia" data-status="force" data-name="Vietnam EPR Decree 110/2026 เวียดนาม" id="card-8">
+ <div class="card" data-region="asia" data-status="force" data-name="Vietnam EPR Decree 110/2026 เวียดนาม" data-category="packaging" id="card-8">
  <div class="card-head">
  <div>
  <h3 data-en="Vietnam — Packaging EPR">เวียดนาม — EPR บรรจุภัณฑ์</h3>
  <div class="en-name">Extended Producer Responsibility — Decree No. 110/2026/ND-CP (แทนที่ Decree 08/2022)</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-packaging" data-en="♻️ Packaging &amp; Circular Economy">♻️ บรรจุภัณฑ์/พลาสติก</span></div>
  </div>
  <span class="status-pill status-force" data-en="In force">บังคับใช้แล้ว</span>
 <button type="button" class="pin-btn" data-pin="card-8" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -2397,11 +2509,12 @@
 </details>
  </div>
 
- <div class="card" data-region="asia" data-status="progress" data-name="Malaysia EPR packaging มาเลเซีย" id="card-9">
+ <div class="card" data-region="asia" data-status="progress" data-name="Malaysia EPR packaging มาเลเซีย" data-category="packaging" id="card-9">
  <div class="card-head">
  <div>
  <h3 data-en="Malaysia — Packaging EPR Framework">มาเลเซีย — กรอบ EPR บรรจุภัณฑ์</h3>
  <div class="en-name">EPR Framework for Packaging (Draft) — nearing gazettal</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-packaging" data-en="♻️ Packaging &amp; Circular Economy">♻️ บรรจุภัณฑ์/พลาสติก</span></div>
  </div>
  <span class="status-pill status-progress" data-en="Drafting / nearing gazettal">ยกร่าง / ใกล้ประกาศใช้</span>
 <button type="button" class="pin-btn" data-pin="card-9" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -2482,11 +2595,12 @@
 </details>
  </div>
 
- <div class="card" data-region="asia" data-status="force" data-name="Singapore Resource Sustainability Act MPR BCRS สิงคโปร์" id="card-10">
+ <div class="card" data-region="asia" data-status="force" data-name="Singapore Resource Sustainability Act MPR BCRS สิงคโปร์" data-category="packaging" id="card-10">
  <div class="card-head">
  <div>
  <h3 data-en="Singapore — MPR and BCRS">สิงคโปร์ — MPR และ BCRS</h3>
  <div class="en-name">Resource Sustainability Act 2019 — Mandatory Packaging Reporting + Beverage Container Return Scheme</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-packaging" data-en="♻️ Packaging &amp; Circular Economy">♻️ บรรจุภัณฑ์/พลาสติก</span></div>
  </div>
  <span class="status-pill status-force" data-en="In force">บังคับใช้แล้ว</span>
 <button type="button" class="pin-btn" data-pin="card-10" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -2567,11 +2681,12 @@
 </details>
  </div>
 
- <div class="card" data-region="asia" data-status="progress" data-name="Indonesia EPR Perpres plastic packaging อินโดนีเซีย" id="card-11">
+ <div class="card" data-region="asia" data-status="progress" data-name="Indonesia EPR Perpres plastic packaging อินโดนีเซีย" data-category="packaging" id="card-11">
  <div class="card-head">
  <div>
  <h3 data-en="Indonesia — Draft Presidential Regulation on EPR">อินโดนีเซีย — ร่าง Perpres EPR</h3>
  <div class="en-name">Draft Presidential Regulation on EPR (ยกระดับจาก Permen LHK No. 75/2019)</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-packaging" data-en="♻️ Packaging &amp; Circular Economy">♻️ บรรจุภัณฑ์/พลาสติก</span></div>
  </div>
  <span class="status-pill status-progress" data-en="Drafting">ยกร่าง</span>
 <button type="button" class="pin-btn" data-pin="card-11" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -2653,11 +2768,12 @@
 </details>
  </div>
 
- <div class="card" data-region="asia" data-status="force" data-name="Japan Containers Packaging Recycling Act Plastic Resource Circulation Act ญี่ปุ่น" id="card-12">
+ <div class="card" data-region="asia" data-status="force" data-name="Japan Containers Packaging Recycling Act Plastic Resource Circulation Act ญี่ปุ่น" data-category="packaging" id="card-12">
  <div class="card-head">
  <div>
  <h3 data-en="Japan — Packaging Recycling Laws">ญี่ปุ่น — กฎหมายรีไซเคิลบรรจุภัณฑ์</h3>
  <div class="en-name">Containers and Packaging Recycling Act (2540) + Plastic Resource Circulation Act (2565)</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-packaging" data-en="♻️ Packaging &amp; Circular Economy">♻️ บรรจุภัณฑ์/พลาสติก</span></div>
  </div>
  <span class="status-pill status-force" data-en="In force">บังคับใช้แล้ว</span>
 <button type="button" class="pin-btn" data-pin="card-12" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -2738,11 +2854,12 @@
 </details>
  </div>
 
- <div class="card" data-region="asia" data-status="force" data-name="Taiwan Resource Circulation Promotion Act ไต้หวัน" id="card-13">
+ <div class="card" data-region="asia" data-status="force" data-name="Taiwan Resource Circulation Promotion Act ไต้หวัน" data-category="packaging" id="card-13">
  <div class="card-head">
  <div>
  <h3 data-en="Taiwan — Resource Circulation Promotion Act">ไต้หวัน — Resource Circulation Promotion Act</h3>
  <div class="en-name" data-en="The biggest recycling-system reform in 20 years (replacing the former fee-based system under the Waste Disposal Act)">กฎหมายปฏิรูปการรีไซเคิลฉบับใหญ่ที่สุดในรอบ 20 ปี (แทนที่ระบบค่าธรรมเนียมเดิมภายใต้ Waste Disposal Act)</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-packaging" data-en="♻️ Packaging &amp; Circular Economy">♻️ บรรจุภัณฑ์/พลาสติก</span></div>
  </div>
  <span class="status-pill status-force" data-en="Passed by the legislature">ผ่านสภาแล้ว</span>
 <button type="button" class="pin-btn" data-pin="card-13" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -2823,11 +2940,12 @@
 </details>
  </div>
 
- <div class="card" data-region="asia" data-status="progress" data-name="China packaging EPR circular economy จีน" id="card-14">
+ <div class="card" data-region="asia" data-status="progress" data-name="China packaging EPR circular economy จีน" data-category="packaging" id="card-14">
  <div class="card-head">
  <div>
  <h3 data-en="China — Packaging EPR Measures">จีน — มาตรการ EPR บรรจุภัณฑ์</h3>
  <div class="en-name">กรอบภายใต้ Circular Economy Promotion Law และ Solid Waste Law + แผนปฏิบัติการบรรจุภัณฑ์แห่งชาติ 2569</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-packaging" data-en="♻️ Packaging &amp; Circular Economy">♻️ บรรจุภัณฑ์/พลาสติก</span></div>
  </div>
  <span class="status-pill status-progress" data-en="Being phased in">ทยอยบังคับใช้</span>
 <button type="button" class="pin-btn" data-pin="card-14" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -2917,11 +3035,12 @@
  </div>
  </div>
 
- <div class="card" data-region="global" data-status="urgent" data-name="CORSIA Carbon Offsetting Reduction Scheme International Aviation ICAO" id="card-15">
+ <div class="card" data-region="global" data-status="urgent" data-name="CORSIA Carbon Offsetting Reduction Scheme International Aviation ICAO" data-category="climate" id="card-15">
  <div class="card-head">
  <div>
  <h3 data-en="CORSIA">CORSIA</h3>
  <div class="en-name">Carbon Offsetting and Reduction Scheme for International Aviation — ICAO Assembly Resolution A41-22</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-climate" data-en="🌡️ Climate &amp; Carbon">🌡️ โลกร้อน/คาร์บอน</span></div>
  </div>
  <span class="status-pill status-urgent" data-en="Approaching mandatory phase">ใกล้เข้าสู่ระยะภาคบังคับ</span>
 <button type="button" class="pin-btn" data-pin="card-15" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -3002,11 +3121,12 @@
 </details>
  </div>
 
- <div class="card" data-region="global" data-status="progress" data-name="Maritime Decarbonization IMO Net-Zero Framework FuelEU Maritime" id="card-16">
+ <div class="card" data-region="global" data-status="progress" data-name="Maritime Decarbonization IMO Net-Zero Framework FuelEU Maritime" data-category="climate" id="card-16">
  <div class="card-head">
  <div>
  <h3 data-en="Maritime Decarbonization">การลดคาร์บอนภาคเดินเรือ</h3>
  <div class="en-name">IMO Net-Zero Framework (ร่างแก้ไข MARPOL Annex VI) + FuelEU Maritime (EU) 2023/1805</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-climate" data-en="🌡️ Climate &amp; Carbon">🌡️ โลกร้อน/คาร์บอน</span></div>
  </div>
  <span class="status-pill status-progress" data-en="Global adoption delayed">เลื่อนรับรองระดับโลก</span>
 <button type="button" class="pin-btn" data-pin="card-16" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -3087,11 +3207,12 @@
 </details>
  </div>
 
- <div class="card" data-region="global" data-status="progress" data-name="US Clean Competition Act carbon border adjustment สหรัฐ" id="card-17">
+ <div class="card" data-region="global" data-status="progress" data-name="US Clean Competition Act carbon border adjustment สหรัฐ" data-category="climate" id="card-17">
  <div class="card-head">
  <div>
  <h3 data-en="US Clean Competition Act">US Clean Competition Act</h3>
  <div class="en-name" data-en="Draft US carbon border adjustment bill — S.3523 / H.R.6787 (119th Congress)">ร่างกฎหมายกลไกปรับคาร์บอนชายแดนของสหรัฐฯ — S.3523 / H.R.6787 (สภาคองเกรสชุดที่ 119)</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-climate" data-en="🌡️ Climate &amp; Carbon">🌡️ โลกร้อน/คาร์บอน</span></div>
  </div>
  <span class="status-pill status-progress" data-en="Still a bill">ยังเป็นร่างกฎหมาย</span>
 <button type="button" class="pin-btn" data-pin="card-17" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -3172,11 +3293,12 @@
 </details>
  </div>
 
- <div class="card" data-region="global" data-status="progress" data-name="Global Plastics Treaty UN Plastics Treaty INC Plastic Pollution สนธิสัญญาพลาสติกโลก" id="card-22">
+ <div class="card" data-region="global" data-status="progress" data-name="Global Plastics Treaty UN Plastics Treaty INC Plastic Pollution สนธิสัญญาพลาสติกโลก" data-category="packaging" id="card-22">
  <div class="card-head">
  <div>
  <h3 data-en="Global Plastics Treaty">สนธิสัญญาพลาสติกโลก</h3>
  <div class="en-name" data-en="International Legally Binding Instrument on Plastic Pollution, including in the Marine Environment — negotiated under UNEP via the INC (UNEA Resolution 5/14)">International Legally Binding Instrument on Plastic Pollution, including in the Marine Environment — เจรจาภายใต้ UNEP ผ่านคณะกรรมการเจรจาระหว่างรัฐบาล (INC) ตาม UNEA Resolution 5/14</div>
+ <div class="cat-badge-row"><span class="cat-badge cat-packaging" data-en="♻️ Packaging &amp; Circular Economy">♻️ บรรจุภัณฑ์/พลาสติก</span></div>
  </div>
  <span class="status-pill status-progress" data-en="Still under negotiation">ยังอยู่ระหว่างเจรจา</span>
 <button type="button" class="pin-btn" data-pin="card-22" aria-label="Pin" title="Pin this law to the top">📌</button>
@@ -3258,6 +3380,8 @@
  </div>
 
  <div class="empty-state" id="emptyState" data-en="No laws match your search/filter criteria">ไม่พบกฎหมายที่ตรงกับเงื่อนไขการค้นหา/กรอง</div>
+ </div>
+ </div>
 
  <footer>
  <span data-en="Data as of August 31, 2026 — compiled from publicly available news sources and official documents. Please verify against primary sources (Royal Gazette / EUR-Lex) before using for official reference.">ข้อมูล ณ วันที่ 31 สิงหาคม 2569 — จัดทำจากแหล่งข่าวและเอกสารราชการที่เผยแพร่สาธารณะ ควรตรวจสอบแหล่งต้นทาง (ราชกิจจานุเบกษา / EUR-Lex) ก่อนใช้อ้างอิงทางการ</span>
@@ -3273,15 +3397,21 @@
  }
  var searchInput = document.getElementById('lawSearch');
  var regionBtns = document.querySelectorAll('#regionFilter .filter-btn');
+ var categoryBtns = document.querySelectorAll('#categoryFilter .filter-btn');
  var statusFilterEl = document.getElementById('statusFilter');
  var statusBtns = document.querySelectorAll('#statusFilter .filter-btn');
  var cards = Array.prototype.slice.call(document.querySelectorAll('.card[data-region]'));
- var ovRows = Array.prototype.slice.call(document.querySelectorAll('.ov-row'));
+ var ovRowByCard = {};
+ document.querySelectorAll('.ov-row').forEach(function(row){
+ var pinBtn = row.querySelector('.pin-btn-row');
+ var pid = pinBtn ? pinBtn.getAttribute('data-pin') : null;
+ if(pid){ ovRowByCard[pid] = row; }
+ });
  var sections = document.querySelectorAll('.section-title[data-section]');
  var resultCount = document.getElementById('resultCount');
  var emptyState = document.getElementById('emptyState');
 
- var state = { region: 'all', status: 'all', q: '' };
+ var state = { region: 'all', status: 'all', category: 'all', q: '' };
  var currentLang = 'th';
 
  function setActive(group, btn){
@@ -3297,16 +3427,19 @@
  cards.forEach(function(card, i){
  var region = card.getAttribute('data-region');
  var status = card.getAttribute('data-status');
+ var categories = (card.getAttribute('data-category') || '').split(' ');
  var haystack = (card.getAttribute('data-name') + ' ' + card.textContent).toLowerCase();
 
  var matchRegion = (state.region === 'all' || state.region === region);
  var matchStatus = (state.status === 'all' || state.status === status);
+ var matchCategory = (state.category === 'all' || categories.indexOf(state.category) !== -1);
  var matchQuery = (q === '' || haystack.indexOf(q) !== -1);
 
- var show = matchRegion && matchStatus && matchQuery;
+ var show = matchRegion && matchStatus && matchCategory && matchQuery;
  var wasHidden = card.classList.contains('is-hidden');
  card.classList.toggle('is-hidden', !show);
- if(ovRows[i]){ ovRows[i].classList.toggle('is-hidden', !show); }
+ var ovRow = ovRowByCard[card.id];
+ if(ovRow){ ovRow.classList.toggle('is-hidden', !show); }
  if(show){
  visibleCount++;
  visibleByRegion[region] = (visibleByRegion[region] || 0) + 1;
@@ -3338,6 +3471,14 @@
  btn.addEventListener('click', function(){
  state.region = btn.getAttribute('data-region');
  setActive(regionBtns, btn);
+ applyFilters();
+ });
+ });
+
+ categoryBtns.forEach(function(btn){
+ btn.addEventListener('click', function(){
+ state.category = btn.getAttribute('data-category');
+ setActive(categoryBtns, btn);
  applyFilters();
  });
  });
@@ -3478,16 +3619,40 @@
  moreFiltersBtn.setAttribute('aria-expanded', String(isHidden));
  });
  }
+
+ // ---- Collapsible overview table (hidden by default — click to show) ----
+ var overviewToggleBtn = document.getElementById('overviewToggleBtn');
+ var overviewScrollWrap = document.getElementById('overviewScrollWrap');
+ function expandOverview(){
+ if(!overviewScrollWrap || !overviewToggleBtn) return;
+ overviewScrollWrap.hidden = false;
+ overviewToggleBtn.setAttribute('aria-expanded', 'true');
+ }
+ function toggleOverview(){
+ if(!overviewScrollWrap || !overviewToggleBtn) return;
+ var isHidden = overviewScrollWrap.hidden;
+ overviewScrollWrap.hidden = !isHidden;
+ overviewToggleBtn.setAttribute('aria-expanded', String(isHidden));
+ }
+ if(overviewToggleBtn){
+ overviewToggleBtn.addEventListener('click', toggleOverview);
+ }
+ // Jumping to the overview section from the sidebar/contents nav should also reveal the table
+ document.querySelectorAll('a[href="#overviewSection"]').forEach(function(a){
+ a.addEventListener('click', expandOverview);
+ });
+
  function updateClearButton(){
- var dirty = state.region !== 'all' || state.status !== 'all' || state.q !== '';
+ var dirty = state.region !== 'all' || state.status !== 'all' || state.category !== 'all' || state.q !== '';
  if(clearFiltersBtn){ clearFiltersBtn.classList.toggle('is-visible', dirty); }
  }
  if(clearFiltersBtn){
  clearFiltersBtn.addEventListener('click', function(){
- state.region = 'all'; state.status = 'all'; state.q = '';
+ state.region = 'all'; state.status = 'all'; state.category = 'all'; state.q = '';
  searchInputEl.value = '';
  setActive(regionBtns, regionBtns[0]);
  setActive(statusBtns, statusBtns[0]);
+ setActive(categoryBtns, categoryBtns[0]);
  applyFilters();
  });
  }
