@@ -1298,6 +1298,7 @@
  <span data-en="6 laws — European Union">6 ฉบับ — สหภาพยุโรป</span>
  <span data-en="7 laws — Asia">7 ฉบับ — เอเชีย</span>
  <span data-en="4 laws — Global">4 ฉบับ — สากล</span>
+ <span id="todayBadge" data-en="Today: 14 SEP 2026">วันนี้: 14 ก.ย. 2569</span>
  </div>
 
  <!-- THIS WEEK WATCHLIST -->
@@ -3510,6 +3511,20 @@
 
  var state = { region: 'all', status: 'all', category: 'all', q: '' };
  var currentLang = 'th';
+
+ // ---- Live "Today" badge — computed client-side from the visitor's clock, never goes stale ----
+ (function(){
+ var todayEl = document.getElementById('todayBadge');
+ if(!todayEl) return;
+ var monthsEn = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+ var monthsTh = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+ var now = new Date();
+ var dd = String(now.getDate()).padStart(2,'0');
+ var dateStrEn = dd + ' ' + monthsEn[now.getMonth()] + ' ' + now.getFullYear();
+ var dateStrTh = dd + ' ' + monthsTh[now.getMonth()] + ' ' + (now.getFullYear() + 543);
+ todayEl.innerHTML = 'วันนี้: ' + dateStrTh;
+ todayEl.setAttribute('data-en', 'Today: ' + dateStrEn);
+ })();
 
  function setActive(group, btn){
  Array.prototype.forEach.call(group, function(b){ b.classList.remove('active'); });
