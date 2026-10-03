@@ -237,7 +237,9 @@
  font-weight:700;
  padding:6px 14px;
  border-radius:0;
- white-space:nowrap;
+ white-space:normal;
+ max-width:100%;
+ box-sizing:border-box;
  letter-spacing:0.02em;
  transition:transform .2s var(--ease);
  }
@@ -1070,6 +1072,10 @@
 .std-table .std-name{font-weight:600;font-family:var(--font-head);}
 .std-table .std-cert{font-size:11.5px;}
 .table-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:none;margin-bottom:18px;}
+.table-scroll-hint{display:none;}
+@media (max-width:900px){
+.table-scroll-hint{display:flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:10.5px;color:var(--ink-soft);margin-bottom:6px;letter-spacing:.02em;}
+}
 .subgroup-title{font-family:var(--font-head);font-size:14px;font-weight:600;margin:28px 0 10px;display:flex;align-items:center;gap:8px;}
 .subgroup-title .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 .subgroup-title.cat-compost .dot{background:var(--th-accent);}
@@ -1219,7 +1225,7 @@
 <a href="sustainability_standards.html" class="cross-link-btn" data-en="🌱 View Sustainability Standards">🌱 ดูหน้ามาตรฐานความยั่งยืน</a>
 </div>
 <div class="masthead-right">
-<div class="sub" data-en="Compostable/biodegradable + PCR/PIR recycled-content reference<br>Last updated: September 4, 2026">อ้างอิงมาตรฐานพลาสติกย่อยสลายได้ + ปริมาณรีไซเคิล (PCR/PIR)<br>ปรับปรุงล่าสุด: 4 กันยายน 2569</div>
+<div class="sub" data-en="Compostable/biodegradable + PCR/PIR recycled-content reference<br>Last updated: October 3, 2026">อ้างอิงมาตรฐานพลาสติกย่อยสลายได้ + ปริมาณรีไซเคิล (PCR/PIR)<br>ปรับปรุงล่าสุด: 3 ตุลาคม 2569</div>
 <div class="lang-toggle" id="langToggle" role="group" aria-label="Language">
 <button type="button" class="lang-btn is-active" data-lang="th">TH</button>
 <button type="button" class="lang-btn" data-lang="en">EN</button>
@@ -1232,7 +1238,7 @@
 <div class="masthead-strip">
 <span data-en="12 standards — Compostable / Biodegradable">12 มาตรฐาน — ย่อยสลายได้/หมักปุ๋ยได้</span>
 <span data-en="13 standards/schemes — Recycled Content (PCR/PIR)">13 มาตรฐาน/ระบบ — ปริมาณรีไซเคิล (PCR/PIR)</span>
-<span data-en="Today: 04 SEP 2026">วันนี้: 04 SEP 2026</span>
+<span id="todayBadge" data-en="Today: 03 OCT 2026">วันนี้: 03 ต.ค. 2569</span><script>(function(){var el=document.getElementById('todayBadge');if(!el)return;var mE=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'],mT=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];var n=new Date(),d=String(n.getDate()).padStart(2,'0');el.innerHTML='วันนี้: '+d+' '+mT[n.getMonth()]+' '+(n.getFullYear()+543);el.setAttribute('data-en','Today: '+d+' '+mE[n.getMonth()]+' '+n.getFullYear());})();</script>
 </div>
 
 <p class="intro-note" data-en="This page uses data references, compiling international and Thai standards, test methods, pass criteria, and certification labels for compostable/biodegradable plastics and recycled plastics, along with a September 2026 update check.">ข้อมูลในหน้านี้ใช้ข้อมูลอ้างอิงเป็นหลัก ซึ่งรวบรวมมาตรฐานสากลและมาตรฐานไทย วิธีทดสอบ เกณฑ์ผ่าน และฉลากรับรอง สำหรับพลาสติกย่อยสลายได้/หมักปุ๋ยได้ และพลาสติกรีไซเคิล ร่วมกับการตรวจสอบความทันสมัยเพิ่มเติม ณ เดือนกันยายน 2569</p>
@@ -1253,10 +1259,10 @@
 <!-- RECENT UPDATES -->
 <section class="update-box" id="updatesSection">
 <h2 data-en="🔔 Updates found beyond the reference file (checked September 4, 2026)">🔔 อัปเดตที่พบเพิ่มเติมนอกเหนือจากไฟล์อ้างอิงเดิม (ตรวจสอบ ณ 4 ก.ย. 2569)</h2>
-<div class="update-item"><span class="update-tag" data-en="NEW">ใหม่</span><span data-en="<b>GRS / RCS (Textile Exchange)</b> — Both standards are transitioning to a new combined <b>Materials Matter Standard</b>. New criteria were released Dec 12, 2025; they become effective Dec 31, 2026 and mandatory from Dec 31, 2027. Current GRS 4.0 / RCS 2.0 (issued 2017) remain valid until then. <i>Source: Textile Exchange, retrieved Sep 4, 2026.</i>"><b>GRS / RCS (Textile Exchange)</b> — ทั้งสองมาตรฐานกำลังเปลี่ยนผ่านไปเป็นมาตรฐานรวมใหม่ <b>Materials Matter Standard</b> เกณฑ์ใหม่เผยแพร่แล้วเมื่อ 12 ธ.ค. 2568 มีผลบังคับใช้ 31 ธ.ค. 2569 และบังคับใช้เต็มรูปแบบ 31 ธ.ค. 2570 — GRS 4.0 / RCS 2.0 ฉบับปัจจุบัน (ออกปี 2560) ยังใช้ได้จนถึงตอนนั้น <i>แหล่งที่มา: Textile Exchange สืบค้นเมื่อ 4 ก.ย. 2569</i></span></div>
-<div class="update-item"><span class="update-tag" data-en="NEW">ใหม่</span><span data-en="<b>ISCC PLUS</b> — Version 4.2 took effect October 2026. For food-grade mass-balance applications it now requires separate silos and physical segregation at the final extruder rather than pure accounting allocation; non-food applications gained &quot;credit pooling&quot; across a company's European network. A further v5.0 (expected Q2 2028) is planned to close food-grade mass balance further and tighten chemical-recycling (pyrolysis) book-allocation. <i>Source: ISCC System / industry analysis, retrieved Sep 4, 2026.</i>"><b>ISCC PLUS</b> — เวอร์ชัน 4.2 มีผลบังคับใช้ตั้งแต่ ต.ค. 2569 สำหรับการใช้งาน food-grade แบบ mass-balance กำหนดให้ต้องมีไซโลแยกและแยกกายภาพที่ extruder สุดท้าย แทนการปันส่วนทางบัญชีอย่างเดียว ส่วนการใช้งาน non-food ได้รับอนุญาตให้ทำ &quot;credit pooling&quot; ข้ามเครือข่ายในยุโรปของบริษัทได้ ส่วนเวอร์ชัน 5.0 (คาดการณ์ไตรมาส 2 ปี 2571) จะเข้มงวดเรื่อง mass balance สำหรับ food-grade และการปันส่วนทางบัญชีของการรีไซเคิลเชิงเคมี (pyrolysis) มากขึ้น <i>แหล่งที่มา: ISCC System และบทวิเคราะห์อุตสาหกรรม สืบค้นเมื่อ 4 ก.ย. 2569</i></span></div>
-<div class="update-item"><span class="update-tag" data-en="CONFIRMED">ยืนยันแล้ว</span><span data-en="<b>EU PPWR</b> recycled-content minimums (relevant to the RecyClass/ISCC PLUS rows below) take effect Jan 1, 2030: 30% for contact-sensitive PET packaging, 10% for other contact-sensitive plastic packaging, 30% for single-use plastic beverage bottles. <i>Source: PPWR (EU) 2025/40, retrieved Sep 4, 2026.</i>"><b>EU PPWR</b> เกณฑ์ขั้นต่ำปริมาณรีไซเคิล (เกี่ยวข้องกับแถว RecyClass/ISCC PLUS ด้านล่าง) มีผลบังคับใช้ 1 ม.ค. 2573: PET ที่สัมผัสอาหาร 30%, พลาสติกที่สัมผัสอาหารประเภทอื่น 10%, ขวดเครื่องดื่มพลาสติกใช้ครั้งเดียว 30% <i>แหล่งที่มา: PPWR (EU) 2025/40 สืบค้นเมื่อ 4 ก.ย. 2569</i></span></div>
-<div class="update-item"><span class="update-tag" data-en="STABLE">ไม่เปลี่ยนแปลง</span><span data-en="EN 13432, ASTM D6400, ISO 17088 and มอก. 17088-2555 (industrial composting) show no evidence of an active revision as of Sep 4, 2026 — the pass criteria in the table below remain current.">EN 13432, ASTM D6400, ISO 17088 และ มอก. 17088-2555 (การหมักปุ๋ยระดับอุตสาหกรรม) ยังไม่พบหลักฐานว่ามีการทบทวนฉบับใหม่ ณ วันที่ 4 ก.ย. 2569 — เกณฑ์ผ่านในตารางด้านล่างยังคงเป็นปัจจุบัน</span></div>
+<div class="update-item"><span class="update-tag" data-en="NEW">ใหม่</span><span data-en="<b>GRS / RCS (Textile Exchange)</b> — Both standards are transitioning to a new combined <b>Materials Matter Standard</b>. New criteria were released Dec 12, 2025; they become effective Dec 31, 2026 and mandatory from Dec 31, 2027. Current GRS 4.0 / RCS 2.0 (issued 2017) remain valid until then. <i>Source: Textile Exchange, retrieved Oct 3, 2026.</i>"><b>GRS / RCS (Textile Exchange)</b> — ทั้งสองมาตรฐานกำลังเปลี่ยนผ่านไปเป็นมาตรฐานรวมใหม่ <b>Materials Matter Standard</b> เกณฑ์ใหม่เผยแพร่แล้วเมื่อ 12 ธ.ค. 2568 มีผลบังคับใช้ 31 ธ.ค. 2569 และบังคับใช้เต็มรูปแบบ 31 ธ.ค. 2570 — GRS 4.0 / RCS 2.0 ฉบับปัจจุบัน (ออกปี 2560) ยังใช้ได้จนถึงตอนนั้น <i>แหล่งที่มา: Textile Exchange สืบค้นเมื่อ 3 ต.ค. 2569</i></span></div>
+<div class="update-item"><span class="update-tag" data-en="NEW">ใหม่</span><span data-en="<b>ISCC PLUS</b> — Version 4.2 took effect October 2026. For food-grade mass-balance applications it now requires separate silos and physical segregation at the final extruder rather than pure accounting allocation; non-food applications gained &quot;credit pooling&quot; across a company's European network. <i>Source: ISCC System / industry analysis, retrieved Oct 3, 2026.</i>"><b>ISCC PLUS</b> — เวอร์ชัน 4.2 มีผลบังคับใช้ตั้งแต่ ต.ค. 2569 สำหรับการใช้งาน food-grade แบบ mass-balance กำหนดให้ต้องมีไซโลแยกและแยกกายภาพที่ extruder สุดท้าย แทนการปันส่วนทางบัญชีอย่างเดียว ส่วนการใช้งาน non-food ได้รับอนุญาตให้ทำ &quot;credit pooling&quot; ข้ามเครือข่ายในยุโรปของบริษัทได้ <i>แหล่งที่มา: ISCC System และบทวิเคราะห์อุตสาหกรรม สืบค้นเมื่อ 3 ต.ค. 2569</i></span></div>
+<div class="update-item"><span class="update-tag" data-en="CONFIRMED">ยืนยันแล้ว</span><span data-en="<b>EU PPWR</b> recycled-content minimums (relevant to the RecyClass/ISCC PLUS rows below) take effect Jan 1, 2030: 30% for contact-sensitive PET packaging, 10% for other contact-sensitive plastic packaging, 30% for single-use plastic beverage bottles. <i>Source: PPWR (EU) 2025/40, retrieved Oct 3, 2026.</i>"><b>EU PPWR</b> เกณฑ์ขั้นต่ำปริมาณรีไซเคิล (เกี่ยวข้องกับแถว RecyClass/ISCC PLUS ด้านล่าง) มีผลบังคับใช้ 1 ม.ค. 2573: PET ที่สัมผัสอาหาร 30%, พลาสติกที่สัมผัสอาหารประเภทอื่น 10%, ขวดเครื่องดื่มพลาสติกใช้ครั้งเดียว 30% <i>แหล่งที่มา: PPWR (EU) 2025/40 สืบค้นเมื่อ 3 ต.ค. 2569</i></span></div>
+<div class="update-item"><span class="update-tag" data-en="STABLE">ไม่เปลี่ยนแปลง</span><span data-en="Industrial-composting standards: the core pass criteria (≥90% biodegradation, ≤10% residue &gt;2mm) are unchanged. Current editions: ASTM D6400-26 (approved Jun 15, 2026; replaces D6400-23) and ISO 17088:2021 (3rd ed., currently under ISO systematic review — outcome pending). EN 13432 and มอก. 17088-2555 (based on ISO 17088:2008) show no new edition as of Oct 3, 2026.">มาตรฐานการหมักปุ๋ยระดับอุตสาหกรรม: เกณฑ์ผ่านหลัก (ย่อยสลายทางชีวภาพ ≥90%, เศษตกค้าง &gt;2 มม. ≤10%) ไม่เปลี่ยนแปลง ฉบับปัจจุบัน: ASTM D6400-26 (อนุมัติ 15 มิ.ย. 2569 แทน D6400-23) และ ISO 17088:2021 (ฉบับที่ 3 อยู่ระหว่างการทบทวนตามวงรอบของ ISO — ผลยังไม่ออก) ส่วน EN 13432 และ มอก. 17088-2555 (อิง ISO 17088:2008) ยังไม่พบฉบับใหม่ ณ วันที่ 3 ต.ค. 2569</span></div>
 </section>
 
 <!-- ================= SECTION A: COMPOSTABLE / BIODEGRADABLE ================= -->
@@ -1269,6 +1275,7 @@
 </div>
 
 <div class="subgroup-title cat-compost" id="grp-industrial"><span class="dot"></span><span data-en="Industrial Composting">การหมักปุ๋ยระดับอุตสาหกรรม</span></div>
+<div class="table-scroll-hint" data-en="&#8596; Swipe to see full table">&#8596; เลื่อนดูตารางทั้งหมด</div>
 <div class="table-wrap"><table class="std-table" data-group="industrial">
 <thead><tr>
 <th data-en="Standard">มาตรฐาน</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Test Method (Key Principle)">วิธีทดสอบ (หลักการหลัก)</th><th data-en="Pass Criteria (Summary)">เกณฑ์ผ่าน (สรุป)</th><th data-en="Certification Label">ฉลากรับรอง</th>
@@ -1278,16 +1285,16 @@
 <td class="std-name">EN 13432</td><td>Europe (EU)</td>
 <td>CO2 evolution test (respirometric); disintegration test in pilot-scale compost; ecotoxicity on plants; heavy metal limits</td>
 <td>≥90% biodegradation within 6 months; ≤10% residue &gt;2mm after 12 weeks; no adverse effect on plant growth</td>
-<td class="std-cert">Seedling / OK Compost INDUSTRIAL (TÜV Austria)</td>
+<td class="std-cert">Seedling (European Bioplastics) / OK compost INDUSTRIAL (TÜV Austria)</td>
 </tr>
 <tr data-cat="compost" data-name="ASTM D6400 United States BPI biodegradable products institute">
-<td class="std-name">ASTM D6400</td><td>United States</td>
+<td class="std-name">ASTM D6400 (current edition D6400-26)</td><td>United States</td>
 <td>Same principle as EN 13432 — CO2 evolution + disintegration + ecotoxicity, adapted to US test protocols</td>
 <td>≥90% biodegradation within 180 days; ≤10% residue &gt;2mm after 12 weeks</td>
 <td class="std-cert">BPI (Biodegradable Products Institute) Certified</td>
 </tr>
 <tr data-cat="compost" data-name="ISO 17088 international harmonized">
-<td class="std-name">ISO 17088</td><td>International (ISO)</td>
+<td class="std-name">ISO 17088:2021</td><td>International (ISO)</td>
 <td>Harmonized international version aligning with EN 13432 / ASTM D6400 methodology</td>
 <td>Same core criteria as EN 13432 (≥90% biodegradation, disintegration, ecotoxicity)</td>
 <td class="std-cert">Used as base reference by many national standards, incl. Thai TIS/มอก.</td>
@@ -1302,6 +1309,7 @@
 </table></div>
 
 <div class="subgroup-title cat-compost" id="grp-home"><span class="dot"></span><span data-en="Home Composting">การหมักปุ๋ยในครัวเรือน</span></div>
+<div class="table-scroll-hint" data-en="&#8596; Swipe to see full table">&#8596; เลื่อนดูตารางทั้งหมด</div>
 <div class="table-wrap"><table class="std-table" data-group="home">
 <thead><tr>
 <th data-en="Standard">มาตรฐาน</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Test Method (Key Principle)">วิธีทดสอบ (หลักการหลัก)</th><th data-en="Pass Criteria (Summary)">เกณฑ์ผ่าน (สรุป)</th><th data-en="Certification Label">ฉลากรับรอง</th>
@@ -1323,6 +1331,7 @@
 </table></div>
 
 <div class="subgroup-title cat-compost" id="grp-marine"><span class="dot"></span><span data-en="Marine / Aquatic Environment">สิ่งแวดล้อมทางทะเล</span></div>
+<div class="table-scroll-hint" data-en="&#8596; Swipe to see full table">&#8596; เลื่อนดูตารางทั้งหมด</div>
 <div class="table-wrap"><table class="std-table" data-group="marine">
 <thead><tr>
 <th data-en="Standard">มาตรฐาน</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Test Method (Key Principle)">วิธีทดสอบ (หลักการหลัก)</th><th data-en="Pass Criteria (Summary)">เกณฑ์ผ่าน (สรุป)</th><th data-en="Certification Label">ฉลากรับรอง</th>
@@ -1344,6 +1353,7 @@
 </table></div>
 
 <div class="subgroup-title cat-compost" id="grp-soil"><span class="dot"></span><span data-en="Soil Environment">สิ่งแวดล้อมในดิน</span></div>
+<div class="table-scroll-hint" data-en="&#8596; Swipe to see full table">&#8596; เลื่อนดูตารางทั้งหมด</div>
 <div class="table-wrap"><table class="std-table" data-group="soil">
 <thead><tr>
 <th data-en="Standard">มาตรฐาน</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Test Method (Key Principle)">วิธีทดสอบ (หลักการหลัก)</th><th data-en="Pass Criteria (Summary)">เกณฑ์ผ่าน (สรุป)</th><th data-en="Certification Label">ฉลากรับรอง</th>
@@ -1365,6 +1375,7 @@
 </table></div>
 
 <div class="subgroup-title cat-compost" id="grp-anaerobic"><span class="dot"></span><span data-en="Anaerobic Digestion (Biogas)">การย่อยสลายแบบไม่ใช้ออกซิเจน (ไบโอแก๊ส)</span></div>
+<div class="table-scroll-hint" data-en="&#8596; Swipe to see full table">&#8596; เลื่อนดูตารางทั้งหมด</div>
 <div class="table-wrap"><table class="std-table" data-group="anaerobic">
 <thead><tr>
 <th data-en="Standard">มาตรฐาน</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Test Method (Key Principle)">วิธีทดสอบ (หลักการหลัก)</th><th data-en="Pass Criteria (Summary)">เกณฑ์ผ่าน (สรุป)</th><th data-en="Certification Label">ฉลากรับรอง</th>
@@ -1410,13 +1421,14 @@
 </div>
 
 <div class="subgroup-title cat-recycled" id="grp-def"><span class="dot"></span><span data-en="Definitions (foundation for all schemes below)">คำนิยาม (พื้นฐานของทุกระบบด้านล่าง)</span></div>
+<div class="table-scroll-hint" data-en="&#8596; Swipe to see full table">&#8596; เลื่อนดูตารางทั้งหมด</div>
 <div class="table-wrap"><table class="std-table" data-group="def">
 <thead><tr>
 <th data-en="Standard / System">มาตรฐาน/ระบบ</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Scope">ขอบเขต</th><th data-en="Key Principle">หลักการหลัก</th><th data-en="Requirement / Notes">ข้อกำหนด/หมายเหตุ</th>
 </tr></thead>
 <tbody>
 <tr data-cat="recycled" data-name="ISO 14021 2016 definitions PCR PIR self declared environmental claims">
-<td class="std-name">ISO 14021:2016</td><td>International (ISO)</td><td>PCR + PIR (defines both)</td>
+<td class="std-name">ISO 14021:2026 (replaces 2016 edition)</td><td>International (ISO)</td><td>PCR + PIR (defines both)</td>
 <td>Self-declared environmental claims standard; defines Post-Consumer and Post-Industrial (Pre-Consumer) recycled content separately</td>
 <td>Not a certification itself — the definitional basis nearly every certification scheme below references</td>
 </tr>
@@ -1424,6 +1436,7 @@
 </table></div>
 
 <div class="subgroup-title cat-recycled" id="grp-trace"><span class="dot"></span><span data-en="Traceability / Chain-of-Custody Standards">มาตรฐานการตรวจสอบย้อนกลับ</span></div>
+<div class="table-scroll-hint" data-en="&#8596; Swipe to see full table">&#8596; เลื่อนดูตารางทั้งหมด</div>
 <div class="table-wrap"><table class="std-table" data-group="trace">
 <thead><tr>
 <th data-en="Standard / System">มาตรฐาน/ระบบ</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Scope">ขอบเขต</th><th data-en="Key Principle">หลักการหลัก</th><th data-en="Requirement / Notes">ข้อกำหนด/หมายเหตุ</th>
@@ -1439,13 +1452,13 @@
 <td>Calculation of recycled content at product level when multiple materials/components are combined</td>
 <td>Complements EN 15343 for finished, multi-material products</td>
 </tr>
-<tr data-cat="recycled" data-name="ISO 22095 2022 international chain of custody mass balance">
-<td class="std-name">ISO 22095:2022</td><td>International (ISO)</td><td>PCR + PIR</td>
+<tr data-cat="recycled" data-name="ISO 22095 2020 international chain of custody mass balance">
+<td class="std-name">ISO 22095:2020</td><td>International (ISO)</td><td>PCR + PIR</td>
 <td>General chain-of-custody models and terminology (identity preserved, segregation, controlled blending, mass balance)</td>
 <td>Forms the CoC basis for APR and other certification schemes</td>
 </tr>
 <tr data-cat="recycled" data-name="มตช 9-2566 TCAS-9 Thailand TISI traceability plastic compounders converters">
-<td class="std-name">มตช. 9-2566 (TCAS-9)</td><td>Thailand (TISI / สมอ.)</td><td>PCR + PIR (traceability)</td>
+<td class="std-name">มตช. 9-2565 (TCAS-9)</td><td>Thailand (TISI / สมอ.)</td><td>PCR + PIR (traceability)</td>
 <td>Consolidates 5 international references (ISO 22095:2020, BS EN 15343:2007, BS EN 15347:2007, EuCertPlast Audit Scheme v4.1, Recycled Standard v4.0) into a traceability/chain-of-custody standard covering recycled-plastics compounders and product converters using recycled resin</td>
 <td>Published in the Royal Gazette on Sep 29, 2022. A traceability standard, not a minimum-content standard — proves a claim traces to a genuine documented source (self-declaration, related-party confirmation, or 3rd-party certification), but doesn't itself guarantee a specific PCR %</td>
 </tr>
@@ -1453,6 +1466,7 @@
 </table></div>
 
 <div class="subgroup-title cat-recycled" id="grp-cert"><span class="dot"></span><span data-en="Certification / Labeling Schemes">ระบบการรับรอง / ฉลาก</span></div>
+<div class="table-scroll-hint" data-en="&#8596; Swipe to see full table">&#8596; เลื่อนดูตารางทั้งหมด</div>
 <div class="table-wrap"><table class="std-table" data-group="cert">
 <thead><tr>
 <th data-en="Standard / System">มาตรฐาน/ระบบ</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Scope">ขอบเขต</th><th data-en="Key Principle">หลักการหลัก</th><th data-en="Requirement / Notes">ข้อกำหนด/หมายเหตุ</th>
@@ -1497,6 +1511,7 @@
 </table></div>
 
 <div class="subgroup-title cat-recycled" id="grp-mass"><span class="dot"></span><span data-en="Mass Balance / Chemical Recycling">Mass Balance / การรีไซเคิลเชิงเคมี</span></div>
+<div class="table-scroll-hint" data-en="&#8596; Swipe to see full table">&#8596; เลื่อนดูตารางทั้งหมด</div>
 <div class="table-wrap"><table class="std-table" data-group="mass">
 <thead><tr>
 <th data-en="Standard / System">มาตรฐาน/ระบบ</th><th data-en="Region / Origin">ภูมิภาค/แหล่งที่มา</th><th data-en="Scope">ขอบเขต</th><th data-en="Key Principle">หลักการหลัก</th><th data-en="Requirement / Notes">ข้อกำหนด/หมายเหตุ</th>
@@ -1517,7 +1532,7 @@
 <li>Why the distinction matters for claims: most brand-owner targets (e.g. EU PPWR, corporate PCR commitments) specifically require PCR, not PIR — because PIR was already being recovered internally as standard manufacturing practice and doesn't represent new diversion of post-consumer waste from landfill.</li>
 <li>Certification bodies (TÜV SÜD and others) issue separate certificates for PCR and PIR under ISO 14021, precisely so a brand can't blend the two together and imply a higher post-consumer recycled percentage than actually exists.</li>
 <li>ISCC PLUS vs mechanical recycling schemes (GRS/RCS/RecyClass): mechanical recycling schemes track physical material through the supply chain. ISCC PLUS instead uses mass balance accounting — needed for chemical recycling, where recycled feedstock and virgin feedstock are mixed within shared processing infrastructure (e.g. a cracker or refinery) and the recycled content is allocated to specific output products on paper rather than physically segregated.</li>
-<li>Thailand's own standard is มตช. 9-2566 (TCAS-9), issued by TISI (สมอ.), published in the Royal Gazette on 29 September 2022. It consolidates five international references (ISO 22905:2020, BS EN 15343:2007, BS EN 15347:2007, EuCertPlast Audit Scheme v4.1, and Recycled Standard v4.0) into a traceability and chain-of-custody standard covering two actor groups: recycled plastics compounders and product converters using recycled resin as input.</li>
+<li>Thailand's own standard is มตช. 9-2565 (TCAS-9), issued by TISI (สมอ.), published in the Royal Gazette on 29 September 2022. It consolidates five international references (ISO 22095:2020, BS EN 15343:2007, BS EN 15347:2007, EuCertPlast Audit Scheme v4.1, and Recycled Standard v4.0) into a traceability and chain-of-custody standard covering two actor groups: recycled plastics compounders and product converters using recycled resin as input.</li>
 <li>มตช.9 is a traceability standard, not a minimum-content standard: unlike GRS or RCS, it does not itself set a minimum recycled-content percentage — its purpose is to prove that a recycled-content claim can be traced back to a genuine, documented source. Conformity can be demonstrated via self-declaration, confirmation by a related party (e.g. a customer), or third-party certification.</li>
 <li>Practical takeaway for internal supplier evaluation: when evaluating a supplier's recycled-content claim, ask which scheme backs it. A GRS or RCS certificate with a stated % is a content claim; มตช.9 or EN 15343 alone is a traceability claim — useful evidence, but doesn't by itself guarantee a specific PCR percentage unless paired with a content-verification scheme.</li>
 <li>Thailand also has a second, industry-run scheme: สถาบันพลาสติก (Plastics Institute of Thailand) offers its own PCR content certification and labeling mark, separate from the government's มตช.9. Where มตช.9 verifies traceability, the Plastics Institute's scheme verifies and certifies the actual recycled-content percentage — functionally closer to GRS/RCS, and it is the more relevant one to cite when a Thai supplier claims a specific PCR %.</li>
@@ -1537,7 +1552,7 @@
 <tr><td class="std-name">มอก. 17088-2555</td><td>TISI (สมอ.)</td><td><a href="https://www.tisi.go.th" target="_blank" rel="noopener">www.tisi.go.th</a></td></tr>
 <tr><td class="std-name">AS 5810</td><td>Standards Australia</td><td><a href="https://www.standards.org.au" target="_blank" rel="noopener">www.standards.org.au</a></td></tr>
 <tr><td class="std-name">NF T51-800</td><td>AFNOR (France)</td><td><a href="https://www.afnor.org" target="_blank" rel="noopener">www.afnor.org</a></td></tr>
-<tr><td class="std-name">OK Compost / Seedling labels</td><td>TÜV Austria</td><td><a href="https://www.tuv-austria.com" target="_blank" rel="noopener">www.tuv-austria.com</a></td></tr>
+<tr><td class="std-name">OK compost labels</td><td>TÜV Austria</td><td><a href="https://www.tuv-austria.com" target="_blank" rel="noopener">www.tuv-austria.com</a></td></tr>
 <tr><td class="std-name">BPI Certified</td><td>Biodegradable Products Institute</td><td><a href="https://www.bpiworld.org" target="_blank" rel="noopener">www.bpiworld.org</a></td></tr>
 <tr><td class="std-name">GC Compostable</td><td>PTT Global Chemical (GC)</td><td><a href="https://www.pttgcgroup.com" target="_blank" rel="noopener">www.pttgcgroup.com</a></td></tr>
 <tr><td class="std-name">ISO 14021 / 22095</td><td>ISO</td><td><a href="https://www.iso.org" target="_blank" rel="noopener">www.iso.org</a></td></tr>
@@ -1548,7 +1563,7 @@
 <tr><td class="std-name">RecyClass</td><td>RecyClass</td><td><a href="https://recyclass.eu" target="_blank" rel="noopener">recyclass.eu</a></td></tr>
 <tr><td class="std-name">EuCertPlast</td><td>EuCertPlast</td><td><a href="https://www.eucertplast.eu" target="_blank" rel="noopener">www.eucertplast.eu</a></td></tr>
 <tr><td class="std-name">ISCC PLUS</td><td>International Sustainability &amp; Carbon Certification</td><td><a href="https://iscc-system.org" target="_blank" rel="noopener">iscc-system.org</a></td></tr>
-<tr><td class="std-name">มตช. 9-2566 (TCAS-9)</td><td>TISI (สมอ.)</td><td><a href="https://www.tisi.go.th" target="_blank" rel="noopener">www.tisi.go.th</a></td></tr>
+<tr><td class="std-name">มตช. 9-2565 (TCAS-9)</td><td>TISI (สมอ.)</td><td><a href="https://www.tisi.go.th" target="_blank" rel="noopener">www.tisi.go.th</a></td></tr>
 <tr><td class="std-name">PCR Content Certification</td><td>สถาบันพลาสติก (Plastics Institute of Thailand)</td><td><a href="https://tcc.thaiplastics.org" target="_blank" rel="noopener">tcc.thaiplastics.org</a></td></tr>
 </tbody>
 </table>
@@ -1558,7 +1573,7 @@
 <div class="empty-state" id="emptyState" data-en="No matching standards found.">ไม่พบมาตรฐานที่ตรงกับการค้นหา</div>
 
 <footer>
-<span data-en="Update check performed September 4, 2026 against public sources (Textile Exchange, ISCC System, EU PPWR text, TISI). Please verify against primary sources before using for official reference.">ตรวจสอบความทันสมัยเพิ่มเติมเมื่อวันที่ 4 กันยายน 2569 จากแหล่งข้อมูลสาธารณะ (Textile Exchange, ISCC System, ตัวบท EU PPWR, TISI) ควรตรวจสอบแหล่งต้นทางก่อนใช้อ้างอิงทางการ</span>
+<span data-en="Update check performed October 3, 2026 against public sources (Textile Exchange, ISCC System, EU PPWR text, TISI). Please verify against primary sources before using for official reference.">ตรวจสอบความทันสมัยเพิ่มเติมเมื่อวันที่ 3 ตุลาคม 2569 จากแหล่งข้อมูลสาธารณะ (Textile Exchange, ISCC System, ตัวบท EU PPWR, TISI) ควรตรวจสอบแหล่งต้นทางก่อนใช้อ้างอิงทางการ</span>
 </footer>
 </div>
 
