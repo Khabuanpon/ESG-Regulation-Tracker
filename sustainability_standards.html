@@ -21,11 +21,14 @@
  --eu-accent-soft:#EFF6FF;
  --ok:#059669;
  --ok-soft:#DCFCE7;
+ --ok-pill-text:#047857;
  --warn:#D97706;
  --warn-soft:#FEF3C7;
+ --warn-pill-text:#92400E;
  --urgent:#DC2626;
  --urgent-rgb:220,38,38;
  --urgent-soft:#FEE2E2;
+ --urgent-pill-text:#B91C1C;
  --asia-accent:#475569;
  --asia-accent-soft:#F1F5F9;
  --global-accent:#334155;
@@ -230,18 +233,18 @@
  }
  .status-pill{
  font-family:var(--font-mono);
- font-size:11px;
- font-weight:600;
- padding:5px 12px;
+ font-size:12px;
+ font-weight:700;
+ padding:6px 14px;
  border-radius:0;
  white-space:nowrap;
  letter-spacing:0.02em;
  transition:transform .2s var(--ease);
  }
  .card:hover .status-pill{transform:scale(1.04);}
- .status-progress{background:var(--warn-soft);color:var(--warn);}
- .status-force{background:var(--ok-soft);color:var(--ok);}
- .status-urgent{background:var(--urgent-soft);color:var(--urgent);}
+ .status-progress{background:var(--warn-soft);color:var(--warn-pill-text);}
+ .status-force{background:var(--ok-soft);color:var(--ok-pill-text);}
+ .status-urgent{background:var(--urgent-soft);color:var(--urgent-pill-text);}
 
  .summary{font-size:14px;margin:8px 0 16px;color:var(--ink);}
  .summary b{font-weight:600;}
@@ -552,6 +555,37 @@
  .full-summary summary::-webkit-details-marker{display:none;}
  .full-summary summary:hover{color:var(--gold);}
  .full-summary p.summary{margin-top:8px;}
+
+ /* Progressive disclosure: timeline + meta-grid collapsed by default on the card */
+ .timeline-toggle{
+ margin-top:8px;
+ border-top:1px dashed var(--line);
+ padding-top:8px;
+ }
+ .timeline-toggle summary{
+ cursor:pointer;
+ list-style:none;
+ font-family:var(--font-mono);
+ font-size:11px;
+ font-weight:600;
+ letter-spacing:0.03em;
+ color:var(--ink-soft);
+ display:inline-flex;
+ align-items:center;
+ gap:5px;
+ transition:color .2s var(--ease);
+ }
+ .timeline-toggle summary::-webkit-details-marker{display:none;}
+ .timeline-toggle summary::before{
+ content:"▸";
+ font-size:9px;
+ transition:transform .2s var(--ease);
+ }
+ .timeline-toggle[open] summary::before{
+ content:"▾";
+ }
+ .timeline-toggle summary:hover{color:var(--gold);}
+ .timeline-toggle .timeline{margin-top:10px;}
 
  /* Overview table */
  .overview{
@@ -953,6 +987,7 @@
  body.side-nav-locked header.masthead{visibility:hidden;}
  @media (max-width:640px){
  .side-nav-toggle{top:12px;left:12px;width:38px;height:38px;font-size:16px;}
+ .wrap{padding-top:64px;}
  }
 
  /* ---- Detail-view button (per card) + Law detail modal ---- */
@@ -1047,7 +1082,7 @@
  transition:background .15s var(--ease),transform .15s var(--ease),box-shadow .15s var(--ease);
  }
  .cross-link-btn:hover{background:var(--gold);box-shadow:none;}
- .masthead-right .cross-link-btn{margin-bottom:8px;}
+ .masthead-links{display:flex;gap:8px;flex-wrap:wrap;}
  .side-cross-link{
  background:var(--paper-2);
  border:1px solid var(--line);
@@ -1073,11 +1108,14 @@
  --eu-accent-soft:#1E3A5F;
  --ok:#34D399;
  --ok-soft:#0F3D2E;
+ --ok-pill-text:#34D399;
  --warn:#FBBF24;
  --warn-soft:#3D2E0A;
+ --warn-pill-text:#FBBF24;
  --urgent:#F87171;
  --urgent-rgb:248,113,113;
  --urgent-soft:#3D1414;
+ --urgent-pill-text:#F87171;
  --asia-accent:#94A3B8;
  --asia-accent-soft:#1E293B;
  --global-accent:#CBD5E1;
@@ -1195,14 +1233,18 @@
 <!-- LAW DETAIL MODAL (reused generically for standards) -->
 <div id="lawModalOverlay" class="law-modal-overlay" hidden></div>
 <div id="lawModal" class="law-modal" hidden role="dialog" aria-modal="true">
-<button type="button" id="lawModalClose" class="law-modal-close" aria-label="Close">&times;</button>
+<button type="button" id="lawModalClose" class="law-modal-close" aria-label="ปิด">&times;</button>
 <div id="lawModalBody" class="law-modal-body"></div>
 </div>
 
 <header class="masthead">
 <h1 data-en="Sustainability Standards Tracker">มาตรฐานความยั่งยืน</h1>
+<div class="masthead-links">
+<a href="index.html" class="cross-link-btn" data-en="⚖️ View ESG Law Tracker">⚖️ ดูหน้ากฎหมาย ESG</a>
+<a href="packaging_standards.html" class="cross-link-btn" data-en="📦 View Packaging Standards">📦 ดูหน้ามาตรฐานบรรจุภัณฑ์</a>
+</div>
 <div class="masthead-right">
-<div class="sub" data-en="<a href=&quot;index.html&quot; class=&quot;cross-link-btn&quot;>⚖️ View ESG Law Tracker</a> <a href=&quot;packaging_standards.html&quot; class=&quot;cross-link-btn&quot;>📦 View Packaging Standards</a><br>GHG Protocol, SBTi, ISO, GRI, IFRS Sustainability, etc.<br>Last updated: September 3, 2026"><a href="index.html" class="cross-link-btn">⚖️ ดูหน้ากฎหมาย ESG</a> <a href="packaging_standards.html" class="cross-link-btn">📦 ดูหน้ามาตรฐานบรรจุภัณฑ์</a><br>ปรับปรุงล่าสุด: 3 กันยายน 2569</div>
+<div class="sub" data-en="GHG Protocol, SBTi, ISO, GRI, IFRS Sustainability, etc.<br>Last updated: September 3, 2026">ปรับปรุงล่าสุด: 3 กันยายน 2569</div>
 <div class="lang-toggle" id="langToggle" role="group" aria-label="Language">
 <button type="button" class="lang-btn is-active" data-lang="th">TH</button>
 <button type="button" class="lang-btn" data-lang="en">EN</button>
@@ -1223,7 +1265,7 @@
 <!-- TOOLBAR: SEARCH + FILTER -->
 <div class="toolbar">
 <div class="search-box">
-<input type="search" id="lawSearch" placeholder="ค้นหาชื่อมาตรฐาน, หน่วยงาน, คำสำคัญ..." data-en-placeholder="Search standard name, issuing body, keyword...">
+<input type="search" id="lawSearch" aria-label="ค้นหาชื่อมาตรฐาน" placeholder="ค้นหาชื่อมาตรฐาน, หน่วยงาน, คำสำคัญ..." data-en-placeholder="Search standard name, issuing body, keyword...">
 </div>
 <div class="filter-group" id="regionFilter">
 <button class="filter-btn active" data-region="all" data-en="All">ทั้งหมด</button>
@@ -1258,117 +1300,117 @@
 </thead>
 <tbody>
 <tr class="ov-row" data-region="th" data-status="progress">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-1" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-1" data-en="GHG Protocol (Corporate Standard, Scope 2, Scope 3)">🧪 GHG Protocol (Corporate Standard, Scope 2, Scope 3)</a><div class="ov-en">Greenhouse Gas Protocol — Corporate Accounting and Reporting Standard</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-1" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-1" data-en="GHG Protocol (Corporate Standard, Scope 2, Scope 3)">🧪 GHG Protocol (Corporate Standard, Scope 2, Scope 3)</a><div class="ov-en">Greenhouse Gas Protocol — Corporate Accounting and Reporting Standard</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Major revision of all 3 standards under way">กำลังปรับปรุงใหญ่ทั้ง 3 ฉบับ</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="Major revision under way — new Scope 2 edition expected 2027, Scope 3 in Phase 1">กำลังปรับปรุงใหญ่ — Scope 2 คาดออกฉบับใหม่ปี 2570, Scope 3 อยู่ระหว่าง Phase 1</td>
 </tr>
 <tr class="ov-row" data-region="th" data-status="stable">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-2" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-2" data-en="ISO 14064-1 / -2 / -3">🧪 ISO 14064-1 / -2 / -3</a><div class="ov-en">Greenhouse gases — Quantification, reporting, verification and validation</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-2" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-2" data-en="ISO 14064-1 / -2 / -3">🧪 ISO 14064-1 / -2 / -3</a><div class="ov-en">Greenhouse gases — Quantification, reporting, verification and validation</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-stable" data-en="No new version has been developed yet">ยังไม่มีการพัฒนา Version ใหม่</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="Current 2018 edition — no revision cycle found yet, even though ISO's nominal 5-year review point has passed">ฉบับปัจจุบัน (2018) ยังไม่มีรอบทบทวนใหม่ แม้ครบกำหนดทบทวน 5 ปีของ ISO ไปแล้ว</td>
 </tr>
 <tr class="ov-row" data-region="th" data-status="stable">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-3" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-3" data-en="ISO 14068-1:2023 (Carbon Neutrality)">🧪 ISO 14068-1:2023 (Carbon Neutrality)</a><div class="ov-en">Climate change management — Transition to net zero — Part 1: Carbon neutrality</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-3" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-3" data-en="ISO 14068-1:2023 (Carbon Neutrality)">🧪 ISO 14068-1:2023 (Carbon Neutrality)</a><div class="ov-en">Climate change management — Transition to net zero — Part 1: Carbon neutrality</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-stable" data-en="First edition — no revision cycle yet">ฉบับแรก ยังไม่มีรอบปรับปรุง</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="Published 2023 — the first international standard for carbon-neutrality claims, replacing the now-withdrawn PAS 2060">เผยแพร่ปี 2023 เป็นมาตรฐานสากลฉบับแรกสำหรับการอ้างสิทธิ์ carbon neutrality แทนที่ PAS 2060 ที่ถูกถอนแล้ว</td>
 </tr>
 <tr class="ov-row" data-region="th" data-status="stable">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-4" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-4" data-en="Net Zero Guidelines (IWA 42:2022)">🧪 Net Zero Guidelines (IWA 42:2022)</a><div class="ov-en">International Workshop Agreement — Net Zero Guidelines</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-4" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-4" data-en="Net Zero Guidelines (IWA 42:2022)">🧪 Net Zero Guidelines (IWA 42:2022)</a><div class="ov-en">International Workshop Agreement — Net Zero Guidelines</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-stable" data-en="No new version has been developed yet">ยังไม่มีการพัฒนา Version ใหม่</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="Broad net-zero principles document, published 2022, not yet revised">เอกสารหลักการกว้างเรื่อง net zero เผยแพร่ปี 2022 ยังไม่มีการปรับปรุง</td>
 </tr>
 <tr class="ov-row" data-region="th" data-status="progress">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-5" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-5" data-en="GHG Protocol Land Sector and Removals Guidance">🧪 GHG Protocol Land Sector and Removals Guidance</a><div class="ov-en">Guidance on land-sector emissions/removals and carbon removals accounting</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-5" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-5" data-en="GHG Protocol Land Sector and Removals Guidance">🧪 GHG Protocol Land Sector and Removals Guidance</a><div class="ov-en">Guidance on land-sector emissions/removals and carbon removals accounting</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="In development — no final edition published yet">กำลังพัฒนา — ยังไม่เผยแพร่ฉบับสมบูรณ์</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="A new GHG Protocol guidance document on carbon removals and the land sector, being developed alongside the Scope 2/3 revisions">เอกสารแนวทางใหม่ของ GHG Protocol เรื่อง carbon removals และภาคที่ดิน กำลังพัฒนาคู่ขนานกับการปรับปรุง Scope 2/3</td>
 </tr>
 <tr class="ov-row" data-region="th" data-status="urgent">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-6" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-6" data-en="PAS 2060:2014 (Withdrawn)">🧪 PAS 2060:2014 (ถูกถอนแล้ว)</a><div class="ov-en">PAS 2060 — Specification for the demonstration of carbon neutrality (withdrawn)</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-6" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-6" data-en="PAS 2060:2014 (Withdrawn)">🧪 PAS 2060:2014 (ถูกถอนแล้ว)</a><div class="ov-en">PAS 2060 — Specification for the demonstration of carbon neutrality (withdrawn)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-urgent" data-en="Withdrawn — replaced by ISO 14068-1">ถูกถอนแล้ว — แทนที่ด้วย ISO 14068-1</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="Formally withdrawn by BSI, though many existing claims still cite it during the transition">ถูกถอนอย่างเป็นทางการโดย BSI แล้ว แต่การอ้างสิทธิ์เดิมจำนวนมากยังอ้างอิงอยู่ในช่วงเปลี่ยนผ่าน</td>
 </tr>
 <tr class="ov-row" data-region="th" data-status="progress">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-23" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-23" data-en="ISO 14067:2018 (Carbon Footprint of Products)">🧪 ISO 14067:2018 (Carbon Footprint of Products)</a><div class="ov-en">ISO 14067 — Greenhouse gases — Carbon footprint of products — Requirements and guidelines for quantification</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-23" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-23" data-en="ISO 14067:2018 (Carbon Footprint of Products)">🧪 ISO 14067:2018 (Carbon Footprint of Products)</a><div class="ov-en">ISO 14067 — Greenhouse gases — Carbon footprint of products — Requirements and guidelines for quantification</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="2nd edition under development">อยู่ระหว่างพัฒนาฉบับที่ 2</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="The 2018 edition is still in force, but a 2nd-edition project (ISO/WD 14067.2) is under way with no confirmed publication date yet">ฉบับ 2018 ยังใช้อยู่ แต่มีโครงการพัฒนาฉบับที่ 2 (ISO/WD 14067.2) อยู่ระหว่างดำเนินการ ยังไม่มีกำหนดเผยแพร่ชัดเจน</td>
 </tr>
 <tr class="ov-row" data-region="eu" data-status="force">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-7" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-7" data-en="SBTi Corporate Net-Zero Standard">🎯 SBTi Corporate Net-Zero Standard</a><div class="ov-en">Science Based Targets initiative — Corporate Net-Zero Standard (CNZS)</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-7" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-7" data-en="SBTi Corporate Net-Zero Standard">🎯 SBTi Corporate Net-Zero Standard</a><div class="ov-en">Science Based Targets initiative — Corporate Net-Zero Standard (CNZS)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-force" data-en="v2.0 just released (Jun 2026)">v2.0 เพิ่งประกาศใช้ (มิ.ย. 2569)</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="Version 2.0 just published Jun 11, 2026 after two consultation rounds — v1.3.1 remains valid during the transition">เวอร์ชัน 2.0 เพิ่งเผยแพร่ 11 มิ.ย. 2569 หลังผ่านการรับฟังความเห็น 2 รอบ — v1.3.1 ยังใช้ได้ระหว่างเปลี่ยนผ่าน</td>
 </tr>
 <tr class="ov-row" data-region="eu" data-status="force">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-8" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-8" data-en="SBTi Financial Institutions Net-Zero Standard (FINZ)">🎯 SBTi Financial Institutions Net-Zero Standard (FINZ)</a><div class="ov-en">Science Based Targets initiative — Financial Institutions Net-Zero Standard</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-8" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-8" data-en="SBTi Financial Institutions Net-Zero Standard (FINZ)">🎯 SBTi Financial Institutions Net-Zero Standard (FINZ)</a><div class="ov-en">Science Based Targets initiative — Financial Institutions Net-Zero Standard</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-force" data-en="v1.0 newly published (Jul 2025)">v1.0 เผยแพร่ใหม่ (ก.ค. 2568)</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="Net-zero target-setting standard specific to financial institutions, v1.0 published Jul 2025, no revision yet">มาตรฐานตั้งเป้าหมาย net-zero เฉพาะสถาบันการเงิน เผยแพร่ v1.0 ก.ค. 2568 ยังไม่มีรอบปรับปรุง</td>
 </tr>
 <tr class="ov-row" data-region="eu" data-status="progress">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-9" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-9" data-en="SBTi Sector-specific Standards">🎯 SBTi Sector-specific Standards</a><div class="ov-en">Science Based Targets initiative — sector-specific standards (steel, cement, aviation, oil & gas, etc.)</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-9" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-9" data-en="SBTi Sector-specific Standards">🎯 SBTi Sector-specific Standards</a><div class="ov-en">Science Based Targets initiative — sector-specific standards (steel, cement, aviation, oil & gas, etc.)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Status varies by sector">สถานะแตกต่างกันไปตามภาคส่วน</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="Sector-specific standards for high-emitting industries — progress differs by sector, some still in development">มาตรฐานเฉพาะอุตสาหกรรมที่ปล่อยก๊าซเรือนกระจกสูง ความคืบหน้าแต่ละภาคส่วนไม่เท่ากัน บางส่วนยังอยู่ระหว่างพัฒนา</td>
 </tr>
 <tr class="ov-row" data-region="eu" data-status="progress">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-10" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-10" data-en="Science Based Targets Network (SBTN)">🎯 Science Based Targets Network (SBTN)</a><div class="ov-en">Science Based Targets Network — nature-related target-setting (land, freshwater, biodiversity, ocean)</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-10" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-10" data-en="Science Based Targets Network (SBTN)">🎯 Science Based Targets Network (SBTN)</a><div class="ov-en">Science Based Targets Network — nature-related target-setting (land, freshwater, biodiversity, ocean)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="v2 in development (Steps 1&amp;2, Freshwater)">กำลังพัฒนา v2 (Steps 1&2, Freshwater)</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="SBTi's sister network for nature targets — public consultation on Steps 1&amp;2 v2 and piloting freshwater v2 targets under way">เครือข่ายพี่น้องของ SBTi สำหรับเป้าหมายด้านธรรมชาติ กำลังเปิดรับฟังความเห็น Steps 1&2 v2 และ pilot เป้าหมาย freshwater v2</td>
 </tr>
 <tr class="ov-row" data-region="asia" data-status="progress">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-11" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-11" data-en="IFRS Sustainability Disclosure Standards (IFRS S1 / S2)">📊 IFRS Sustainability Disclosure Standards (IFRS S1 / S2)</a><div class="ov-en">IFRS S1 (General Requirements) and IFRS S2 (Climate-related Disclosures), issued by the ISSB</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-11" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-11" data-en="IFRS Sustainability Disclosure Standards (IFRS S1 / S2)">📊 IFRS Sustainability Disclosure Standards (IFRS S1 / S2)</a><div class="ov-en">IFRS S1 (General Requirements) and IFRS S2 (Climate-related Disclosures), issued by the ISSB</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="S2 recently amended, effective 2027">S2 เพิ่งแก้ไข มีผล 2570</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="IFRS S2 amended Dec 2025, effective Jan 1, 2027 — no amendments found for S1 yet">IFRS S2 ได้รับการแก้ไขเมื่อ ธ.ค. 2568 มีผล 1 ม.ค. 2570 — S1 ยังไม่พบการแก้ไข</td>
 </tr>
 <tr class="ov-row" data-region="asia" data-status="urgent">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-12" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-12" data-en="TCFD (Task Force on Climate-related Financial Disclosures)">📊 TCFD (Task Force on Climate-related Financial Disclosures)</a><div class="ov-en">Task Force on Climate-related Financial Disclosures — recommendations (retired)</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-12" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-12" data-en="TCFD (Task Force on Climate-related Financial Disclosures)">📊 TCFD (Task Force on Climate-related Financial Disclosures)</a><div class="ov-en">Task Force on Climate-related Financial Disclosures — recommendations (retired)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-urgent" data-en="Retired — superseded by ISSB/IFRS S2">ยุติแล้ว — ถูกแทนที่ด้วย ISSB/IFRS S2</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="Formally concluded its work in 2023; progress monitoring transferred to the ISSB">ยุติบทบาทอย่างเป็นทางการตั้งแต่ปี 2566 การติดตามความคืบหน้าถูกโอนไปอยู่กับ ISSB</td>
 </tr>
 <tr class="ov-row" data-region="asia" data-status="progress">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-13" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-13" data-en="SASB Standards">📊 SASB Standards</a><div class="ov-en">Sustainability Accounting Standards Board — industry-specific standards (now under ISSB)</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-13" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-13" data-en="SASB Standards">📊 SASB Standards</a><div class="ov-en">Sustainability Accounting Standards Board — industry-specific standards (now under ISSB)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Being continuously revised under the ISSB">กำลังถูกปรับปรุงต่อเนื่องภายใต้ ISSB</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="Not retired — brought under ISSB governance since 2022, being amended industry-by-industry">ยังไม่ยุติ ถูกรวมเข้าการกำกับดูแลของ ISSB ตั้งแต่ปี 2565 กำลังทยอยแก้ไขเป็นรายอุตสาหกรรม</td>
 </tr>
 <tr class="ov-row" data-region="asia" data-status="progress">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-14" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-14" data-en="GRI Standards">📊 GRI Standards</a><div class="ov-en">Global Reporting Initiative Standards — Universal Standards + Sector Standards + Topic Standards</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-14" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-14" data-en="GRI Standards">📊 GRI Standards</a><div class="ov-en">Global Reporting Initiative Standards — Universal Standards + Sector Standards + Topic Standards</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Universal stable / Sector Standards rolling out">Universal คงที่ / Sector Standards ทยอยออกเพิ่ม</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="Universal Standards unchanged since 2021, but new Sector Standards (e.g. mining) keep rolling out">Universal Standards ยังไม่มี version ใหม่ตั้งแต่ 2021 แต่ Sector Standards ใหม่ (เช่น เหมืองแร่) ทยอยออกเพิ่ม</td>
 </tr>
 <tr class="ov-row" data-region="asia" data-status="force">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-15" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-15" data-en="CDP (Carbon Disclosure Project) Questionnaire">📊 CDP (Carbon Disclosure Project) Questionnaire</a><div class="ov-en">CDP environmental disclosure questionnaire — Climate Change, Water Security, Forests</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-15" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-15" data-en="CDP (Carbon Disclosure Project) Questionnaire">📊 CDP (Carbon Disclosure Project) Questionnaire</a><div class="ov-en">CDP environmental disclosure questionnaire — Climate Change, Water Security, Forests</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-force" data-en="Questionnaire updated annually — 2026 edition released">อัปเดตแบบสอบถามทุกปี — ฉบับปี 2569 ออกแล้ว</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="Not a fixed-edition standard but an annually updated questionnaire — the 2026 edition aligns more closely with ISSB/GHG Protocol">ไม่ใช่มาตรฐานแบบ edition คงที่ แต่เป็นแบบสอบถามที่อัปเดตทุกปี ฉบับปี 2569 สอดคล้องกับ ISSB/GHG Protocol มากขึ้น</td>
 </tr>
 <tr class="ov-row" data-region="asia" data-status="force">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-20" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-20" data-en="ISO 14020 Series (Environmental Labels &amp; Declarations)">📊 ISO 14020 Series (Environmental Labels & Declarations)</a><div class="ov-en">ISO 14020/14021/14024/14025 — general principles, self-declared claims, ecolabels (Type I), and EPDs (Type III)</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-20" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-20" data-en="ISO 14020 Series (Environmental Labels &amp; Declarations)">📊 ISO 14020 Series (Environmental Labels & Declarations)</a><div class="ov-en">ISO 14020/14021/14024/14025 — general principles, self-declared claims, ecolabels (Type I), and EPDs (Type III)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-force" data-en="Major simultaneous revision of 3 editions (2026)">ปรับปรุงใหญ่พร้อมกัน 3 ฉบับ (2026)</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="ISO 14021, 14024, and 14025 were all just revised to 2026 editions simultaneously — the old 2016/2018/2006 editions are now outdated">ISO 14021, 14024, 14025 เพิ่งออกฉบับปรับปรุงปี 2026 พร้อมกัน — ฉบับที่เคยอ้างอิง 2016/2018/2006 ล้าสมัยแล้ว</td>
 </tr>
 <tr class="ov-row" data-region="global" data-status="force">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-16" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-16" data-en="ISO 14001 (Environmental Management Systems)">🏭 ISO 14001 (Environmental Management Systems)</a><div class="ov-en">ISO 14001 — Environmental management systems — Requirements with guidance for use</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-16" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-16" data-en="ISO 14001 (Environmental Management Systems)">🏭 ISO 14001 (Environmental Management Systems)</a><div class="ov-en">ISO 14001 — Environmental management systems — Requirements with guidance for use</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-force" data-en="Brand-new 2026 edition just published!">เพิ่งออกฉบับใหม่ปี 2026!</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="2026 edition just published, replacing the 2015 edition — transition allowed until May 2029">ฉบับ 2026 เพิ่งเผยแพร่ แทนที่ฉบับ 2015 — เปลี่ยนผ่านได้ถึง พ.ค. 2572</td>
 </tr>
 <tr class="ov-row" data-region="global" data-status="stable">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-17" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-17" data-en="ISO 20400:2017 (Sustainable Procurement)">🏭 ISO 20400:2017 (Sustainable Procurement)</a><div class="ov-en">ISO 20400 — Sustainable procurement — Guidance</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-17" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-17" data-en="ISO 20400:2017 (Sustainable Procurement)">🏭 ISO 20400:2017 (Sustainable Procurement)</a><div class="ov-en">ISO 20400 — Sustainable procurement — Guidance</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-stable" data-en="No new version has been developed yet">ยังไม่มีการพัฒนา Version ใหม่</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="The 2017 edition has not been revised, even after almost a decade">ฉบับปี 2017 ยังไม่มีการทบทวน แม้ผ่านมาเกือบ 10 ปีแล้ว</td>
 </tr>
 <tr class="ov-row" data-region="global" data-status="stable">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-18" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-18" data-en="ISO 14040-44 / ISO 14027 (Life Cycle Assessment)">🏭 ISO 14040-44 / ISO 14027 (Life Cycle Assessment)</a><div class="ov-en">ISO 14040/14044 (LCA principles & requirements) and ISO 14027 (product category rules for footprint communication)</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-18" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-18" data-en="ISO 14040-44 / ISO 14027 (Life Cycle Assessment)">🏭 ISO 14040-44 / ISO 14027 (Life Cycle Assessment)</a><div class="ov-en">ISO 14040/14044 (LCA principles & requirements) and ISO 14027 (product category rules for footprint communication)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-stable" data-en="No new version has been developed yet">ยังไม่มีการพัฒนา Version ใหม่</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="Foundational life-cycle-assessment standards that many Scope 3 and carbon-footprint claims rely on">มาตรฐานพื้นฐานสำหรับการประเมินวงจรชีวิตผลิตภัณฑ์ ที่ Scope 3 และ carbon footprint claims จำนวนมากอ้างอิง</td>
 </tr>
 <tr class="ov-row" data-region="global" data-status="progress">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-19" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-19" data-en="Transition Plan Taskforce (TPT) Framework &amp; VCMI Claims Code">🏭 Transition Plan Taskforce (TPT) Framework & VCMI Claims Code</a><div class="ov-en">TPT Disclosure Framework (UK) and VCMI (Voluntary Carbon Markets Integrity) Claims Code of Practice</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-19" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-19" data-en="Transition Plan Taskforce (TPT) Framework &amp; VCMI Claims Code">🏭 Transition Plan Taskforce (TPT) Framework & VCMI Claims Code</a><div class="ov-en">TPT Disclosure Framework (UK) and VCMI (Voluntary Carbon Markets Integrity) Claims Code of Practice</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Newer frameworks, still developing/expanding adoption">กรอบใหม่ กำลังพัฒนา/ขยายการใช้งาน</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="Two newer frameworks bolstering the credibility of transition plans and carbon-credit claims — both still evolving">สองกรอบใหม่ที่เสริมความน่าเชื่อถือของแผน transition และการอ้างสิทธิ์คาร์บอนเครดิต ยังพัฒนาต่อเนื่อง</td>
 </tr>
 <tr class="ov-row" data-region="global" data-status="stable">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-21" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-21" data-en="ISO 14045:2012 (Eco-efficiency Assessment)">🏭 ISO 14045:2012 (Eco-efficiency Assessment)</a><div class="ov-en">ISO 14045 — Environmental management — Eco-efficiency assessment of product systems</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-21" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-21" data-en="ISO 14045:2012 (Eco-efficiency Assessment)">🏭 ISO 14045:2012 (Eco-efficiency Assessment)</a><div class="ov-en">ISO 14045 — Environmental management — Eco-efficiency assessment of product systems</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-stable" data-en="No new version has been developed yet">ยังไม่มีการพัฒนา Version ใหม่</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="The 2012 edition has no new revision cycle — no active revision project found">ฉบับปี 2012 ยังไม่มีรอบทบทวนใหม่ ไม่พบโครงการปรับปรุงที่กำลังดำเนินการ</td>
 </tr>
 <tr class="ov-row" data-region="global" data-status="progress">
-<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-22" aria-label="Pin" title="Pin this item to the top">📌</button><a href="#card-22" data-en="ISO 26000:2010 (Guidance on Social Responsibility)">🏭 ISO 26000:2010 (Guidance on Social Responsibility)</a><div class="ov-en">ISO 26000 — Guidance on social responsibility (not certifiable)</div></td>
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-22" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button><a href="#card-22" data-en="ISO 26000:2010 (Guidance on Social Responsibility)">🏭 ISO 26000:2010 (Guidance on Social Responsibility)</a><div class="ov-en">ISO 26000 — Guidance on social responsibility (not certifiable)</div></td>
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Under periodic ISO review — outcome not yet confirmed">อยู่ระหว่างทบทวนตามวงรอบ ISO — ผลยังไม่ชัดเจน</span></td>
 <td data-label="ฉบับปัจจุบัน" data-label-en="Current version" data-en="The 2010 edition went through ISO's periodic systematic review (2024-25), but the confirmed outcome — keep as-is, revise, or withdraw — has not been independently verified">ฉบับปี 2010 ผ่านการทบทวนตามวงรอบของ ISO ล่าสุด (2567-68) แต่ผลสรุปว่าจะคงฉบับเดิม แก้ไข หรือถอน ยังไม่มีการยืนยันแน่ชัด</td>
 </tr>
@@ -1393,12 +1435,12 @@
 <div class="en-name">Greenhouse Gas Protocol — Corporate Accounting and Reporting Standard</div>
 </div>
 <span class="status-pill status-progress" data-en="Major revision of all 3 standards under way">กำลังปรับปรุงใหญ่ทั้ง 3 ฉบับ</span>
-<button type="button" class="pin-btn" data-pin="card-1" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-1" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Major revision under way — new Scope 2 edition expected 2027, Scope 3 in Phase 1">กำลังปรับปรุงใหญ่ — Scope 2 คาดออกฉบับใหม่ปี 2570, Scope 3 อยู่ระหว่าง Phase 1</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-1" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="The world's most widely used GHG accounting standard, issued by the <b>World Resources Institute (WRI)</b> and <b>WBCSD</b>. The editions currently in force are the Corporate Standard (2004, Scope 2 amendment 2015), the Scope 2 Guidance (2015), and the Corporate Value Chain (Scope 3) Standard (2011). Although the standards in force are fairly old, WRI/WBCSD are now in the middle of their biggest revision process in a decade: the first Scope 2 public consultation has closed (Oct 20–Dec 19, 2025, extended to Jan 31, 2026), a second consultation is planned for 2026, and a new standard is expected in 2027. Scope 3 is in &quot;Phase 1&quot; (data quality, boundary-setting, investment classification), with over 42 technical working-group meetings held from Sep 2024 through late 2025 — no confirmed date yet for a full draft.">มาตรฐานบัญชี GHG ที่ใช้กันแพร่หลายที่สุดในโลก ออกโดย <b>World Resources Institute (WRI)</b> และ <b>WBCSD</b> ฉบับที่ใช้บังคับอยู่ในปัจจุบันคือ Corporate Standard (2004, ปรับปรุง Scope 2 ปี 2015), Scope 2 Guidance (2015) และ Corporate Value Chain (Scope 3) Standard (2011) แม้ฉบับที่ใช้จริงจะค่อนข้างเก่า แต่ขณะนี้ WRI/WBCSD กำลังอยู่ระหว่างกระบวนการทบทวนครั้งใหญ่ที่สุดในรอบทศวรรษ: การรับฟังความเห็น Scope 2 รอบแรกปิดไปแล้ว (20 ต.ค.–19 ธ.ค. 2568 ขยายถึง 31 ม.ค. 2569) มีแผนรับฟังความเห็นรอบสองในปี 2569 คาดออกมาตรฐานใหม่ปี 2570 ส่วน Scope 3 อยู่ใน "Phase 1" (เรื่องคุณภาพข้อมูล การกำหนดขอบเขต และการจัดประเภทการลงทุน) โดยมีการประชุมกลุ่มทำงานเทคนิคแล้วกว่า 42 ครั้งตั้งแต่ ก.ย. 2567 ถึงปลายปี 2568 ยังไม่มีกำหนดเผยแพร่ร่างฉบับสมบูรณ์</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:60%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="Corporate Standard first edition">Corporate Standard ฉบับแรก</div><span data-en="2004">2004</span></div>
@@ -1412,8 +1454,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="World Resources Institute (WRI) and WBCSD">World Resources Institute (WRI) และ WBCSD</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="The second Scope 2 revision draft, and the still-unpublished Scope 3 Phase 1 draft">ร่างฉบับปรับปรุง Scope 2 รอบสอง และร่าง Scope 3 Phase 1 ที่ยังไม่เผยแพร่</span></div>
 </div>
-<div class="source-note" data-en="Sources: GHG Protocol (Scope 2 consultation announcement, Oct 2025), GHG Protocol Scope 3 Phase 1 Progress Update (Mar 2026), Morrison Foerster (Jun 2025), Terrascope">อ้างอิง: GHG Protocol (ประกาศเปิดรับฟังความเห็น Scope 2, ต.ค. 2568), GHG Protocol Scope 3 Phase 1 Progress Update (มี.ค. 2569), Morrison Foerster (มิ.ย. 2568), Terrascope</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: GHG Protocol (Scope 2 consultation announcement, Oct 2025), GHG Protocol Scope 3 Phase 1 Progress Update (Mar 2026), Morrison Foerster (Jun 2025), Terrascope">อ้างอิง: GHG Protocol (ประกาศเปิดรับฟังความเห็น Scope 2, ต.ค. 2568), GHG Protocol Scope 3 Phase 1 Progress Update (มี.ค. 2569), Morrison Foerster (มิ.ย. 2568), Terrascope</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -1476,12 +1518,12 @@
 <div class="en-name">Greenhouse gases — Quantification, reporting, verification and validation</div>
 </div>
 <span class="status-pill status-stable" data-en="No new version has been developed yet">ยังไม่มีการพัฒนา Version ใหม่</span>
-<button type="button" class="pin-btn" data-pin="card-2" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-2" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Current 2018 edition — no revision cycle found yet, even though ISO's nominal 5-year review point has passed">ฉบับปัจจุบัน (2018) ยังไม่มีรอบทบทวนใหม่ แม้ครบกำหนดทบทวน 5 ปีของ ISO ไปแล้ว</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-2" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="A set of ISO standards for GHG accounting and assurance at different levels, in 3 parts: <b>Part 1</b> organization-level GHG quantification/reporting, <b>Part 2</b> project-level emission-reduction accounting, <b>Part 3</b> requirements for verifiers/validators. All three parts are on their <b>2018</b> edition, the latest so far. No evidence was found of a revision project having started, even though ISO nominally reviews most standards every 5 years (the 2023 review point has already passed) — so the 2018 edition content remains the reference standard.">ชุดมาตรฐาน ISO สำหรับการบัญชีและรับรอง GHG ระดับต่างๆ แบ่งเป็น 3 ส่วน: <b>Part 1</b> การบัญชี/รายงาน GHG ระดับองค์กร, <b>Part 2</b> การบัญชีระดับโครงการลดการปล่อย, <b>Part 3</b> ข้อกำหนดสำหรับผู้ตรวจสอบ/ทวนสอบ (verification/validation) ทั้งสามส่วนใช้ฉบับปี <b>2018</b> เป็นฉบับล่าสุด ยังไม่พบหลักฐานว่ามีการเริ่มกระบวนการทบทวนฉบับใหม่ แม้ตามธรรมเนียมของ ISO มาตรฐานส่วนใหญ่จะถูกทบทวนทุก 5 ปี (ครบกำหนดปี 2023 ไปแล้ว) จึงยังคงใช้เนื้อหาของฉบับ 2018 เป็นมาตรฐานอ้างอิงต่อไป</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:100%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="First edition">ฉบับแรก</div><span data-en="2006">2006</span></div>
@@ -1492,8 +1534,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="International Organization for Standardization (ISO)">องค์การมาตรฐานระหว่างประเทศ (ISO)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Any ISO announcement of a new revision project (none exists yet)">ประกาศเริ่มกระบวนการทบทวนฉบับใหม่จาก ISO (ยังไม่มี ณ ขณะนี้)</span></div>
 </div>
-<div class="source-note" data-en="Sources: ISO 14064-1:2018 (iso.org), ANSI webstore">อ้างอิง: ISO 14064-1:2018 (iso.org), ANSI webstore</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: ISO 14064-1:2018 (iso.org), ANSI webstore">อ้างอิง: ISO 14064-1:2018 (iso.org), ANSI webstore</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -1552,12 +1594,12 @@
 <div class="en-name">Climate change management — Transition to net zero — Part 1: Carbon neutrality</div>
 </div>
 <span class="status-pill status-stable" data-en="First edition — no revision cycle yet">ฉบับแรก ยังไม่มีรอบปรับปรุง</span>
-<button type="button" class="pin-btn" data-pin="card-3" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-3" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Published 2023 — the first international standard for carbon-neutrality claims, replacing the now-withdrawn PAS 2060">เผยแพร่ปี 2023 เป็นมาตรฐานสากลฉบับแรกสำหรับการอ้างสิทธิ์ carbon neutrality แทนที่ PAS 2060 ที่ถูกถอนแล้ว</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-3" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="The first ISO standard setting out requirements and guidance for achieving and demonstrating <b>carbon neutrality</b> at organization, product, or event/activity level. First published in <b>2023</b>, it is considered the successor to BSI's <b>PAS 2060:2014</b>, which has now been formally withdrawn. Because it is a relatively new standard, there is no revision cycle or updated edition yet.">มาตรฐาน ISO ฉบับแรกที่วางข้อกำหนดและแนวทางสำหรับการบรรลุและพิสูจน์สถานะ <b>carbon neutrality</b> ในระดับองค์กร ผลิตภัณฑ์ หรือกิจกรรม/อีเวนต์ เผยแพร่ครั้งแรกในปี <b>2023</b> ถือเป็นมาตรฐานที่เข้ามาแทนที่ <b>PAS 2060:2014</b> ของ BSI ซึ่งถูกถอนออกอย่างเป็นทางการแล้ว เนื่องจากเป็นมาตรฐานที่ค่อนข้างใหม่ จึงยังไม่มีรอบทบทวน/ฉบับปรับปรุงใดๆ ในขณะนี้</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:100%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="First edition published">เผยแพร่ฉบับแรก</div><span data-en="2023">2023</span></div>
@@ -1567,8 +1609,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="International Organization for Standardization (ISO)">องค์การมาตรฐานระหว่างประเทศ (ISO)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Wider adoption replacing the old PAS 2060, and any further ISO 14068 parts issued later">การยอมรับในวงกว้างขึ้นแทนที่ PAS 2060 เดิม และการออก ISO 14068 ส่วนถัดไป (ถ้ามี)</span></div>
 </div>
-<div class="source-note" data-en="Sources: ISO 14068-1:2023 (iso.org), Seedling.earth guide, BSI (PAS 2060 withdrawal notice)">อ้างอิง: ISO 14068-1:2023 (iso.org), Seedling.earth guide, BSI (ประกาศถอน PAS 2060)</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: ISO 14068-1:2023 (iso.org), Seedling.earth guide, BSI (PAS 2060 withdrawal notice)">อ้างอิง: ISO 14068-1:2023 (iso.org), Seedling.earth guide, BSI (ประกาศถอน PAS 2060)</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -1627,12 +1669,12 @@
 <div class="en-name">International Workshop Agreement — Net Zero Guidelines</div>
 </div>
 <span class="status-pill status-stable" data-en="No new version has been developed yet">ยังไม่มีการพัฒนา Version ใหม่</span>
-<button type="button" class="pin-btn" data-pin="card-4" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-4" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Broad net-zero principles document, published 2022, not yet revised">เอกสารหลักการกว้างเรื่อง net zero เผยแพร่ปี 2022 ยังไม่มีการปรับปรุง</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-4" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="A guidance document produced through ISO's <b>International Workshop Agreement (IWA)</b> process — a lighter, faster track than issuing a full ISO standard. It sets out broad guiding principles and definitions for organizations, cities, and countries pursuing net-zero targets. First published in <b>2022</b>, no updated edition has been found. It is often used alongside ISO 14068-1, which is more specific to carbon neutrality.">เอกสารแนวปฏิบัติที่จัดทำผ่านกระบวนการ <b>International Workshop Agreement (IWA)</b> ของ ISO ซึ่งเป็นกระบวนการที่เบากว่าและเร็วกว่าการออกมาตรฐาน ISO เต็มรูปแบบ วางหลักการและคำนิยามกว้างๆ สำหรับองค์กร เมือง และประเทศที่ต้องการตั้งเป้าหมาย net zero เผยแพร่ฉบับแรกในปี <b>2022</b> ยังไม่พบฉบับปรับปรุงใหม่ มักถูกใช้คู่กับ ISO 14068-1 ซึ่งเจาะจงเรื่อง carbon neutrality มากกว่า</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:100%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="First edition published">เผยแพร่ฉบับแรก</div><span data-en="2022">2022</span></div>
@@ -1642,8 +1684,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="ISO (via the International Workshop Agreement process)">ISO (ผ่านกระบวนการ International Workshop Agreement)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Possible future upgrade into a full ISO standard">ความเป็นไปได้ที่จะยกระดับเป็นมาตรฐาน ISO เต็มรูปแบบในอนาคต</span></div>
 </div>
-<div class="source-note" data-en="Sources: ISO IWA 42:2022 (iso.org), ISO Net Zero hub page">อ้างอิง: ISO IWA 42:2022 (iso.org), ISO Net Zero hub page</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: ISO IWA 42:2022 (iso.org), ISO Net Zero hub page">อ้างอิง: ISO IWA 42:2022 (iso.org), ISO Net Zero hub page</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -1700,12 +1742,12 @@
 <div class="en-name">Guidance on land-sector emissions/removals and carbon removals accounting</div>
 </div>
 <span class="status-pill status-progress" data-en="In development — no final edition published yet">กำลังพัฒนา — ยังไม่เผยแพร่ฉบับสมบูรณ์</span>
-<button type="button" class="pin-btn" data-pin="card-5" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-5" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="A new GHG Protocol guidance document on carbon removals and the land sector, being developed alongside the Scope 2/3 revisions">เอกสารแนวทางใหม่ของ GHG Protocol เรื่อง carbon removals และภาคที่ดิน กำลังพัฒนาคู่ขนานกับการปรับปรุง Scope 2/3</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-5" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="A new guidance document that WRI/WBCSD are developing in parallel with the Scope 2/3 revisions, to set an accounting framework for <b>land-sector emissions/removals</b> and <b>carbon removals</b> (direct carbon capture/storage such as DAC, afforestation, and biochar). This is increasingly important as more companies make removal-based claims as part of their net-zero targets. It is currently still in development, with no complete public draft published yet.">เอกสารแนวทางฉบับใหม่ที่ WRI/WBCSD กำลังพัฒนาควบคู่ไปกับการทบทวน Scope 2/3 เพื่อวางกรอบการบัญชีสำหรับ <b>การปล่อย/กักเก็บคาร์บอนภาคที่ดิน</b> (land sector) และ <b>carbon removals</b> (การดักจับ/กักเก็บคาร์บอนโดยตรง เช่น DAC, การปลูกป่า, biochar) ซึ่งมีความสำคัญมากขึ้นเมื่อบริษัทจำนวนมากเริ่มอ้างสิทธิ์การกำจัดคาร์บอนเป็นส่วนหนึ่งของเป้าหมาย net zero ปัจจุบันยังอยู่ในขั้นตอนพัฒนา ยังไม่มีร่างฉบับสมบูรณ์เผยแพร่ต่อสาธารณะ</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:0%"></div></div>
 <div class="timeline-points">
 <div class="tpoint now"><div class="dot"></div><div class="label" data-en="In development">อยู่ระหว่างพัฒนา</div><span data-en="2026-27">2569-2570</span></div>
@@ -1716,8 +1758,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="World Resources Institute (WRI) and WBCSD">World Resources Institute (WRI) และ WBCSD</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Publication of a first draft for public consultation">การเผยแพร่ร่างฉบับแรกเพื่อรับฟังความเห็นสาธารณะ</span></div>
 </div>
-<div class="source-note" data-en="Sources: GHG Protocol (Scope 2/3 revision progress materials, 2026)">อ้างอิง: GHG Protocol (เอกสารความคืบหน้าการปรับปรุง Scope 2/3, 2569)</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: GHG Protocol (Scope 2/3 revision progress materials, 2026)">อ้างอิง: GHG Protocol (เอกสารความคืบหน้าการปรับปรุง Scope 2/3, 2569)</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -1773,12 +1815,12 @@
 <div class="en-name">PAS 2060 — Specification for the demonstration of carbon neutrality (withdrawn)</div>
 </div>
 <span class="status-pill status-urgent" data-en="Withdrawn — replaced by ISO 14068-1">ถูกถอนแล้ว — แทนที่ด้วย ISO 14068-1</span>
-<button type="button" class="pin-btn" data-pin="card-6" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-6" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Formally withdrawn by BSI, though many existing claims still cite it during the transition">ถูกถอนอย่างเป็นทางการโดย BSI แล้ว แต่การอ้างสิทธิ์เดิมจำนวนมากยังอ้างอิงอยู่ในช่วงเปลี่ยนผ่าน</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-6" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="One of the earliest and most widely used carbon-neutrality standards worldwide, issued by the <b>British Standards Institution (BSI)</b> from 2010 and updated to a 2014 edition. BSI has now <b>formally withdrawn</b> this standard, with <b>ISO 14068-1:2023</b> taking over as the international standard for carbon-neutrality claims. However, because many organizations previously certified against or referencing PAS 2060, it remains an important historical and transitional reference.">มาตรฐาน carbon neutrality ฉบับแรกๆ ที่ใช้กันแพร่หลายทั่วโลก ออกโดย <b>British Standards Institution (BSI)</b> ตั้งแต่ปี 2010 และปรับปรุงเป็นฉบับ 2014 ปัจจุบัน BSI ได้<b>ถอนมาตรฐานนี้อย่างเป็นทางการแล้ว</b> โดยมี <b>ISO 14068-1:2023</b> เข้ามาทำหน้าที่แทนในฐานะมาตรฐานสากลสำหรับการอ้างสิทธิ์ carbon neutrality อย่างไรก็ตาม เนื่องจากมีองค์กรจำนวนมากที่เคยได้รับการรับรอง/อ้างอิง PAS 2060 มาก่อน จึงยังคงเป็นรายการอ้างอิงที่มีความสำคัญเชิงประวัติศาสตร์และช่วงเปลี่ยนผ่าน</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:100%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="First published">เผยแพร่ฉบับแรก</div><span data-en="2010">2010</span></div>
@@ -1790,8 +1832,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="British Standards Institution (BSI)">British Standards Institution (BSI)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="The pace at which companies that used PAS 2060 migrate to ISO 14068-1">อัตราการเปลี่ยนผ่านของบริษัทที่เคยใช้ PAS 2060 ไปสู่ ISO 14068-1</span></div>
 </div>
-<div class="source-note" data-en="Sources: BSI (withdrawal notice), ISO 14068-1:2023">อ้างอิง: BSI (ประกาศถอนมาตรฐาน), ISO 14068-1:2023</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: BSI (withdrawal notice), ISO 14068-1:2023">อ้างอิง: BSI (ประกาศถอนมาตรฐาน), ISO 14068-1:2023</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -1846,12 +1888,12 @@
 <div class="en-name">ISO 14067 — Greenhouse gases — Carbon footprint of products — Requirements and guidelines for quantification</div>
 </div>
 <span class="status-pill status-progress" data-en="2nd edition under development">อยู่ระหว่างพัฒนาฉบับที่ 2</span>
-<button type="button" class="pin-btn" data-pin="card-23" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-23" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="The 2018 edition is still in force, but a 2nd-edition project (ISO/WD 14067.2) is under way with no confirmed publication date yet">ฉบับ 2018 ยังใช้อยู่ แต่มีโครงการพัฒนาฉบับที่ 2 (ISO/WD 14067.2) อยู่ระหว่างดำเนินการ ยังไม่มีกำหนดเผยแพร่ชัดเจน</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-23" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="A standard specifically for calculating the <b>Carbon Footprint of Products (CFP)</b> — the GHG emissions/removals across the life cycle of one unit of a product — setting principles, requirements, and guidelines for quantifying and reporting a CFP or partial CFP consistent with the ISO 14040/14044 LCA framework (excluding carbon offsetting or communication/labeling formats, which are out of scope). First published in <b>2018</b>, it remains the edition currently in force, but a <b>2nd-edition project (ISO/WD 14067.2)</b> has passed its working-draft comment-close stage (as of May 2026), though it remains several stages away from actual publication with no confirmed release date.">มาตรฐานเฉพาะสำหรับคำนวณ <b>คาร์บอนฟุตพรินต์ของผลิตภัณฑ์ (Carbon Footprint of Products, CFP)</b> — ปริมาณก๊าซเรือนกระจกที่ปล่อย/ดูดกลับตลอดวงจรชีวิตของผลิตภัณฑ์หนึ่งหน่วย โดยวางหลักการ ข้อกำหนด และแนวทางการคำนวณและรายงาน CFP หรือ partial CFP ให้สอดคล้องกับหลักการ LCA ของ ISO 14040/14044 (ไม่รวมเรื่องการชดเชยคาร์บอนหรือรูปแบบการสื่อสาร/ติดฉลากซึ่งอยู่นอกขอบเขต) เผยแพร่ฉบับแรกปี <b>2018</b> ปัจจุบันยังเป็นฉบับที่ใช้บังคับอยู่ แต่มีโครงการพัฒนา<b>ฉบับที่ 2 (ISO/WD 14067.2)</b> ที่ผ่านขั้นตอนปิดรับฟังความเห็นร่างทำงานไปแล้ว (ณ พ.ค. 2569) แต่ยังอยู่ห่างจากขั้นตอนเผยแพร่จริง ยังไม่มีกำหนดวันเผยแพร่ที่ชัดเจน</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:67%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="First published">เผยแพร่ฉบับแรก</div><span data-en="2018">2018</span></div>
@@ -1863,8 +1905,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="ISO/TC 207/SC 7 (Greenhouse gas and climate change management)">ISO/TC 207/SC 7 (Greenhouse gas and climate change management)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Progress of the 2nd edition through Committee Draft and Enquiry stages toward final publication">ความคืบหน้าของฉบับที่ 2 ผ่านขั้นตอน Committee Draft และ Enquiry ไปจนถึงเผยแพร่จริง</span></div>
 </div>
-<div class="source-note" data-en="Sources: ISO 14067:2018 (iso.org), ISO/WD 14067.2 project page (iso.org), ISO/TC 207/SC 7 committee page">อ้างอิง: ISO 14067:2018 (iso.org), ISO/WD 14067.2 หน้าโครงการ (iso.org), ISO/TC 207/SC 7 committee page</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: ISO 14067:2018 (iso.org), ISO/WD 14067.2 project page (iso.org), ISO/TC 207/SC 7 committee page">อ้างอิง: ISO 14067:2018 (iso.org), ISO/WD 14067.2 หน้าโครงการ (iso.org), ISO/TC 207/SC 7 committee page</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -1932,12 +1974,12 @@
 <div class="en-name">Science Based Targets initiative — Corporate Net-Zero Standard (CNZS)</div>
 </div>
 <span class="status-pill status-force" data-en="v2.0 just released (Jun 2026)">v2.0 เพิ่งประกาศใช้ (มิ.ย. 2569)</span>
-<button type="button" class="pin-btn" data-pin="card-7" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-7" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Version 2.0 just published Jun 11, 2026 after two consultation rounds — v1.3.1 remains valid during the transition">เวอร์ชัน 2.0 เพิ่งเผยแพร่ 11 มิ.ย. 2569 หลังผ่านการรับฟังความเห็น 2 รอบ — v1.3.1 ยังใช้ได้ระหว่างเปลี่ยนผ่าน</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-7" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="A standard/methodology for companies to set and validate science-based emissions-reduction targets, both near-term and long-term net-zero targets, covering Scope 1/2/3. SBTi recently published <b>Corporate Net-Zero Standard version 2.0 on Jun 11, 2026</b>, after two rounds of public consultation drafts — the biggest revision since launch. Version 1.3.1 (Apr 2026) remains in effect for companies that already set targets during the transition period; SBTi has not yet specified a clear deadline for existing target-setters to migrate to v2.0.">มาตรฐาน/ระเบียบวิธีสำหรับบริษัทในการตั้งและรับรองเป้าหมายลดก๊าซเรือนกระจกที่สอดคล้องกับหลักวิทยาศาสตร์ (science-based) ทั้งเป้าหมายระยะสั้นและเป้าหมาย net-zero ระยะยาว ครอบคลุม Scope 1/2/3 ล่าสุด SBTi เผยแพร่ <b>Corporate Net-Zero Standard เวอร์ชัน 2.0 เมื่อ 11 มิ.ย. 2569</b> หลังผ่านร่างรับฟังความเห็นสาธารณะ 2 รอบ ถือเป็นการปรับปรุงครั้งใหญ่ที่สุดนับตั้งแต่เปิดตัว ส่วนเวอร์ชัน 1.3.1 (เม.ย. 2569) ยังคงมีผลบังคับใช้กับบริษัทที่ตั้งเป้าหมายไว้แล้วในช่วงเปลี่ยนผ่าน โดย SBTi ยังไม่ได้ระบุกำหนดเส้นตายที่ชัดเจนว่าบริษัทเดิมต้องย้ายมาใช้ v2.0 เมื่อใด</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:75%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="Initial launch">เปิดตัวฉบับแรก</div><span data-en="2021">2564</span></div>
@@ -1950,8 +1992,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="Science Based Targets initiative (SBTi)">Science Based Targets initiative (SBTi)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="The official transition deadline from v1.x to v2.0">กำหนดเส้นตายการเปลี่ยนผ่านจาก v1.x ไปสู่ v2.0 อย่างเป็นทางการ</span></div>
 </div>
-<div class="source-note" data-en="Sources: SBTi (CNZS v2.0 release announcement, Jun 2026), Corporate Net-Zero Standard v2 hub page, v1.3.1 document (Apr 2026)">อ้างอิง: SBTi (ประกาศเปิดตัว CNZS v2.0, มิ.ย. 2569), หน้า Corporate Net-Zero Standard v2, เอกสาร v1.3.1 (เม.ย. 2569)</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: SBTi (CNZS v2.0 release announcement, Jun 2026), Corporate Net-Zero Standard v2 hub page, v1.3.1 document (Apr 2026)">อ้างอิง: SBTi (ประกาศเปิดตัว CNZS v2.0, มิ.ย. 2569), หน้า Corporate Net-Zero Standard v2, เอกสาร v1.3.1 (เม.ย. 2569)</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -2010,12 +2052,12 @@
 <div class="en-name">Science Based Targets initiative — Financial Institutions Net-Zero Standard</div>
 </div>
 <span class="status-pill status-force" data-en="v1.0 newly published (Jul 2025)">v1.0 เผยแพร่ใหม่ (ก.ค. 2568)</span>
-<button type="button" class="pin-btn" data-pin="card-8" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-8" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Net-zero target-setting standard specific to financial institutions, v1.0 published Jul 2025, no revision yet">มาตรฐานตั้งเป้าหมาย net-zero เฉพาะสถาบันการเงิน เผยแพร่ v1.0 ก.ค. 2568 ยังไม่มีรอบปรับปรุง</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-8" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="A standard specific to <b>banks, insurers, and asset owners/managers</b> for setting net-zero targets covering <b>financed emissions</b> (GHG emissions caused by investment/lending portfolios), which differs from general corporate standards since financial institutions' emissions are mostly indirect, through financial activity. Version 1.0 was published in <b>Jul 2025</b>; no further revision yet.">มาตรฐานเฉพาะสำหรับ <b>ธนาคาร บริษัทประกัน และเจ้าของ/ผู้จัดการสินทรัพย์ (asset owners/managers)</b> ในการตั้งเป้าหมาย net-zero ที่ครอบคลุม <b>financed emissions</b> (การปล่อยก๊าซเรือนกระจกที่เกิดจากพอร์ตการลงทุน/สินเชื่อ) ซึ่งแตกต่างจากมาตรฐานองค์กรทั่วไปเนื่องจากสถาบันการเงินมีการปล่อยทางอ้อมผ่านกิจกรรมการเงินเป็นหลัก เผยแพร่ v1.0 เมื่อ <b>ก.ค. 2568</b> ยังไม่มีการปรับปรุงเพิ่มเติม</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:100%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="v1.0 published">เผยแพร่ v1.0</div><span data-en="Jul 2025">ก.ค.68</span></div>
@@ -2025,8 +2067,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="Science Based Targets initiative (SBTi)">Science Based Targets initiative (SBTi)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="How many financial institutions begin setting targets under this standard, and any future revisions">จำนวนสถาบันการเงินที่เริ่มตั้งเป้าหมายตามมาตรฐานนี้ และการปรับปรุงในอนาคต</span></div>
 </div>
-<div class="source-note" data-en="Sources: SBTi (FINZ launch announcement, Jul 2025), Financial Institutions Net-Zero Standard v1.0 document">อ้างอิง: SBTi (ประกาศเปิด FINZ, ก.ค. 2568), เอกสาร Financial Institutions Net-Zero Standard v1.0</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: SBTi (FINZ launch announcement, Jul 2025), Financial Institutions Net-Zero Standard v1.0 document">อ้างอิง: SBTi (ประกาศเปิด FINZ, ก.ค. 2568), เอกสาร Financial Institutions Net-Zero Standard v1.0</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -2083,12 +2125,12 @@
 <div class="en-name">Science Based Targets initiative — sector-specific standards (steel, cement, aviation, oil & gas, etc.)</div>
 </div>
 <span class="status-pill status-progress" data-en="Status varies by sector">สถานะแตกต่างกันไปตามภาคส่วน</span>
-<button type="button" class="pin-btn" data-pin="card-9" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-9" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Sector-specific standards for high-emitting industries — progress differs by sector, some still in development">มาตรฐานเฉพาะอุตสาหกรรมที่ปล่อยก๊าซเรือนกระจกสูง ความคืบหน้าแต่ละภาคส่วนไม่เท่ากัน บางส่วนยังอยู่ระหว่างพัฒนา</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-9" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="Beyond the general Corporate Net-Zero Standard, SBTi also develops target-setting criteria specific to hard-to-abate industries such as <b>iron &amp; steel, cement, aviation, and oil &amp; gas</b>, since these sectors face different technological constraints than general standards assume. The progress of each sector-specific standard varies widely — some are fully published, others are still in pilot or draft stage — so status should be checked on a per-sector basis.">นอกจาก Corporate Net-Zero Standard ทั่วไปแล้ว SBTi ยังพัฒนาเกณฑ์ตั้งเป้าหมายเฉพาะสำหรับอุตสาหกรรมที่ลดการปล่อยได้ยาก (hard-to-abate) เช่น <b>เหล็กและเหล็กกล้า ปูนซีเมนต์ การบิน น้ำมันและก๊าซ</b> เนื่องจากอุตสาหกรรมเหล่านี้มีข้อจำกัดทางเทคโนโลยีที่แตกต่างจากมาตรฐานทั่วไป สถานะความคืบหน้าของแต่ละมาตรฐานเฉพาะอุตสาหกรรมแตกต่างกันมาก — บางฉบับเผยแพร่สมบูรณ์แล้ว บางฉบับยังอยู่ในขั้น pilot หรือร่าง ควรตรวจสอบสถานะแยกตามรายอุตสาหกรรม</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:0%"></div></div>
 <div class="timeline-points">
 <div class="tpoint now"><div class="dot"></div><div class="label" data-en="Progress varies by sector">ความคืบหน้าแตกต่างกันตามภาคส่วน</div><span data-en="check per sector">ตรวจสอบรายภาคส่วน</span></div>
@@ -2098,8 +2140,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="Science Based Targets initiative (SBTi)">Science Based Targets initiative (SBTi)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Publication of final standards for sectors still under development">การเผยแพร่มาตรฐานฉบับสมบูรณ์สำหรับภาคส่วนที่ยังอยู่ระหว่างพัฒนา</span></div>
 </div>
-<div class="source-note" data-en="Sources: SBTi Standards &amp; Guidance hub (sciencebasedtargets.org)">อ้างอิง: SBTi Standards & Guidance hub (sciencebasedtargets.org)</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: SBTi Standards &amp; Guidance hub (sciencebasedtargets.org)">อ้างอิง: SBTi Standards & Guidance hub (sciencebasedtargets.org)</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -2156,12 +2198,12 @@
 <div class="en-name">Science Based Targets Network — nature-related target-setting (land, freshwater, biodiversity, ocean)</div>
 </div>
 <span class="status-pill status-progress" data-en="v2 in development (Steps 1&amp;2, Freshwater)">กำลังพัฒนา v2 (Steps 1&2, Freshwater)</span>
-<button type="button" class="pin-btn" data-pin="card-10" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-10" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="SBTi's sister network for nature targets — public consultation on Steps 1&amp;2 v2 and piloting freshwater v2 targets under way">เครือข่ายพี่น้องของ SBTi สำหรับเป้าหมายด้านธรรมชาติ กำลังเปิดรับฟังความเห็น Steps 1&2 v2 และ pilot เป้าหมาย freshwater v2</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-10" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="A multi-NGO network developing &quot;science-based target&quot; methodologies for <b>nature</b> — covering land, freshwater, biodiversity, and ocean — a sister organization to the climate-focused SBTi. It is currently developing <b>freshwater targets version 2</b>, in a company pilot phase, and running a public consultation on <b>Steps 1 &amp; 2 version 2</b> guidance. There is no confirmed date yet for a complete v2 release across all areas simultaneously.">เครือข่ายหลายภาคส่วน (multi-NGO) ที่พัฒนาแนวทางการตั้ง "เป้าหมายเชิงวิทยาศาสตร์" สำหรับ<b>ธรรมชาติ</b> — ครอบคลุมที่ดิน (land) แหล่งน้ำจืด (freshwater) ความหลากหลายทางชีวภาพ (biodiversity) และมหาสมุทร (ocean) — เป็นองค์กรพี่น้องแยกจาก SBTi ที่เน้นด้านภูมิอากาศ ปัจจุบันกำลังพัฒนา<b>เป้าหมาย freshwater เวอร์ชัน 2 อยู่ในขั้น pilot</b> ให้บริษัทนำร่องทดลองใช้ และเปิดรับฟังความเห็นสาธารณะสำหรับแนวทาง <b>Steps 1&2 เวอร์ชัน 2</b> ยังไม่มีกำหนดเผยแพร่ฉบับสมบูรณ์ที่ชัดเจนสำหรับทุกด้านพร้อมกัน</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:50%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="Network founded">ก่อตั้งเครือข่าย</div><span data-en="2019">2562</span></div>
@@ -2172,8 +2214,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="Science Based Targets Network (SBTN)">Science Based Targets Network (SBTN)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Results of the freshwater v2 pilot, and the final publication of Steps 1&amp;2 v2">ผลการ pilot freshwater v2 และการเผยแพร่ Steps 1&2 v2 ฉบับสมบูรณ์</span></div>
 </div>
-<div class="source-note" data-en="Sources: SBTN (2025 progress reflections), freshwater v2 pilot page, Steps 1&amp;2 v2 consultation page">อ้างอิง: SBTN (สรุปความคืบหน้าปี 2568), หน้า pilot freshwater v2, หน้ารับฟังความเห็น Steps 1&2 v2</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: SBTN (2025 progress reflections), freshwater v2 pilot page, Steps 1&amp;2 v2 consultation page">อ้างอิง: SBTN (สรุปความคืบหน้าปี 2568), หน้า pilot freshwater v2, หน้ารับฟังความเห็น Steps 1&2 v2</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -2241,12 +2283,12 @@
 <div class="en-name">IFRS S1 (General Requirements) and IFRS S2 (Climate-related Disclosures), issued by the ISSB</div>
 </div>
 <span class="status-pill status-progress" data-en="S2 recently amended, effective 2027">S2 เพิ่งแก้ไข มีผล 2570</span>
-<button type="button" class="pin-btn" data-pin="card-11" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-11" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="IFRS S2 amended Dec 2025, effective Jan 1, 2027 — no amendments found for S1 yet">IFRS S2 ได้รับการแก้ไขเมื่อ ธ.ค. 2568 มีผล 1 ม.ค. 2570 — S1 ยังไม่พบการแก้ไข</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-11" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="A global sustainability disclosure standard issued by the <b>International Sustainability Standards Board (ISSB)</b> under the IFRS Foundation, comprising <b>IFRS S1</b> (general sustainability disclosure requirements) and <b>IFRS S2</b> (climate-related disclosures). First issued in June 2023, effective for annual periods beginning on/after Jan 1, 2024. Most recently, the ISSB issued <b>targeted amendments to IFRS S2 on Dec 11, 2025</b>, effective Jan 1, 2027 — key changes include relief on Scope 3 Category 15 (investments) reporting, more flexibility in industry classification, and relief on which GWP values to use.">มาตรฐานการเปิดเผยข้อมูลด้านความยั่งยืนระดับสากลที่ออกโดย <b>International Sustainability Standards Board (ISSB)</b> ภายใต้ IFRS Foundation ประกอบด้วย <b>IFRS S1</b> (ข้อกำหนดทั่วไปสำหรับการเปิดเผยข้อมูลด้านความยั่งยืน) และ <b>IFRS S2</b> (การเปิดเผยข้อมูลด้านภูมิอากาศ) เผยแพร่ครั้งแรกมิถุนายน 2566 มีผลบังคับใช้รอบบัญชีที่เริ่ม 1 ม.ค. 2567 เป็นต้นไป ล่าสุด ISSB ออก<b>การแก้ไขเฉพาะจุด (targeted amendments) ต่อ IFRS S2 เมื่อ 11 ธ.ค. 2568</b> มีผล 1 ม.ค. 2570 สาระสำคัญคือผ่อนปรนการรายงาน Scope 3 Category 15 (การลงทุน), เพิ่มความยืดหยุ่นในการจัดหมวดอุตสาหกรรม, และผ่อนปรนการใช้ค่า GWP</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:75%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="S1 &amp; S2 first issued">เผยแพร่ฉบับแรก S1 & S2</div><span data-en="Jun 2023">มิ.ย.66</span></div>
@@ -2259,8 +2301,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="International Sustainability Standards Board (ISSB), IFRS Foundation">International Sustainability Standards Board (ISSB), IFRS Foundation</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Any future IFRS S1 amendments, and further industry-based guidance for S2">การแก้ไข IFRS S1 (ถ้ามี) และแนวทาง industry-based guidance เพิ่มเติมสำหรับ S2</span></div>
 </div>
-<div class="source-note" data-en="Sources: IFRS Foundation (S2 amendments announcement, Dec 2025), IFRS S1 standard page">อ้างอิง: IFRS Foundation (ประกาศแก้ไข S2, ธ.ค. 2568), หน้ามาตรฐาน IFRS S1</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: IFRS Foundation (S2 amendments announcement, Dec 2025), IFRS S1 standard page">อ้างอิง: IFRS Foundation (ประกาศแก้ไข S2, ธ.ค. 2568), หน้ามาตรฐาน IFRS S1</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -2319,12 +2361,12 @@
 <div class="en-name">Task Force on Climate-related Financial Disclosures — recommendations (retired)</div>
 </div>
 <span class="status-pill status-urgent" data-en="Retired — superseded by ISSB/IFRS S2">ยุติแล้ว — ถูกแทนที่ด้วย ISSB/IFRS S2</span>
-<button type="button" class="pin-btn" data-pin="card-12" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-12" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Formally concluded its work in 2023; progress monitoring transferred to the ISSB">ยุติบทบาทอย่างเป็นทางการตั้งแต่ปี 2566 การติดตามความคืบหน้าถูกโอนไปอยู่กับ ISSB</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-12" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="One of the most influential climate-related financial risk disclosure frameworks, established by the <b>Financial Stability Board (FSB)</b>. The <b>TCFD formally concluded its work in 2023</b>; the task of monitoring companies' progress on TCFD-aligned disclosure was transferred to the <b>IFRS Foundation/ISSB</b> from 2024 onward, and <b>IFRS S2 is considered to have fully incorporated</b> the TCFD recommendations. No further updates to the TCFD framework itself will be made.">กรอบการเปิดเผยข้อมูลความเสี่ยงด้านภูมิอากาศทางการเงินที่มีอิทธิพลสูงที่สุดกรอบหนึ่ง จัดตั้งโดย <b>Financial Stability Board (FSB)</b> ปัจจุบัน <b>TCFD ได้ยุติบทบาทอย่างเป็นทางการแล้วตั้งแต่ปี 2566</b> โดยหน้าที่การติดตามความคืบหน้าของบริษัทต่างๆ ในการเปิดเผยข้อมูลตามคำแนะนำ TCFD ถูกโอนไปให้ <b>IFRS Foundation/ISSB</b> ดำเนินการต่อตั้งแต่ปี 2567 เป็นต้นไป และถือว่า <b>IFRS S2 ได้รวมเอาคำแนะนำของ TCFD ไว้ครบถ้วนแล้ว</b> จึงไม่มีการปรับปรุงกรอบ TCFD เพิ่มเติมอีก</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:100%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="Established by FSB">จัดตั้งโดย FSB</div><span data-en="2015">2558</span></div>
@@ -2336,8 +2378,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="Financial Stability Board (FSB) — now monitored by the IFRS Foundation/ISSB">Financial Stability Board (FSB) — ปัจจุบันดูแลต่อโดย IFRS Foundation/ISSB</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="None — follow IFRS S2 instead">ไม่มี — แนะนำติดตาม IFRS S2 แทน</span></div>
 </div>
-<div class="source-note" data-en="Sources: IFRS Foundation (announcement of taking over TCFD monitoring from 2024), Proskauer">อ้างอิง: IFRS Foundation (ประกาศรับช่วงงาน TCFD ตั้งแต่ 2567), Proskauer</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: IFRS Foundation (announcement of taking over TCFD monitoring from 2024), Proskauer">อ้างอิง: IFRS Foundation (ประกาศรับช่วงงาน TCFD ตั้งแต่ 2567), Proskauer</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -2392,12 +2434,12 @@
 <div class="en-name">Sustainability Accounting Standards Board — industry-specific standards (now under ISSB)</div>
 </div>
 <span class="status-pill status-progress" data-en="Being continuously revised under the ISSB">กำลังถูกปรับปรุงต่อเนื่องภายใต้ ISSB</span>
-<button type="button" class="pin-btn" data-pin="card-13" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-13" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Not retired — brought under ISSB governance since 2022, being amended industry-by-industry">ยังไม่ยุติ ถูกรวมเข้าการกำกับดูแลของ ISSB ตั้งแต่ปี 2565 กำลังทยอยแก้ไขเป็นรายอุตสาหกรรม</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-13" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="A set of industry-specific sustainability disclosure standards (77+ industries) developed by the <b>Sustainability Accounting Standards Board (SASB)</b>. It has <b>not been retired</b> — it was brought under <b>ISSB governance in 2022</b> and continues to be actively revised. The ISSB runs a multi-phase project to enhance the <b>international applicability</b> of the SASB Standards, having already published amendments to some standards, and as of Mar 2026 was seeking feedback on proposed amendments to 3 further standards.">ชุดมาตรฐานการเปิดเผยข้อมูลความยั่งยืนเฉพาะอุตสาหกรรม (77+ อุตสาหกรรม) ที่พัฒนาโดย <b>Sustainability Accounting Standards Board (SASB)</b> ปัจจุบัน<b>ไม่ได้ถูกยกเลิก</b> แต่ถูกโอนเข้าสู่การกำกับดูแลของ <b>ISSB ตั้งแต่ปี 2565</b> และยังคงมีการปรับปรุงอย่างต่อเนื่อง ISSB มีโครงการหลายระยะเพื่อ<b>เพิ่มความสามารถในการใช้งานระหว่างประเทศ (international applicability)</b> ของมาตรฐาน SASB โดยได้เผยแพร่การแก้ไขบางมาตรฐานไปแล้ว และ ณ มี.ค. 2569 กำลังรับฟังความเห็นการแก้ไขเพิ่มอีก 3 มาตรฐาน</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:67%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="SASB founded">ก่อตั้ง SASB</div><span data-en="2011">2554</span></div>
@@ -2409,8 +2451,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="Originally SASB, now governed by the ISSB (IFRS Foundation)">เดิม SASB ปัจจุบันดูแลโดย ISSB (IFRS Foundation)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Outcome of the ongoing consultation on further standard amendments (from Mar 2026)">ผลการรับฟังความเห็นการแก้ไขมาตรฐานเพิ่มเติม (มี.ค. 2569 เป็นต้นไป)</span></div>
 </div>
-<div class="source-note" data-en="Sources: Grant Thornton (summary of ISSB's SASB amendments), IFRS Foundation (consultation on 3 amended standards, Mar 2026), PwC In Brief 2026">อ้างอิง: Grant Thornton (สรุปการแก้ไข SASB โดย ISSB), IFRS Foundation (รับฟังความเห็นแก้ไข 3 มาตรฐาน, มี.ค. 2569), PwC In Brief 2569</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: Grant Thornton (summary of ISSB's SASB amendments), IFRS Foundation (consultation on 3 amended standards, Mar 2026), PwC In Brief 2026">อ้างอิง: Grant Thornton (สรุปการแก้ไข SASB โดย ISSB), IFRS Foundation (รับฟังความเห็นแก้ไข 3 มาตรฐาน, มี.ค. 2569), PwC In Brief 2569</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -2468,12 +2510,12 @@
 <div class="en-name">Global Reporting Initiative Standards — Universal Standards + Sector Standards + Topic Standards</div>
 </div>
 <span class="status-pill status-progress" data-en="Universal stable / Sector Standards rolling out">Universal คงที่ / Sector Standards ทยอยออกเพิ่ม</span>
-<button type="button" class="pin-btn" data-pin="card-14" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-14" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Universal Standards unchanged since 2021, but new Sector Standards (e.g. mining) keep rolling out">Universal Standards ยังไม่มี version ใหม่ตั้งแต่ 2021 แต่ Sector Standards ใหม่ (เช่น เหมืองแร่) ทยอยออกเพิ่ม</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-14" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="The world's most widely used sustainability reporting framework, issued by the <b>Global Sustainability Standards Board (GSSB)</b> under the Global Reporting Initiative (GRI). It comprises <b>Universal Standards</b> (GRI 1, 2, 3 — applying to every reporter), <b>Sector Standards</b> (adding industry-specific metrics), and <b>Topic Standards</b> (issue-specific). The current Universal Standards were revised in <b>2021</b>, effective from 2023, and <b>have not been revised again</b> since. Sector Standards, however, keep expanding — e.g. <b>GRI 14 (Mining)</b> becomes mandatory from the 2026 reporting cycle onward, with Sector Standards for Textiles &amp; Apparel and Financial Services also under development.">กรอบการรายงานความยั่งยืนที่ใช้กันแพร่หลายที่สุดในโลก ออกโดย <b>Global Sustainability Standards Board (GSSB)</b> ภายใต้ Global Reporting Initiative (GRI) ประกอบด้วย <b>Universal Standards</b> (GRI 1, 2, 3 — ใช้กับผู้รายงานทุกราย), <b>Sector Standards</b> (เพิ่มตัวชี้วัดเฉพาะอุตสาหกรรม) และ <b>Topic Standards</b> (ประเด็นเฉพาะเรื่อง) Universal Standards ฉบับปัจจุบันปรับปรุงเมื่อ<b>ปี 2021</b> มีผลบังคับใช้ปี 2023 และ<b>ยังไม่มีการทบทวนใหม่</b> แต่ในส่วน Sector Standards มีการเพิ่มอย่างต่อเนื่อง เช่น <b>GRI 14 (เหมืองแร่)</b> ที่จะบังคับใช้ตั้งแต่รอบรายงานปี 2569 เป็นต้นไป และกำลังพัฒนา Sector Standards สำหรับสิ่งทอ/เครื่องนุ่งห่ม และบริการทางการเงิน</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:50%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="Universal Standards revised">Universal Standards ฉบับปรับปรุง</div><span data-en="2021">2021</span></div>
@@ -2486,8 +2528,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="Global Sustainability Standards Board (GSSB) / GRI">Global Sustainability Standards Board (GSSB) / GRI</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Publication of new Sector Standards (Textiles &amp; Apparel, Financial Services) and the labor Topic Standard">การเผยแพร่ Sector Standards ใหม่ (สิ่งทอ/เครื่องนุ่งห่ม, บริการการเงิน) และ Topic Standard ด้านแรงงาน</span></div>
 </div>
-<div class="source-note" data-en="Sources: GRI (What's Changing in 2026), GRI Universal Standards page, The Compliance People (new Topic Standards summary)">อ้างอิง: GRI (What's Changing in 2026), หน้า GRI Universal Standards, The Compliance People (สรุป Topic Standards ใหม่)</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: GRI (What's Changing in 2026), GRI Universal Standards page, The Compliance People (new Topic Standards summary)">อ้างอิง: GRI (What's Changing in 2026), หน้า GRI Universal Standards, The Compliance People (สรุป Topic Standards ใหม่)</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -2545,12 +2587,12 @@
 <div class="en-name">CDP environmental disclosure questionnaire — Climate Change, Water Security, Forests</div>
 </div>
 <span class="status-pill status-force" data-en="Questionnaire updated annually — 2026 edition released">อัปเดตแบบสอบถามทุกปี — ฉบับปี 2569 ออกแล้ว</span>
-<button type="button" class="pin-btn" data-pin="card-15" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-15" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Not a fixed-edition standard but an annually updated questionnaire — the 2026 edition aligns more closely with ISSB/GHG Protocol">ไม่ใช่มาตรฐานแบบ edition คงที่ แต่เป็นแบบสอบถามที่อัปเดตทุกปี ฉบับปี 2569 สอดคล้องกับ ISSB/GHG Protocol มากขึ้น</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-15" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="The most widely used environmental disclosure platform/questionnaire for investors and supply-chain partners, covering 3 main areas — <b>Climate Change, Water Security, and Forests</b>. Unlike the other standards on this page, CDP <b>updates its questionnaire every year</b> rather than issuing long-lived editions. CDP currently has its <b>2026 reporting-year questionnaire</b> live, further aligned with ISSB/IFRS S2 and the evolving GHG Protocol guidance.">แพลตฟอร์ม/แบบสอบถามการเปิดเผยข้อมูลด้านสิ่งแวดล้อมที่ใช้กันแพร่หลายที่สุดสำหรับนักลงทุนและคู่ค้าในห่วงโซ่อุปทาน ครอบคลุม 3 ด้านหลัก — <b>การเปลี่ยนแปลงสภาพภูมิอากาศ (Climate Change), ความมั่นคงด้านน้ำ (Water Security), ป่าไม้ (Forests)</b> — แตกต่างจากมาตรฐานอื่นในรายการนี้ตรงที่ CDP<b>อัปเดตแบบสอบถามทุกปี</b>แทนที่จะออกเป็นฉบับ (edition) ที่ใช้ยาวหลายปี ปัจจุบัน CDP เปิดใช้<b>แบบสอบถามรอบปี 2569</b> แล้ว โดยมีการปรับให้สอดคล้องกับ ISSB/IFRS S2 และแนวทาง GHG Protocol ที่กำลังปรับปรุงมากขึ้น</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:50%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="CDP founded">ก่อตั้ง CDP</div><span data-en="2000">2543</span></div>
@@ -2561,8 +2603,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="CDP (Carbon Disclosure Project)">CDP (Carbon Disclosure Project)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Changes in next year's questionnaire cycle (reporting year 2027)">การเปลี่ยนแปลงแบบสอบถามรอบปีถัดไป (รอบปี 2570)</span></div>
 </div>
-<div class="source-note" data-en="Sources: KPMG (2026 CDP questionnaire summary), CDP Disclosure 2026 page, ClimateSeed">อ้างอิง: KPMG (สรุปแบบสอบถาม CDP ปี 2569), หน้า CDP Disclosure 2026, ClimateSeed</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: KPMG (2026 CDP questionnaire summary), CDP Disclosure 2026 page, ClimateSeed">อ้างอิง: KPMG (สรุปแบบสอบถาม CDP ปี 2569), หน้า CDP Disclosure 2026, ClimateSeed</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -2620,12 +2662,12 @@
 <div class="en-name">ISO 14020/14021/14024/14025 — general principles, self-declared claims, ecolabels (Type I), and EPDs (Type III)</div>
 </div>
 <span class="status-pill status-force" data-en="Major simultaneous revision of 3 editions (2026)">ปรับปรุงใหญ่พร้อมกัน 3 ฉบับ (2026)</span>
-<button type="button" class="pin-btn" data-pin="card-20" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-20" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="ISO 14021, 14024, and 14025 were all just revised to 2026 editions simultaneously — the old 2016/2018/2006 editions are now outdated">ISO 14021, 14024, 14025 เพิ่งออกฉบับปรับปรุงปี 2026 พร้อมกัน — ฉบับที่เคยอ้างอิง 2016/2018/2006 ล้าสมัยแล้ว</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-20" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="A set of standards under ISO/TC 207/SC 3 that frame product environmental labeling/declarations into 3 main types: <b>Type I</b> (<b>ISO 14024</b> — third-party-certified ecolabels such as the EU Ecolabel or Thailand's Green Label), <b>Type II</b> (<b>ISO 14021</b> — self-declared environmental claims by manufacturers, e.g. &quot;recyclable,&quot; &quot;biodegradable,&quot; including carbon-neutral claims), and <b>Type III</b> (<b>ISO 14025</b> — Environmental Product Declarations, or EPDs, based on LCA results). <b>ISO 14020</b> sets the general principles all three types must follow. Most recently, in <b>2026</b>, ISO revised 14021, 14024, and 14025 nearly simultaneously (from their 2016, 2018, and 2006 editions respectively), renaming them under a shared title format (&quot;Environmental statements and programmes for products — ...&quot;). ISO 14020 (2022 edition) has an amendment currently under development.">ชุดมาตรฐานภายใต้ ISO/TC 207/SC 3 ที่วางกรอบการติดฉลาก/ประกาศข้อมูลด้านสิ่งแวดล้อมของผลิตภัณฑ์ 3 ประเภทหลัก: <b>Type I</b> (<b>ISO 14024</b> — ฉลากเขียวที่รับรองโดยบุคคลที่สาม เช่น EU Ecolabel, ฉลากเขียวไทย), <b>Type II</b> (<b>ISO 14021</b> — การกล่าวอ้างด้านสิ่งแวดล้อมที่ผู้ผลิตประกาศเอง เช่น &quot;รีไซเคิลได้&quot;, &quot;ย่อยสลายได้&quot;, รวมถึงการอ้างสิทธิ์ carbon-neutral), และ <b>Type III</b> (<b>ISO 14025</b> — Environmental Product Declarations หรือ EPD ที่อิงผล LCA) โดยมี <b>ISO 14020</b> วางหลักการทั่วไปที่ทั้งสามประเภทต้องปฏิบัติตาม ล่าสุดในปี <b>2026</b> ISO ได้ปรับปรุงฉบับ 14021, 14024 และ 14025 พร้อมกันเกือบทั้งหมด (จากฉบับเดิมปี 2016, 2018 และ 2006 ตามลำดับ) พร้อมเปลี่ยนชื่อมาตรฐานให้อยู่ในรูปแบบเดียวกัน (&quot;Environmental statements and programmes for products — ...&quot;) ส่วน ISO 14020 (ฉบับ 2022) มีการพัฒนาส่วนแก้ไขเพิ่มเติม (Amendment) อยู่ระหว่างดำเนินการ</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:67%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="ISO 14020 current edition">ISO 14020 ฉบับปัจจุบัน</div><span data-en="2022">2022</span></div>
@@ -2637,8 +2679,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="ISO/TC 207/SC 3 (Environmental labelling and declarations)">ISO/TC 207/SC 3 (Environmental labelling and declarations)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="The outcome of the ISO 14020 amendment, and how ecolabel/EPD programs worldwide adapt to the 2026 editions">ผลการพัฒนา Amendment ของ ISO 14020 และการปรับตัวของโปรแกรมฉลากเขียว/EPD ทั่วโลกตามฉบับ 2026</span></div>
 </div>
-<div class="source-note" data-en="Sources: ISO (ISO 14024:2026 announcement), EPD International (ISO 14025:2026 announcement), ANSI Blog (ISO 14021:2026), ISO 14020:2022/AWI Amd 1">อ้างอิง: ISO (ประกาศ ISO 14024:2026), EPD International (ประกาศ ISO 14025:2026), ANSI Blog (ISO 14021:2026), ISO 14020:2022/AWI Amd 1</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: ISO (ISO 14024:2026 announcement), EPD International (ISO 14025:2026 announcement), ANSI Blog (ISO 14021:2026), ISO 14020:2022/AWI Amd 1">อ้างอิง: ISO (ประกาศ ISO 14024:2026), EPD International (ประกาศ ISO 14025:2026), ANSI Blog (ISO 14021:2026), ISO 14020:2022/AWI Amd 1</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -2707,12 +2749,12 @@
 <div class="en-name">ISO 14001 — Environmental management systems — Requirements with guidance for use</div>
 </div>
 <span class="status-pill status-force" data-en="Brand-new 2026 edition just published!">เพิ่งออกฉบับใหม่ปี 2026!</span>
-<button type="button" class="pin-btn" data-pin="card-16" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-16" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="2026 edition just published, replacing the 2015 edition — transition allowed until May 2029">ฉบับ 2026 เพิ่งเผยแพร่ แทนที่ฉบับ 2015 — เปลี่ยนผ่านได้ถึง พ.ค. 2572</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-16" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="The world's most widely certified Environmental Management System (EMS) standard. ISO has just published a new <b>ISO 14001:2026</b> edition, replacing the 2015 edition (which had already received a climate-change amendment in 2024). The new edition broadens environmental analysis beyond climate to include pollution, biodiversity, and natural-resource availability, revises risk/opportunity management processes, and adds stronger lifecycle-thinking requirements for products. Organizations certified to the 2015 edition have until <b>May 2029</b> to transition.">มาตรฐานระบบการจัดการสิ่งแวดล้อม (Environmental Management System - EMS) ที่ได้รับการรับรอง (certifiable) แพร่หลายที่สุดในโลก ล่าสุด<b>ISO ได้เผยแพร่ ISO 14001:2026 ฉบับใหม่แล้ว</b> แทนที่ฉบับ 2015 (ซึ่งเคยมีภาคผนวกด้านการเปลี่ยนแปลงสภาพภูมิอากาศเพิ่มเข้ามาในปี 2024) ฉบับใหม่นี้ขยายขอบเขตการวิเคราะห์สิ่งแวดล้อมให้ครอบคลุมมากกว่าแค่ภูมิอากาศ โดยรวมถึงมลพิษ ความหลากหลายทางชีวภาพ และความพร้อมของทรัพยากรธรรมชาติ พร้อมปรับกระบวนการบริหารความเสี่ยง/โอกาส และเพิ่มข้อกำหนดเรื่องการคิดเชิงวงจรชีวิตผลิตภัณฑ์ (lifecycle thinking) องค์กรที่ได้รับการรับรองตามฉบับ 2015 มีเวลาเปลี่ยนผ่านถึง<b>พฤษภาคม 2029</b></p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:75%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="2015 edition">ฉบับ 2015</div><span data-en="2015">2015</span></div>
@@ -2725,8 +2767,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="International Organization for Standardization (ISO)">องค์การมาตรฐานระหว่างประเทศ (ISO)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Progress of companies certified under the 2015 edition transitioning before the May 2029 deadline">ความคืบหน้าการเปลี่ยนผ่านของบริษัทที่ได้รับการรับรองฉบับ 2015 ก่อนครบกำหนด พ.ค. 2572</span></div>
 </div>
-<div class="source-note" data-en="Sources: DNV (ISO 14001:2026 publication announcement), TÜV (overview/schedule), DNV (transition guide)">อ้างอิง: DNV (ประกาศเผยแพร่ ISO 14001:2026), TÜV (ภาพรวม/กำหนดการ), DNV (คู่มือการเปลี่ยนผ่าน)</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: DNV (ISO 14001:2026 publication announcement), TÜV (overview/schedule), DNV (transition guide)">อ้างอิง: DNV (ประกาศเผยแพร่ ISO 14001:2026), TÜV (ภาพรวม/กำหนดการ), DNV (คู่มือการเปลี่ยนผ่าน)</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -2785,12 +2827,12 @@
 <div class="en-name">ISO 20400 — Sustainable procurement — Guidance</div>
 </div>
 <span class="status-pill status-stable" data-en="No new version has been developed yet">ยังไม่มีการพัฒนา Version ใหม่</span>
-<button type="button" class="pin-btn" data-pin="card-17" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-17" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="The 2017 edition has not been revised, even after almost a decade">ฉบับปี 2017 ยังไม่มีการทบทวน แม้ผ่านมาเกือบ 10 ปีแล้ว</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-17" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="Guidance (not a certifiable standard) for embedding sustainability principles into an organization's procurement policy and process. First and only published in <b>2017</b>, with no evidence found of a revision project. This may partly be because it is a Type-B guidance document (guidance, not certifiable requirements like ISO 14001), which tends to have a slower review cadence than certifiable standards.">แนวปฏิบัติ (guidance, ไม่ใช่มาตรฐานที่ตรวจรับรองได้) สำหรับการนำหลักความยั่งยืนเข้าไปในนโยบายและกระบวนการจัดซื้อจัดจ้างขององค์กร เผยแพร่ครั้งแรกและครั้งเดียวในปี <b>2017</b> ยังไม่พบหลักฐานว่ามีโครงการทบทวน/ปรับปรุงฉบับใหม่ ส่วนหนึ่งอาจเป็นเพราะเป็นมาตรฐานประเภท Type-B (แนวทาง ไม่ใช่ข้อกำหนดที่ตรวจรับรองได้แบบ ISO 14001) จึงมีรอบทบทวนที่ช้ากว่ามาตรฐานที่ตรวจรับรองได้</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:100%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="First published">เผยแพร่ฉบับแรก</div><span data-en="2017">2017</span></div>
@@ -2800,8 +2842,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="International Organization for Standardization (ISO)">องค์การมาตรฐานระหว่างประเทศ (ISO)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Any ISO announcement of a new revision project (none exists yet)">ประกาศเริ่มโครงการทบทวนฉบับใหม่จาก ISO (ยังไม่มี ณ ขณะนี้)</span></div>
 </div>
-<div class="source-note" data-en="Sources: ISO 20400:2017 (iso.org)">อ้างอิง: ISO 20400:2017 (iso.org)</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: ISO 20400:2017 (iso.org)">อ้างอิง: ISO 20400:2017 (iso.org)</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -2858,12 +2900,12 @@
 <div class="en-name">ISO 14040/14044 (LCA principles & requirements) and ISO 14027 (product category rules for footprint communication)</div>
 </div>
 <span class="status-pill status-stable" data-en="No new version has been developed yet">ยังไม่มีการพัฒนา Version ใหม่</span>
-<button type="button" class="pin-btn" data-pin="card-18" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-18" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Foundational life-cycle-assessment standards that many Scope 3 and carbon-footprint claims rely on">มาตรฐานพื้นฐานสำหรับการประเมินวงจรชีวิตผลิตภัณฑ์ ที่ Scope 3 และ carbon footprint claims จำนวนมากอ้างอิง</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-18" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="A set of foundational standards for <b>Life Cycle Assessment (LCA)</b> — evaluating a product's environmental impact across its entire life cycle, from raw-material extraction to disposal. <b>ISO 14040</b> sets out the principles and framework, while <b>ISO 14044</b> provides detailed technical requirements and guidance. Both underpin Product Carbon Footprint standards and the Scope 3 categories covering product use/disposal. <b>ISO 14027</b> additionally sets Product Category Rules for communicating carbon/environmental footprint data. None of these have had a recent revision cycle.">ชุดมาตรฐานพื้นฐานสำหรับ <b>Life Cycle Assessment (LCA)</b> — การประเมินผลกระทบสิ่งแวดล้อมของผลิตภัณฑ์ตลอดวงจรชีวิต ตั้งแต่การสกัดวัตถุดิบจนถึงการกำจัดซาก <b>ISO 14040</b> วางหลักการและกรอบการทำงาน ส่วน <b>ISO 14044</b> กำหนดข้อกำหนดและแนวทางเชิงเทคนิคโดยละเอียด ทั้งสองฉบับเป็นรากฐานที่มาตรฐาน carbon footprint ของผลิตภัณฑ์ (Product Carbon Footprint) และ Scope 3 Category การใช้/กำจัดผลิตภัณฑ์อ้างอิงถึง <b>ISO 14027</b> เพิ่มเติมกำหนดกฎเกณฑ์หมวดหมู่ผลิตภัณฑ์ (Product Category Rules) สำหรับการสื่อสารข้อมูล carbon/environmental footprint ทั้งชุดยังไม่มีรอบทบทวนใหม่ในช่วงที่ผ่านมา</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:100%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="ISO 14040/14044 current edition">ISO 14040/14044 ฉบับปัจจุบัน</div><span data-en="2006">2006</span></div>
@@ -2874,8 +2916,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="International Organization for Standardization (ISO)">องค์การมาตรฐานระหว่างประเทศ (ISO)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Any ISO announcement of a new revision project (none exists yet)">ประกาศเริ่มโครงการทบทวนฉบับใหม่จาก ISO (ยังไม่มี ณ ขณะนี้)</span></div>
 </div>
-<div class="source-note" data-en="Sources: ISO 14040:2006, ISO 14044:2006, ISO 14027:2017 (iso.org)">อ้างอิง: ISO 14040:2006, ISO 14044:2006, ISO 14027:2017 (iso.org)</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: ISO 14040:2006, ISO 14044:2006, ISO 14027:2017 (iso.org)">อ้างอิง: ISO 14040:2006, ISO 14044:2006, ISO 14027:2017 (iso.org)</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -2933,12 +2975,12 @@
 <div class="en-name">TPT Disclosure Framework (UK) and VCMI (Voluntary Carbon Markets Integrity) Claims Code of Practice</div>
 </div>
 <span class="status-pill status-progress" data-en="Newer frameworks, still developing/expanding adoption">กรอบใหม่ กำลังพัฒนา/ขยายการใช้งาน</span>
-<button type="button" class="pin-btn" data-pin="card-19" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-19" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="Two newer frameworks bolstering the credibility of transition plans and carbon-credit claims — both still evolving">สองกรอบใหม่ที่เสริมความน่าเชื่อถือของแผน transition และการอ้างสิทธิ์คาร์บอนเครดิต ยังพัฒนาต่อเนื่อง</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-19" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="Two related but distinct frameworks that have gained increasing attention alongside SBTi/GHG Protocol: the <b>Transition Plan Taskforce (TPT) Framework</b> from the UK, which sets guidance for preparing and disclosing a credible corporate &quot;transition plan&quot; toward a low-carbon economy; and the <b>VCMI Claims Code of Practice</b>, which sets credibility rules for claims related to the voluntary carbon market. Both frameworks are still in a phase of expanding adoption and developing further guidance.">สองกรอบงานที่เกี่ยวข้องกันแต่แยกจากกัน ซึ่งได้รับความสนใจเพิ่มขึ้นควบคู่กับ SBTi/GHG Protocol: <b>Transition Plan Taskforce (TPT) Framework</b> จากสหราชอาณาจักร วางแนวทางการจัดทำและเปิดเผย "แผนการเปลี่ยนผ่าน" (transition plan) สู่เศรษฐกิจคาร์บอนต่ำขององค์กรอย่างมีมาตรฐาน และ <b>VCMI Claims Code of Practice</b> ซึ่งวางกฎเกณฑ์ความน่าเชื่อถือสำหรับการอ้างสิทธิ์ที่เกี่ยวข้องกับตลาดคาร์บอนภาคสมัครใจ (voluntary carbon market claims) ทั้งสองกรอบยังอยู่ในช่วงขยายการยอมรับและพัฒนาแนวทางเพิ่มเติม</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:67%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="TPT Framework published">TPT Framework เผยแพร่</div><span data-en="2023">2566</span></div>
@@ -2950,8 +2992,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="TPT (backed by the UK government) and VCMI (a multi-stakeholder coalition)">TPT (สนับสนุนโดยรัฐบาลสหราชอาณาจักร) และ VCMI (กลุ่มพันธมิตรหลายภาคส่วน)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Wider international adoption beyond the UK, and further guidance on carbon-credit claims">การขยายการยอมรับในระดับสากลนอกเหนือจากสหราชอาณาจักร และแนวทางเพิ่มเติมด้าน carbon credit claims</span></div>
 </div>
-<div class="source-note" data-en="Sources: Transition Plan Taskforce (framework document), VCMI (Claims Code of Practice)">อ้างอิง: Transition Plan Taskforce (เอกสาร framework), VCMI (Claims Code of Practice)</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: Transition Plan Taskforce (framework document), VCMI (Claims Code of Practice)">อ้างอิง: Transition Plan Taskforce (เอกสาร framework), VCMI (Claims Code of Practice)</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -3008,12 +3050,12 @@
 <div class="en-name">ISO 14045 — Environmental management — Eco-efficiency assessment of product systems</div>
 </div>
 <span class="status-pill status-stable" data-en="No new version has been developed yet">ยังไม่มีการพัฒนา Version ใหม่</span>
-<button type="button" class="pin-btn" data-pin="card-21" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-21" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="The 2012 edition has no new revision cycle — no active revision project found">ฉบับปี 2012 ยังไม่มีรอบทบทวนใหม่ ไม่พบโครงการปรับปรุงที่กำลังดำเนินการ</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-21" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="A standard for assessing the <b>eco-efficiency</b> of product systems, combining environmental impact (based on an LCA per ISO 14040/14044) with the product's value/functional benefit, to see how much value a product delivers per unit of environmental impact. First and only published in <b>2012</b> under ISO/TC 207/SC 5 (the same committee that maintains ISO 14040/14044). No evidence of a revision/update project has been found.">มาตรฐานสำหรับประเมิน <b>ประสิทธิภาพเชิงนิเวศเศรษฐกิจ (eco-efficiency)</b> ของระบบผลิตภัณฑ์ โดยผสานผลกระทบสิ่งแวดล้อม (อิงผล LCA ตาม ISO 14040/14044) เข้ากับคุณค่า/ประโยชน์ใช้สอยของผลิตภัณฑ์ เพื่อดูว่าผลิตภัณฑ์ให้คุณค่าต่อหน่วยผลกระทบสิ่งแวดล้อมมากน้อยเพียงใด เผยแพร่ครั้งแรกและฉบับเดียวในปี <b>2012</b> ภายใต้ ISO/TC 207/SC 5 (คณะเดียวกับที่ดูแล ISO 14040/14044) ยังไม่พบหลักฐานของโครงการทบทวน/ปรับปรุงฉบับใหม่</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:100%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="First published">เผยแพร่ฉบับแรก</div><span data-en="2012">2012</span></div>
@@ -3023,8 +3065,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="ISO/TC 207/SC 5 (Life cycle assessment)">ISO/TC 207/SC 5 (Life cycle assessment)</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="Any ISO announcement of a new revision project (none exists yet)">ประกาศเริ่มโครงการทบทวนฉบับใหม่จาก ISO (ยังไม่มี ณ ขณะนี้)</span></div>
 </div>
-<div class="source-note" data-en="Sources: ISO 14045:2012 (iso.org), ANSI webstore">อ้างอิง: ISO 14045:2012 (iso.org), ANSI webstore</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: ISO 14045:2012 (iso.org), ANSI webstore">อ้างอิง: ISO 14045:2012 (iso.org), ANSI webstore</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>
@@ -3081,12 +3123,12 @@
 <div class="en-name">ISO 26000 — Guidance on social responsibility (not certifiable)</div>
 </div>
 <span class="status-pill status-progress" data-en="Under periodic ISO review — outcome not yet confirmed">อยู่ระหว่างทบทวนตามวงรอบ ISO — ผลยังไม่ชัดเจน</span>
-<button type="button" class="pin-btn" data-pin="card-22" aria-label="Pin" title="Pin this item to the top">📌</button>
+<button type="button" class="pin-btn" data-pin="card-22" aria-label="ปักหมุด" title="ปักหมุดฉบับนี้ไว้บนสุด">📌</button>
 </div>
 <div class="quick-take"><span class="qt-icon">📍</span><span data-en="The 2010 edition went through ISO's periodic systematic review (2024-25), but the confirmed outcome — keep as-is, revise, or withdraw — has not been independently verified">ฉบับปี 2010 ผ่านการทบทวนตามวงรอบของ ISO ล่าสุด (2567-68) แต่ผลสรุปว่าจะคงฉบับเดิม แก้ไข หรือถอน ยังไม่มีการยืนยันแน่ชัด</span></div>
 <button type="button" class="detail-view-btn" data-open-detail="card-22" data-en="📄 View Full Detailed Summary">📄 ดูรายละเอียดฉบับเต็ม</button>
 <details class="full-summary"><summary>อ่านสรุปฉบับเต็ม</summary><p class="summary" data-en="The leading international standard for <b>social responsibility (CSR)</b>, covering 7 core subjects: organizational governance, human rights, labor practices, the environment, fair operating practices, consumer issues, and community involvement/development. Crucially, it is <b>not certifiable</b> by design. First and only published in <b>2010</b>. It most recently went through ISO's regular systematic review in <b>late 2024</b> — ANSI opened a call for comments on this review — but the official outcome (keep as-is, revise, or withdraw) could not be independently confirmed from available sources at this time.">มาตรฐานสากลหลักด้าน<b>ความรับผิดชอบต่อสังคม (Social Responsibility / CSR)</b> ที่ใช้กันแพร่หลายที่สุด ครอบคลุม 7 หัวข้อหลัก ได้แก่ ธรรมาภิบาลองค์กร สิทธิมนุษยชน การปฏิบัติด้านแรงงาน สิ่งแวดล้อม การปฏิบัติที่เป็นธรรม ประเด็นผู้บริโภค และการมีส่วนร่วม/พัฒนาชุมชน จุดสำคัญคือ <b>ไม่ใช่มาตรฐานที่ตรวจรับรองได้ (non-certifiable)</b> ตั้งแต่ออกแบบมา เผยแพร่ครั้งแรกและฉบับเดียวในปี <b>2010</b> ล่าสุดมีการทบทวนตามวงรอบปกติของ ISO (systematic review) ในช่วง <b>ปลายปี 2567</b> โดย ANSI ได้เปิดรับฟังความเห็นเรื่องการทบทวนนี้ แต่ผลสรุปอย่างเป็นทางการว่าจะคงฉบับเดิม แก้ไข หรือถอนมาตรฐาน ยังไม่สามารถยืนยันได้แน่ชัดจากแหล่งข้อมูลที่ตรวจสอบได้ในขณะนี้</p></details>
-<div class="timeline">
+<details class="timeline-toggle"><summary data-en="📊 View Timeline &amp; Details">📊 ดูไทม์ไลน์และข้อมูลเพิ่มเติม</summary><div class="timeline">
 <div class="timeline-track"><div class="fill" style="width:67%"></div></div>
 <div class="timeline-points">
 <div class="tpoint done"><div class="dot"></div><div class="label" data-en="First published">เผยแพร่ฉบับแรก</div><span data-en="2010">2010</span></div>
@@ -3098,8 +3140,8 @@
 <div><div class="k" data-en="🏛 Issuing body">🏛 หน่วยงานผู้ออก</div><span data-en="International Organization for Standardization (ISO), via a dedicated multi-stakeholder working group">องค์การมาตรฐานระหว่างประเทศ (ISO) ผ่านคณะทำงานหลายภาคส่วน</span></div>
 <div><div class="k" data-en="👀 What to watch next">👀 สิ่งที่ต้องติดตามต่อ</div><span data-en="The official outcome of the 2024-25 systematic review — whether the standard is kept, revised, or withdrawn">ผลสรุปอย่างเป็นทางการของการทบทวนตามวงรอบปี 2567-68 ว่าจะคงฉบับเดิม แก้ไข หรือถอน</span></div>
 </div>
-<div class="source-note" data-en="Sources: ISO 26000:2010 (iso.org), ANSI (call for comments on ISO 26000 review, Nov 2024), IOE-ITUC Statement, iso26000.info">อ้างอิง: ISO 26000:2010 (iso.org), ANSI (ประกาศรับฟังความเห็นการทบทวน ISO 26000, พ.ย. 2567), IOE-ITUC Statement, iso26000.info</div>
-<details class="law-details">
+<div class="source-note" data-en="Sources: ISO 26000:2010 (iso.org), ANSI (call for comments on ISO 26000 review, Nov 2024), IOE-ITUC Statement, iso26000.info">อ้างอิง: ISO 26000:2010 (iso.org), ANSI (ประกาศรับฟังความเห็นการทบทวน ISO 26000, พ.ย. 2567), IOE-ITUC Statement, iso26000.info</div></details>
+ <details class="law-details">
 <summary>ข้อมูลเชิงลึกครบถ้วน (Core Metadata · Scope · เนื้อหาหลัก · การนำไปใช้ · Cross-reference)</summary>
 <div class="ld-body">
 <div class="ld-asof" data-en="Data as of September 3, 2026">ข้อมูล ณ วันที่ 3 กันยายน 2569 (3 Sep 2026)</div>

@@ -21,11 +21,14 @@
  --eu-accent-soft:#EFF6FF;
  --ok:#059669;
  --ok-soft:#DCFCE7;
+ --ok-pill-text:#047857;
  --warn:#D97706;
  --warn-soft:#FEF3C7;
+ --warn-pill-text:#92400E;
  --urgent:#DC2626;
  --urgent-rgb:220,38,38;
  --urgent-soft:#FEE2E2;
+ --urgent-pill-text:#B91C1C;
  --asia-accent:#475569;
  --asia-accent-soft:#F1F5F9;
  --global-accent:#334155;
@@ -230,18 +233,18 @@
  }
  .status-pill{
  font-family:var(--font-mono);
- font-size:11px;
- font-weight:600;
- padding:5px 12px;
+ font-size:12px;
+ font-weight:700;
+ padding:6px 14px;
  border-radius:0;
  white-space:nowrap;
  letter-spacing:0.02em;
  transition:transform .2s var(--ease);
  }
  .card:hover .status-pill{transform:scale(1.04);}
- .status-progress{background:var(--warn-soft);color:var(--warn);}
- .status-force{background:var(--ok-soft);color:var(--ok);}
- .status-urgent{background:var(--urgent-soft);color:var(--urgent);}
+ .status-progress{background:var(--warn-soft);color:var(--warn-pill-text);}
+ .status-force{background:var(--ok-soft);color:var(--ok-pill-text);}
+ .status-urgent{background:var(--urgent-soft);color:var(--urgent-pill-text);}
 
  .summary{font-size:14px;margin:8px 0 16px;color:var(--ink);}
  .summary b{font-weight:600;}
@@ -953,6 +956,7 @@
  body.side-nav-locked header.masthead{visibility:hidden;}
  @media (max-width:640px){
  .side-nav-toggle{top:12px;left:12px;width:38px;height:38px;font-size:16px;}
+ .wrap{padding-top:64px;}
  }
 
  /* ---- Detail-view button (per card) + Law detail modal ---- */
@@ -1047,7 +1051,7 @@
  transition:background .15s var(--ease),transform .15s var(--ease),box-shadow .15s var(--ease);
  }
  .cross-link-btn:hover{background:var(--gold);box-shadow:none;}
- .masthead-right .cross-link-btn{margin-bottom:8px;}
+ .masthead-links{display:flex;gap:8px;flex-wrap:wrap;}
  .side-cross-link{
  background:var(--paper-2);
  border:1px solid var(--line);
@@ -1101,11 +1105,14 @@
  --eu-accent-soft:#1E3A5F;
  --ok:#34D399;
  --ok-soft:#0F3D2E;
+ --ok-pill-text:#34D399;
  --warn:#FBBF24;
  --warn-soft:#3D2E0A;
+ --warn-pill-text:#FBBF24;
  --urgent:#F87171;
  --urgent-rgb:248,113,113;
  --urgent-soft:#3D1414;
+ --urgent-pill-text:#F87171;
  --asia-accent:#94A3B8;
  --asia-accent-soft:#1E293B;
  --global-accent:#CBD5E1;
@@ -1207,8 +1214,12 @@
 
 <header class="masthead">
 <h1 data-en="Sustainable Packaging Standards">มาตรฐานบรรจุภัณฑ์ยั่งยืน</h1>
+<div class="masthead-links">
+<a href="index.html" class="cross-link-btn" data-en="⚖️ View ESG Law Tracker">⚖️ ดูหน้ากฎหมาย ESG</a>
+<a href="sustainability_standards.html" class="cross-link-btn" data-en="🌱 View Sustainability Standards">🌱 ดูหน้ามาตรฐานความยั่งยืน</a>
+</div>
 <div class="masthead-right">
-<div class="sub" data-en="<a href=&quot;index.html&quot; class=&quot;cross-link-btn&quot;>⚖️ View ESG Law Tracker</a> <a href=&quot;sustainability_standards.html&quot; class=&quot;cross-link-btn&quot;>🌱 View Sustainability Standards</a><br>Compostable/biodegradable + PCR/PIR recycled-content reference<br>Last updated: September 4, 2026"><a href="index.html" class="cross-link-btn">⚖️ ดูหน้ากฎหมาย ESG</a> <a href="sustainability_standards.html" class="cross-link-btn">🌱 ดูหน้ามาตรฐานความยั่งยืน</a><br>อ้างอิงมาตรฐานพลาสติกย่อยสลายได้ + ปริมาณรีไซเคิล (PCR/PIR)<br>ปรับปรุงล่าสุด: 4 กันยายน 2569</div>
+<div class="sub" data-en="Compostable/biodegradable + PCR/PIR recycled-content reference<br>Last updated: September 4, 2026">อ้างอิงมาตรฐานพลาสติกย่อยสลายได้ + ปริมาณรีไซเคิล (PCR/PIR)<br>ปรับปรุงล่าสุด: 4 กันยายน 2569</div>
 <div class="lang-toggle" id="langToggle" role="group" aria-label="Language">
 <button type="button" class="lang-btn is-active" data-lang="th">TH</button>
 <button type="button" class="lang-btn" data-lang="en">EN</button>
@@ -1229,7 +1240,7 @@
 <!-- TOOLBAR -->
 <div class="toolbar">
 <div class="search-box">
-<input type="search" id="stdSearch" placeholder="ค้นหาชื่อมาตรฐาน, หน่วยงาน, คำสำคัญ..." data-en-placeholder="Search standard name, issuing body, keyword...">
+<input type="search" id="stdSearch" aria-label="ค้นหาชื่อมาตรฐาน" placeholder="ค้นหาชื่อมาตรฐาน, หน่วยงาน, คำสำคัญ..." data-en-placeholder="Search standard name, issuing body, keyword...">
 </div>
 <div class="filter-group" id="catFilter">
 <button class="filter-btn active" data-cat="all" data-en="All">ทั้งหมด</button>
