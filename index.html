@@ -5,53 +5,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ESG &amp; Sustainability Regulations Tracker — Thailand &amp; EU</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Taviraj:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
  :root{
- --paper:#F3F4F6;
- --paper-2:#EEF2FF;
- --ink:#111827;
- --ink-soft:#6B7280;
- --line:#E5E7EB;
- --gold:#6366F1;
- --gold-rgb:99,102,241;
- --th-accent:#6366F1;
- --th-accent-soft:#E0E7FF;
- --eu-accent:#14B8A6;
- --eu-accent-soft:#CCFBF1;
- --ok:#10B981;
- --ok-soft:#D1FAE5;
- --warn:#F59E0B;
+ --paper:#F8FAFC;
+ --paper-2:#EFF6FF;
+ --ink:#0F172A;
+ --ink-soft:#64748B;
+ --line:#E2E8F0;
+ --gold:#1E40AF;
+ --gold-rgb:30,64,175;
+ --th-accent:#1E40AF;
+ --th-accent-soft:#DBEAFE;
+ --eu-accent:#2563EB;
+ --eu-accent-soft:#EFF6FF;
+ --ok:#059669;
+ --ok-soft:#DCFCE7;
+ --warn:#D97706;
  --warn-soft:#FEF3C7;
- --urgent:#EF4444;
- --urgent-rgb:239,68,68;
+ --urgent:#DC2626;
+ --urgent-rgb:220,38,38;
  --urgent-soft:#FEE2E2;
- --asia-accent:#F59E0B;
- --asia-accent-soft:#FEF3C7;
- --global-accent:#8B5CF6;
- --global-accent-soft:#EDE9FE;
- --pin:#F59E0B;
- --pin-rgb:245,158,11;
+ --asia-accent:#475569;
+ --asia-accent-soft:#F1F5F9;
+ --global-accent:#334155;
+ --global-accent-soft:#E2E8F0;
+ --pin:#D97706;
+ --pin-rgb:217,119,6;
+ --ink-fixed:#0F172A;
  --surface:#FFFFFF;
- --ink-fixed:#111827;
- --cat-climate-bg:#FFEDD5;
- --cat-climate-fg:#C2410C;
- --cat-packaging-bg:#DCFCE7;
- --cat-packaging-fg:#15803D;
- --cat-reporting-bg:#EDE9FE;
- --cat-reporting-fg:#6D28D9;
- --cat-supplychain-bg:#E0F2FE;
- --cat-supplychain-fg:#0369A1;
- --cat-air-bg:#FEF9C3;
- --cat-air-fg:#A16207;
- --cat-pollution-bg:#E2E8F0;
+ --cat-climate-bg:#F1F5F9;
+ --cat-climate-fg:#334155;
+ --cat-packaging-bg:#F1F5F9;
+ --cat-packaging-fg:#334155;
+ --cat-reporting-bg:#F1F5F9;
+ --cat-reporting-fg:#334155;
+ --cat-supplychain-bg:#F1F5F9;
+ --cat-supplychain-fg:#334155;
+ --cat-air-bg:#F1F5F9;
+ --cat-air-fg:#334155;
+ --cat-pollution-bg:#F1F5F9;
  --cat-pollution-fg:#334155;
- --cat-chemical-bg:#FCE7F3;
- --cat-chemical-fg:#BE185D;
- --cat-waste-bg:#CCFBF1;
- --cat-waste-fg:#0F766E;
- --radius:8px;
+ --cat-chemical-bg:#F1F5F9;
+ --cat-chemical-fg:#334155;
+ --cat-waste-bg:#F1F5F9;
+ --cat-waste-fg:#334155;
+ --radius:0px;
  --ease:cubic-bezier(.4,0,.2,1);
+ --font-head:'Zilla Slab','Taviraj',serif;
+ --font-body:'Inter','IBM Plex Sans Thai',sans-serif;
+ --font-mono:'Fira Code','IBM Plex Sans Thai',monospace;
  }
  *{box-sizing:border-box;}
  @media (prefers-reduced-motion: no-preference){
@@ -72,7 +75,7 @@
  margin:0;
  background:var(--paper);
  color:var(--ink);
- font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
+ font-family:var(--font-body);
  line-height:1.55;
  }
  .wrap{max-width:1180px;margin:0 auto;padding:36px 20px 80px;}
@@ -87,7 +90,7 @@
  gap:12px;
  }
  header.masthead h1{
- font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-family:var(--font-head);
  font-weight:700;
  font-size:clamp(28px,4vw,40px);
  margin:0;
@@ -96,11 +99,11 @@
  header.masthead .sub{
  font-size:13px;
  color:var(--ink-soft);
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  text-align:right;
  }
  .masthead-strip{
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-size:11px;
  letter-spacing:0.08em;
  text-transform:uppercase;
@@ -119,7 +122,7 @@
  margin-bottom:36px;
  }
  .deadlines h2{
- font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-family:var(--font-head);
  font-size:15px;
  font-weight:600;
  text-transform:uppercase;
@@ -145,8 +148,7 @@
  transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s var(--ease);
  }
  .deadline-item:hover{
- transform:translateY(-1px);
- box-shadow:0 6px 16px rgba(20,27,43,.07);
+ border-color:var(--gold);
  }
  .deadline-item.warn{border-left-color:var(--warn);}
  .deadline-item.urgent{border-left-color:var(--urgent);}
@@ -157,7 +159,7 @@
  animation:daysPulse 2.4s ease-in-out infinite;
  }
  .deadline-days{
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-weight:600;
  font-size:13px;
  color:var(--ink);
@@ -170,10 +172,10 @@
  .deadline-label b{font-weight:600;}
  .deadline-tag{
  font-size:10px;
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  letter-spacing:0.05em;
  padding:3px 8px;
- border-radius:20px;
+ border-radius:0;
  white-space:nowrap;
  }
  .tag-th{background:var(--th-accent-soft);color:var(--th-accent);}
@@ -194,7 +196,7 @@
  display:flex;align-items:center;justify-content:center;
  font-size:15px;
  color:#fff;
- font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-family:var(--font-head);
  font-weight:600;
  flex-shrink:0;
  }
@@ -203,7 +205,7 @@
  .section-title.asia .flag{background:var(--asia-accent);}
  .section-title.global .flag{background:var(--global-accent);}
  .section-title h2{
- font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-family:var(--font-head);
  font-size:22px;
  font-weight:700;
  margin:0;
@@ -214,17 +216,15 @@
  .card{
  background:var(--surface);
  border:1px solid var(--line);
- border-radius:calc(var(--radius) + 2px);
+ border-radius:0;
  padding:22px 24px 20px;
  margin-bottom:20px;
  position:relative;
- box-shadow:0 1px 2px rgba(20,27,43,.04);
- transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease);
+ box-shadow:none;
+ transition:border-color .2s var(--ease);
  }
  .card:hover{
- transform:translateY(-3px);
- box-shadow:0 12px 28px rgba(20,27,43,.09);
- border-color:#c3cee0;
+ border-color:var(--gold);
  }
  .card.card-enter{animation:cardIn .4s var(--ease);}
  .card-head{
@@ -236,7 +236,7 @@
  margin-bottom:10px;
  }
  .card-head h3{
- font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-family:var(--font-head);
  font-size:18.5px;
  font-weight:600;
  margin:0 0 4px;
@@ -247,11 +247,11 @@
  font-style:italic;
  }
  .status-pill{
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-size:11px;
  font-weight:600;
  padding:5px 12px;
- border-radius:20px;
+ border-radius:0;
  white-space:nowrap;
  letter-spacing:0.02em;
  transition:transform .2s var(--ease);
@@ -291,7 +291,7 @@
  width:80px;
  font-size:10.5px;
  color:var(--ink-soft);
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  }
  .tpoint .dot{
  width:10px;height:10px;
@@ -316,7 +316,7 @@
  font-size:13px;
  }
  .meta-grid .k{
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-size:10.5px;
  text-transform:uppercase;
  letter-spacing:0.05em;
@@ -336,7 +336,7 @@
  border-top:1px solid var(--line);
  font-size:11.5px;
  color:var(--ink-soft);
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  text-align:center;
  }
 
@@ -357,7 +357,7 @@
  border-radius:var(--radius);
  padding:14px 16px;
  margin-bottom:28px;
- box-shadow:0 1px 3px rgba(20,27,43,.04);
+ box-shadow:none;
  }
  .toolbar .search-box{
  flex:1 1 220px;
@@ -365,7 +365,7 @@
  }
  .toolbar input[type="search"]{
  width:100%;
- font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
+ font-family:var(--font-body);
  font-size:13.5px;
  padding:9px 12px 9px 32px;
  border:1px solid var(--line);
@@ -378,7 +378,7 @@
  outline:none;
  border-color:var(--gold);
  background:var(--surface);
- box-shadow:0 0 0 4px rgba(var(--gold-rgb),.14);
+ box-shadow:0 0 0 2px rgba(var(--gold-rgb),.3);
  }
  .toolbar .search-box::before{
  content:"⌕";
@@ -397,12 +397,12 @@
  gap:6px;
  }
  .filter-btn{
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-size:10.5px;
  letter-spacing:0.03em;
  text-transform:uppercase;
  padding:6px 12px;
- border-radius:20px;
+ border-radius:0;
  border:1px solid var(--line);
  background:var(--paper);
  color:var(--ink-soft);
@@ -416,10 +416,10 @@
  background:var(--gold);
  border-color:var(--gold);
  color:#fff;
- box-shadow:0 4px 10px rgba(99,102,241,.28);
+ box-shadow:none;
  }
  .result-count{
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-size:11px;
  color:var(--ink-soft);
  width:100%;
@@ -446,7 +446,7 @@
  .law-details summary{
  cursor:pointer;
  list-style:none;
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-size:11px;
  font-weight:600;
  letter-spacing:0.03em;
@@ -454,7 +454,7 @@
  color:var(--gold);
  padding:7px 14px;
  border:1px solid var(--line);
- border-radius:20px;
+ border-radius:0;
  display:inline-flex;
  align-items:center;
  gap:6px;
@@ -486,7 +486,7 @@
  animation:cardIn .35s var(--ease);
  }
  .ld-asof{
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-size:10.5px;
  color:var(--ink-soft);
  margin-bottom:12px;
@@ -499,7 +499,7 @@
  margin-bottom:10px;
  }
  .ld-sec h4{
- font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-family:var(--font-head);
  font-size:13.5px;
  font-weight:600;
  margin:0 0 8px;
@@ -523,11 +523,11 @@
  margin-bottom:12px;
  }
  .ld-tab-btn{
- font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
+ font-family:var(--font-body);
  font-size:11.5px;
  font-weight:600;
  padding:6px 12px;
- border-radius:20px;
+ border-radius:0;
  border:1px solid var(--line);
  background:var(--surface);
  color:var(--ink-soft);
@@ -550,7 +550,7 @@
  color:var(--ink);
  background:var(--paper);
  border-left:3px solid var(--gold);
- border-radius:4px;
+ border-radius:0;
  padding:9px 12px;
  margin:10px 0 4px;
  }
@@ -560,7 +560,7 @@
  }
  .full-summary summary{
  cursor:pointer;
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-size:10.5px;
  color:var(--ink-soft);
  text-decoration:underline;
@@ -576,7 +576,7 @@
  margin-bottom:36px;
  }
  .overview h2{
- font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-family:var(--font-head);
  font-size:15px;
  font-weight:600;
  text-transform:uppercase;
@@ -589,7 +589,7 @@
  background:var(--surface);
  border:1px solid var(--line);
  border-radius:var(--radius);
- box-shadow:0 1px 3px rgba(20,27,43,.04);
+ box-shadow:none;
  }
  .overview-table{
  width:100%;
@@ -599,7 +599,7 @@
  }
  .overview-table thead th{
  text-align:left;
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-size:10.5px;
  text-transform:uppercase;
  letter-spacing:0.04em;
@@ -650,17 +650,17 @@
  .lang-toggle{
  display:inline-flex;
  border:1px solid var(--line);
- border-radius:20px;
+ border-radius:0;
  padding:2px;
  background:var(--paper);
  }
  .lang-btn{
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-size:11px;
  font-weight:600;
  letter-spacing:0.03em;
  padding:5px 12px;
- border-radius:18px;
+ border-radius:0;
  border:none;
  background:transparent;
  color:var(--ink-soft);
@@ -676,13 +676,13 @@
  /* ============ Watchlist ============ */
  .watchlist{
  margin-bottom:24px;
- background:linear-gradient(135deg,#EEF2FF 0%,#F0FDFA 100%);
+ background:var(--paper-2);
  border:1px solid var(--line);
- border-radius:calc(var(--radius) + 4px);
+ border-radius:0;
  padding:16px 20px;
  }
  .watchlist h2{
- font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-family:var(--font-head);
  font-size:14.5px;
  font-weight:600;
  margin:0 0 12px;
@@ -699,20 +699,20 @@
  gap:8px;
  background:var(--surface);
  border:1px solid var(--line);
- border-radius:20px;
+ border-radius:0;
  padding:7px 14px 7px 10px;
  font-size:12.5px;
  text-decoration:none;
  color:var(--ink);
  transition:transform .15s var(--ease),box-shadow .15s var(--ease);
  }
- .watchlist-chip:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(20,27,43,.1);}
+ .watchlist-chip:hover{border-color:var(--gold);box-shadow:none;}
  .watchlist-chip .wl-days{
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-weight:700;
  font-size:11px;
  padding:3px 8px;
- border-radius:12px;
+ border-radius:0;
  color:#fff;
  white-space:nowrap;
  }
@@ -720,11 +720,11 @@
 
  /* ============ Filter row extras ============ */
  .more-filters-btn, .clear-filters-btn{
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-size:10.5px;
  letter-spacing:0.03em;
  padding:6px 12px;
- border-radius:20px;
+ border-radius:0;
  border:1px solid var(--line);
  background:var(--paper);
  color:var(--ink-soft);
@@ -747,7 +747,7 @@
  font-size:15px;
  line-height:1;
  padding:2px 4px;
- border-radius:6px;
+ border-radius:0;
  opacity:.4;
  filter:grayscale(1);
  transition:opacity .15s var(--ease),filter .15s var(--ease),transform .15s var(--ease);
@@ -767,13 +767,13 @@
  grid-column:1 / -1;
  height:5px;
  background:var(--line);
- border-radius:4px;
+ border-radius:0;
  overflow:hidden;
  margin-top:2px;
  }
  .deadline-bar-fill{
  height:100%;
- border-radius:4px;
+ border-radius:0;
  transition:width .4s var(--ease);
  }
 
@@ -807,7 +807,7 @@
  }
  .overview-table td[data-label]::before{
  content:attr(data-label);
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-size:10px;
  text-transform:uppercase;
  letter-spacing:0.04em;
@@ -842,7 +842,7 @@
  font-size:18px;
  line-height:1;
  cursor:pointer;
- box-shadow:0 4px 14px rgba(20,27,43,.28);
+ box-shadow:0 1px 3px rgba(0,0,0,.15);
  transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .18s var(--ease),width .18s var(--ease),border-radius .18s var(--ease);
  overflow:hidden;
  white-space:nowrap;
@@ -856,7 +856,7 @@
  .side-nav-toggle:hover,
  .side-nav-toggle:focus-visible{
  width:auto;
- border-radius:999px;
+ border-radius:0;
  padding:0 16px 0 14px;
  }
  .side-nav-toggle:hover .snt-label,
@@ -865,11 +865,11 @@
  opacity:1;
  margin-left:7px;
  }
- .side-nav-toggle:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(20,27,43,.34);background:var(--gold);}
+ .side-nav-toggle:hover{transform:translateY(-1px);box-shadow:0 1px 3px rgba(0,0,0,.15);background:var(--gold);}
  .side-nav-toggle.is-active{background:var(--gold);}
  .side-nav-overlay{
  position:fixed;inset:0;
- background:rgba(20,27,43,.42);
+ background:rgba(0,0,0,.42);
  backdrop-filter:blur(1px);
  z-index:45;
  animation:fadeIn .18s var(--ease);
@@ -883,7 +883,7 @@
  max-width:86vw;
  background:var(--surface);
  border-right:1px solid var(--line);
- box-shadow:6px 0 24px rgba(20,27,43,.16);
+ box-shadow:6px 0 16px rgba(0,0,0,.10);
  z-index:46;
  transform:translateX(-102%);
  transition:transform .28s var(--ease);
@@ -897,7 +897,7 @@
  justify-content:space-between;
  padding:16px 18px;
  border-bottom:2px solid var(--ink);
- font-family:'Inter','IBM Plex Sans Thai',sans-serif;
+ font-family:var(--font-head);
  font-weight:600;
  font-size:17px;
  flex-shrink:0;
@@ -910,7 +910,7 @@
  color:var(--ink-soft);
  cursor:pointer;
  padding:2px 6px;
- border-radius:6px;
+ border-radius:0;
  transition:background .15s var(--ease),color .15s var(--ease);
  }
  .side-nav-close:hover{background:var(--paper-2);color:var(--ink);}
@@ -922,7 +922,7 @@
  .side-top-link{
  display:block;
  padding:9px 10px;
- border-radius:8px;
+ border-radius:0;
  font-size:13.5px;
  font-weight:600;
  color:var(--ink);
@@ -940,7 +940,7 @@
  color:#fff;
  display:inline-block;
  padding:3px 10px;
- border-radius:999px;
+ border-radius:0;
  margin-bottom:8px;
  }
  .side-group-title.th{background:var(--th-accent);}
@@ -957,7 +957,7 @@
  font-size:13px;
  color:var(--ink-soft);
  text-decoration:none;
- border-radius:0 6px 6px 0;
+ border-radius:0;
  transition:background .15s var(--ease),color .15s var(--ease),border-color .15s var(--ease);
  }
  .side-link:hover{background:var(--paper-2);color:var(--ink);}
@@ -980,7 +980,7 @@
  gap:6px;
  margin:2px 0 4px;
  padding:7px 14px;
- font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
+ font-family:var(--font-body);
  font-size:12.5px;
  font-weight:600;
  color:var(--gold);
@@ -990,12 +990,12 @@
  cursor:pointer;
  transition:background .15s var(--ease),color .15s var(--ease),transform .15s var(--ease),box-shadow .15s var(--ease);
  }
- .detail-view-btn:hover{background:var(--gold);color:#fff;transform:translateY(-1px);box-shadow:0 4px 10px rgba(var(--gold-rgb),.28);}
+ .detail-view-btn:hover{background:var(--gold);color:#fff;box-shadow:none;}
  .detail-view-btn:active{transform:translateY(0);}
 
  .law-modal-overlay{
  position:fixed;inset:0;
- background:rgba(17,24,39,.5);
+ background:rgba(0,0,0,.5);
  backdrop-filter:blur(1px);
  z-index:60;
  animation:fadeIn .18s var(--ease);
@@ -1007,8 +1007,8 @@
  width:min(720px,92vw);
  max-height:92vh;
  background:var(--surface);
- border-radius:12px;
- box-shadow:0 24px 60px rgba(17,24,39,.28);
+ border-radius:0;
+ box-shadow:0 4px 16px rgba(0,0,0,.10);
  z-index:61;
  display:flex;
  flex-direction:column;
@@ -1053,17 +1053,17 @@
  gap:6px;
  background:var(--ink-fixed);
  color:#fff;
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-size:12px;
  font-weight:600;
  letter-spacing:.02em;
  text-decoration:none;
  padding:8px 16px;
- border-radius:999px;
- box-shadow:0 4px 12px rgba(17,24,39,.22);
+ border-radius:0;
+ box-shadow:0 1px 3px rgba(0,0,0,.12);
  transition:background .15s var(--ease),transform .15s var(--ease),box-shadow .15s var(--ease);
  }
- .cross-link-btn:hover{background:var(--gold);transform:translateY(-1px);box-shadow:0 6px 16px rgba(var(--gold-rgb),.32);}
+ .cross-link-btn:hover{background:var(--gold);box-shadow:none;}
  .masthead-links{display:flex;gap:8px;flex-wrap:wrap;}
  .side-cross-link{
  background:var(--paper-2);
@@ -1076,12 +1076,12 @@
  /* Category badges & filter */
  .cat-badge-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
  .cat-badge{
- font-family:'IBM Plex Mono',monospace;
+ font-family:var(--font-mono);
  font-size:10px;
  font-weight:600;
  letter-spacing:0.02em;
  padding:3px 9px;
- border-radius:20px;
+ border-radius:0;
  white-space:nowrap;
  display:inline-flex;
  align-items:center;
@@ -1137,18 +1137,18 @@
 
  /* ============ Dark mode ============ */
  [data-theme="dark"]{
- --paper:#0F1420;
- --paper-2:#1A2235;
- --ink:#E5E7EB;
+ --paper:#0B1220;
+ --paper-2:#0F1B2E;
+ --ink:#E2E8F0;
  --ink-soft:#94A3B8;
- --line:#2A3348;
- --surface:#161D2E;
- --gold:#818CF8;
- --gold-rgb:129,140,248;
- --th-accent:#818CF8;
- --th-accent-soft:#262C4A;
- --eu-accent:#2DD4BF;
- --eu-accent-soft:#0F3B36;
+ --line:#263244;
+ --surface:#111A2B;
+ --gold:#3B82F6;
+ --gold-rgb:59,130,246;
+ --th-accent:#3B82F6;
+ --th-accent-soft:#1E3A5F;
+ --eu-accent:#60A5FA;
+ --eu-accent-soft:#1E3A5F;
  --ok:#34D399;
  --ok-soft:#0F3D2E;
  --warn:#FBBF24;
@@ -1156,36 +1156,36 @@
  --urgent:#F87171;
  --urgent-rgb:248,113,113;
  --urgent-soft:#3D1414;
- --asia-accent:#FBBF24;
- --asia-accent-soft:#3D2E0A;
- --global-accent:#A78BFA;
- --global-accent-soft:#2E2350;
+ --asia-accent:#94A3B8;
+ --asia-accent-soft:#1E293B;
+ --global-accent:#CBD5E1;
+ --global-accent-soft:#1E293B;
  --pin:#FBBF24;
  --pin-rgb:251,191,36;
- --cat-climate-bg:#3D2410;
- --cat-climate-fg:#FB923C;
- --cat-packaging-bg:#0F3D24;
- --cat-packaging-fg:#4ADE80;
- --cat-reporting-bg:#2E2350;
- --cat-reporting-fg:#C4B5FD;
- --cat-supplychain-bg:#0C2E42;
- --cat-supplychain-fg:#7DD3FC;
- --cat-air-bg:#3D3410;
- --cat-air-fg:#FDE047;
+ --cat-climate-bg:#1E293B;
+ --cat-climate-fg:#CBD5E1;
+ --cat-packaging-bg:#1E293B;
+ --cat-packaging-fg:#CBD5E1;
+ --cat-reporting-bg:#1E293B;
+ --cat-reporting-fg:#CBD5E1;
+ --cat-supplychain-bg:#1E293B;
+ --cat-supplychain-fg:#CBD5E1;
+ --cat-air-bg:#1E293B;
+ --cat-air-fg:#CBD5E1;
  --cat-pollution-bg:#1E293B;
  --cat-pollution-fg:#CBD5E1;
- --cat-chemical-bg:#4A1530;
- --cat-chemical-fg:#F9A8D4;
- --cat-waste-bg:#0B3B36;
- --cat-waste-fg:#5EEAD4;
+ --cat-chemical-bg:#1E293B;
+ --cat-chemical-fg:#CBD5E1;
+ --cat-waste-bg:#1E293B;
+ --cat-waste-fg:#CBD5E1;
  }
  [data-theme="dark"] body{background:var(--paper);}
- [data-theme="dark"] .side-nav-toggle{box-shadow:0 4px 14px rgba(0,0,0,.5);}
- [data-theme="dark"] .card:hover{border-color:#3B4566;}
+ [data-theme="dark"] .side-nav-toggle{box-shadow:0 1px 3px rgba(0,0,0,.4);}
+ [data-theme="dark"] .card:hover{border-color:var(--gold);}
  [data-theme="dark"] img.emoji{filter:none;}
- [data-theme="dark"] .law-modal, [data-theme="dark"] .law-modal-overlay{box-shadow:0 20px 60px rgba(0,0,0,.6);}
- [data-theme="dark"] .watchlist{background:linear-gradient(135deg,#1B2340 0%,#132A2E 100%);}
- [data-theme="dark"] .cross-link-btn{background:#fff;color:var(--ink-fixed);box-shadow:0 4px 12px rgba(0,0,0,.45);}
+ [data-theme="dark"] .law-modal, [data-theme="dark"] .law-modal-overlay{box-shadow:0 4px 16px rgba(0,0,0,.4);}
+ [data-theme="dark"] .watchlist{background:var(--paper-2);}
+ [data-theme="dark"] .cross-link-btn{background:#fff;color:var(--ink-fixed);box-shadow:0 1px 3px rgba(0,0,0,.3);}
  [data-theme="dark"] .cross-link-btn:hover{background:var(--gold);color:#fff;}
  [data-theme="dark"] .side-cross-link{background:var(--surface);}
 
@@ -1195,19 +1195,19 @@
  align-items:center;
  gap:6px;
  padding:8px 15px 8px 13px;
- border-radius:999px;
+ border-radius:0;
  border:none;
  background:var(--ink-fixed);
  color:#fff;
  cursor:pointer;
- font-family:'DM Sans','IBM Plex Sans Thai',sans-serif;
+ font-family:var(--font-body);
  font-size:13px;
  font-weight:600;
  letter-spacing:.2px;
- box-shadow:0 4px 14px rgba(20,27,43,.28);
+ box-shadow:0 1px 3px rgba(0,0,0,.15);
  transition:transform .15s var(--ease),box-shadow .15s var(--ease),background .15s var(--ease);
  }
- .theme-toggle:hover{background:var(--gold);transform:translateY(-1px);box-shadow:0 6px 18px rgba(20,27,43,.34);}
+ .theme-toggle:hover{background:var(--gold);transform:translateY(-1px);box-shadow:0 1px 3px rgba(0,0,0,.15);}
  .theme-toggle .tt-icon{font-size:15px;line-height:1;}
  .theme-toggle .tt-icon-dark,
  .theme-toggle .tt-label-dark{display:none;}
@@ -1493,6 +1493,18 @@
 <td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Internal ministry drafting — not yet submitted">ยกร่างภายในกระทรวง — ยังไม่เสนอเข้าสู่กระบวนการนิติบัญญัติ</span></td>
 <td data-label="ล่าสุด" data-label-en="Latest" data-en="Second draft — ministry-level review (since Sep 2025)">ร่างที่สอง — พิจารณาระดับกระทรวง (ตั้งแต่ ก.ย.68)</td>
 <td data-label="เป้าหมาย" data-label-en="Target" data-en="Enactment — not yet clear/under consideration">ประกาศใช้ — ยังไม่ชัดเจน/อยู่ระหว่างพิจารณา</td>
+</tr>
+<tr class="ov-row" data-region="th" data-status="progress" data-category="air">
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-20" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-20" data-en="Draft Act on Management for Clean Air">🇹🇭 ร่าง พ.ร.บ.บริหารจัดการเพื่ออากาศสะอาด</a><div class="ov-en">Draft Act on Management for Clean Air — Thailand's "Clean Air Act"</div></td>
+<td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Under joint House–Senate committee reconciliation">อยู่ระหว้างตั้งกรรมการร่วม 2 สภา</span></td>
+<td data-label="ล่าสุด" data-label-en="Latest" data-en="House rejected the Senate's amendments — joint committee formed (Sep 2, 2026)">สภาไม่เห็นชอบการแก้ไขของวุฒิสภา — ตั้ง กมธ.ร่วม (2 ก.ย.69)</td>
+<td data-label="เป้าหมาย" data-label-en="Target" data-en="Enactment — not yet clear/under consideration">ประกาศใช้ — ยังไม่ชัดเจน/อยู่ระหว่างพิจารชา</td>
+</tr>
+<tr class="ov-row" data-region="th" data-status="progress" data-category="packaging">
+<td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-21" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-21" data-en="Draft Circular Economy Act (Citizen-Initiated)">🇹🇭 ร่าง พ.ร.บ.เศรษฐกิจหมุนเวียน (ฉบับประชาชน)</a><div class="ov-en">Draft Circular Economy Act — Citizen-Initiated Bill</div></td>
+<td data-label="สถานะ" data-label-en="Status"><span class="status-pill status-progress" data-en="Collecting citizen signatures (e-Initiative)">กำลังรวบรวมรายชื่อสนับสนุน (e-Initiative)</span></td>
+<td data-label="ล่าสุด" data-label-en="Latest" data-en="Submitted to House Secretariat (May 18, 2026) — collecting 10,000+ signatures">ยื่นต่อสำนักงิานเลขาธิการสภาฯ (18 พ.ค.69) — อยู่ระหว่างรวบรวม 10,000+ รายชื่อ</td>
+<td data-label="เป้าหมาย" data-label-en="Target" data-en="10,000+ signatures by end-2026, then formal House consideration — further timeline not yet clear/under consideration">ครบ 10,000+ รายชื่อภายในสิ้นปี 2569 แล้วเข้าสภาฯ — ขั้นต่อไปยังไม่ชัดเจน/อยู่ระหว่างพิจารชา</td>
 </tr>
 <tr class="ov-row" data-region="th" data-status="force" data-category="pollution">
 <td class="ov-name"><button type="button" class="pin-btn pin-btn-row" data-pin="card-23" aria-label="Pin" title="Pin this law to the top">📌</button><a href="#card-23" data-en="Factory Act">🇹🇭 พ.ร.บ.โรงงาน</a><div class="ov-en">Factory Act B.E. 2535 (1992), as amended by Factory Act (No. 2) B.E. 2562 (2019) — plus Ministerial notifications on effluent, air emissions and waste</div></td>
