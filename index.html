@@ -748,7 +748,14 @@
  color:var(--ink);
  transition:transform .15s var(--ease),box-shadow .15s var(--ease);
  }
+ .watchlist-chip{cursor:pointer;}
  .watchlist-chip:hover{border-color:var(--gold);box-shadow:none;}
+ .watchlist-chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+ .watchlist-chip .wl-go{color:var(--ink-soft);font-weight:700;margin-left:2px;transition:transform .15s var(--ease),color .15s var(--ease);}
+ .watchlist-chip:hover .wl-go{color:var(--gold);transform:translateX(3px);}
+ .card{scroll-margin-top:16px;}
+ .card.jump-flash{animation:jumpFlash 1.8s var(--ease);}
+ @keyframes jumpFlash{0%,45%{box-shadow:0 0 0 3px var(--gold);}100%{box-shadow:0 0 0 0 transparent;}}
  .watchlist-chip .wl-days{
  font-family:var(--font-mono);
  font-weight:700;
@@ -5863,12 +5870,23 @@
  }
  paintDeadlineBars();
 
- // ---- Clicking a deadline item jumps to that law's card ----
+ // ---- Clicking a deadline item (sidebar or watchlist) jumps to that law's card ----
+ function jumpToCard(id){
+ var target = document.getElementById(id);
+ if(!target) return;
+ // If the card is hidden by the current search/filters, clear them first so it can be shown
+ if(target.offsetParent === null){
+ var cfb = document.getElementById('clearFiltersBtn');
+ if(cfb){ cfb.click(); }
+ }
+ target.scrollIntoView({behavior:'smooth', block:'start'});
+ target.classList.remove('jump-flash');
+ void target.offsetWidth;
+ target.classList.add('jump-flash');
+ setTimeout(function(){ target.classList.remove('jump-flash'); }, 1900);
+ }
  document.querySelectorAll('.deadline-item[data-jump]').forEach(function(item){
- item.addEventListener('click', function(){
- var target = document.getElementById(item.getAttribute('data-jump'));
- if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
- });
+ item.addEventListener('click', function(){ jumpToCard(item.getAttribute('data-jump')); });
  });
 
  // ---- This-week watchlist (built from the deadlines already in the DOM) ----
@@ -5893,8 +5911,14 @@
  var days = parseInt(n.textContent, 10);
  var t = Math.max(0, Math.min(1, days / 540));
  var hue = Math.round(t * 130);
- var chip = document.createElement('span');
+ var jumpId = item.getAttribute('data-jump');
+ var chip = document.createElement(jumpId ? 'a' : 'span');
  chip.className = 'watchlist-chip';
+ if(jumpId){
+ chip.href = '#' + jumpId;
+ chip.title = currentLang === 'en' ? 'Go to this law' : 'ไปที่การ์ดกฎหมายฉบับนี้';
+ chip.addEventListener('click', function(e){ e.preventDefault(); jumpToCard(jumpId); });
+ }
  var daysSpan = document.createElement('span');
  daysSpan.className = 'wl-days';
  daysSpan.style.background = 'hsl(' + hue + ', 65%, 45%)';
@@ -5903,6 +5927,13 @@
  var textSpan = document.createElement('span');
  textSpan.innerHTML = label.innerHTML;
  chip.appendChild(textSpan);
+ if(jumpId){
+ var go = document.createElement('span');
+ go.className = 'wl-go';
+ go.setAttribute('aria-hidden', 'true');
+ go.textContent = '→';
+ chip.appendChild(go);
+ }
  wlRow.appendChild(chip);
  });
  if(window.twemoji){ twemoji.parse(wlRow, { folder: 'svg', ext: '.svg' }); }
